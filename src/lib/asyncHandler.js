@@ -9,7 +9,7 @@ export async function asyncHandler(fn) {
             {
                 success: false,
                 data: {
-                    message: 'An error occurred while processing your request.',
+                    message: error.message,
                 }
             },
             { status: 500 }
