@@ -1,8 +1,4 @@
 import mongoose from "mongoose";
-import { maxLength, minLength } from "zod";
-import { de } from "zod/locales";
-import { required } from "zod/mini";
-import { meta } from "zod/v4/core";
 
 const UserSchema = new mongoose.Schema(
     {
@@ -37,10 +33,18 @@ const UserSchema = new mongoose.Schema(
 
         qualifications: [
             {
-                degree: String,
-                institution: String,
-                year: Number,
-                required: true
+                degree: {
+                    type: String,
+                    required: true,
+                },
+                institution: {
+                    type: String,
+                    required: true,
+                },
+                year: {
+                    type: Number,
+                    required: true,
+                }
             }
         ],
 
@@ -87,19 +91,15 @@ const UserSchema = new mongoose.Schema(
             maxLength: 1000,
         },
 
-        treatments: [
-            {
-                type: String,
-                required: true,
-            }
-        ],
+        treatments: {
+            type: [String],
+            required: true,
+        },
 
-        languages: [
-            {
-                type: String,
+        languages: {
+                type: [String],
                 required: true,
-            }
-        ],
+            },
 
         socialLinks: [
             {
@@ -168,9 +168,7 @@ const UserSchema = new mongoose.Schema(
                     type: [String],
                     required: false,
                 },
-                required: false,
-            },
-            required: false,
+            }
         },
         lastLogin: Date,
     },
