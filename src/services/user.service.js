@@ -73,3 +73,25 @@ export const loginUser = async (email, password) => {
     }
     return user;
 }
+
+// get user by id
+export const getUserById = async (id) => {
+    const user = await User.findById(id).select({
+        password: 0,
+    }).lean();
+    if (!user) {
+        throw new Error("User not found");
+    }
+    return user;
+}
+
+// get user by slug
+export const getUserBySlug = async (slug) => {
+    const user = await User.findOne({ slug }).select({
+        password: 0,
+    }).lean()
+    if (!user) {
+        throw new Error("User not found");
+    }
+    return user;
+}

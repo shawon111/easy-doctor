@@ -8,6 +8,13 @@ const UserSchema = new mongoose.Schema(
             trim: true,
         },
 
+        slug: {
+            type: String,
+            required: true,
+            unique: true,
+            index: true,
+        },
+
         email: {
             type: String,
             required: true,
@@ -101,9 +108,9 @@ const UserSchema = new mongoose.Schema(
         },
 
         languages: {
-                type: [String],
-                required: true,
-            },
+            type: [String],
+            required: true,
+        },
 
         socialLinks: [
             {
@@ -188,6 +195,41 @@ const UserSchema = new mongoose.Schema(
         timestamps: true,
     }
 );
+
+import slugify from "slugify";
+
+// generate slug from name before saving
+UserSchema.pre("save", async function (next) {
+    // Don't regenerate unless name changed
+    if (!this.isModified("name")) {
+        return next();
+    }
+
+    const baseSlug = slugify(this.name, {
+        lower: true,
+        strict: true,
+        trim: true,
+    });
+
+    let slug = baseSlug;
+    let counter = 1;
+
+    const TheUser = this.constructor;
+
+    while (
+        await TheUser.exists({
+            slug,
+            _id: { $ne: this._id },
+        })
+    ) {
+        slug = `${baseSlug}-${counter}`;
+        counter++;
+    }
+
+    this.slug = slug;
+
+    next();
+});
 
 const User = mongoose.models.User || mongoose.model("User", UserSchema);;
 

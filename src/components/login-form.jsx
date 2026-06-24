@@ -62,7 +62,7 @@ export function LoginForm({
       toast.success("Logged in successfully!");
       router.push("/dashboard");
     },
-    onError: (error) => {
+    onError: () => {
       toast.error("Invalid enmail or password");
     }
   })

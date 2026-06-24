@@ -6,7 +6,10 @@ export function proxy(request) {
     const isDashboard =
         request.nextUrl.pathname.startsWith("/dashboard");
 
-    if (!isDashboard) {
+        const isApiRoute =
+        request.nextUrl.pathname.startsWith("/api");
+
+    if (!isDashboard && !isApiRoute) {
         return NextResponse.next();
     }
 
@@ -35,5 +38,10 @@ export function proxy(request) {
 }
 
 export const config = {
-    matcher: ["/dashboard/:path*"],
+    matcher: [
+        "/dashboard/:path*",
+        "/api/user/:path*",
+        "/api/auth/logout",
+        "/api/appointment/:path*",
+    ],
 };
