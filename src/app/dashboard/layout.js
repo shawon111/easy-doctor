@@ -1,9 +1,15 @@
+import { requireUser } from '@/lib/requireUser';
+import { redirect } from 'next/navigation';
 import React from 'react';
 
-const DashboardLayout = () => {
+const DashboardLayout = async ({ children }) => {
+    const currentUser = await requireUser();
+    if(!currentUser || !currentUser._id|| !currentUser.email) {
+        redirect('/login');
+    }
     return (
         <div>
-            
+            {children}
         </div>
     );
 };

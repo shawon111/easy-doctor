@@ -24,6 +24,9 @@ import { StepProfessional } from "./step-professional";
 import { StepClinic } from "./step-clinic";
 import { StepProfile } from "./step-profile";
 import { StepSocial } from "./step-social";
+import { useMutation } from "@tanstack/react-query";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 function OnboardingSteps({ currentStep }) {
   const {
@@ -66,9 +69,10 @@ function OnboardingSteps({ currentStep }) {
   }
 }
 
-export function OnboardingForm({ onComplete }) {
+export function OnboardingForm() {
   const [currentStep, setCurrentStep] = useState(0);
   const isLastStep = currentStep === STEPS.length - 1;
+  const router = useRouter();
 
   const methods = useForm({
     resolver: zodResolver(onboardingSchema),
@@ -94,8 +98,37 @@ export function OnboardingForm({ onComplete }) {
     setCurrentStep((step) => Math.max(step - 1, 0));
   };
 
+  // handle form submission
+  const createNewUser = async (data) => {
+    console.log("Submitting data:", data);
+    const response = await fetch("/api/auth/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to create user");
+    }
+
+    return response.json();
+  }
+
+  const { mutate, isPending } = useMutation({
+    mutationFn: createNewUser,
+    onSuccess: (data) => {
+      toast.success("Your profile created successfully!");
+      router.push("/dashboard");
+    },
+    onError: (error) => {
+      toast.error("Failed to your profile user. Please try again.");
+    }
+  })
+
   const onSubmit = (data) => {
-    onComplete?.(data);
+    mutate(data);
   };
 
   const step = STEPS[currentStep];
@@ -122,7 +155,7 @@ export function OnboardingForm({ onComplete }) {
                 variant="outline"
                 onClick={goBack}
                 disabled={currentStep === 0 || isSubmitting}
-                className="w-full sm:w-auto"
+                className="w-full sm:w-auto cursor-pointer"
               >
                 Back
               </Button>
@@ -130,17 +163,17 @@ export function OnboardingForm({ onComplete }) {
               {isLastStep ? (
                 <Button
                   type="submit"
-                  disabled={isSubmitting}
-                  className="w-full sm:w-auto"
+                  disabled={isSubmitting || isPending}
+                  className="w-full sm:w-auto cursor-pointer"
                 >
-                  Complete setup
+                  {isPending ? "Creating Profile..." : "Create Profile"}
                 </Button>
               ) : (
                 <Button
                   type="button"
                   onClick={goNext}
                   disabled={isSubmitting}
-                  className="w-full sm:w-auto"
+                  className="w-full sm:w-auto cursor-pointer"
                 >
                   Continue
                 </Button>

@@ -1,5 +1,6 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
+import QueryProvider from "@/providers/QueryProvider";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -17,7 +18,11 @@ export default function RootLayout({ children }) {
       lang="en"
       className={`${inter.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <QueryProvider>
+          {children}
+        </QueryProvider>
+      </body>
     </html>
   );
 }

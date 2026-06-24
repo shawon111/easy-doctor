@@ -74,6 +74,10 @@ const UserSchema = new mongoose.Schema(
                 visitingHours: {
                     type: String,
                     required: true,
+                },
+                visitingDays: {
+                    type: String,
+                    required: true,
                 }
             }
         ],
@@ -170,7 +174,15 @@ const UserSchema = new mongoose.Schema(
                 },
             }
         },
-        lastLogin: Date,
+        profileCompleted: {
+            type: Boolean,
+            default: false,
+        },
+        userLevel: {
+            type: String,
+            enum: ["free", "pro", "ultra"],
+            default: "free",
+        }
     },
     {
         timestamps: true,

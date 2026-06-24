@@ -45,6 +45,7 @@ export function StepClinic({ register, control, errors }) {
                 city: "",
                 country: "",
                 visitingHours: "",
+                visitingDays: "",
               })
             }
           >
@@ -156,12 +157,33 @@ export function StepClinic({ register, control, errors }) {
                 >
                   <TextField
                     id={`clinicAddress.${index}.visitingHours`}
-                    placeholder="Mon–Fri 9am–5pm"
+                    placeholder="9am–5pm"
                     error={getFieldError(
                       errors,
                       `clinicAddress.${index}.visitingHours`
                     )}
                     {...register(`clinicAddress.${index}.visitingHours`)}
+                  />
+                </Field>
+
+                <Field
+                  label="Visiting days"
+                  htmlFor={`clinicAddress.${index}.visitingDays`}
+                  required
+                  className="sm:col-span-2"
+                  error={getFieldError(
+                    errors,
+                    `clinicAddress.${index}.visitingDays`
+                  )}
+                >
+                  <TextField
+                    id={`clinicAddress.${index}.visitingDays`}
+                    placeholder="Sunday - Thursday"
+                    error={getFieldError(
+                      errors,
+                      `clinicAddress.${index}.visitingDays`
+                    )}
+                    {...register(`clinicAddress.${index}.visitingDays`)}
                   />
                 </Field>
               </CardContent>

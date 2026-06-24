@@ -15,6 +15,7 @@ const clinicAddressSchema = z.object({
   city: z.string().trim().min(1, "City is required"),
   country: z.string().trim().min(1, "Country is required"),
   visitingHours: z.string().trim().min(1, "Visiting hours are required"),
+  visitingDays: z.string().trim().min(1, "Visiting days are required"),
 });
 
 const socialLinkSchema = z.object({
@@ -103,6 +104,7 @@ export const defaultValues = {
       city: "",
       country: "",
       visitingHours: "",
+      visitingDays: "",
     },
   ],
   bookingPreferences: "whatsapp",
