@@ -26,21 +26,21 @@ const ToasterProvider = () => {
                         duration: 3000,
                         iconTheme: {
                             primary: 'green',
-                            secondary: 'black',
+                            secondary: 'white',
                         },
                     },
                     error: {
                         duration: 3000,
                         iconTheme: {    
                             primary: 'red',
-                            secondary: 'black',
+                            secondary: 'white',
                         },
                     },
                     warning: {
                         duration: 3000,
                         iconTheme: {
                             primary: 'orange',
-                            secondary: 'black',
+                            secondary: 'white',
                         },
                     },
                 }}

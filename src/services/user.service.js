@@ -3,6 +3,7 @@ import User from "@/models/user.model";
 import bcrypt from "bcryptjs";
 import { cookies } from "next/headers";
 
+// create a new user
 export const createUser = async (userData) => {
     const { name, email, password, phone, specialization, qualifications, experience, clinicAddress, bio, bookingPreferences, treatments, languages, socialLinks, profilePicture, } = userData;
 
@@ -34,6 +35,7 @@ export const createUser = async (userData) => {
     return savedUser;
 }
 
+// get current user from access token in cookies
 export const getCurrentUser = async () => {
     const cookieStore = await cookies();
     const accessToken = cookieStore.get("accessToken")?.value;
@@ -52,9 +54,22 @@ export const getCurrentUser = async () => {
             name: 1,
             email: 1,
             _id: 1
-        }).lean(); 
+        }).lean();
         return user;
     } catch {
         return null;
     }
+}
+
+// login user by checking email and password
+export const loginUser = async (email, password) => {
+    const user = await User.findOne({ email: email.toLowerCase() }).select({ password: 1, _id: 1 }).lean();
+    if (!user) {
+        throw new Error("User not found");
+    }
+    const comparePassword = await bcrypt.compare(password, user.password);
+    if (!comparePassword) {
+        throw new Error("Invalid password");
+    }
+    return user;
 }
