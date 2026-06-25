@@ -3,7 +3,7 @@ import { connectDB } from "@/config/database";
 import { getDoctorsList, getUserBySlug } from "@/services/user.service";
 import Link from "next/link";
 
-export const revalidate = 60 * 15;
+export const revalidate = 900;
 
 export const generateStaticParams = async () => {
     await connectDB();
