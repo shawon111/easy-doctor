@@ -98,3 +98,13 @@ export const getUserBySlug = async (slug) => {
     }
     return user;
 }
+
+// get doctors list
+export const getDoctorsList = async ()=> {
+    const users = await User.find({}).select({
+        slug: 1,
+        _id: 1, 
+    });
+
+    return users;
+}

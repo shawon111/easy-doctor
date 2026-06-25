@@ -40,7 +40,7 @@ export function proxy(request) {
 export const config = {
     matcher: [
         "/dashboard/:path*",
-        "/api/user/:path*",
+        "/api/me/:path*",
         "/api/auth/logout",
         "/api/appointment/:path*",
     ],

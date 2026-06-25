@@ -1,4 +1,5 @@
 import { connectDB } from "@/config/database";
+import { logger } from "@/lib/logger";
 import { getUserBySlug } from "@/services/user.service";
 import { NextResponse } from "next/server";
 
@@ -15,7 +16,7 @@ export const GET = async ( response, { params }) => {
             status: 200,
         });
     } catch (error) {
-        console.error("Error fetching user:", error);
+        logger.error(error.message)
         return NextResponse.json({ 
             success: false,
             message: "Failed to fetch user"

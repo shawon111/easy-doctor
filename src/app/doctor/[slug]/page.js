@@ -1,6 +1,9 @@
-import React from 'react';
 
-const DoctorPage = () => {
+export const generateStaticParams = async() => {
+    
+}
+
+const DoctorHomePage = () => {
     return (
         <div>
             
