@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import slugify from "slugify";
 
 const UserSchema = new mongoose.Schema(
     {
@@ -10,7 +11,6 @@ const UserSchema = new mongoose.Schema(
 
         slug: {
             type: String,
-            required: true,
             unique: true,
             index: true,
         },
@@ -196,13 +196,11 @@ const UserSchema = new mongoose.Schema(
     }
 );
 
-import slugify from "slugify";
-
 // generate slug from name before saving
-UserSchema.pre("save", async function (next) {
+UserSchema.pre("save", async function () {
     // Don't regenerate unless name changed
     if (!this.isModified("name")) {
-        return next();
+        return ;
     }
 
     const baseSlug = slugify(this.name, {
@@ -228,7 +226,6 @@ UserSchema.pre("save", async function (next) {
 
     this.slug = slug;
 
-    next();
 });
 
 const User = mongoose.models.User || mongoose.model("User", UserSchema);;

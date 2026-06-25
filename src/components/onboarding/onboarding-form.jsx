@@ -151,6 +151,7 @@ export function OnboardingForm() {
 
             <CardFooter className="flex flex-col-reverse gap-3 border-t bg-muted/30 sm:flex-row sm:justify-between">
               <Button
+                key="back-button"
                 type="button"
                 variant="outline"
                 onClick={goBack}
@@ -162,6 +163,7 @@ export function OnboardingForm() {
 
               {isLastStep ? (
                 <Button
+                  key="submit-button"
                   type="submit"
                   disabled={isSubmitting || isPending}
                   className="w-full sm:w-auto cursor-pointer"
@@ -170,9 +172,9 @@ export function OnboardingForm() {
                 </Button>
               ) : (
                 <Button
+                  key="continue-button"
                   type="button"
                   onClick={goNext}
-                  disabled={isSubmitting}
                   className="w-full sm:w-auto cursor-pointer"
                 >
                   Continue
