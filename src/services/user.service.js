@@ -1,3 +1,4 @@
+import { connectDB } from "@/config/database";
 import { verifyAccessToken } from "@/lib/jwt";
 import User from "@/models/user.model";
 import bcrypt from "bcryptjs";
@@ -37,6 +38,7 @@ export const createUser = async (userData) => {
 
 // get current user from access token in cookies
 export const getCurrentUser = async () => {
+    await connectDB();
     const cookieStore = await cookies();
     const accessToken = cookieStore.get("accessToken")?.value;
 
@@ -56,7 +58,8 @@ export const getCurrentUser = async () => {
             _id: 1
         }).lean();
         return user;
-    } catch {
+    } catch(error) {
+        console.error("Error occurred while fetching current user:", error);
         return null;
     }
 }

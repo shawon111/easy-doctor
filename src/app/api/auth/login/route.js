@@ -1,5 +1,7 @@
 import { connectDB } from "@/config/database";
 import { signAccessToken, signRefreshToken } from "@/lib/jwt";
+import { setAccessCookie } from "@/lib/setAccessCookie";
+import { setRefreshCookie } from "@/lib/setRefreshCookie";
 import { loginUser } from "@/services/user.service";
 import { NextResponse } from "next/server";
 
@@ -25,24 +27,15 @@ export const POST = async (request) => {
                     id: user._id,
                     email: user.email,
                 }
+            },
+            {
+                status: 200
             }
         );
 
-        response.cookies.set("accessToken", newAccessToken, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === "production",
-            sameSite: "lax",
-            path: "/",
-            maxAge: 60 * 30,
-        });
+        setAccessCookie(response, newAccessToken);
 
-        response.cookies.set("refreshToken", newRefreshToken, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === "production",
-            sameSite: "lax",
-            path: "/",
-            maxAge: 60 * 60 * 24 * 7,
-        });
+        setRefreshCookie(response, newRefreshToken);
 
         return response;
     } catch (error) {

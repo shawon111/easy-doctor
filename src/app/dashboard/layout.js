@@ -4,7 +4,7 @@ import React from 'react';
 
 const DashboardLayout = async ({ children }) => {
     const currentUser = await requireUser();
-    if(!currentUser || !currentUser._id|| !currentUser.email) {
+    if(!currentUser || !currentUser._id|| !currentUser.email || currentUser===null) {
         redirect('/login');
     }
     return (

@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 import { verifyRefreshToken, signAccessToken, signRefreshToken } from "./jwt";
+import { setAccessCookie } from "./setAccessCookie";
+import { setRefreshCookie } from "./setRefreshCookie";
 
 // Helper function to redirect to login and clear tokens
 export function redirectToLogin(request) {
@@ -34,21 +36,9 @@ export function tryRefreshTokens(request, refreshToken) {
 
         const res = NextResponse.next();
 
-        res.cookies.set("accessToken", newAccessToken, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === "production",
-            sameSite: "lax",
-            path: "/",
-            maxAge: 60 * 30,
-        });
+        setAccessCookie(res, newAccessToken);
 
-        res.cookies.set("refreshToken", newRefreshToken, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === "production",
-            sameSite: "lax",
-            path: "/",
-            maxAge: 60 * 60 * 24 * 7,
-        });
+        setRefreshCookie(res, newRefreshToken);
 
         return res;
     } catch {
