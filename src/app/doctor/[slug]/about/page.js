@@ -1,9 +1,9 @@
-import React from 'react';
 
-const AboutPage = () => {
+
+const AboutPage = async ({ params }) => {
     return (
         <div>
-            
+
         </div>
     );
 };

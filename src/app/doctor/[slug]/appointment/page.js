@@ -1,11 +1,12 @@
-import React from 'react';
 
-const AppointmentPage = () => {
+
+const AppointmentPage = async ({ params }) => {
+
     return (
         <div>
-            
+
         </div>
-    );
+    )
 };
 
 export default AppointmentPage;

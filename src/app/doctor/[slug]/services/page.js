@@ -1,11 +1,13 @@
-import React from 'react';
 
-const ServicesPage = () => {
+
+const ServicesPage = async ({ params }) => {
+
+
     return (
         <div>
-            
+
         </div>
-    );
+    )
 };
 
 export default ServicesPage;
