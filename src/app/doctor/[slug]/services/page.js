@@ -1,12 +1,12 @@
+import TemplateOnePageRenderer from "@/components/templates/template-one/TemplateOnePageRenderer";
 
+const pageName = 'services';
 
 const ServicesPage = async ({ params }) => {
-
-
     return (
-        <div>
-
-        </div>
+        <>
+            <TemplateOnePageRenderer page={pageName} />
+        </>
     )
 };
 

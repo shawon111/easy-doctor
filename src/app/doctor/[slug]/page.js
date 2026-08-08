@@ -1,5 +1,6 @@
+import TemplateOnePageRenderer from "@/components/templates/template-one/TemplateOnePageRenderer";
 import { connectDB } from "@/config/database";
-import { getDoctorsList, getUserBySlug } from "@/services/user.service";
+import { getDoctorsList } from "@/services/user.service";
 
 export const revalidate = 900;
 
@@ -11,14 +12,14 @@ export const generateStaticParams = async () => {
     }))
 }
 
+// page name
+const pageName = 'home';
+
 const DoctorHomePage = async ({ params }) => {
-    await connectDB();
-    const { slug } = await params;
-    const doctor = await getUserBySlug(slug);
     return (
-        <div>
-            <h1>{doctor?.name}</h1>
-        </div>
+        <>
+            <TemplateOnePageRenderer page={pageName} />
+        </>
     );
 };
 
