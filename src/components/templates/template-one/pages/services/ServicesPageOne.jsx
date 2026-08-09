@@ -1,11 +1,19 @@
 import React from 'react';
+import ServicesHeroOne from './ServicesHeroOne';
+import ServicesTreatmentsGridOne from './ServicesTreatmentsGridOne';
+import ServicesBenefitsOne from './ServicesBenefitsOne';
+import ServicesFaqOne from './ServicesFaqOne';
+import ServicesCtaBannerOne from './ServicesCtaBannerOne';
 
 const ServicesPageOne = () => {
     return (
-        <div>
-            <h1>Services Page</h1>
-            <p>This is the services page for Template One.</p>
-        </div>
+        <>
+            <ServicesHeroOne />
+            <ServicesTreatmentsGridOne />
+            <ServicesBenefitsOne />
+            <ServicesFaqOne />
+            <ServicesCtaBannerOne />
+        </>
     );
 };
 

@@ -1,11 +1,19 @@
 import React from 'react';
+import AppointmentHeroOne from './AppointmentHeroOne';
+import AppointmentHowItWorksOne from './AppointmentHowItWorksOne';
+import AppointmentScheduleOne from './AppointmentScheduleOne';
+import AppointmentWhatsappCtaOne from './AppointmentWhatsappCtaOne';
+import AppointmentFaqOne from './AppointmentFaqOne';
 
 const AppointmentPageOne = () => {
     return (
-        <div>
-            <h1>Appointment Page</h1>
-            <p>This is the appointment page for Template One.</p>
-        </div>
+        <>
+            <AppointmentHeroOne />
+            <AppointmentHowItWorksOne />
+            <AppointmentScheduleOne />
+            <AppointmentWhatsappCtaOne />
+            <AppointmentFaqOne />
+        </>
     );
 };
 
