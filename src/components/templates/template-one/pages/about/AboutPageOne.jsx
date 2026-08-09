@@ -1,11 +1,20 @@
 import React from 'react';
-
+import AboutHeroOne from './AboutHeroOne';
+import AboutPhilosophyOne from './AboutPhilosophyOne';
+import AboutBioStatsOne from './AboutBioStatsOne';
+import AboutTimelineOne from './AboutTimelineOne';
+import AboutChambersOne from './AboutChambersOne';
+import AboutFinalCtaOne from './AboutFinalCtaOne';
 const AboutPageOne = () => {
     return (
-        <div>
-            <h1>About Page</h1>
-            <p>This is the about page for Template One.</p>
-        </div>
+        <>
+            <AboutHeroOne />
+            <AboutPhilosophyOne />
+            <AboutBioStatsOne />
+            <AboutTimelineOne />
+            <AboutChambersOne />
+            <AboutFinalCtaOne />
+        </>
     );
 };
 
