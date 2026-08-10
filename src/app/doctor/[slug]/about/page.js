@@ -1,12 +1,13 @@
 import TemplateOnePageRenderer from "@/components/templates/template-one/TemplateOnePageRenderer";
+import TemplateTwoPageRenderer from "@/components/templates/template-two/TemplateTwoPageRenderer";
 
 // page name
 const pageName = 'about';
 
-const AboutPage = async ({ params }) => {
+const AboutPage = async () => {
     return (
         <>
-            <TemplateOnePageRenderer page={pageName} />
+            <TemplateTwoPageRenderer page={pageName} />
         </>
     );
 };

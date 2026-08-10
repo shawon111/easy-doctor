@@ -1,11 +1,20 @@
-import { Inter } from "next/font/google";
+import { Inter, Manrope, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import QueryProvider from "@/providers/QueryProvider";
-import { Toast } from "radix-ui";
 import ToasterProvider from "@/providers/ToasterProvider";
 
 const inter = Inter({
   variable: "--font-inter",
+  subsets: ["latin"],
+});
+
+const playfairDisplay = Playfair_Display({
+  variable: "--font-playfair-display",
+  subsets: ["latin"],
+});
+
+const manrope = Manrope({
+  variable: "--font-manrope",
   subsets: ["latin"],
 });
 
@@ -18,7 +27,7 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${inter.variable} h-full antialiased scroll-smooth`}
+      className={`${inter.variable} ${playfairDisplay.variable} ${manrope.variable} h-full antialiased scroll-smooth`}
     >
       <head>
         <link

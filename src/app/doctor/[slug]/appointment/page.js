@@ -1,11 +1,12 @@
 import TemplateOnePageRenderer from "@/components/templates/template-one/TemplateOnePageRenderer";
+import TemplateTwoPageRenderer from "@/components/templates/template-two/TemplateTwoPageRenderer";
 
 const pageName = 'appointment';
 
-const AppointmentPage = async ({ params }) => {
+const AppointmentPage = async () => {
     return (
         <>
-            <TemplateOnePageRenderer page={pageName} />
+            <TemplateTwoPageRenderer page={pageName} />
         </>
     )
 };

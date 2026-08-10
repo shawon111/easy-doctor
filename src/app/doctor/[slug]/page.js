@@ -1,4 +1,5 @@
 import TemplateOnePageRenderer from "@/components/templates/template-one/TemplateOnePageRenderer";
+import TemplateTwoPageRenderer from "@/components/templates/template-two/TemplateTwoPageRenderer";
 import { connectDB } from "@/config/database";
 import { getDoctorsList } from "@/services/user.service";
 
@@ -18,7 +19,7 @@ const pageName = 'home';
 const DoctorHomePage = async ({ params }) => {
     return (
         <>
-            <TemplateOnePageRenderer page={pageName} />
+            <TemplateTwoPageRenderer page={pageName} />
         </>
     );
 };
