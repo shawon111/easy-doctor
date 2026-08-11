@@ -1,0 +1,72 @@
+const FEATURES = [
+  {
+    icon: "check_circle",
+    title: "Priority Scheduling",
+    detail: "Skip the queue for urgent consultations.",
+  },
+  {
+    icon: "lock",
+    title: "End-to-End Privacy",
+    detail: "All communications are encrypted and confidential.",
+  },
+];
+
+export default function AppointmentWhatsappTwo() {
+  return (
+    <section className="py-[120px] px-[20px] md:px-[64px]" id="whatsapp">
+      <div className="bg-white border border-[#cbd5e1] rounded-[16px] overflow-hidden grid grid-cols-1 lg:grid-cols-2 shadow-sm">
+        <div className="p-12 md:p-16 space-y-8">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-[2px] bg-[#d97706]" />
+            <span className="apttwo-label-caps text-[#d97706] tracking-widest uppercase">
+              Concierge Service
+            </span>
+          </div>
+          <h2 className="apttwo-headline-md text-[#0f172a] leading-tight">
+            Direct Access via WhatsApp
+          </h2>
+          <p className="apttwo-body-lg text-[#475569] leading-relaxed">
+            For executive patients who value time and efficiency, our
+            WhatsApp Concierge handles all appointment details instantly. No
+            waiting on hold—just direct, personalized communication with our
+            administrative team.
+          </p>
+
+          <div className="space-y-4">
+            {FEATURES.map((f) => (
+              <div key={f.title} className="flex items-start gap-4">
+                <span className="apttwo-material-symbols text-[#2563eb]">{f.icon}</span>
+                <div>
+                  <h4 className="font-bold text-[#0f172a]">{f.title}</h4>
+                  <p className="text-sm text-[#475569]">{f.detail}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <a
+            className="inline-flex items-center gap-4 bg-[#25D366] text-white px-10 py-5 rounded-[16px] apttwo-label-caps hover:scale-105 transition-transform shadow-lg"
+            href="#"
+          >
+            <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.938 3.659 1.435 5.624 1.435h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+            </svg>
+            CHAT ON WHATSAPP
+          </a>
+        </div>
+
+        <div className="h-full min-h-[400px]">
+          <div
+            className="bg-cover bg-center w-full h-full"
+            role="img"
+            aria-label="A high-end, professionally lit shot of a luxury smartphone resting on a dark walnut desk alongside a stethoscope. The lighting is moody and cinematic, with soft gold highlights reflecting off the device's screen, suggesting elite medical concierge service."
+            style={{
+              backgroundImage:
+                "url('https://lh3.googleusercontent.com/aida-public/AB6AXuAryKDCaQLNj7Gq2TkxFFEMZGkG_1_lVuEPfceszUbcPVGdFBJzZua9CpVpgm2HsYl6BOX7Wvw-mvQ0JTew73mYjDSarvKD4OdXzOEvXi0Qx3qeo8W7Ga_ZpgsAEMXFN5Guyhp2Z4Gt-O30XpTWqylp2zQdIXvb2rLiT-ARHz_1QqPe0XKcp_Ws645-74mWUH47ruy_WXqapYzO3ybSdGZ3p7urn1INslzEwlil1UUvRDlWtewjuZFUng')",
+            }}
+          />
+        </div>
+      </div>
+    </section>
+  );
+}
