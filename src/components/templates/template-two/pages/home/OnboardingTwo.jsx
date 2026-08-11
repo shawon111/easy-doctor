@@ -21,27 +21,31 @@ const STEPS = [
 
 export default function OnboardingTwo() {
   return (
-    <section className="py-[120px] px-[20px] md:px-[64px] bg-[#f2f4f6]">
-      <div className="max-w-[1200px] mx-auto">
+    <section className="py-section-gap px-margin-mobile md:px-margin-desktop bg-surface-container-low">
+      <div className="max-w-container-max mx-auto">
         <div className="text-center mb-16">
-          <h2 className="dstwo-headline-md text-[#1a1c1e] italic mb-4">
+          <h2 className="font-headline-md text-headline-md text-on-surface italic mb-4">
             Patient Onboarding
           </h2>
-          <p className="dstwo-body-md text-[#44474e]">
+          <p className="font-body-md text-body-md text-on-surface-variant">
             A streamlined three-step journey to precision care.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-[24px] relative">
-          <div className="hidden md:block absolute top-12 left-1/4 right-1/4 h-[1px] bg-[#2563eb]/20" />
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter relative">
+          <div className="hidden md:block absolute top-12 left-1/4 right-1/4 h-px bg-primary/20" />
 
           {STEPS.map((step) => (
             <div key={step.title} className="text-center z-10">
-              <div className="w-24 h-24 rounded-full dstwo-glass-card mx-auto flex items-center justify-center mb-6 text-[#2563eb] border-[#2563eb]/20 shadow-sm">
-                <span className="dstwo-material-symbols text-4xl">{step.icon}</span>
+              <div className="w-24 h-24 rounded-full glass-card mx-auto flex items-center justify-center mb-6 text-primary border border-primary/20 shadow-sm">
+                <span className="material-symbols-outlined text-4xl">{step.icon}</span>
               </div>
-              <h3 className="dstwo-label-caps text-[#1a1c1e] mb-2">{step.title}</h3>
-              <p className="dstwo-body-md text-[#44474e] px-4">{step.detail}</p>
+              <h3 className="font-label-caps text-label-caps text-on-surface mb-2">
+                {step.title}
+              </h3>
+              <p className="font-body-md text-body-md text-on-surface-variant px-4">
+                {step.detail}
+              </p>
             </div>
           ))}
         </div>

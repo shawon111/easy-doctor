@@ -1,18 +1,21 @@
 export default function CtaTwo() {
   return (
-    <section className="mb-[120px] px-[20px] md:px-[64px]">
-      <div className="max-w-[1200px] mx-auto bg-[#2563eb] text-white p-12 md:p-24 rounded-[16px] text-center relative overflow-hidden group border-none shadow-2xl">
+    <section className="mb-section-gap px-margin-mobile md:px-margin-desktop">
+      <div className="max-w-container-max mx-auto bg-primary text-on-primary p-12 md:p-24 rounded-xl text-center relative overflow-hidden group border-none shadow-2xl">
         <div className="relative z-10 max-w-2xl mx-auto space-y-8">
-          <h2 className="dstwo-display-lg text-white">
+          <h2 className="font-display-lg text-display-lg text-on-primary">
             The Pinnacle of Clinical Care
           </h2>
-          <p className="dstwo-body-lg text-white/80">
+          <p className="font-body-lg text-body-lg text-on-primary/80">
             Secure your appointment with London&apos;s leading precision
             specialist today. Limited intake ensures individualized mastery.
           </p>
-          <button className="px-12 py-5 bg-white text-[#2563eb] dstwo-label-caps rounded-[8px] dstwo-luxury-btn-hover shadow-xl transition-all flex items-center gap-4 mx-auto">
+          <button
+            type="button"
+            className="px-12 py-5 bg-surface-container-lowest text-primary font-label-caps text-label-caps rounded-lg luxury-button-hover shadow-xl transition-all flex items-center gap-4 mx-auto"
+          >
             Inquire About Registration
-            <span className="dstwo-material-symbols">chevron_right</span>
+            <span className="material-symbols-outlined">chevron_right</span>
           </button>
         </div>
         <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-white/10 rounded-full blur-3xl" />

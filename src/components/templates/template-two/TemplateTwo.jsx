@@ -4,7 +4,7 @@ import HeaderTwo from './header/HeaderTwo';
 
 const TemplateTwo = ({ children }) => {
     return (
-        <div className="template-two dstwo-root text-[#1a1c1e] selection:bg-[#D4AF37]/20">
+        <div className="template-two bg-background text-on-background selection:bg-tertiary/20">
             <HeaderTwo />
             <main>
                 {children}

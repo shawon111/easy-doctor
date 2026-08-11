@@ -1,16 +1,21 @@
 "use client";
 
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 
-export default function NavbarTwo() {
-  // get the slug from the URL
-  const params = useParams();
-  const { slug } = params;
-  const preUrl = `doctor/${slug}`;
+const NAV_LINKS = [
+  { label: "Home", href: "" },
+  { label: "About", href: "/about" },
+  { label: "Services", href: "/services" }
+];
 
-  // handle scroll to hide and show the navbar
+export default function NavbarTwo() {
+  const params = useParams();
+  const pathname = usePathname();
+  const slug = params?.slug;
+  const basePath = `/doctor/${slug}`;
+
   const navRef = useRef(null);
   const lastScroll = useRef(0);
 
@@ -35,28 +40,48 @@ export default function NavbarTwo() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const isActive = (href) => {
+    const path = href ? `${basePath}${href}` : basePath;
+    if (href === "") {
+      return pathname === basePath || pathname === `${basePath}/`;
+    }
+    return pathname === path || pathname.startsWith(`${path}/`);
+  };
+
   return (
     <nav
       ref={navRef}
-      className="bg-white/80 backdrop-blur-xl border-b border-[#c4c6cf] shadow-sm flex justify-between items-center px-[20px] md:px-[64px] h-20 w-full z-50 top-0 sticky transition-transform duration-300"
+      className="bg-surface-container-lowest/80 backdrop-blur-xl border-b border-outline-variant shadow-sm flex justify-between items-center px-margin-mobile md:px-margin-desktop h-20 w-full z-50 top-0 sticky transition-transform duration-300"
     >
-      <div className="dstwo-headline-sm text-[#1a1c1e] tracking-tight">
+      <div className="font-headline-sm text-headline-sm text-on-surface tracking-tight">
         Dr. Specialist
       </div>
 
       <div className="hidden md:flex space-x-8">
-        <Link className="dstwo-label-caps text-[#44474e] hover:text-[#2563eb] transition-colors duration-300" href={`/${preUrl}/`}>
-          Home
-        </Link>
-        <Link className="dstwo-label-caps text-[#44474e] hover:text-[#2563eb] transition-colors duration-300" href={`/${preUrl}/about`}>
-          About
-        </Link>
-        <Link className="dstwo-label-caps text-[#44474e] hover:text-[#2563eb] transition-colors duration-300" href={`/${preUrl}/services`}>
-          Services
-        </Link>
+        {NAV_LINKS.map((link) => {
+          const href = link.href ? `${basePath}${link.href}` : basePath;
+          const active = isActive(link.href);
+
+          return (
+            <Link
+              key={link.label}
+              href={href}
+              className={
+                active
+                  ? "font-label-caps text-label-caps text-primary border-b-2 border-primary pb-1"
+                  : "font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors duration-300"
+              }
+            >
+              {link.label}
+            </Link>
+          );
+        })}
       </div>
 
-      <Link className="bg-[#2563eb] text-white dstwo-label-caps px-6 py-3 rounded-[8px] dstwo-luxury-btn-hover transition-all active:scale-95" href={`/${preUrl}/appointment`}>
+      <Link
+        href={`${basePath}/appointment`}
+        className="bg-primary text-on-primary font-label-caps text-label-caps px-6 py-3 rounded-lg luxury-button-hover transition-all active:scale-95"
+      >
         Book Appointment
       </Link>
     </nav>
