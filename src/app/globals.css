@@ -1483,3 +1483,489 @@ body {
 .template-two-dark footer.t2d-footer {
   background-color: #080f14;
 }
+
+/* ─── Template Three (Dr. MedLink — clinical excellence light) ─── */
+.template-three {
+  --color-primary: #005ac2;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #d8e2ff;
+  --color-on-primary-container: #001a42;
+  --color-secondary: #006a60;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #005047;
+  --color-on-secondary-container: #ffffff;
+  --color-tertiary: #904a4d;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #ffdadb;
+  --color-on-tertiary-container: #3b080e;
+  --color-background: #f7f9fb;
+  --color-on-background: #191c20;
+  --color-surface: #f7f9fb;
+  --color-on-surface: #191c20;
+  --color-surface-variant: #e1e2ec;
+  --color-on-surface-variant: #44474e;
+  --color-outline: #74777f;
+  --color-outline-variant: #c4c6d0;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f1f3f9;
+  --color-surface-container: #eceef4;
+  --color-surface-container-high: #e1e2ec;
+  --color-surface-container-highest: #e2e2e6;
+  --color-error: #ba1a1a;
+
+  --spacing-margin-desktop: 40px;
+  --spacing-margin-mobile: 16px;
+  --spacing-gutter: 24px;
+  --max-width-container-max: 1280px;
+
+  --font-display-lg: var(--font-manrope), "Manrope", sans-serif;
+  --font-headline-lg: var(--font-manrope), "Manrope", sans-serif;
+  --font-headline-md: var(--font-manrope), "Manrope", sans-serif;
+  --font-headline-lg-mobile: var(--font-manrope), "Manrope", sans-serif;
+  --font-body-md: var(--font-inter), "Inter", sans-serif;
+  --font-body-lg: var(--font-inter), "Inter", sans-serif;
+  --font-label-sm: var(--font-jetbrains-mono), "JetBrains Mono", monospace;
+
+  --text-headline-lg: 32px;
+  --text-headline-lg--line-height: 1.2;
+  --text-headline-lg--font-weight: 700;
+  --text-body-md: 16px;
+  --text-body-md--line-height: 1.5;
+  --text-body-md--font-weight: 400;
+  --text-label-sm: 12px;
+  --text-label-sm--line-height: 1;
+  --text-label-sm--letter-spacing: 0.05em;
+  --text-label-sm--font-weight: 500;
+  --text-display-lg: 48px;
+  --text-display-lg--line-height: 1.1;
+  --text-display-lg--letter-spacing: -0.02em;
+  --text-display-lg--font-weight: 800;
+  --text-headline-md: 24px;
+  --text-headline-md--line-height: 1.3;
+  --text-headline-md--font-weight: 600;
+  --text-headline-lg-mobile: 24px;
+  --text-headline-lg-mobile--line-height: 1.2;
+  --text-headline-lg-mobile--font-weight: 700;
+  --text-body-lg: 18px;
+  --text-body-lg--line-height: 1.6;
+  --text-body-lg--font-weight: 400;
+
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+
+  font-family: var(--font-inter), "Inter", sans-serif;
+  background-color: #f7f9fb;
+  color: #191c20;
+  scroll-behavior: smooth;
+}
+
+/* Typography — override global @theme Inter defaults with Manrope headings */
+.template-three h1,
+.template-three h2,
+.template-three h3,
+.template-three h4,
+.template-three h5 {
+  font-family: var(--font-manrope), "Manrope", sans-serif;
+}
+
+.template-three .font-display-lg,
+.template-three .font-headline-lg,
+.template-three .font-headline-md,
+.template-three .font-headline-lg-mobile {
+  font-family: var(--font-manrope), "Manrope", sans-serif;
+}
+
+.template-three .font-body-md,
+.template-three .font-body-lg {
+  font-family: var(--font-inter), "Inter", sans-serif;
+}
+
+.template-three .font-label-sm {
+  font-family: var(--font-jetbrains-mono), "JetBrains Mono", monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.template-three .text-display-lg {
+  font-size: 48px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  font-weight: 800;
+}
+
+.template-three .text-headline-lg {
+  font-size: 32px;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.template-three .text-headline-md {
+  font-size: 24px;
+  line-height: 1.3;
+  font-weight: 600;
+}
+
+.template-three .text-headline-lg-mobile {
+  font-size: 24px;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.template-three .text-body-md {
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+.template-three .text-body-lg {
+  font-size: 18px;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.template-three .text-label-sm {
+  font-size: 12px;
+  line-height: 1;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+}
+
+.template-three .font-headline-lg:not(.text-headline-lg):not(.text-display-lg) {
+  font-weight: 700;
+}
+
+.template-three .font-headline-md:not(.text-headline-md):not(.text-body-lg) {
+  font-weight: 600;
+}
+
+.template-three .font-bold {
+  font-weight: 700;
+}
+
+.template-three .font-semibold {
+  font-weight: 600;
+}
+
+.template-three .font-extrabold {
+  font-weight: 800;
+}
+
+/* Material Symbols — size-aware optical sizing */
+.template-three .material-symbols-outlined {
+  font-family: "Material Symbols Outlined";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+
+.template-three .material-symbols-outlined.text-\[14px\] {
+  font-size: 14px;
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 20;
+}
+
+.template-three .material-symbols-outlined.text-\[18px\] {
+  font-size: 18px;
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 20;
+}
+
+.template-three .material-symbols-outlined.text-xl {
+  font-size: 1.25rem;
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+
+.template-three .material-symbols-outlined.text-2xl {
+  font-size: 1.5rem;
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 32;
+}
+
+.template-three .material-symbols-outlined.text-3xl {
+  font-size: 1.875rem;
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 40;
+}
+
+.template-three .material-symbols-outlined.text-4xl {
+  font-size: 2.25rem;
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
+}
+
+.template-three .material-symbols-outlined.text-\[32px\] {
+  font-size: 32px;
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 40;
+}
+
+.template-three .material-symbols-outlined.text-\[80px\] {
+  font-size: 80px;
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
+}
+
+.template-three .material-symbols-outlined.text-\[120px\] {
+  font-size: 120px;
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
+}
+
+.template-three .t3-icon-filled {
+  font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+
+.template-three .t3-icon-filled.text-\[18px\] {
+  font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 20;
+}
+
+/* About page CTA gradient */
+.template-three .t3-about-cta {
+  background: linear-gradient(to bottom right, #2563eb, #1e40af);
+}
+
+.template-three .glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(116, 119, 127, 0.1);
+}
+
+.template-three .hero-gradient {
+  background: radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.03) 0%, transparent 70%);
+}
+
+.template-three .timeline-gradient {
+  background: linear-gradient(180deg, #2563eb 0%, #0d9488 100%);
+}
+
+.template-three .noise-overlay {
+  background-image: url("https://www.transparenttextures.com/patterns/carbon-fibre.png");
+  opacity: 0.02;
+  pointer-events: none;
+}
+
+.template-three .hover-lift {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+}
+
+.template-three .hover-lift:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 32px -4px rgba(0, 0, 0, 0.1);
+}
+
+.template-three .text-glow-primary {
+  text-shadow: 0 0 20px rgba(37, 99, 235, 0.1);
+}
+
+.template-three .glow-hover:hover {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+}
+
+.template-three .t3-fade-in {
+  opacity: 0;
+  transform: translateY(2.5rem);
+  transition: all 0.7s ease;
+}
+
+.template-three .t3-fade-in.t3-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.template-three nav.t3-nav {
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.template-three nav.t3-nav.t3-nav-scrolled {
+  background-color: rgba(247, 249, 251, 0.95);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.template-three .t3-table-row {
+  transition: transform 0.2s ease-out, background-color 0.2s ease;
+}
+
+.template-three .t3-table-row:hover {
+  transform: translateX(4px);
+}
+
+/* About page color overrides */
+.template-three.t3-page-about {
+  --color-primary: #2563eb;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #dbeafe;
+  --color-on-primary-container: #1e40af;
+  --color-secondary: #0d9488;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #ccfbf1;
+  --color-on-secondary-container: #115e59;
+  --color-tertiary: #db2777;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #fce7f3;
+  --color-on-tertiary-container: #9d174d;
+  --color-background: #f8fafc;
+  --color-on-background: #0f172a;
+  --color-surface: #ffffff;
+  --color-on-surface: #0f172a;
+  --color-surface-variant: #f1f5f9;
+  --color-on-surface-variant: #475569;
+  --color-outline: #cbd5e1;
+  --color-outline-variant: #e2e8f0;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f8fafc;
+  --color-surface-container: #f1f5f9;
+  --color-surface-container-high: #e2e8f0;
+  --color-surface-container-highest: #cbd5e1;
+
+  background-color: #f8fafc;
+  color: #0f172a;
+}
+
+.template-three.t3-page-about .hero-gradient {
+  background: radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.05) 0%, transparent 70%);
+}
+
+.template-three.t3-page-about .glass-card {
+  border: 1px solid rgba(203, 213, 225, 0.4);
+}
+
+/* Services page color overrides */
+.template-three.t3-page-services {
+  --color-primary: #2563eb;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #dbeafe;
+  --color-on-primary-container: #1e40af;
+  --color-secondary: #0d9488;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #ccfbf1;
+  --color-on-secondary-container: #115e59;
+  --color-tertiary: #be123c;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #ffe4e6;
+  --color-on-tertiary-container: #9f1239;
+  --color-background: #f7f9fb;
+  --color-on-background: #1a1c1e;
+  --color-surface: #f7f9fb;
+  --color-on-surface: #1a1c1e;
+  --color-surface-variant: #e1e2e5;
+  --color-on-surface-variant: #44474e;
+  --color-outline: #74777f;
+  --color-outline-variant: #c4c6cf;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f2f4f6;
+  --color-surface-container: #eceef0;
+  --color-surface-container-high: #e6e8ea;
+  --color-surface-container-highest: #e1e3e5;
+
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+}
+
+.template-three.t3-page-services .glass-card {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(116, 119, 127, 0.15);
+  box-shadow: 0 4px 24px -1px rgba(0, 0, 0, 0.05);
+}
+
+/* Appointment page color overrides */
+.template-three.t3-page-appointment {
+  --color-primary: #2563eb;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #dbeafe;
+  --color-on-primary-container: #1e40af;
+  --color-secondary: #0d9488;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #ccfbf1;
+  --color-on-secondary-container: #115e59;
+  --color-tertiary: #be185d;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #fce7f3;
+  --color-on-tertiary-container: #9d174d;
+  --color-background: #f8fafc;
+  --color-on-background: #0f172a;
+  --color-surface: #ffffff;
+  --color-on-surface: #0f172a;
+  --color-surface-variant: #f1f5f9;
+  --color-on-surface-variant: #475569;
+  --color-outline: #cbd5e1;
+  --color-outline-variant: #e2e8f0;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f8fafc;
+  --color-surface-container: #f1f5f9;
+  --color-surface-container-high: #e2e8f0;
+  --color-surface-container-highest: #cbd5e1;
+  --color-error: #ef4444;
+
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+
+  background-color: #f8fafc;
+  color: #0f172a;
+}
+
+.template-three.t3-page-appointment .glass-card {
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Color fallbacks */
+.template-three .bg-background { background-color: var(--color-background) !important; }
+.template-three .bg-surface { background-color: var(--color-surface) !important; }
+.template-three .bg-surface-variant { background-color: var(--color-surface-variant) !important; }
+.template-three .bg-surface-container-lowest { background-color: var(--color-surface-container-lowest) !important; }
+.template-three .bg-surface-container-low { background-color: var(--color-surface-container-low) !important; }
+.template-three .bg-surface-container { background-color: var(--color-surface-container) !important; }
+.template-three .bg-surface-container-high { background-color: var(--color-surface-container-high) !important; }
+.template-three .bg-primary { background-color: var(--color-primary) !important; }
+.template-three .bg-primary-container { background-color: var(--color-primary-container) !important; }
+.template-three .bg-secondary-container { background-color: var(--color-secondary-container) !important; }
+.template-three .bg-tertiary-container { background-color: var(--color-tertiary-container) !important; }
+.template-three .bg-surface-container-low\/50 { background-color: color-mix(in srgb, var(--color-surface-container-low) 50%, transparent) !important; }
+
+.template-three .text-primary { color: var(--color-primary) !important; }
+.template-three .text-on-primary { color: var(--color-on-primary) !important; }
+.template-three .text-on-surface { color: var(--color-on-surface) !important; }
+.template-three .text-on-background { color: var(--color-on-background) !important; }
+.template-three .text-on-surface-variant { color: var(--color-on-surface-variant) !important; }
+.template-three .text-secondary { color: var(--color-secondary) !important; }
+.template-three .text-tertiary { color: var(--color-tertiary) !important; }
+.template-three .text-on-primary-container { color: var(--color-on-primary-container) !important; }
+.template-three .text-on-secondary-container { color: var(--color-on-secondary-container) !important; }
+.template-three .text-on-tertiary-container { color: var(--color-on-tertiary-container) !important; }
+.template-three .text-on-secondary { color: var(--color-on-secondary) !important; }
+.template-three .text-white { color: #ffffff !important; }
+.template-three .text-primary-container { color: var(--color-primary-container) !important; }
+
+.template-three .border-outline-variant { border-color: var(--color-outline-variant) !important; }
+.template-three .border-outline { border-color: var(--color-outline) !important; }
+.template-three .border-primary { border-color: var(--color-primary) !important; }
+.template-three .border-outline-variant\/30 { border-color: color-mix(in srgb, var(--color-outline-variant) 30%, transparent) !important; }
+.template-three .border-outline-variant\/50 { border-color: color-mix(in srgb, var(--color-outline-variant) 50%, transparent) !important; }
+.template-three .border-outline-variant\/20 { border-color: color-mix(in srgb, var(--color-outline-variant) 20%, transparent) !important; }
+.template-three .border-outline\/10 { border-color: color-mix(in srgb, var(--color-outline) 10%, transparent) !important; }
+.template-three .border-primary\/20 { border-color: color-mix(in srgb, var(--color-primary) 20%, transparent) !important; }
+.template-three .border-primary\/10 { border-color: color-mix(in srgb, var(--color-primary) 10%, transparent) !important; }
+
+.template-three .divide-outline-variant\/50 > :not([hidden]) ~ :not([hidden]) {
+  border-color: color-mix(in srgb, var(--color-outline-variant) 50%, transparent) !important;
+}
+
+.template-three .hover\:text-primary:hover { color: var(--color-primary) !important; }
+.template-three .hover\:border-primary:hover { border-color: var(--color-primary) !important; }
+.template-three .hover\:bg-surface-container-high:hover { background-color: var(--color-surface-container-high) !important; }
+.template-three .hover\:bg-primary\/5:hover { background-color: color-mix(in srgb, var(--color-primary) 5%, transparent) !important; }
+.template-three .hover\:bg-primary\/90:hover { background-color: color-mix(in srgb, var(--color-primary) 90%, transparent) !important; }
+.template-three .hover\:bg-white:hover { background-color: #ffffff !important; }
+
+.template-three .max-w-container-max { max-width: 1280px; }
+.template-three .px-margin-desktop { padding-left: 40px; padding-right: 40px; }
+.template-three .px-margin-mobile { padding-left: 16px; padding-right: 16px; }
+.template-three .gap-gutter { gap: 24px; }
+
+@media (max-width: 767px) {
+  .template-three .px-margin-desktop {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}

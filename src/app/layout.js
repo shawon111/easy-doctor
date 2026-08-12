@@ -6,6 +6,7 @@ import ToasterProvider from "@/providers/ToasterProvider";
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
+  weight: ["400", "500", "600"],
 });
 
 const playfairDisplay = Playfair_Display({
@@ -16,6 +17,7 @@ const playfairDisplay = Playfair_Display({
 const manrope = Manrope({
   variable: "--font-manrope",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
 });
 
 const syne = Syne({
