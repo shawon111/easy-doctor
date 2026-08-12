@@ -1,15 +1,11 @@
-import TemplateOnePageRenderer from "@/components/templates/template-one/TemplateOnePageRenderer";
-import TemplateTwoPageRenderer from "@/components/templates/template-two/TemplateTwoPageRenderer";
+import TemplateOneDarkPageRenderer from "@/components/templates/template-one-dark/TemplateOneDarkPageRenderer";
 
-// page name
-const pageName = 'about';
+const pageName = "about";
 
-const AboutPage = async () => {
-    return (
-        <>
-            <TemplateTwoPageRenderer page={pageName} />
-        </>
-    );
+const AboutPage = async ({ params }) => {
+  const { slug } = await params;
+
+  return <TemplateOneDarkPageRenderer page={pageName} slug={slug} />;
 };
 
 export default AboutPage;
