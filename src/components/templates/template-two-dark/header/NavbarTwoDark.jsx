@@ -7,7 +7,6 @@ const NAV_LINKS = [
   { label: "Home", href: "", key: "home" },
   { label: "About", href: "/about", key: "about" },
   { label: "Services", href: "/services", key: "services" },
-  { label: "Appointment", href: "/appointment", key: "appointment" },
 ];
 
 export default function NavbarTwoDark({ page = "home", slug }) {
