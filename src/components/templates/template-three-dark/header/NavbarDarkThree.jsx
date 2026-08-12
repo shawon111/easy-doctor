@@ -1,7 +1,4 @@
-"use client";
-
 import Link from "next/link";
-import { useEffect, useRef } from "react";
 
 const NAV_LINKS = [
   { label: "Home", href: "", key: "home" },
@@ -9,31 +6,11 @@ const NAV_LINKS = [
   { label: "Services", href: "/services", key: "services" },
 ];
 
-export default function NavbarThree({ page = "home", slug }) {
+export default function NavbarDarkThree({ page = "home", slug }) {
   const base = slug ? `/doctor/${slug}` : "#";
-  const navRef = useRef(null);
-
-  useEffect(() => {
-    const nav = navRef.current;
-    if (!nav) return undefined;
-
-    const handleScroll = () => {
-      if (window.scrollY > 20) {
-        nav.classList.add("t3-nav-scrolled");
-      } else {
-        nav.classList.remove("t3-nav-scrolled");
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   return (
-    <nav
-      ref={navRef}
-      className="t3-nav fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-outline-variant/30 h-20"
-    >
+    <nav className="t3d-nav fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-outline-variant/30 h-20">
       <div className="flex justify-between items-center max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop h-full">
         <Link href={base} className="font-headline-md text-headline-md font-bold text-primary">
           Dr. MedLink
@@ -62,7 +39,7 @@ export default function NavbarThree({ page = "home", slug }) {
 
         <Link
           href={`${base}/appointment`}
-          className="bg-primary text-on-primary px-6 py-2.5 rounded-lg font-headline-md text-[16px] hover:opacity-90 active:scale-95 transition-all"
+          className="bg-primary-container text-on-primary-container px-6 py-2.5 rounded-lg font-headline-md text-[16px] hover:opacity-90 active:scale-95 transition-all"
         >
           Book Appointment
         </Link>
