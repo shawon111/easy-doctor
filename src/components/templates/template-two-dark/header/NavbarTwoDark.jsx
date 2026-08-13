@@ -3,14 +3,12 @@
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 
-const NAV_LINKS = [
-  { label: "Home", href: "", key: "home" },
-  { label: "About", href: "/about", key: "about" },
-  { label: "Services", href: "/services", key: "services" },
-];
-
-export default function NavbarTwoDark({ page = "home", slug }) {
+export default function NavbarTwoDark({ page = "home", slug, content = {} }) {
   const base = slug ? `/doctor/${slug}` : "#";
+  const navLinks = content.navLinks || [];
+  const brandName = content.brandName || "Doctor";
+  const appointmentCta = content.appointmentCta || "Book Appointment";
+
   const navRef = useRef(null);
   const lastScroll = useRef(0);
 
@@ -41,17 +39,17 @@ export default function NavbarTwoDark({ page = "home", slug }) {
       className="t2d-nav backdrop-blur-xl border-b shadow-sm flex justify-between items-center px-5 md:px-16 h-20 w-full z-50 top-0 sticky transition-transform duration-300"
     >
       <Link href={base} className="font-headline-sm text-headline-sm text-on-surface tracking-tight">
-        Dr. Specialist
+        {brandName}
       </Link>
 
       <div className="hidden md:flex space-x-8">
-        {NAV_LINKS.map((link) => {
+        {navLinks.map((link) => {
           const href = link.href ? `${base}${link.href}` : base;
           const isActive = page === link.key;
 
           return (
             <Link
-              key={link.key}
+              key={link.key || link.label}
               href={href}
               className={
                 isActive
@@ -69,7 +67,7 @@ export default function NavbarTwoDark({ page = "home", slug }) {
         href={`${base}/appointment`}
         className="bg-primary text-on-primary font-label-caps text-label-caps px-6 py-3 rounded-lg luxury-button-hover transition-all active:scale-95"
       >
-        Book Appointment
+        {appointmentCta}
       </Link>
     </nav>
   );

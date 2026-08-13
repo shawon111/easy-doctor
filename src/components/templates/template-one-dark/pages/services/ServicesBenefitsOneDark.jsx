@@ -1,22 +1,6 @@
-const BENEFITS = [
-  {
-    icon: "verified_user",
-    title: "PROACTIVE DEFENSE",
-    description: "Advanced early-detection frameworks that neutralize risks before they manifest.",
-  },
-  {
-    icon: "strikethrough_s",
-    title: "HYPER-PERSONALIZATION",
-    description: "Protocols engineered around your specific genomic sequence and lifestyle data.",
-  },
-  {
-    icon: "psychology",
-    title: "INTEGRATED BIOMETRY",
-    description: "Unified digital health ecosystems tracking your journey in real-time across every metric.",
-  },
-];
+export default function ServicesBenefitsOneDark({ content = {} }) {
+  const items = content.items || [];
 
-export default function ServicesBenefitsOneDark() {
   return (
     <section className="py-16 px-6 md:px-10 bg-background relative overflow-hidden">
       <div className="absolute inset-0 opacity-10">
@@ -26,7 +10,7 @@ export default function ServicesBenefitsOneDark() {
         <div className="order-2 lg:order-1">
           <div className="relative rounded-xl overflow-hidden aspect-[4/3] border border-white/10">
             <img
-              alt="Clinic interior"
+              alt=""
               className="w-full h-full object-cover filter contrast-110"
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSQ4uIemD_xTtOwVnEu0nmn_APexm6QGm2BLP65hM7QcFVnbFVm0FoOOYWR9oRguBlyd9zFsbgb1grFcxr6e5D3hLv6g413aLUiAHgC9rF1UTKKMaD0-988mz7uNdfzMXFozyrqwz2-S9P7ZQjSO2x2xvvai7Rc3CAW8vy4K7g7kv9E4tau_P3KdMcYZEn_MOM_1GKx826eeLyuUjrRfKMyN06ZmItsLXLq0HGLxVW5QceCH4hpsJ78Q"
             />
@@ -34,16 +18,16 @@ export default function ServicesBenefitsOneDark() {
           </div>
         </div>
         <div className="space-y-10 lg:pl-12 order-1 lg:order-2">
-          <h2 className="text-display-lg font-display-lg text-on-surface uppercase leading-none">
-            The Precision <br />
-            <span className="text-cobalt">Edge</span>
-          </h2>
-          <p className="text-body-lg text-on-surface-variant">
-            We don&apos;t just treat; we optimize. Our methodology is built on the pillars of futuristic biological
-            intelligence.
-          </p>
+          {content.heading ? (
+            <h2 className="text-display-lg font-display-lg text-on-surface uppercase leading-none">
+              {content.heading}
+            </h2>
+          ) : null}
+          {content.subheading ? (
+            <p className="text-body-lg text-on-surface-variant">{content.subheading}</p>
+          ) : null}
           <ul className="space-y-8">
-            {BENEFITS.map((benefit) => (
+            {items.map((benefit) => (
               <li key={benefit.title} className="flex items-start gap-6 group">
                 <div className="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center group-hover:bg-cobalt transition-colors duration-300 flex-shrink-0">
                   <span className="material-symbols-outlined text-cyber-mint group-hover:text-white">{benefit.icon}</span>

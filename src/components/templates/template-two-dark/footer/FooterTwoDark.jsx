@@ -1,16 +1,24 @@
 import Link from "next/link";
 
-export default function FooterTwoDark({ slug }) {
+export default function FooterTwoDark({ slug, content = {} }) {
   const base = slug ? `/doctor/${slug}` : "#";
+  const brandName = content.brandName || "Doctor";
+  const tagline = content.tagline || "";
+  const phone = content.phone || "";
+  const resourceLinks = content.resourceLinks || [];
+  const copyright = content.copyright || "";
+  const legalLinks = content.legalLinks || [];
 
   return (
     <footer className="t2d-footer border-t border-outline-variant/30">
       <div className="grid grid-cols-1 md:grid-cols-12 gap-6 px-5 md:px-16 py-[120px] max-w-[1200px] mx-auto">
         <div className="md:col-span-4 space-y-6">
-          <div className="font-headline-md text-headline-md text-tertiary">Dr. Specialist</div>
-          <p className="font-body-md text-body-md text-on-surface-variant max-w-xs">
-            Excellence in precision medicine and executive healthcare for the global elite.
-          </p>
+          <div className="font-headline-md text-headline-md text-tertiary">{brandName}</div>
+          {tagline ? (
+            <p className="font-body-md text-body-md text-on-surface-variant max-w-xs">
+              {tagline}
+            </p>
+          ) : null}
         </div>
 
         <div className="md:col-span-2 space-y-4">
@@ -26,16 +34,21 @@ export default function FooterTwoDark({ slug }) {
         <div className="md:col-span-2 space-y-4">
           <h4 className="font-label-caps text-label-caps text-on-surface uppercase">Resources</h4>
           <ul className="space-y-2 font-body-md text-body-md">
-            <li><a className="text-on-surface-variant hover:text-tertiary transition-colors" href="#">Patient Portal</a></li>
-            <li><a className="text-on-surface-variant hover:text-tertiary transition-colors" href="#">Privacy Policy</a></li>
-            <li><a className="text-on-surface-variant hover:text-tertiary transition-colors" href="#">Terms of Service</a></li>
-            <li><a className="text-on-surface-variant hover:text-tertiary transition-colors" href="#">Careers</a></li>
+            {resourceLinks.map((link) => (
+              <li key={link.label}>
+                <a className="text-on-surface-variant hover:text-tertiary transition-colors" href={link.href || "#"}>
+                  {link.label}
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
 
         <div className="md:col-span-4 space-y-4 text-right">
           <h4 className="font-label-caps text-label-caps text-on-surface uppercase">International Hotline</h4>
-          <p className="font-headline-sm text-headline-sm text-on-surface">+44 (0) 20 7946 0123</p>
+          {phone ? (
+            <p className="font-headline-sm text-headline-sm text-on-surface">{phone}</p>
+          ) : null}
           <div className="flex justify-end gap-4 mt-6">
             <a
               className="w-10 h-10 rounded-full border border-outline-variant/30 flex items-center justify-center hover:border-tertiary text-on-surface-variant hover:text-tertiary transition-all"
@@ -54,11 +67,14 @@ export default function FooterTwoDark({ slug }) {
       </div>
 
       <div className="max-w-[1200px] mx-auto px-5 md:px-16 py-8 border-t border-outline-variant/10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-label-caps text-on-surface-variant/60">
-        <div>© 2024 Dr. Specialist. Excellence in Precision Medicine.</div>
-        <div className="flex gap-8">
-          <span>GMC Reg No. 1234567</span>
-          <span>Fellow of the Royal Society of Medicine</span>
-        </div>
+        {copyright ? <div>{copyright}</div> : null}
+        {legalLinks.length > 0 ? (
+          <div className="flex gap-8">
+            {legalLinks.map((link) => (
+              <span key={link.label}>{link.label}</span>
+            ))}
+          </div>
+        ) : null}
       </div>
     </footer>
   );

@@ -136,13 +136,14 @@ const UserSchema = new mongoose.Schema(
         },
 
         websitePreferences: {
-            theme: {
+            templateKey: {
                 type: String,
-                enum: ["classic", "modern", "premium"],
-                default: "classic",
+                enum: ["template-one", "template-two", "template-three"],
+                default: "template-three",
             },
             template: {
                 type: mongoose.Schema.Types.ObjectId,
+                ref: "Template",
             },
             show: {
                 bio: {
@@ -166,20 +167,6 @@ const UserSchema = new mongoose.Schema(
                     default: true,
                 }
             },
-            seo: {
-                metaTitle: {
-                    type: String,
-                    required: false,
-                },
-                metaDescription: {
-                    type: String,
-                    required: false,
-                },
-                keywords: {
-                    type: [String],
-                    required: false,
-                },
-            }
         },
         profileCompleted: {
             type: Boolean,

@@ -1,35 +1,18 @@
-const STEPS = [
-  {
-    number: "01",
-    numberColor: "text-primary",
-    icon: "person_search",
-    iconClass: "bg-primary/10 text-primary",
-    title: "Select Service",
-    description:
-      "Choose from our specialized clinical consultations, diagnostic tests, or routine health checkups.",
-  },
-  {
-    number: "02",
-    numberColor: "text-secondary",
-    icon: "event_available",
-    iconClass: "bg-secondary/10 text-secondary",
-    title: "Pick Time",
-    description: "View the visiting schedule below and identify a slot that fits your personal calendar perfectly.",
-  },
-  {
-    number: "03",
-    numberColor: "text-tertiary",
-    icon: "verified",
-    iconClass: "bg-tertiary/10 text-tertiary",
-    title: "Confirm Visit",
-    description: "Use our WhatsApp integration or the booking portal to finalize your appointment details securely.",
-  },
+const STEP_STYLES = [
+  { numberColor: "text-primary", iconClass: "bg-primary/10 text-primary" },
+  { numberColor: "text-secondary", iconClass: "bg-secondary/10 text-secondary" },
+  { numberColor: "text-tertiary", iconClass: "bg-tertiary/10 text-tertiary" },
 ];
 
-export default function AppointmentStepsThree() {
+export default function AppointmentStepsThree({ content = {} }) {
+  const items = (content.items || []).map((step, index) => ({
+    ...step,
+    ...STEP_STYLES[index % STEP_STYLES.length],
+  }));
+
   return (
     <section className="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-24">
-      {STEPS.map((step) => (
+      {items.map((step) => (
         <div
           key={step.title}
           className="glass-card p-8 rounded-xl relative overflow-hidden group hover:bg-white transition-all duration-300 glow-hover"

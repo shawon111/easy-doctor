@@ -1,27 +1,35 @@
-export default function AppointmentWhatsappThree() {
+export default function AppointmentWhatsappThree({ content = {} }) {
   return (
     <section className="mb-24 relative overflow-hidden rounded-3xl group">
       <div className="relative z-10 bg-white p-12 md:p-20 border border-outline-variant flex flex-col md:flex-row items-center gap-12 shadow-sm">
         <div className="flex-1 text-center md:text-left">
           <h2 className="font-display-lg text-display-lg mb-6 text-on-surface">
-            Quick Appointment <br className="hidden md:block" /> via WhatsApp
+            {content.heading?.split(" via ").length > 1 ? (
+              <>
+                {content.heading.split(" via ")[0]} <br className="hidden md:block" /> via{" "}
+                {content.heading.split(" via ")[1]}
+              </>
+            ) : (
+              content.heading
+            )}
           </h2>
-          <p className="font-body-lg text-body-lg text-on-surface-variant mb-8 max-w-xl">
-            Prefer a faster route? Skip the forms and chat directly with our medical concierge team to secure your
-            slot instantly.
-          </p>
+          <p className="font-body-lg text-body-lg text-on-surface-variant mb-8 max-w-xl">{content.body}</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-            <a
-              className="bg-[#25D366] text-white px-10 py-5 rounded-xl font-bold flex items-center justify-center gap-3 shadow-lg shadow-[#25D366]/20 hover:shadow-[#25D366]/30 transition-all active:scale-95"
-              href="https://wa.me/dr-medlink"
-            >
-              <span className="material-symbols-outlined t3-icon-filled text-[18px]">chat</span>
-              Open WhatsApp
-            </a>
-            <div className="flex items-center gap-3 px-6 py-4 rounded-xl border border-outline-variant bg-surface-container-low">
-              <span className="material-symbols-outlined text-primary text-2xl">call</span>
-              <span className="font-label-sm text-label-sm">+1 (555) DR-MEDLK</span>
-            </div>
+            {content.whatsappUrl && (
+              <a
+                className="bg-[#25D366] text-white px-10 py-5 rounded-xl font-bold flex items-center justify-center gap-3 shadow-lg shadow-[#25D366]/20 hover:shadow-[#25D366]/30 transition-all active:scale-95"
+                href={content.whatsappUrl}
+              >
+                <span className="material-symbols-outlined t3-icon-filled text-[18px]">chat</span>
+                {content.cta}
+              </a>
+            )}
+            {content.phoneDisplay && (
+              <div className="flex items-center gap-3 px-6 py-4 rounded-xl border border-outline-variant bg-surface-container-low">
+                <span className="material-symbols-outlined text-primary text-2xl">call</span>
+                <span className="font-label-sm text-label-sm">{content.phoneDisplay}</span>
+              </div>
+            )}
           </div>
         </div>
 

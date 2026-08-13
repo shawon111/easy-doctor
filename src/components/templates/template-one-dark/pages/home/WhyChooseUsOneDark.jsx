@@ -1,43 +1,27 @@
 import RevealOneDark from "../../ui/RevealOneDark";
 
-const STANDARDS = [
-  {
-    icon: "schedule",
-    iconClass: "text-primary",
-    title: "Zero Waiting Time",
-    description: "Your time is respected with prompt, priority scheduling.",
-  },
-  {
-    icon: "security",
-    iconClass: "text-secondary-fixed",
-    title: "Absolute Privacy",
-    description: "Confidential medical records and private entry points.",
-  },
-  {
-    icon: "biotech",
-    iconClass: "text-tertiary",
-    title: "Modern Equipment",
-    description: "Access to the latest FDA-approved diagnostic technology.",
-  },
-  {
-    icon: "support_agent",
-    iconClass: "text-primary-container",
-    title: "24/7 Portal Access",
-    description: "Secure messaging for immediate health concerns.",
-  },
+const ICON_CLASSES = [
+  "text-primary",
+  "text-secondary-fixed",
+  "text-tertiary",
+  "text-primary-container",
 ];
 
-export default function WhyChooseUsOneDark() {
+export default function WhyChooseUsOneDark({ content = {} }) {
+  const items = content.items || [];
+
   return (
     <section className="py-[120px]">
       <div className="max-w-[1440px] mx-auto px-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           <RevealOneDark>
-            <h2 className="font-headline-lg text-5xl text-secondary mb-12 tracking-tight">The Julian Vance Standard</h2>
+            {content.heading ? (
+              <h2 className="font-headline-lg text-5xl text-secondary mb-12 tracking-tight">{content.heading}</h2>
+            ) : null}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
-              {STANDARDS.map((item) => (
+              {items.map((item, index) => (
                 <div key={item.title} className="flex gap-6">
-                  <div className={item.iconClass}>
+                  <div className={ICON_CLASSES[index % ICON_CLASSES.length]}>
                     <span className="material-symbols-outlined" style={{ fontSize: "32px" }}>
                       {item.icon}
                     </span>
@@ -57,18 +41,21 @@ export default function WhyChooseUsOneDark() {
               <h3 className="font-headline-md text-3xl text-secondary mb-8 relative z-10 leading-tight">
                 Clinical Excellence Meets Personal Care
               </h3>
-              <p className="font-body-lg text-xl text-on-surface-variant mb-10 relative z-10 italic leading-relaxed opacity-90">
-                &quot;In three decades of practice, I&apos;ve learned that the most effective tool in medicine isn&apos;t a laser or a
-                drug—it&apos;s the ability to listen.&quot;
-              </p>
-              <div className="flex items-center gap-6 relative z-10">
-                <img
-                  className="h-10 invert brightness-100"
-                  alt="Dr. Julian Vance Signature"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcwDvF6ipEsG6rPGUBILKJXbJjzyOhIcdWSJu4QpL1J7CvTwFEk1ZPUjS803dWZf_ES7Sfl6Svye2Vr7_a4isSrTmfQwVCoq455xpIyZVpPzlUU36D7Q6r9CY1iPJGHBthUCwmMYaWh6ZB-ljDReIaKOOPsN4wRjWTHO-N8K_QP3Tz9K3xZygB7sH1guNSWnVIMUGAFEqyo2Q24LcJw3yjuMEIGkiLMO6OHyMZVUIIJsWl5HyWOAHi7w"
-                />
-                <p className="text-xs font-bold tracking-[0.3em] text-primary uppercase">DR. JULIAN VANCE</p>
-              </div>
+              {content.quote ? (
+                <p className="font-body-lg text-xl text-on-surface-variant mb-10 relative z-10 italic leading-relaxed opacity-90">
+                  &quot;{content.quote}&quot;
+                </p>
+              ) : null}
+              {content.quoteAuthor ? (
+                <div className="flex items-center gap-6 relative z-10">
+                  <img
+                    className="h-10 invert brightness-100"
+                    alt=""
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcwDvF6ipEsG6rPGUBILKJXbJjzyOhIcdWSJu4QpL1J7CvTwFEk1ZPUjS803dWZf_ES7Sfl6Svye2Vr7_a4isSrTmfQwVCoq455xpIyZVpPzlUU36D7Q6r9CY1iPJGHBthUCwmMYaWh6ZB-ljDReIaKOOPsN4wRjWTHO-N8K_QP3Tz9K3xZygB7sH1guNSWnVIMUGAFEqyo2Q24LcJw3yjuMEIGkiLMO6OHyMZVUIIJsWl5HyWOAHi7w"
+                  />
+                  <p className="text-xs font-bold tracking-[0.3em] text-primary uppercase">{content.quoteAuthor}</p>
+                </div>
+              ) : null}
             </div>
           </RevealOneDark>
         </div>

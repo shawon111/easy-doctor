@@ -1,6 +1,6 @@
 import SectionFadeOneDark from "../../ui/SectionFadeOneDark";
 
-export default function AboutPhilosophyOneDark() {
+export default function AboutPhilosophyOneDark({ content = {} }) {
   return (
     <SectionFadeOneDark className="bg-surface-container-lowest py-32 px-6 md:px-10 relative overflow-hidden">
       <div
@@ -11,13 +11,16 @@ export default function AboutPhilosophyOneDark() {
       />
       <div className="max-w-4xl mx-auto text-center space-y-8 relative z-10">
         <span className="material-symbols-outlined text-primary text-6xl opacity-50">format_quote</span>
-        <h2 className="font-headline-lg text-headline-lg text-on-surface leading-snug italic px-4">
-          &ldquo;Medicine is not just the science of treating symptoms; it is the art of restoring the dignity and
-          vitality of the human spirit through precise, compassionate care.&rdquo;
-        </h2>
-        <p className="font-label-md text-label-md text-primary tracking-[0.2em] uppercase">
-          — Dr. Julian Vance, MD, FACS
-        </p>
+        {content.quote ? (
+          <h2 className="font-headline-lg text-headline-lg text-on-surface leading-snug italic px-4">
+            &ldquo;{content.quote}&rdquo;
+          </h2>
+        ) : null}
+        {content.author ? (
+          <p className="font-label-md text-label-md text-primary tracking-[0.2em] uppercase">
+            {content.author}
+          </p>
+        ) : null}
       </div>
     </SectionFadeOneDark>
   );

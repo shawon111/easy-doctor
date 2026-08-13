@@ -1,7 +1,6 @@
 import Reveal from "@/components/templates/ui/Reveal";
 
-
-export default function AboutPhilosophyOne() {
+export default function AboutPhilosophyOne({ content = {} }) {
   return (
     <Reveal
       as="section"
@@ -14,14 +13,16 @@ export default function AboutPhilosophyOne() {
         >
           format_quote
         </span>
-        <h2 className="font-headline-lg text-headline-lg text-on-surface italic">
-          &ldquo;Medicine is not just the science of treating symptoms; it is the art of
-          restoring the dignity and vitality of the human spirit through precise,
-          compassionate care.&rdquo;
-        </h2>
-        <p className="font-label-caps text-label-caps text-outline uppercase tracking-widest">
-          — Dr. Julian Vance, MD, FACS
-        </p>
+        {content.quote ? (
+          <h2 className="font-headline-lg text-headline-lg text-on-surface italic">
+            &ldquo;{content.quote}&rdquo;
+          </h2>
+        ) : null}
+        {content.author ? (
+          <p className="font-label-caps text-label-caps text-outline uppercase tracking-widest">
+            {content.author}
+          </p>
+        ) : null}
       </div>
     </Reveal>
   );

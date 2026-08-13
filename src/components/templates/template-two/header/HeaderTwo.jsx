@@ -1,10 +1,9 @@
-import React from 'react';
 import NavbarTwo from './NavbarTwo';
 
-const HeaderTwo = () => {
+const HeaderTwo = ({ content, slug, page }) => {
     return (
         <>
-            <NavbarTwo />
+            <NavbarTwo content={content} slug={slug} page={page} />
         </>
     );
 };

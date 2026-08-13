@@ -1,24 +1,17 @@
 import RevealTwo from "./RevealTwo";
 
-const QUALIFICATIONS = [
-  { icon: "verified_user", title: "ABIM", detail: "Board Certified" },
-  { icon: "workspace_premium", title: "FACO", detail: "Fellow of Clinical Oncology" },
-  { icon: "school", title: "PhD", detail: "Molecular Genetics" },
-  { icon: "public", title: "WHO", detail: "Global Health Consultant" },
-];
+export default function AboutQualificationsTwo({ content = {} }) {
+  const items = content.items || [];
 
-export default function AboutQualificationsTwo() {
   return (
     <section className="py-[120px] px-[20px] md:px-[64px] max-w-[1200px] mx-auto">
       <RevealTwo className="text-center mb-16">
-        <h2 className="abtwo-headline-md mb-2 text-[#1a2026]">
-          Qualifications &amp; Affiliations
-        </h2>
-        <p className="abtwo-label-caps text-[#45464d]">CERTIFIED EXCELLENCE</p>
+        <h2 className="abtwo-headline-md mb-2 text-[#1a2026]">{content.heading}</h2>
+        <p className="abtwo-label-caps text-[#45464d]">{content.subheading}</p>
       </RevealTwo>
 
       <RevealTwo className="grid grid-cols-2 md:grid-cols-4 gap-8">
-        {QUALIFICATIONS.map((item) => (
+        {items.map((item) => (
           <div
             key={item.title}
             className="bg-[#f2f4f6] p-8 rounded-[8px] flex flex-col items-center text-center group hover:bg-[#eceef0] transition-all border border-[#c6c6cd]/30"

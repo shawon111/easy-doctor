@@ -1,20 +1,19 @@
-export default function CtaTwo() {
+export default function CtaTwo({ content = {} }) {
   return (
     <section className="mb-section-gap px-margin-mobile md:px-margin-desktop">
       <div className="max-w-container-max mx-auto bg-primary text-on-primary p-12 md:p-24 rounded-xl text-center relative overflow-hidden group border-none shadow-2xl">
         <div className="relative z-10 max-w-2xl mx-auto space-y-8">
           <h2 className="font-display-lg text-display-lg text-on-primary">
-            The Pinnacle of Clinical Care
+            {content.heading}
           </h2>
           <p className="font-body-lg text-body-lg text-on-primary/80">
-            Secure your appointment with London&apos;s leading precision
-            specialist today. Limited intake ensures individualized mastery.
+            {content.body}
           </p>
           <button
             type="button"
             className="px-12 py-5 bg-surface-container-lowest text-primary font-label-caps text-label-caps rounded-lg luxury-button-hover shadow-xl transition-all flex items-center gap-4 mx-auto"
           >
-            Inquire About Registration
+            {content.primaryCta}
             <span className="material-symbols-outlined">chevron_right</span>
           </button>
         </div>

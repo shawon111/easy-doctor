@@ -1,25 +1,8 @@
 import Reveal from "@/components/templates/ui/Reveal";
 
+export default function AppointmentHowItWorksOne({ content = {} }) {
+  const steps = content.steps || [];
 
-const STEPS = [
-  {
-    icon: "send",
-    title: "Send a Message",
-    description: "Click our WhatsApp link to open a direct chat with our clinical concierge team.",
-  },
-  {
-    icon: "event_available",
-    title: "Select a Slot",
-    description: "Our team will share the latest availability across all clinics for you to choose from.",
-  },
-  {
-    icon: "task_alt",
-    title: "Confirmation",
-    description: "Receive your digital booking confirmation and clinical instructions instantly.",
-  },
-];
-
-export default function AppointmentHowItWorksOne() {
   return (
     <Reveal
       as="section"
@@ -27,16 +10,20 @@ export default function AppointmentHowItWorksOne() {
     >
       <div className="max-w-[1200px] mx-auto">
         <div className="text-center mb-stack-lg">
-          <h2 className="font-headline-lg text-headline-lg text-on-background">
-            3 Simple Steps to Your Appointment
-          </h2>
-          <p className="text-body-md text-on-surface-variant mt-stack-sm">
-            Modern booking for a premium healthcare experience.
-          </p>
+          {content.heading ? (
+            <h2 className="font-headline-lg text-headline-lg text-on-background">
+              {content.heading}
+            </h2>
+          ) : null}
+          {content.subheading ? (
+            <p className="text-body-md text-on-surface-variant mt-stack-sm">
+              {content.subheading}
+            </p>
+          ) : null}
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter">
-          {STEPS.map((step) => (
+          {steps.map((step) => (
             <div
               key={step.title}
               className="bg-surface-container-lowest p-stack-lg rounded-3xl shadow-[0px_10px_30px_rgba(30,41,59,0.04)] border border-outline-variant/30 text-center flex flex-col items-center"

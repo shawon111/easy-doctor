@@ -1,29 +1,26 @@
 import Link from "next/link";
 
-const NAV_LINKS = [
-  { label: "Home", href: "", key: "home" },
-  { label: "About", href: "/about", key: "about" },
-  { label: "Services", href: "/services", key: "services" },
-];
-
-export default function NavbarOneDark({ page = "home", slug }) {
+export default function NavbarOneDark({ content = {}, page = "home", slug }) {
   const base = `/doctor/${slug}`;
+  const navLinks = content.navLinks || [];
+  const brandName = content.brandName || "Doctor";
+  const appointmentCta = content.appointmentCta || "Book Now";
 
   return (
     <nav className="fixed top-0 w-full z-50 glass-nav">
       <div className="flex justify-between items-center h-20 px-10 max-w-[1440px] mx-auto">
         <Link href={base} className="text-headline-md font-bold tracking-tighter text-secondary">
-          DR. JULIAN VANCE
+          {brandName}
         </Link>
 
         <div className="hidden md:flex items-center gap-10">
-          {NAV_LINKS.map((link) => {
+          {navLinks.map((link) => {
             const href = link.href ? `${base}${link.href}` : base;
             const isActive = page === link.key;
 
             return (
               <Link
-                key={link.key}
+                key={link.key || link.label}
                 href={href}
                 className={
                   isActive
@@ -39,7 +36,7 @@ export default function NavbarOneDark({ page = "home", slug }) {
             className="bg-primary-container text-on-primary-container px-6 py-2.5 rounded-full font-bold text-label-md tracking-widest uppercase glow-button"
             href={`${base}/appointment`}
           >
-            Book Now
+            {appointmentCta}
           </Link>
         </div>
 

@@ -4,17 +4,14 @@ import Link from "next/link";
 import { useParams, usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 
-const NAV_LINKS = [
-  { label: "Home", href: "" },
-  { label: "About", href: "/about" },
-  { label: "Services", href: "/services" }
-];
-
-export default function NavbarTwo() {
+export default function NavbarTwo({ content = {}, slug, page }) {
   const params = useParams();
   const pathname = usePathname();
-  const slug = params?.slug;
-  const basePath = `/doctor/${slug}`;
+  const resolvedSlug = slug ?? params?.slug;
+  const basePath = `/doctor/${resolvedSlug}`;
+  const navLinks = content.navLinks || [];
+  const brandName = content.brandName || "Doctor";
+  const appointmentCta = content.appointmentCta || "Book Appointment";
 
   const navRef = useRef(null);
   const lastScroll = useRef(0);
@@ -40,9 +37,10 @@ export default function NavbarTwo() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const isActive = (href) => {
+  const isActive = (href, key) => {
+    if (page && key) return page === key;
     const path = href ? `${basePath}${href}` : basePath;
-    if (href === "") {
+    if (href === "" || !href) {
       return pathname === basePath || pathname === `${basePath}/`;
     }
     return pathname === path || pathname.startsWith(`${path}/`);
@@ -54,17 +52,17 @@ export default function NavbarTwo() {
       className="bg-surface-container-lowest/80 backdrop-blur-xl border-b border-outline-variant shadow-sm flex justify-between items-center px-margin-mobile md:px-margin-desktop h-20 w-full z-50 top-0 sticky transition-transform duration-300"
     >
       <div className="font-headline-sm text-headline-sm text-on-surface tracking-tight">
-        Dr. Specialist
+        {brandName}
       </div>
 
       <div className="hidden md:flex space-x-8">
-        {NAV_LINKS.map((link) => {
+        {navLinks.map((link) => {
           const href = link.href ? `${basePath}${link.href}` : basePath;
-          const active = isActive(link.href);
+          const active = isActive(link.href, link.key);
 
           return (
             <Link
-              key={link.label}
+              key={link.key || link.label}
               href={href}
               className={
                 active
@@ -82,7 +80,7 @@ export default function NavbarTwo() {
         href={`${basePath}/appointment`}
         className="bg-primary text-on-primary font-label-caps text-label-caps px-6 py-3 rounded-lg luxury-button-hover transition-all active:scale-95"
       >
-        Book Appointment
+        {appointmentCta}
       </Link>
     </nav>
   );

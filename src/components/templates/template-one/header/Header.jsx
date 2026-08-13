@@ -1,9 +1,9 @@
 import Navbar from "./Navbar";
 
-const HeaderOne = () => {
+const HeaderOne = ({ content, slug, page }) => {
     return (
             <>
-              <Navbar />
+              <Navbar content={content} slug={slug} page={page} />
             </>
     );
 };

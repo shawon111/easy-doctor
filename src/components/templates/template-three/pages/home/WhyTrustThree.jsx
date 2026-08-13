@@ -1,32 +1,13 @@
-const ADVANTAGES = [
-  {
-    number: "01",
-    title: "Modern Diagnostic Lab",
-    description:
-      "In-house laboratory equipped with the latest molecular diagnostic technology for rapid, accurate results.",
-  },
-  {
-    number: "02",
-    title: "Expert-Led Multidisciplinary Team",
-    description:
-      "Access a network of top-tier specialists collaborating in real-time on your comprehensive treatment plan.",
-  },
-  {
-    number: "03",
-    title: "Patient-First Digital Portal",
-    description:
-      "Manage your health on the go with our encrypted portal—access results, schedule visits, and message your team.",
-  },
-];
+export default function WhyTrustThree({ content = {} }) {
+  const items = content.items || [];
 
-export default function WhyTrustThree() {
   return (
     <section className="py-32 bg-surface-container-lowest">
       <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-2 gap-20">
         <div>
-          <h2 className="font-display-lg text-headline-lg mb-12">The MedLink Advantage</h2>
+          <h2 className="font-display-lg text-headline-lg mb-12">{content.heading}</h2>
           <div className="space-y-12">
-            {ADVANTAGES.map((item) => (
+            {items.map((item) => (
               <div key={item.number} className="flex gap-6">
                 <div className="flex-shrink-0 w-12 h-12 rounded-full border border-primary/30 flex items-center justify-center text-primary font-bold">
                   {item.number}

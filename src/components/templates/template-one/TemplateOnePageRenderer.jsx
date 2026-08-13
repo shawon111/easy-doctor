@@ -1,28 +1,28 @@
-import React from 'react';
-import HomeOne from './pages/home/HomeOne';
-import ServicesPageOne from './pages/services/ServicesPageOne';
-import AboutPageOne from './pages/about/AboutPageOne';
-import AppointmentPageOne from './pages/appointment/AppointmentPageOne';
-import TemplateOne from './TemplateOne';
+import AboutPageOne from "./pages/about/AboutPageOne";
+import AppointmentPageOne from "./pages/appointment/AppointmentPageOne";
+import HomeOne from "./pages/home/HomeOne";
+import ServicesPageOne from "./pages/services/ServicesPageOne";
+import TemplateOne from "./TemplateOne";
 
 const pages = {
-    home: HomeOne,
-    services: ServicesPageOne,
-    about: AboutPageOne,
-    appointment: AppointmentPageOne,
-}
+  home: HomeOne,
+  services: ServicesPageOne,
+  about: AboutPageOne,
+  appointment: AppointmentPageOne,
+};
 
-const TemplateOnePageRenderer = ({page}) => {
+const TemplateOnePageRenderer = ({ page, slug, content }) => {
+  const PageComponent = pages[page];
 
-    const PageComponent = pages[page];
-
-    return (
-        <div>
-            <TemplateOne>
-                {PageComponent ? <PageComponent /> : <div>Page not found</div>}
-            </TemplateOne>
-        </div>
-    );
+  return (
+    <TemplateOne page={page} slug={slug} content={content}>
+      {PageComponent ? (
+        <PageComponent slug={slug} content={content} />
+      ) : (
+        <div>Page not found</div>
+      )}
+    </TemplateOne>
+  );
 };
 
 export default TemplateOnePageRenderer;

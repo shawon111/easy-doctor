@@ -1,45 +1,19 @@
 import Link from "next/link";
 
-const SERVICES = [
-  {
-    icon: "cardiology",
-    title: "Precision Cardiology",
-    description:
-      "Advanced cardiac screenings and preventive heart health strategies using AI-enhanced diagnostics.",
-    iconClass: "bg-primary/10 text-primary",
-  },
-  {
-    icon: "neurology",
-    title: "Neuro-Wellness",
-    description:
-      "Integrative neurology services focusing on cognitive longevity and specialized neurological recovery.",
-    iconClass: "bg-secondary/10 text-secondary",
-  },
-  {
-    icon: "genetics",
-    title: "Genomic Analysis",
-    description:
-      "Personalized health mapping through advanced genetic sequencing and nutritional clinical data.",
-    iconClass: "bg-tertiary/10 text-tertiary",
-  },
-];
-
-export default function ServicesGridThree({ slug }) {
+export default function ServicesGridThree({ slug, content = {} }) {
   const base = slug ? `/doctor/${slug}` : "#";
+  const items = content.items || [];
 
   return (
     <section className="py-32 bg-surface-container-low">
       <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
         <div className="text-center mb-20">
-          <h2 className="font-display-lg text-headline-lg mb-4">Specialized Medical Care</h2>
-          <p className="text-on-surface-variant max-w-2xl mx-auto">
-            Providing a comprehensive range of clinical services powered by diagnostic precision and advanced
-            medical technology.
-          </p>
+          <h2 className="font-display-lg text-headline-lg mb-4">{content.heading}</h2>
+          <p className="text-on-surface-variant max-w-2xl mx-auto">{content.subheading}</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter">
-          {SERVICES.map((service) => (
+          {items.map((service) => (
             <div
               key={service.title}
               className="glass-card p-8 rounded-[32px] group hover:bg-white transition-colors shadow-sm hover:shadow-md"

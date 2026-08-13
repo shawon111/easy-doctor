@@ -1,15 +1,15 @@
-import React from 'react';
+import { templateTwoDefaults } from "@/content/defaults/template-two";
 import FooterTwo from './footer/FooterTwo';
 import HeaderTwo from './header/HeaderTwo';
 
-const TemplateTwo = ({ children }) => {
+const TemplateTwo = ({ children, content, page, slug }) => {
     return (
         <div className="template-two bg-background text-on-background selection:bg-tertiary/20">
-            <HeaderTwo />
+            <HeaderTwo content={content?.header ?? templateTwoDefaults.header} slug={slug} page={page} />
             <main>
                 {children}
             </main>
-            <FooterTwo />
+            <FooterTwo content={content?.footer ?? templateTwoDefaults.footer} slug={slug} />
         </div>
     );
 };

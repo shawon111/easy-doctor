@@ -1,44 +1,17 @@
-const FAQS = [
-  {
-    question: "How do I prepare for my first consultation?",
-    answer:
-      "Please bring a list of current medications and any recent medical records. We recommend arriving 15 minutes early to complete our digital onboarding process on the patient portal.",
-    openByDefault: true,
-  },
-  {
-    question: "Are diagnostic tests performed on-site?",
-    answer:
-      "Yes, our clinic features a state-of-the-art laboratory and imaging suite, allowing us to perform most diagnostics in-house for your convenience and speed.",
-    openByDefault: false,
-  },
-  {
-    question: "Do you accept international insurance?",
-    answer:
-      "We work with a broad network of premium international providers. Please contact our administrative team prior to your visit to verify your specific coverage.",
-    openByDefault: false,
-  },
-  {
-    question: "How long does a typical evaluation take?",
-    answer:
-      "Initial consultations typically last 45-60 minutes to ensure Dr. Vance has sufficient time to understand your history and concerns thoroughly.",
-    openByDefault: false,
-  },
-];
+export default function ServicesFaqOne({ content = {} }) {
+  const items = content.items || [];
 
-
-export default function ServicesFaqOne() {
   return (
     <section className="py-section-padding px-margin-mobile md:px-margin-desktop bg-surface">
       <div className="max-w-[800px] mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-headline-lg font-headline-lg text-on-surface mb-4">Patient FAQ</h2>
-          <p className="text-on-surface-variant">
-            Common inquiries regarding our procedures and patient care.
-          </p>
+          {content.heading ? (
+            <h2 className="text-headline-lg font-headline-lg text-on-surface mb-4">{content.heading}</h2>
+          ) : null}
         </div>
 
         <div className="space-y-4">
-          {FAQS.map((faq) => (
+          {items.map((faq) => (
             <details
               key={faq.question}
               className="group bg-surface-container-lowest rounded-xl border border-outline-variant/30 overflow-hidden"

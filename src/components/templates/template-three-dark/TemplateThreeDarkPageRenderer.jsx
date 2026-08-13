@@ -11,12 +11,16 @@ const pages = {
   appointment: AppointmentPageDarkThree,
 };
 
-const TemplateThreeDarkPageRenderer = ({ page, slug }) => {
+const TemplateThreeDarkPageRenderer = ({ page, slug, content }) => {
   const PageComponent = pages[page];
 
   return (
-    <TemplateThreeDark page={page} slug={slug}>
-      {PageComponent ? <PageComponent slug={slug} /> : <div>Page not found</div>}
+    <TemplateThreeDark page={page} slug={slug} content={content}>
+      {PageComponent ? (
+        <PageComponent slug={slug} content={content} />
+      ) : (
+        <div>Page not found</div>
+      )}
     </TemplateThreeDark>
   );
 };

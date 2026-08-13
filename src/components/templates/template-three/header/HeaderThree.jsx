@@ -1,7 +1,7 @@
 import NavbarThree from "./NavbarThree";
 
-const HeaderThree = ({ page, slug }) => {
-  return <NavbarThree page={page} slug={slug} />;
+const HeaderThree = ({ page, slug, content }) => {
+  return <NavbarThree page={page} slug={slug} content={content} />;
 };
 
 export default HeaderThree;

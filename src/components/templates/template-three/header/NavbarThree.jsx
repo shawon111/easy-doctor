@@ -3,15 +3,12 @@
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 
-const NAV_LINKS = [
-  { label: "Home", href: "", key: "home" },
-  { label: "About", href: "/about", key: "about" },
-  { label: "Services", href: "/services", key: "services" },
-];
-
-export default function NavbarThree({ page = "home", slug }) {
+export default function NavbarThree({ page = "home", slug, content }) {
   const base = slug ? `/doctor/${slug}` : "#";
   const navRef = useRef(null);
+  const navLinks = content?.navLinks ?? [];
+  const brandName = content?.brandName ?? "Doctor";
+  const appointmentCta = content?.appointmentCta ?? "Book Appointment";
 
   useEffect(() => {
     const nav = navRef.current;
@@ -36,11 +33,11 @@ export default function NavbarThree({ page = "home", slug }) {
     >
       <div className="flex justify-between items-center max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop h-full">
         <Link href={base} className="font-headline-md text-headline-md font-bold text-primary">
-          Dr. MedLink
+          {brandName}
         </Link>
 
         <div className="hidden md:flex items-center gap-8">
-          {NAV_LINKS.map((link) => {
+          {navLinks.map((link) => {
             const href = link.href ? `${base}${link.href}` : base;
             const isActive = page === link.key;
 
@@ -64,7 +61,7 @@ export default function NavbarThree({ page = "home", slug }) {
           href={`${base}/appointment`}
           className="bg-primary text-on-primary px-6 py-2.5 rounded-lg font-headline-md text-[16px] hover:opacity-90 active:scale-95 transition-all"
         >
-          Book Appointment
+          {appointmentCta}
         </Link>
       </div>
     </nav>
