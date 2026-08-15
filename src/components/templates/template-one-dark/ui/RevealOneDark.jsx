@@ -2,7 +2,7 @@
 
 import useReveal from "@/hooks/useReveal";
 
-export default function RevealOneDark({ as: Tag = "div", className = "", children, ...rest }) {
+export default function RevealOneDark({ as: Tag = "div", className = "", children, isDemo = false, ...rest }) {
   const { ref, isActive } = useReveal();
 
   return (

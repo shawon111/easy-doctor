@@ -5,7 +5,7 @@ const BADGE_CLASSES = [
   "bg-outline-variant/30 text-on-surface-variant",
 ];
 
-export default function AppointmentScheduleOne({ content = {} }) {
+export default function AppointmentScheduleOne({ content = {} , isDemo = false}) {
   const items = content.items || [];
 
   return (

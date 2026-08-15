@@ -2,11 +2,11 @@ import SectionFadeOneDark from "../../ui/SectionFadeOneDark";
 
 const STEP_ICONS = ["send", "event_available", "task_alt"];
 
-export default function AppointmentProcessOneDark({ content = {} }) {
+export default function AppointmentProcessOneDark({ content = {}, isDemo = false }) {
   const steps = content.steps || [];
 
   return (
-    <SectionFadeOneDark className="bg-surface-container-lowest py-[120px] px-5 md:px-16 relative">
+    <SectionFadeOneDark className="bg-surface-container-lowest py-[120px] px-5 md:px-16 relative" isDemo={isDemo}>
       <div className="max-w-[1440px] mx-auto">
         <div className="text-center mb-16">
           {content.heading ? (

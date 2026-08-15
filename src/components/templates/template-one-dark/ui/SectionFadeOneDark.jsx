@@ -2,7 +2,7 @@
 
 import useReveal from "@/hooks/useReveal";
 
-export default function SectionFadeOneDark({ as: Tag = "section", className = "", children, ...rest }) {
+export default function SectionFadeOneDark({ as: Tag = "section", className = "", children, isDemo = false, ...rest }) {
   const { ref, isActive } = useReveal({ threshold: 0.1, rootMargin: "0px" });
 
   return (

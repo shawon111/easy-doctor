@@ -1,6 +1,6 @@
 import SectionFadeTwoDark from "../../ui/SectionFadeTwoDark";
 
-export default function AboutQualificationsTwoDark({ content = {} }) {
+export default function AboutQualificationsTwoDark({ content = {} , isDemo = false}) {
   const items = content.items || [];
 
   return (

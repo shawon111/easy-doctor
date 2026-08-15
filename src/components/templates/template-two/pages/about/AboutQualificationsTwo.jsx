@@ -1,6 +1,6 @@
 import RevealTwo from "./RevealTwo";
 
-export default function AboutQualificationsTwo({ content = {} }) {
+export default function AboutQualificationsTwo({ content = {} , isDemo = false}) {
   const items = content.items || [];
 
   return (

@@ -1,4 +1,4 @@
-export default function TreatmentsTwo({ content = {} }) {
+export default function TreatmentsTwo({ content = {} , isDemo = false}) {
   const items = content.items || [];
   const [featured, secondary, tertiary, quaternary] = items;
 

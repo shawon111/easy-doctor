@@ -1,6 +1,6 @@
 const CHAMBER_CLASSES = ["", "lg:col-span-2", ""];
 
-export default function AppointmentChambersDarkThree({ content = {} }) {
+export default function AppointmentChambersDarkThree({ content = {} , isDemo = false}) {
   const items = (content.items || []).map((chamber, index) => ({
     ...chamber,
     className: CHAMBER_CLASSES[index] || "",

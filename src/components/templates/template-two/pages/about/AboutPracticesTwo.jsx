@@ -28,7 +28,7 @@ function getPracticeLocations(content = {}) {
   });
 }
 
-export default function AboutPracticesTwo({ content = {}, slug }) {
+export default function AboutPracticesTwo({ content = {}, slug , isDemo = false}) {
   const locations = getPracticeLocations(content);
   const base = slug ? `/doctor/${slug}` : "#";
 

@@ -2,7 +2,7 @@ import Reveal from "@/components/templates/ui/Reveal";
 
 const DELAYS = ["", "delay-100", "delay-200", "delay-300"];
 
-export default function TrustBadgesOne({ content = {} }) {
+export default function TrustBadgesOne({ content = {} , isDemo = false}) {
   const badges = content.items || [];
 
   return (

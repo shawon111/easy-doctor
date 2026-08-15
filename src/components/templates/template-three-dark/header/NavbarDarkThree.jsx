@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function NavbarDarkThree({ page = "home", slug, content }) {
+export default function NavbarDarkThree({ page = "home", slug, content, isDemo = false }) {
   const base = slug ? `/doctor/${slug}` : "#";
   const navLinks = content?.navLinks ?? [];
   const brandName = content?.brandName ?? "Doctor";

@@ -28,7 +28,7 @@ const CARD_CONFIG = [
   },
 ];
 
-export default function ServicesTreatmentsThree({ content = {} }) {
+export default function ServicesTreatmentsThree({ content = {} , isDemo = false}) {
   const cards = content.cards || [];
 
   return (

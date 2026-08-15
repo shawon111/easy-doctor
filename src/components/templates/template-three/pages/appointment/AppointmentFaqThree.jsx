@@ -1,6 +1,6 @@
 import AccordionThree from "../../ui/AccordionThree";
 
-export default function AppointmentFaqThree({ content = {} }) {
+export default function AppointmentFaqThree({ content = {} , isDemo = false}) {
   const items = content.items || [];
 
   return (

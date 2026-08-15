@@ -1,4 +1,4 @@
-export default function ServicesHeroThree({ content = {} }) {
+export default function ServicesHeroThree({ content = {} , isDemo = false}) {
   return (
     <section className="relative py-24 overflow-hidden">
       <div className="relative z-10 max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop text-center">

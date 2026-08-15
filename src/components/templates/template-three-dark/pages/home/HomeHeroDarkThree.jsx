@@ -3,7 +3,7 @@ import Link from "next/link";
 const DEFAULT_HERO_IMAGE =
   "https://lh3.googleusercontent.com/aida-public/AB6AXuC0UvJcRRGzeMnVHVjjXtnLb4votL8IteDuxDZoMBMVpVJGOKk-h0BcL08sXfFokA-cOo1p0SsfrOwac1Nso4BV3x2gC0QrMZoHxNOy-E6Z9IfkMBdSWPmugRqreXSFb0bGdnpfIjYIqX8q9tzPLq3OAXzVJuxeYXwM679Bugo2A_j8k-awrsDAbjGSxwoiM3DzXth4E2OLtitL8Sr4rEapTONQDNSO02L51czSuadSIGI3LL-ZaASnpQ";
 
-export default function HomeHeroDarkThree({ slug, content = {} }) {
+export default function HomeHeroDarkThree({ slug, content = {} , isDemo = false}) {
   const base = slug ? `/doctor/${slug}` : "#";
   const heroImage = content.image || DEFAULT_HERO_IMAGE;
 

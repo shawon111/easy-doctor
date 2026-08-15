@@ -1,8 +1,8 @@
 import SectionFadeOneDark from "../../ui/SectionFadeOneDark";
 
-export default function AboutPhilosophyOneDark({ content = {} }) {
+export default function AboutPhilosophyOneDark({ content = {}, isDemo = false }) {
   return (
-    <SectionFadeOneDark className="bg-surface-container-lowest py-32 px-6 md:px-10 relative overflow-hidden">
+    <SectionFadeOneDark className="bg-surface-container-lowest py-32 px-6 md:px-10 relative overflow-hidden" isDemo={isDemo}>
       <div
         className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full opacity-30 pointer-events-none"
         style={{

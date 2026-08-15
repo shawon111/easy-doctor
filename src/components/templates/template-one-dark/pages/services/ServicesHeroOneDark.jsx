@@ -1,4 +1,4 @@
-export default function ServicesHeroOneDark({ content = {} }) {
+export default function ServicesHeroOneDark({ content = {} , isDemo = false}) {
   return (
     <section className="relative py-16 px-6 md:px-10 hero-gradient overflow-hidden">
       <div className="max-w-[1440px] mx-auto grid lg:grid-cols-12 items-center gap-8 relative z-10">

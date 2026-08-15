@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function FooterThree({ slug, content }) {
+export default function FooterThree({ slug, content, isDemo = false }) {
   const base = slug ? `/doctor/${slug}` : "#";
   const brandName = content?.brandName ?? "Doctor";
   const copyright = content?.copyright ?? "";

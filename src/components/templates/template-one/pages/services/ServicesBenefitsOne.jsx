@@ -1,4 +1,4 @@
-export default function ServicesBenefitsOne({ content = {} }) {
+export default function ServicesBenefitsOne({ content = {} , isDemo = false}) {
   const items = content.items || [];
 
   return (

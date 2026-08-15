@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-export default function AccordionThree({ items, variant = "default" }) {
+export default function AccordionThree({ items, variant = "default", isDemo = false }) {
   const [openIndex, setOpenIndex] = useState(-1);
 
   const toggle = (index) => {

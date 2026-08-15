@@ -1,4 +1,4 @@
-export default function ServicesBenefitsOneDark({ content = {} }) {
+export default function ServicesBenefitsOneDark({ content = {} , isDemo = false}) {
   const items = content.items || [];
 
   return (

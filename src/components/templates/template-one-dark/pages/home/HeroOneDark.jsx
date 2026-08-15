@@ -4,7 +4,7 @@ import RevealOneDark from "../../ui/RevealOneDark";
 const HERO_IMAGE_FALLBACK =
   "https://lh3.googleusercontent.com/aida-public/AB6AXuDTyxeutP7i3bLEgOgReazJq3fL8gL_0nt-ZGg7tXDH26cuyHhAjEY_V0Ht4_Q_h-_sIcfCK5Kj2zn0tLJfkGSkLidk_x-eIwZsKtHSYGri4uoLUvsz1-T8u9X9JwdfPUma0Qi01jqaPZAT5EBM3U-Z-DmmCQKReacdwWCpkwAeBv00vHIfaxo4ylI1UmYSfO0kddOLLOBy8N0vd4ouvwUeTowUmhLHTDT3n5HEsHysG_2WybeexPH1cw";
 
-export default function HeroOneDark({ content = {}, slug }) {
+export default function HeroOneDark({ content = {}, slug, isDemo = false }) {
   const base = slug ? `/doctor/${slug}` : "#";
   const imageSrc = content.image || HERO_IMAGE_FALLBACK;
   const statCard = content.statCard;
@@ -12,7 +12,7 @@ export default function HeroOneDark({ content = {}, slug }) {
   return (
     <section className="relative min-h-[90vh] flex items-center overflow-hidden">
       <div className="relative z-10 max-w-[1440px] mx-auto px-10 w-full grid grid-cols-1 md:grid-cols-2 gap-8 items-center py-20">
-        <RevealOneDark>
+        <RevealOneDark isDemo={isDemo}>
           {content.badge ? (
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-card text-secondary-fixed font-label-md text-xs mb-8 border border-secondary-fixed/20 uppercase tracking-widest">
               <span className="w-2 h-2 rounded-full bg-secondary-fixed animate-pulse" />
@@ -46,7 +46,7 @@ export default function HeroOneDark({ content = {}, slug }) {
           </div>
         </RevealOneDark>
 
-        <RevealOneDark className="relative delay-200">
+        <RevealOneDark className="relative delay-200" isDemo={isDemo}>
           <div className="aspect-[4/5] rounded-xl overflow-hidden glass-card p-2 border border-white/10">
             <img
               className="w-full h-full object-cover rounded-lg grayscale hover:grayscale-0 transition-all duration-700"

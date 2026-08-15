@@ -1,4 +1,4 @@
-export default function MapLocationThree({ content = {} }) {
+export default function MapLocationThree({ content = {} , isDemo = false}) {
   const contact = content.contact || {};
   const labels = content.contactLabels || {};
   const contactInfo = [

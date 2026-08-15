@@ -1,4 +1,4 @@
-export default function CtaTwo({ content = {} }) {
+export default function CtaTwo({ content = {} , isDemo = false}) {
   return (
     <section className="mb-section-gap px-margin-mobile md:px-margin-desktop">
       <div className="max-w-container-max mx-auto bg-primary text-on-primary p-12 md:p-24 rounded-xl text-center relative overflow-hidden group border-none shadow-2xl">

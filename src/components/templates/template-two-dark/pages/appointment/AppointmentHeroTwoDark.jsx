@@ -1,4 +1,4 @@
-export default function AppointmentHeroTwoDark({ content = {} }) {
+export default function AppointmentHeroTwoDark({ content = {} , isDemo = false}) {
   return (
     <section className="relative pt-[120px] pb-20 px-5 md:px-16 text-center">
       <div className="max-w-3xl mx-auto space-y-6">

@@ -18,7 +18,7 @@ function normalizeFeatures(features = []) {
   });
 }
 
-export default function AppointmentWhatsappTwo({ content = {} }) {
+export default function AppointmentWhatsappTwo({ content = {} , isDemo = false}) {
   const features = normalizeFeatures(content.features);
   const imageSrc = content.image || WHATSAPP_IMAGE_FALLBACK;
 

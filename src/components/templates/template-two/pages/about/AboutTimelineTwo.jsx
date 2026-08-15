@@ -1,6 +1,6 @@
 import RevealTwo from "./RevealTwo";
 
-export default function AboutTimelineTwo({ content = {} }) {
+export default function AboutTimelineTwo({ content = {} , isDemo = false}) {
   const items = content.items || [];
 
   return (

@@ -1,4 +1,4 @@
-export default function ServicesHeroOne({ content = {} }) {
+export default function ServicesHeroOne({ content = {} , isDemo = false}) {
   return (
     <section className="relative py-section-padding px-margin-mobile md:px-margin-desktop bg-surface-container-lowest overflow-hidden">
       <div className="max-w-[1200px] mx-auto grid md:grid-cols-2 items-center gap-gutter relative z-10">

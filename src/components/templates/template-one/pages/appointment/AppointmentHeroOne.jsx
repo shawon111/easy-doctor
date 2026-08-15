@@ -1,6 +1,6 @@
 import Reveal from "@/components/templates/ui/Reveal";
 
-export default function AppointmentHeroOne({ content = {} }) {
+export default function AppointmentHeroOne({ content = {} , isDemo = false}) {
   return (
     <Reveal
       as="section"

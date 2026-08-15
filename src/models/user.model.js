@@ -136,11 +136,6 @@ const UserSchema = new mongoose.Schema(
         },
 
         websitePreferences: {
-            templateKey: {
-                type: String,
-                enum: ["template-one", "template-two", "template-three"],
-                default: "template-three",
-            },
             template: {
                 type: mongoose.Schema.Types.ObjectId,
                 ref: "Template",
@@ -167,6 +162,10 @@ const UserSchema = new mongoose.Schema(
                     default: true,
                 }
             },
+        },
+        websiteCreated: {
+            type: Boolean,
+            default: false,
         },
         profileCompleted: {
             type: Boolean,

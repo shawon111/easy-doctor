@@ -1,4 +1,4 @@
-export default function ServicesHeroTwoDark({ content = {} }) {
+export default function ServicesHeroTwoDark({ content = {} , isDemo = false}) {
   return (
     <section className="relative min-h-[614px] flex items-center justify-center pt-20 overflow-hidden">
       <div className="relative z-10 text-center max-w-4xl px-5">

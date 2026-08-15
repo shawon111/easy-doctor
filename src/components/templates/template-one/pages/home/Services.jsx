@@ -2,7 +2,7 @@ import Reveal from "@/components/templates/ui/Reveal";
 
 const DELAYS = ["", "delay-100", "delay-200"];
 
-export default function ServicesOne({ content = {} }) {
+export default function ServicesOne({ content = {} , isDemo = false}) {
   const items = content.items || [];
 
   return (

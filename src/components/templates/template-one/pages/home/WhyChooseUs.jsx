@@ -1,6 +1,6 @@
 import Reveal from "@/components/templates/ui/Reveal";
 
-export default function WhyChooseUsOne({ content = {} }) {
+export default function WhyChooseUsOne({ content = {} , isDemo = false}) {
   const items = content.items || [];
 
   return (

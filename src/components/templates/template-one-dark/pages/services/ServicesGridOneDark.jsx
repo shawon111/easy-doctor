@@ -1,6 +1,6 @@
 import GlassCardRevealOneDark from "../../ui/GlassCardRevealOneDark";
 
-export default function ServicesGridOneDark({ content = {} }) {
+export default function ServicesGridOneDark({ content = {} , isDemo = false}) {
   const items = content.items || [];
 
   return (

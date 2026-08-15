@@ -3,7 +3,7 @@ import Link from "next/link";
 const FEATURED_IMAGE_FALLBACK =
   "https://lh3.googleusercontent.com/aida-public/AB6AXuAejtLRzK3bQa8whYcqiEkJObPaIDyqcXjcRn4X8JBxGYwYqh9wouWsYaKVXAMWpeTRTbtzvvJSwRKTTxMexesGEx5jDyNlX3quKr6GZ3xGJqcSeuhdr1LES0joedLZdSlv_J3gEIe3tmoqaPRE2DMT1YHXPUgBCWfhk0DvV-ZaYt10jf4D1s3XMhcw6B0vSwpCz9EkWB6Lqhp7Mgme8tYdzBEiRk6i13Ap16NUK3ME3sqWelrnZ8ULTw";
 
-export default function ServicesFeaturedTwo({ content = {}, slug }) {
+export default function ServicesFeaturedTwo({ content = {}, slug , isDemo = false}) {
   const secondary = content.secondaryFeatured || {};
   const base = slug ? `/doctor/${slug}` : "#";
   const imageSrc = content.image || FEATURED_IMAGE_FALLBACK;

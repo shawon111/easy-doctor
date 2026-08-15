@@ -1,4 +1,4 @@
-export default function AboutJourneyDarkThree({ content = {} }) {
+export default function AboutJourneyDarkThree({ content = {} , isDemo = false}) {
   const paragraphs = (content.body || "").split("\n\n").filter(Boolean);
   const headingParts = (content.heading || "").split(" ");
   const highlightWord = headingParts.pop();

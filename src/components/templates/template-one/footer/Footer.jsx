@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function FooterOne({ content = {}, slug }) {
+export default function FooterOne({ content = {}, slug , isDemo = false}) {
   const base = slug ? `/doctor/${slug}` : "#";
   const brandName = content.brandName || "Doctor";
   const tagline = content.tagline || "";

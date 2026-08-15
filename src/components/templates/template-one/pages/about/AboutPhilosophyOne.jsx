@@ -1,6 +1,6 @@
 import Reveal from "@/components/templates/ui/Reveal";
 
-export default function AboutPhilosophyOne({ content = {} }) {
+export default function AboutPhilosophyOne({ content = {} , isDemo = false}) {
   return (
     <Reveal
       as="section"

@@ -177,6 +177,7 @@ export const templateTwoDefaults = {
         badge: "EXCELLENCE IN PRECISION MEDICINE",
         heading: "About {{name}}",
         body: "Redefining the standards of specialized care through a legacy of clinical mastery, academic rigor, and an unwavering commitment to patient longevity.",
+        languages: ["English", "French", "Arabic"],
         imageAlt:
           "A professional portrait of an executive male specialist doctor in his early 50s, wearing a bespoke navy suit and a white clinical coat.",
         image:

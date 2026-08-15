@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 
-export default function NavbarTwoDark({ page = "home", slug, content = {} }) {
+export default function NavbarTwoDark({ page = "home", slug, content = {} , isDemo = false}) {
   const base = slug ? `/doctor/${slug}` : "#";
   const navLinks = content.navLinks || [];
   const brandName = content.brandName || "Doctor";

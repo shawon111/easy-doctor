@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 
-export default function ServicesFaqTwo({ content = {} }) {
+export default function ServicesFaqTwo({ content = {} , isDemo = false}) {
   const items = content.items || [];
   const defaultOpenIndex = useMemo(
     () => items.findIndex((item) => item.openByDefault),

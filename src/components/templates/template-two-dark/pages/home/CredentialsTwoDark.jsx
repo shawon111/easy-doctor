@@ -1,4 +1,4 @@
-export default function CredentialsTwoDark({ content = {} }) {
+export default function CredentialsTwoDark({ content = {} , isDemo = false}) {
   const items = content.items || [];
 
   return (

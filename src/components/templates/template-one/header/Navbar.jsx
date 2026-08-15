@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { useParams } from "next/navigation";
 
-export default function Navbar({ content = {}, slug, page }) {
+export default function Navbar({ content = {}, slug, page , isDemo = false}) {
   const params = useParams();
   const resolvedSlug = slug ?? params?.slug;
   const basePath = `/doctor/${resolvedSlug}`;

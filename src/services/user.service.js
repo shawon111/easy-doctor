@@ -41,7 +41,6 @@ export const getCurrentUser = async () => {
     await connectDB();
     const cookieStore = await cookies();
     const accessToken = cookieStore.get("accessToken")?.value;
-
     if (!accessToken) {
         return null;
     }
@@ -52,11 +51,15 @@ export const getCurrentUser = async () => {
         if (!payload || payload.type !== "access") {
             return null;
         }
-        const user = await User.findById(payload.sub).select({
+        let userInfoToReturn = {
             name: 1,
             email: 1,
+            websiteCreated: 1,
+            profileCompleted: 1,
+            userLevel: 1,
             _id: 1
-        }).lean();
+        };
+        const user = await User.findById(payload.sub).select(userInfoToReturn).lean();
         return user;
     } catch(error) {
         console.error("Error occurred while fetching current user:", error);

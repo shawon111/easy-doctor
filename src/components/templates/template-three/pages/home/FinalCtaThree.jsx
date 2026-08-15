@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function FinalCtaThree({ slug, content = {} }) {
+export default function FinalCtaThree({ slug, content = {} , isDemo = false}) {
   const base = slug ? `/doctor/${slug}` : "#";
 
   return (

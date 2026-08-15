@@ -13,7 +13,7 @@ const BENEFIT_STYLES = [
   },
 ];
 
-export default function ServicesBenefitsThree({ content = {} }) {
+export default function ServicesBenefitsThree({ content = {} , isDemo = false}) {
   const items = (content.items || []).map((item, index) => ({
     ...item,
     ...BENEFIT_STYLES[index % BENEFIT_STYLES.length],

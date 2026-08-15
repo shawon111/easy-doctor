@@ -3,7 +3,7 @@ import ParallaxImageThree from "../../ui/ParallaxImageThree";
 const DEFAULT_HERO_IMAGE =
   "https://lh3.googleusercontent.com/aida-public/AB6AXuCwpZmJK4q5FM8vcTZB_TAivyNi8GAzDB3Hw8AV2tSk_zt3UN2PZjlv5qexJd2tGgFeZHhhoXJpkk6zt44YAULkXLZCWQaF-HktGQcvHTByHX5DJS38yj4DNlp03chBQeMx6cAeUYOVqpysLgOSJ_Zl-F49HvdtWWsrBIRtp9H39DJLjLuFE7mepNfzjdyWFdhEAGJPKQiBs0PggdHnALQzvB9rZ-p13vtCyxTymCU1sUzd57AEaL2CwQ";
 
-export default function AboutHeroThree({ content = {} }) {
+export default function AboutHeroThree({ content = {} , isDemo = false}) {
   const heroImage = content.image || DEFAULT_HERO_IMAGE;
 
   return (

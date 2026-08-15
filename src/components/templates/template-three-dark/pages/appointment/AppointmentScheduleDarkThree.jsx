@@ -1,4 +1,4 @@
-export default function AppointmentScheduleDarkThree({ content = {} }) {
+export default function AppointmentScheduleDarkThree({ content = {} , isDemo = false}) {
   const schedule = content.items || [];
 
   return (

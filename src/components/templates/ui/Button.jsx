@@ -19,7 +19,7 @@ import { useState } from "react";
  * Any button in the app that should have this lift-on-hover effect
  * renders through this component.
  */
-export default function Button({ children, className = "", as: Tag = "button", ...rest }) {
+export default function Button({ children, className = "", as: Tag = "button", isDemo = false, ...rest }) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (

@@ -1,12 +1,12 @@
 import Link from "next/link";
 import RevealOneDark from "../../ui/RevealOneDark";
 
-export default function FinalCTAOneDark({ content = {}, slug }) {
+export default function FinalCTAOneDark({ content = {}, slug, isDemo = false }) {
   const base = slug ? `/doctor/${slug}` : "#";
 
   return (
     <section className="px-10 max-w-[1440px] mx-auto mb-[120px]">
-      <RevealOneDark className="relative rounded-[4rem] p-20 text-center overflow-hidden group">
+      <RevealOneDark className="relative rounded-[4rem] p-20 text-center overflow-hidden group" isDemo={isDemo}>
         <div className="absolute inset-0 bg-primary-container" />
         <div className="absolute inset-0 bg-gradient-to-br from-primary-container via-primary-container to-secondary-fixed/50 opacity-50" />
         <div className="blob-bg top-[-100px] left-[-100px] opacity-40 !animate-none" aria-hidden="true" />

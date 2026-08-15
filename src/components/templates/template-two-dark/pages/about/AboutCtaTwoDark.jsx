@@ -1,7 +1,7 @@
 import Link from "next/link";
 import SectionFadeTwoDark from "../../ui/SectionFadeTwoDark";
 
-export default function AboutCtaTwoDark({ content = {}, slug }) {
+export default function AboutCtaTwoDark({ content = {}, slug , isDemo = false}) {
   const base = slug ? `/doctor/${slug}` : "#";
 
   return (

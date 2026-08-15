@@ -1,4 +1,4 @@
-export default function HowToStartThree({ content = {} }) {
+export default function HowToStartThree({ content = {} , isDemo = false}) {
   const steps = content.steps || [];
 
   return (

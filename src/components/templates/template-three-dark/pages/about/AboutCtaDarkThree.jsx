@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function AboutCtaDarkThree({ slug, content = {} }) {
+export default function AboutCtaDarkThree({ slug, content = {} , isDemo = false}) {
   const base = slug ? `/doctor/${slug}` : "#";
 
   return (

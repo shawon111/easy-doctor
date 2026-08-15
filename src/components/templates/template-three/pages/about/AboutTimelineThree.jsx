@@ -6,7 +6,7 @@ const TIMELINE_STYLES = [
   { periodClass: "text-tertiary", dotClass: "bg-tertiary ring-tertiary/10" },
 ];
 
-export default function AboutTimelineThree({ content = {} }) {
+export default function AboutTimelineThree({ content = {} , isDemo = false}) {
   const items = (content.items || []).map((item, index) => ({
     ...item,
     ...TIMELINE_STYLES[index % TIMELINE_STYLES.length],

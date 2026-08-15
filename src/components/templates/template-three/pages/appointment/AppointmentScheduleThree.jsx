@@ -1,4 +1,4 @@
-export default function AppointmentScheduleThree({ content = {} }) {
+export default function AppointmentScheduleThree({ content = {} , isDemo = false}) {
   const schedule = content.items || [];
 
   return (

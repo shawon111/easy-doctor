@@ -1,4 +1,4 @@
-export default function AppointmentWhatsappThree({ content = {} }) {
+export default function AppointmentWhatsappThree({ content = {} , isDemo = false}) {
   return (
     <section className="mb-24 relative overflow-hidden rounded-3xl group">
       <div className="relative z-10 bg-white p-12 md:p-20 border border-outline-variant flex flex-col md:flex-row items-center gap-12 shadow-sm">

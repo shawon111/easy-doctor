@@ -1,4 +1,4 @@
-export default function HomeHowToStartDarkThree({ content = {} }) {
+export default function HomeHowToStartDarkThree({ content = {} , isDemo = false}) {
   const steps = content.steps || [];
 
   return (

@@ -1,4 +1,4 @@
-export default function FooterTwo({ content = {} }) {
+export default function FooterTwo({ content = {} , isDemo = false}) {
   const brandName = content.brandName || "Doctor";
   const tagline = content.tagline || "";
   const phone = content.phone || "";

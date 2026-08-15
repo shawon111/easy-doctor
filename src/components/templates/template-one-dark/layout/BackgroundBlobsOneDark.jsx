@@ -1,4 +1,4 @@
-const BackgroundBlobsOneDark = ({ page }) => {
+const BackgroundBlobsOneDark = ({ page, isDemo = false }) => {
   if (page !== "home") return null;
 
   return (

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 
-export default function ParallaxImageThree({ src, alt, className = "" }) {
+export default function ParallaxImageThree({ src, alt, className = "", isDemo = false }) {
   const imageRef = useRef(null);
 
   useEffect(() => {

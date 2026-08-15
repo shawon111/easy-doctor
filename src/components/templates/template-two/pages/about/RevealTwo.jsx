@@ -9,7 +9,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
-export default function RevealTwo({ children, className = "" }) {
+export default function RevealTwo({ children, className = "", isDemo = false }) {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
 

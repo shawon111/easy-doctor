@@ -1,15 +1,16 @@
 import { templateOneDefaults } from "@/content/defaults/template-one";
+import { resolveTemplateContent } from "@/lib/content/resolve-template-content";
 import FooterOne from './footer/Footer';
 import HeaderOne from './header/Header';
 
-const TemplateOne = ({ children, content, page, slug }) => {
+const TemplateOne = ({ children, content, page, slug, isDemo = false }) => {
     return (
         <div className="template-1 overflow-x-hidden">
-            <HeaderOne content={content?.header ?? templateOneDefaults.header} slug={slug} page={page} />
+            <HeaderOne content={resolveTemplateContent(content?.header, templateOneDefaults.header, isDemo)} slug={slug} page={page} isDemo={isDemo} />
             <main className="pt-20">
                 {children}
             </main>
-            <FooterOne content={content?.footer ?? templateOneDefaults.footer} slug={slug} />
+            <FooterOne content={resolveTemplateContent(content?.footer, templateOneDefaults.footer, isDemo)} slug={slug} isDemo={isDemo} />
         </div>
     );
 };

@@ -1,4 +1,4 @@
-export default function OnboardingTwo({ content = {} }) {
+export default function OnboardingTwo({ content = {} , isDemo = false}) {
   const steps = content.steps || [];
 
   return (

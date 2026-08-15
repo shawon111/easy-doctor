@@ -5,10 +5,10 @@ function splitHeading(heading = "") {
   return { lead: words.join(" "), accent };
 }
 
-export default function TimelineTwoDark({ content = {}, user = {} }) {
+export default function TimelineTwoDark({ content = {}, user = {}, isDemo = false }) {
   const items = content.items || [];
   const { lead, accent } = splitHeading(content.heading);
-  const experienceStat = user.experience ? `${user.experience}+` : "25+";
+  const experienceStat = !isDemo && user.experience ? `${user.experience}+` : "25+";
 
   return (
     <section className="py-[120px] px-5 md:px-16">

@@ -1,6 +1,6 @@
 import AccordionThree from "../../ui/AccordionThree";
 
-export default function ServicesFaqThree({ content = {} }) {
+export default function ServicesFaqThree({ content = {} , isDemo = false}) {
   const items = content.items || [];
 
   return (

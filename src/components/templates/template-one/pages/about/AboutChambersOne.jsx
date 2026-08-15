@@ -1,6 +1,6 @@
 import Reveal from "@/components/templates/ui/Reveal";
 
-export default function AboutChambersOne({ content = {} }) {
+export default function AboutChambersOne({ content = {} , isDemo = false}) {
   const locations = content.locations || [];
 
   return (

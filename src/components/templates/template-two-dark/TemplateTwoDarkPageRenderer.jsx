@@ -11,13 +11,13 @@ const pages = {
   appointment: AppointmentPageTwoDark,
 };
 
-const TemplateTwoDarkPageRenderer = ({ page, slug, content }) => {
+const TemplateTwoDarkPageRenderer = ({ page, slug, content, isDemo = false }) => {
   const PageComponent = pages[page];
 
   return (
-    <TemplateTwoDark page={page} slug={slug} content={content}>
+    <TemplateTwoDark page={page} slug={slug} content={content} isDemo={isDemo}>
       {PageComponent ? (
-        <PageComponent slug={slug} content={content} />
+        <PageComponent slug={slug} content={content} isDemo={isDemo} />
       ) : (
         <div>Page not found</div>
       )}

@@ -1,4 +1,4 @@
-export default function AboutLocationsThree({ content = {} }) {
+export default function AboutLocationsThree({ content = {} , isDemo = false}) {
   const items = content.items || [];
 
   return (

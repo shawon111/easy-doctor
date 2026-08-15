@@ -1,4 +1,4 @@
-export default function ServicesFaqOne({ content = {} }) {
+export default function ServicesFaqOne({ content = {} , isDemo = false}) {
   const items = content.items || [];
 
   return (

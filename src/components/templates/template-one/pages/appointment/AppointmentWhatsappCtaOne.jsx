@@ -1,6 +1,6 @@
 import Reveal from "@/components/templates/ui/Reveal";
 
-export default function AppointmentWhatsappCtaOne({ content = {} }) {
+export default function AppointmentWhatsappCtaOne({ content = {} , isDemo = false}) {
   const features = content.features || [];
   const whatsappUrl = content.whatsappUrl || "#";
 

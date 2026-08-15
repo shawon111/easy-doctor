@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function FooterTwoDark({ slug, content = {} }) {
+export default function FooterTwoDark({ slug, content = {} , isDemo = false}) {
   const base = slug ? `/doctor/${slug}` : "#";
   const brandName = content.brandName || "Doctor";
   const tagline = content.tagline || "";

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-export default function AccordionTwoDark({ items }) {
+export default function AccordionTwoDark({ items, isDemo = false }) {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const toggle = (index) => {

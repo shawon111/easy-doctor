@@ -7,14 +7,14 @@ const ICON_CLASSES = [
   "text-primary-container",
 ];
 
-export default function WhyChooseUsOneDark({ content = {} }) {
+export default function WhyChooseUsOneDark({ content = {}, isDemo = false }) {
   const items = content.items || [];
 
   return (
     <section className="py-[120px]">
       <div className="max-w-[1440px] mx-auto px-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-          <RevealOneDark>
+          <RevealOneDark isDemo={isDemo}>
             {content.heading ? (
               <h2 className="font-headline-lg text-5xl text-secondary mb-12 tracking-tight">{content.heading}</h2>
             ) : null}
@@ -35,7 +35,7 @@ export default function WhyChooseUsOneDark({ content = {} }) {
             </div>
           </RevealOneDark>
 
-          <RevealOneDark className="delay-200">
+          <RevealOneDark className="delay-200" isDemo={isDemo}>
             <div className="glass-card rounded-3xl p-16 relative overflow-hidden border border-white/10">
               <div className="absolute top-0 right-0 w-32 h-32 bg-primary/20 blur-3xl rounded-full -mr-16 -mt-16" />
               <h3 className="font-headline-md text-3xl text-secondary mb-8 relative z-10 leading-tight">

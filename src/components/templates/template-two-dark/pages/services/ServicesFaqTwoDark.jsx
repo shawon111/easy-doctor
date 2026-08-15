@@ -1,6 +1,6 @@
 import AccordionTwoDark from "../../ui/AccordionTwoDark";
 
-export default function ServicesFaqTwoDark({ content = {} }) {
+export default function ServicesFaqTwoDark({ content = {} , isDemo = false}) {
   const items = content.items || [];
 
   return (

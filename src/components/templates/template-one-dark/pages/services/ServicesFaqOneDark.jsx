@@ -1,4 +1,4 @@
-export default function ServicesFaqOneDark({ content = {} }) {
+export default function ServicesFaqOneDark({ content = {} , isDemo = false}) {
   const items = content.items || [];
 
   return (
@@ -20,7 +20,7 @@ export default function ServicesFaqOneDark({ content = {} }) {
             >
               <summary className="flex justify-between items-center p-8 cursor-pointer list-none hover:bg-white/5 transition-colors">
                 <span className="font-bold text-on-surface uppercase tracking-wider flex items-center gap-4">
-                  <span className="text-cyber-mint font-label-md">{String(index + 1).padStart(2, "0")} //</span>
+                  <span className="text-cyber-mint font-label-md">{String(index + 1).padStart(2, "0")} {"//"}</span>
                   {item.question}
                 </span>
                 <span className="material-symbols-outlined group-open:rotate-45 transition-transform text-cyber-mint">

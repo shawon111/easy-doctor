@@ -17,14 +17,14 @@ const CARD_STYLES = [
   },
 ];
 
-export default function AppointmentSchedulesOneDark({ content = {} }) {
+export default function AppointmentSchedulesOneDark({ content = {}, isDemo = false }) {
   const items = content.items || [];
 
   return (
     <SectionFadeOneDark
       id="schedule"
       className="py-[120px] px-5 md:px-16 bg-surface-container-lowest"
-    >
+     isDemo={isDemo}>
       <div className="max-w-[1440px] mx-auto">
         <div className="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div>

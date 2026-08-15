@@ -1,4 +1,4 @@
-export default function WhyTrustThree({ content = {} }) {
+export default function WhyTrustThree({ content = {} , isDemo = false}) {
   const items = content.items || [];
 
   return (

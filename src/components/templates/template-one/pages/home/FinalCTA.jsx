@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Reveal from "@/components/templates/ui/Reveal";
 
-export default function FinalCTAOne({ content = {}, slug }) {
+export default function FinalCTAOne({ content = {}, slug , isDemo = false}) {
   const base = slug ? `/doctor/${slug}` : "#";
 
   return (

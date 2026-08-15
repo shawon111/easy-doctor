@@ -1,12 +1,18 @@
 import SectionFadeOneDark from "../../ui/SectionFadeOneDark";
 
-export default function AboutBioStatsOneDark({ content = {}, user = {} }) {
+export default function AboutBioStatsOneDark({ content = {}, user = {}, isDemo = false }) {
   const stats = content.stats || [];
-  const languages = user.languages || [];
-  const bioParagraphs = user.bio ? user.bio.split("\n\n") : [];
+  const languages = isDemo ? content.languages || [] : user.languages || [];
+  const bioParagraphs = isDemo
+    ? content.body
+      ? content.body.split("\n\n")
+      : []
+    : user.bio
+      ? user.bio.split("\n\n")
+      : [];
 
   return (
-    <SectionFadeOneDark className="py-32 px-6 md:px-10 mesh-gradient">
+    <SectionFadeOneDark className="py-32 px-6 md:px-10 mesh-gradient" isDemo={isDemo}>
       <div className="max-w-[1440px] mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
           <div className="md:col-span-8 glass-container p-12 rounded-[2rem]">

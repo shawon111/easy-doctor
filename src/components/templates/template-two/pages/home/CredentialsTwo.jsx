@@ -1,4 +1,4 @@
-export default function CredentialsTwo({ content = {} }) {
+export default function CredentialsTwo({ content = {} , isDemo = false}) {
   const items = content.items || [];
 
   return (

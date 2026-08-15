@@ -1,7 +1,7 @@
 const BENEFITS_IMAGE_FALLBACK =
   "https://lh3.googleusercontent.com/aida-public/AB6AXuCMnzyNVVzbtBCUayb8cPumdCi_8F0iPFr0wIttqUVZPsBSfXyB-y9RONuOLfCJCWohjlONLcOBNp3KTGS0UFwfWwOneaCxCLyFsuaW2j22MslZRdTygeeJE-5SsN7JiXYzrWnwwZTqiHjVl5Lucao9spI3sZQUFvCHNTd9yN7LwIJ8LSX_P_n2MZxRBQ5OPxaMEpZYiivcK3Eohf6c7k4zU3gZqhaeousdesI6Rx_OD3wmx5iFWXs3xg";
 
-export default function ServicesBenefitsTwoDark({ content = {} }) {
+export default function ServicesBenefitsTwoDark({ content = {} , isDemo = false}) {
   const items = content.items || [];
   const imageSrc = content.image || BENEFITS_IMAGE_FALLBACK;
 

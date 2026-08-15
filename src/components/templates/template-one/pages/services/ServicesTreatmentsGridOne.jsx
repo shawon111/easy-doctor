@@ -1,6 +1,6 @@
 import Reveal from "@/components/templates/ui/Reveal";
 
-export default function ServicesTreatmentsGridOne({ content = {} }) {
+export default function ServicesTreatmentsGridOne({ content = {} , isDemo = false}) {
   const items = content.items || [];
 
   return (

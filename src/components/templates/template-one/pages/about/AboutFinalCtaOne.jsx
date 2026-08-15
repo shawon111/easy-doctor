@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Reveal from "@/components/templates/ui/Reveal";
 
-export default function AboutFinalCtaOne({ content = {}, slug }) {
+export default function AboutFinalCtaOne({ content = {}, slug , isDemo = false}) {
   const base = slug ? `/doctor/${slug}` : "#";
 
   return (

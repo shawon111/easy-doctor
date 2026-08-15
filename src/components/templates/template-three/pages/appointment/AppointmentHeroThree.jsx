@@ -1,4 +1,4 @@
-export default function AppointmentHeroThree({ content = {} }) {
+export default function AppointmentHeroThree({ content = {} , isDemo = false}) {
   return (
     <header className="mb-16 text-center max-w-3xl mx-auto">
       <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20 mb-6">

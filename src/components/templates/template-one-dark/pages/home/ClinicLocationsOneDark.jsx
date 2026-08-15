@@ -2,13 +2,13 @@ import RevealOneDark from "../../ui/RevealOneDark";
 
 const DELAYS = ["", "delay-100"];
 
-export default function ClinicLocationsOneDark({ content = {} }) {
+export default function ClinicLocationsOneDark({ content = {}, isDemo = false }) {
   const locations = content.locations || [];
 
   return (
     <section className="py-[120px]">
       <div className="max-w-[1440px] mx-auto px-10">
-        <RevealOneDark className="text-center mb-20">
+        <RevealOneDark className="text-center mb-20" isDemo={isDemo}>
           {content.heading ? (
             <h2 className="font-headline-lg text-5xl text-secondary tracking-tight">{content.heading}</h2>
           ) : null}
@@ -19,7 +19,7 @@ export default function ClinicLocationsOneDark({ content = {} }) {
             <RevealOneDark
               key={clinic.name}
               className={`glass-card rounded-[2.5rem] overflow-hidden border border-white/10 group ${DELAYS[index] || ""}`}
-            >
+             isDemo={isDemo}>
               <div className="h-80 relative overflow-hidden">
                 {clinic.mapImage ? (
                   <div className="absolute inset-0 grayscale group-hover:grayscale-0 transition-all duration-1000">

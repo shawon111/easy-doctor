@@ -1,6 +1,6 @@
 import SectionFadeTwoDark from "../../ui/SectionFadeTwoDark";
 
-export default function AboutTimelineTwoDark({ content = {} }) {
+export default function AboutTimelineTwoDark({ content = {} , isDemo = false}) {
   const items = content.items || [];
 
   return (

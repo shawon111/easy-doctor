@@ -1,11 +1,11 @@
 import SectionFadeOneDark from "../../ui/SectionFadeOneDark";
 
-export default function AppointmentWhatsappOneDark({ content = {} }) {
+export default function AppointmentWhatsappOneDark({ content = {}, isDemo = false }) {
   const features = content.features || [];
   const whatsappUrl = content.whatsappUrl || "#";
 
   return (
-    <SectionFadeOneDark id="whatsapp-section" className="py-[120px] px-5 md:px-16">
+    <SectionFadeOneDark id="whatsapp-section" className="py-[120px] px-5 md:px-16" isDemo={isDemo}>
       <div className="max-w-[1440px] mx-auto bg-cobalt rounded-xl p-10 md:p-20 relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-12 border border-white/10 cobalt-glow">
         <div className="absolute inset-0 scanline opacity-20 pointer-events-none" aria-hidden="true" />
         <div className="text-center md:text-left relative z-10">

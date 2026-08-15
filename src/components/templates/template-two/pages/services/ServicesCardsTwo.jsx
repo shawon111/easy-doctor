@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function ServicesCardsTwo({ content = {}, slug }) {
+export default function ServicesCardsTwo({ content = {}, slug , isDemo = false}) {
   const items = content.items || [];
   const base = slug ? `/doctor/${slug}` : "#";
 

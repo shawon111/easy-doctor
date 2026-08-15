@@ -1,6 +1,6 @@
 import AccordionThree from "../../../template-three/ui/AccordionThree";
 
-export default function AppointmentFaqDarkThree({ content = {} }) {
+export default function AppointmentFaqDarkThree({ content = {} , isDemo = false}) {
   const items = content.items || [];
 
   return (

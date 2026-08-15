@@ -1,8 +1,8 @@
 const HERO_IMAGE_FALLBACK =
   "https://lh3.googleusercontent.com/aida-public/AB6AXuC6E94N4ihuxDnC1fKJmF2jN7fNcNgbm2BYOBjiBjvoKhWAFtOdRackfeSEGaNAOqXUZGYze11OX_DLJd1Jn2X1St5Sbj0paJDGp7UmiqbqHl9nwGWGoLDq1wfFeoPiXG3NL-Gn05fI172zWcz7P9k0A8adGWqtO8OeWoU-cTW1icWJKgzCELXF_t2Y4vMoZejyWfVCdojwZp9UKP6nvs-RF8rScj6x3vaMn9omwEE31xVTrLn5XmaLEA";
 
-export default function AboutHeroTwoDark({ content = {}, user = {} }) {
-  const languages = user.languages || [];
+export default function AboutHeroTwoDark({ content = {}, user = {}, isDemo = false }) {
+  const languages = isDemo ? content.languages || [] : user.languages || [];
   const imageSrc = content.image || HERO_IMAGE_FALLBACK;
 
   return (

@@ -1,10 +1,10 @@
 import SectionFadeOneDark from "../../ui/SectionFadeOneDark";
 
-export default function AboutChambersOneDark({ content = {} }) {
+export default function AboutChambersOneDark({ content = {}, isDemo = false }) {
   const locations = content.locations || [];
 
   return (
-    <SectionFadeOneDark className="py-32 px-6 md:px-10 mesh-gradient">
+    <SectionFadeOneDark className="py-32 px-6 md:px-10 mesh-gradient" isDemo={isDemo}>
       <div className="max-w-[1440px] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div className="space-y-8">

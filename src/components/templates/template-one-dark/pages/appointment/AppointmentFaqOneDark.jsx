@@ -1,10 +1,10 @@
 import SectionFadeOneDark from "../../ui/SectionFadeOneDark";
 
-export default function AppointmentFaqOneDark({ content = {} }) {
+export default function AppointmentFaqOneDark({ content = {}, isDemo = false }) {
   const items = content.items || [];
 
   return (
-    <SectionFadeOneDark id="faq" className="py-[120px] px-5 md:px-16">
+    <SectionFadeOneDark id="faq" className="py-[120px] px-5 md:px-16" isDemo={isDemo}>
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-16">
           {content.heading ? (

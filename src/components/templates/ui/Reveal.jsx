@@ -9,7 +9,7 @@ import useReveal from "@/hooks/useReveal";
  * Usage:
  *   <Reveal className="delay-200"><h1>...</h1></Reveal>
  */
-export default function Reveal({ as: Tag = "div", className = "", children, ...rest }) {
+export default function Reveal({ as: Tag = "div", className = "", children, isDemo = false, ...rest }) {
   const { ref, isActive } = useReveal();
 
   return (

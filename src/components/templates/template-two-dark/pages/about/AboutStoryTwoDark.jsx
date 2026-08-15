@@ -1,6 +1,6 @@
 import SectionFadeTwoDark from "../../ui/SectionFadeTwoDark";
 
-export default function AboutStoryTwoDark({ content = {} }) {
+export default function AboutStoryTwoDark({ content = {} , isDemo = false}) {
   const paragraphs = (content.body || "").split(/\n\n+/).filter(Boolean);
   const midpoint = Math.ceil(paragraphs.length / 2);
   const firstColumn = paragraphs.slice(0, midpoint);

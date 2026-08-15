@@ -4,7 +4,7 @@ const STEP_STYLES = [
   { numberColor: "text-tertiary-fixed-dim", iconClass: "bg-tertiary/10 text-tertiary-fixed-dim" },
 ];
 
-export default function AppointmentStepsDarkThree({ content = {} }) {
+export default function AppointmentStepsDarkThree({ content = {} , isDemo = false}) {
   const items = (content.items || []).map((step, index) => ({
     ...step,
     ...STEP_STYLES[index % STEP_STYLES.length],

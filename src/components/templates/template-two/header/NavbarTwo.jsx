@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useParams, usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 
-export default function NavbarTwo({ content = {}, slug, page }) {
+export default function NavbarTwo({ content = {}, slug, page , isDemo = false}) {
   const params = useParams();
   const pathname = usePathname();
   const resolvedSlug = slug ?? params?.slug;

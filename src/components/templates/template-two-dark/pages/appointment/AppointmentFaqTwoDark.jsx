@@ -1,4 +1,4 @@
-export default function AppointmentFaqTwoDark({ content = {} }) {
+export default function AppointmentFaqTwoDark({ content = {} , isDemo = false}) {
   const items = content.items || [];
 
   return (

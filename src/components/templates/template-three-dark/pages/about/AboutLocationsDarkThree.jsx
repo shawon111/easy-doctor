@@ -1,4 +1,4 @@
-export default function AboutLocationsDarkThree({ content = {} }) {
+export default function AboutLocationsDarkThree({ content = {} , isDemo = false}) {
   const items = content.items || [];
 
   return (

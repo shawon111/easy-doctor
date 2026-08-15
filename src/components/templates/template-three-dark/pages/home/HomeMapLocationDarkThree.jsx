@@ -1,4 +1,4 @@
-export default function HomeMapLocationDarkThree({ content = {} }) {
+export default function HomeMapLocationDarkThree({ content = {} , isDemo = false}) {
   const contact = content.contact || {};
   const labels = content.contactLabels || {};
   const contactInfo = [

@@ -1,6 +1,6 @@
 import Reveal from "@/components/templates/ui/Reveal";
 
-export default function AppointmentFaqOne({ content = {} }) {
+export default function AppointmentFaqOne({ content = {} , isDemo = false}) {
   const items = content.items || [];
 
   return (

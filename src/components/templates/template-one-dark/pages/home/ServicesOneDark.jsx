@@ -22,13 +22,13 @@ const SERVICE_STYLES = [
 ];
 const DELAYS = ["", "delay-100", "delay-200"];
 
-export default function ServicesOneDark({ content = {} }) {
+export default function ServicesOneDark({ content = {}, isDemo = false }) {
   const items = content.items || [];
 
   return (
     <section className="py-[120px] bg-surface-container-lowest/30 relative">
       <div className="max-w-[1440px] mx-auto px-10">
-        <RevealOneDark className="text-center mb-20">
+        <RevealOneDark className="text-center mb-20" isDemo={isDemo}>
           {content.heading ? (
             <h2 className="font-headline-lg text-5xl text-secondary mb-6 tracking-tight">{content.heading}</h2>
           ) : null}
@@ -47,7 +47,7 @@ export default function ServicesOneDark({ content = {} }) {
               <RevealOneDark
                 key={service.title}
                 className={`glass-card p-10 rounded-3xl border border-white/5 ${style.hoverClass} transition-all duration-500 group ${DELAYS[index] || ""}`}
-              >
+               isDemo={isDemo}>
                 <div
                   className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-8 transition-colors duration-500 shadow-lg ${style.iconWrapClass}`}
                 >

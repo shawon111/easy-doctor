@@ -171,6 +171,8 @@ export const templateOneDefaults = {
       },
       bioStats: {
         heading: "A Patient-Centric Philosophy",
+        body: "Dr. {{name}} is a double board-certified specialist dedicated to a \"Whole Patient\" philosophy. By integrating advanced genomic insights with traditional preventative care, {{name}} ensures that every treatment plan is as unique as the individual.\n\nOur practice is built on trust, discretion, and the relentless pursuit of medical innovation, providing a sanctuary for your health.",
+        languages: ["English", "Spanish", "French"],
         stats: [
           { value: "4,200+", label: "Successful Procedures" },
           { value: "98%", label: "Patient Satisfaction Rate" },

@@ -6,11 +6,11 @@ const TIMELINE_STYLES = [
   { icon: "workspace_premium", colorClass: "text-tertiary", nodeClass: "bg-tertiary text-on-tertiary glow-node" },
 ];
 
-export default function AboutTimelineOneDark({ content = {} }) {
+export default function AboutTimelineOneDark({ content = {}, isDemo = false }) {
   const items = content.items || [];
 
   return (
-    <SectionFadeOneDark className="py-32 px-6 md:px-10 bg-surface-container-lowest relative overflow-hidden">
+    <SectionFadeOneDark className="py-32 px-6 md:px-10 bg-surface-container-lowest relative overflow-hidden" isDemo={isDemo}>
       <div className="max-w-[1440px] mx-auto relative">
         <div className="text-center mb-24">
           {content.heading ? (

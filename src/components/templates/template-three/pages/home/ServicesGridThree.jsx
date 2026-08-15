@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function ServicesGridThree({ slug, content = {} }) {
+export default function ServicesGridThree({ slug, content = {} , isDemo = false}) {
   const base = slug ? `/doctor/${slug}` : "#";
   const items = content.items || [];
 

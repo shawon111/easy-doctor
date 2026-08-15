@@ -2,7 +2,7 @@ import Reveal from "@/components/templates/ui/Reveal";
 
 const DELAYS = ["", "delay-100", "delay-200"];
 
-export default function AppointmentProcessOne({ content = {} }) {
+export default function AppointmentProcessOne({ content = {} , isDemo = false}) {
   const steps = content.steps || [];
 
   return (

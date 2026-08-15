@@ -1,7 +1,7 @@
 const CHAMBER_IMAGE_FALLBACK =
   "https://lh3.googleusercontent.com/aida-public/AB6AXuClqAmDaJPpOfZQ4FtOCxYCJZ9HEPYePeXq5yVOmzi_wx6xuD_yD906ZhIowQriEDGsscyHACNI7GovoqA6bO8nWSXhL73ndsnA8SDc72Ofpt3aRu5Xon7LU1omSI5ZCU51AqIU93HV5tmOvu_yb8J-93u4Rko6RsUqc3niWwOxHWUCyFjIa4AAsrhJnwn-FX9P2YwePI5NblitXMxUufqU50vqtmXKYl71-gQr9zRG4TFxjVRC7L93rA";
 
-export default function ChamberTwoDark({ content = {} }) {
+export default function ChamberTwoDark({ content = {} , isDemo = false}) {
   const location = content.location;
   const imageSrc = content.image || CHAMBER_IMAGE_FALLBACK;
 

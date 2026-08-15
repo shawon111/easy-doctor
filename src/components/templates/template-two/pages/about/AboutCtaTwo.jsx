@@ -1,7 +1,7 @@
 import Link from "next/link";
 import RevealTwo from "./RevealTwo";
 
-export default function AboutCtaTwo({ content = {}, slug }) {
+export default function AboutCtaTwo({ content = {}, slug , isDemo = false}) {
   const base = slug ? `/doctor/${slug}` : "#";
 
   return (

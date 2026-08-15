@@ -1,4 +1,4 @@
-export default function HomeWhyTrustDarkThree({ content = {} }) {
+export default function HomeWhyTrustDarkThree({ content = {} , isDemo = false}) {
   const items = content.items || [];
 
   return (

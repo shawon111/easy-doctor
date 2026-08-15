@@ -26,7 +26,7 @@ function getPracticeLocations(content = {}) {
   });
 }
 
-export default function AboutPracticesTwoDark({ content = {}, slug }) {
+export default function AboutPracticesTwoDark({ content = {}, slug , isDemo = false}) {
   const locations = getPracticeLocations(content);
   const base = slug ? `/doctor/${slug}` : "#";
 

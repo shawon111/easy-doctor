@@ -11,13 +11,13 @@ const pages = {
   appointment: AppointmentPageOne,
 };
 
-const TemplateOnePageRenderer = ({ page, slug, content }) => {
+const TemplateOnePageRenderer = ({ page, slug, content, isDemo = false }) => {
   const PageComponent = pages[page];
 
   return (
-    <TemplateOne page={page} slug={slug} content={content}>
+    <TemplateOne page={page} slug={slug} content={content} isDemo={isDemo}>
       {PageComponent ? (
-        <PageComponent slug={slug} content={content} />
+        <PageComponent slug={slug} content={content} isDemo={isDemo} />
       ) : (
         <div>Page not found</div>
       )}

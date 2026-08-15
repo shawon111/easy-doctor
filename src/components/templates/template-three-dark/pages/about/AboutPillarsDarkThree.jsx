@@ -6,7 +6,7 @@ const PILLAR_STYLES = [
   { iconClass: "bg-tertiary/10 text-tertiary-fixed-dim", shadowClass: "hover:shadow-tertiary/5" },
 ];
 
-export default function AboutPillarsDarkThree({ content = {} }) {
+export default function AboutPillarsDarkThree({ content = {} , isDemo = false}) {
   const items = (content.items || []).map((item, index) => ({
     ...item,
     ...PILLAR_STYLES[index % PILLAR_STYLES.length],

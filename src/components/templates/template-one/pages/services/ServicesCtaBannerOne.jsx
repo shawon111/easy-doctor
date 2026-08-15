@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function ServicesCtaBannerOne({ content = {}, slug }) {
+export default function ServicesCtaBannerOne({ content = {}, slug , isDemo = false}) {
   const base = slug ? `/doctor/${slug}` : "#";
 
   return (

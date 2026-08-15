@@ -1,6 +1,6 @@
 import RevealTwo from "./RevealTwo";
 
-export default function AboutStoryTwo({ content = {} }) {
+export default function AboutStoryTwo({ content = {} , isDemo = false}) {
   const paragraphs = (content.body || "").split(/\n\n+/).filter(Boolean);
   const midpoint = Math.ceil(paragraphs.length / 2);
   const firstColumn = paragraphs.slice(0, midpoint);

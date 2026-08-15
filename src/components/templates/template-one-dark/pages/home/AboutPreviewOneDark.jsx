@@ -1,14 +1,14 @@
 import Link from "next/link";
 import RevealOneDark from "../../ui/RevealOneDark";
 
-export default function AboutPreviewOneDark({ content = {}, slug }) {
+export default function AboutPreviewOneDark({ content = {}, slug, isDemo = false }) {
   const aboutHref = slug ? `/doctor/${slug}/about` : "#";
   const paragraphs = content.body ? content.body.split("\n\n") : [];
 
   return (
     <section className="py-[120px] overflow-hidden">
       <div className="max-w-[1440px] mx-auto px-10 grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
-        <RevealOneDark className="order-2 md:order-1">
+        <RevealOneDark className="order-2 md:order-1" isDemo={isDemo}>
           <div className="grid grid-cols-2 gap-6">
             <div className="pt-16">
               <div className="glass-card p-1 rounded-2xl">
@@ -31,7 +31,7 @@ export default function AboutPreviewOneDark({ content = {}, slug }) {
           </div>
         </RevealOneDark>
 
-        <RevealOneDark className="order-1 md:order-2 delay-200">
+        <RevealOneDark className="order-1 md:order-2 delay-200" isDemo={isDemo}>
           {content.heading ? (
             <h2 className="font-headline-lg text-5xl text-secondary mb-8 leading-tight tracking-tight">
               {content.heading}

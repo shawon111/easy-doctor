@@ -1,4 +1,4 @@
-export default function AccordionDarkThree({ items, variant = "default" }) {
+export default function AccordionDarkThree({ items, variant = "default", isDemo = false }) {
   const isServices = variant === "services";
 
   return (

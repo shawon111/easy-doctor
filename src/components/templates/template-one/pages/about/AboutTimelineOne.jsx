@@ -6,7 +6,7 @@ const TIMELINE_STYLES = [
   { icon: "workspace_premium", iconBg: "bg-tertiary", iconText: "text-on-tertiary" },
 ];
 
-export default function AboutTimelineOne({ content = {} }) {
+export default function AboutTimelineOne({ content = {} , isDemo = false}) {
   const items = content.items || [];
 
   return (

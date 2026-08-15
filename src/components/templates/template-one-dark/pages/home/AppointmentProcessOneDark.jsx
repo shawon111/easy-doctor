@@ -7,13 +7,13 @@ const BADGE_CLASSES = [
 ];
 const DELAYS = ["", "delay-100", "delay-200"];
 
-export default function AppointmentProcessOneDark({ content = {} }) {
+export default function AppointmentProcessOneDark({ content = {}, isDemo = false }) {
   const steps = content.steps || [];
 
   return (
     <section className="py-[120px] bg-surface-container-highest/20">
       <div className="max-w-[1440px] mx-auto px-10">
-        <RevealOneDark className="text-center mb-20">
+        <RevealOneDark className="text-center mb-20" isDemo={isDemo}>
           {content.heading ? (
             <h2 className="font-headline-lg text-5xl text-secondary mb-6 tracking-tight">{content.heading}</h2>
           ) : null}
@@ -29,7 +29,7 @@ export default function AppointmentProcessOneDark({ content = {} }) {
             <RevealOneDark
               key={step.title}
               className={`relative z-10 glass-card p-10 rounded-3xl w-full md:w-1/3 text-center border border-white/5 ${DELAYS[index] || ""}`}
-            >
+             isDemo={isDemo}>
               <div
                 className={`w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-8 font-bold text-2xl shadow-xl ${BADGE_CLASSES[index % BADGE_CLASSES.length]}`}
               >

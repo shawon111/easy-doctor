@@ -1,6 +1,6 @@
 const CHAMBER_CLASSES = ["", "lg:col-span-2", ""];
 
-export default function AppointmentChambersThree({ content = {} }) {
+export default function AppointmentChambersThree({ content = {} , isDemo = false}) {
   const items = (content.items || []).map((chamber, index) => ({
     ...chamber,
     className: CHAMBER_CLASSES[index] || "",
