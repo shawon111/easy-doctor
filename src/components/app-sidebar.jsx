@@ -73,7 +73,11 @@ export function AppSidebar({
   user, ...props
 }) {
   return (
-    <Sidebar collapsible="offcanvas" {...props}>
+    <Sidebar 
+      style={{ backgroundColor: "#F7FAFD" }}
+      className="border-r border-[#64748B]" 
+      collapsible="offcanvas" 
+      {...props}>
       <SidebarHeader>
         <TeamSwitcher />
       </SidebarHeader>

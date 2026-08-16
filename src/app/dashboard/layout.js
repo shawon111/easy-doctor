@@ -19,12 +19,12 @@ const DashboardLayout = async ({ children }) => {
                     <AppSidebar user={currentUser} />
                     <SidebarInset>
                         <header
-                            className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
+                            className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12 bg-white border-b border-[#64748B]">
                             <div className="flex items-center gap-2 px-4">
                                 <SidebarTrigger className="-ml-1" />
                             </div>
                         </header>
-                        <div className='p-4'>
+                        <div className='p-4 bg-[#F7FAFD]'>
                             {children}
                         </div>
                     </SidebarInset>
