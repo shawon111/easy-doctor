@@ -2,8 +2,17 @@
 
 import * as React from "react"
 
+// import menu icons
+import overviewIcon from "@/assets/icons/overview-icon.png"
+import createWebsiteIcon from "@/assets/icons/create-website-icon.png"
+import editWebsiteIcon from "@/assets/icons/edit-website-icon.png"
+import websiteInfoIcon from "@/assets/icons/website-info-icon.png"
+import googlePresenceIcon from "@/assets/icons/google-presence-icon.png"
+import appointmentsIcon from "@/assets/icons/appointments-icon.png"
+import planAndBillingIcon from "@/assets/icons/plan-and-billing-icon.png"
+import settingsIcon from "@/assets/icons/settings-icon.png"
+
 import { NavMain } from "@/components/nav-main"
-import { NavProjects } from "@/components/nav-projects"
 import { NavUser } from "@/components/nav-user"
 import { TeamSwitcher } from "@/components/team-switcher"
 import {
@@ -13,172 +22,66 @@ import {
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar"
-import { GalleryVerticalEndIcon, AudioLinesIcon, TerminalIcon, TerminalSquareIcon, BotIcon, BookOpenIcon, Settings2Icon, FrameIcon, PieChartIcon, MapIcon } from "lucide-react"
 
-// This is sample data.
+// menu data
 const data = {
-  user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
-  },
-  teams: [
-    {
-      name: "Acme Inc",
-      logo: (
-        <GalleryVerticalEndIcon />
-      ),
-      plan: "Enterprise",
-    },
-    {
-      name: "Acme Corp.",
-      logo: (
-        <AudioLinesIcon />
-      ),
-      plan: "Startup",
-    },
-    {
-      name: "Evil Corp.",
-      logo: (
-        <TerminalIcon />
-      ),
-      plan: "Free",
-    },
-  ],
   navMain: [
     {
-      title: "Playground",
-      url: "#",
-      icon: (
-        <TerminalSquareIcon />
-      ),
-      isActive: true,
-      items: [
-        {
-          title: "History",
-          url: "#",
-        },
-        {
-          title: "Starred",
-          url: "#",
-        },
-        {
-          title: "Settings",
-          url: "#",
-        },
-      ],
+      title: "Overview",
+      url: "/dashboard",
+      icon: overviewIcon,
     },
     {
-      title: "Models",
-      url: "#",
-      icon: (
-        <BotIcon />
-      ),
-      items: [
-        {
-          title: "Genesis",
-          url: "#",
-        },
-        {
-          title: "Explorer",
-          url: "#",
-        },
-        {
-          title: "Quantum",
-          url: "#",
-        },
-      ],
+      title: "Create Website",
+      url: "/dashboard/website/create",
+      icon: createWebsiteIcon,
     },
     {
-      title: "Documentation",
-      url: "#",
-      icon: (
-        <BookOpenIcon />
-      ),
-      items: [
-        {
-          title: "Introduction",
-          url: "#",
-        },
-        {
-          title: "Get Started",
-          url: "#",
-        },
-        {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
-          url: "#",
-        },
-      ],
+      title: "Edit Website",
+      url: "/dashboard/website/edit",
+      icon: editWebsiteIcon,
+    },
+    {
+      title: "Website Info",
+      url: "/dashboard/website/info",
+      icon: websiteInfoIcon,
+    },
+    {
+      title: "Google Presence",
+      url: "/dashboard/google-presence",
+      icon: googlePresenceIcon,
+    },
+    {
+      title: "Appointments",
+      url: "/dashboard/appointments",
+      icon: appointmentsIcon,
+    },
+    {
+      title: "Plan & Billing",
+      url: "/dashboard/plan-billing",
+      icon: planAndBillingIcon,
     },
     {
       title: "Settings",
-      url: "#",
-      icon: (
-        <Settings2Icon />
-      ),
-      items: [
-        {
-          title: "General",
-          url: "#",
-        },
-        {
-          title: "Team",
-          url: "#",
-        },
-        {
-          title: "Billing",
-          url: "#",
-        },
-        {
-          title: "Limits",
-          url: "#",
-        },
-      ],
-    },
-  ],
-  projects: [
-    {
-      name: "Design Engineering",
-      url: "#",
-      icon: (
-        <FrameIcon />
-      ),
-    },
-    {
-      name: "Sales & Marketing",
-      url: "#",
-      icon: (
-        <PieChartIcon />
-      ),
-    },
-    {
-      name: "Travel",
-      url: "#",
-      icon: (
-        <MapIcon />
-      ),
+      url: "/dashboard/settings",
+      icon: settingsIcon,
     },
   ],
 }
 
 export function AppSidebar({
-  ...props
+  user, ...props
 }) {
   return (
-    <Sidebar collapsible="icon" {...props}>
+    <Sidebar collapsible="offcanvas" {...props}>
       <SidebarHeader>
-        <TeamSwitcher teams={data.teams} />
+        <TeamSwitcher />
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        <NavProjects projects={data.projects} />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <NavUser user={user} />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>

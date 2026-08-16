@@ -4,7 +4,7 @@ import {
 } from "@/components/ui/sidebar"
 import Image from "next/image"
 
-export async function TeamSwitcher() {
+export function TeamSwitcher() {
   return (
     <SidebarMenu>
       <SidebarMenuItem>
