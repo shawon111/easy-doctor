@@ -24,7 +24,7 @@ const DashboardLayout = async ({ children }) => {
                                 <SidebarTrigger className="-ml-1" />
                             </div>
                         </header>
-                        <div className='p-4 bg-[#F7FAFD]'>
+                        <div className='bg-[#F7FAFD] sm:p-4'>
                             {children}
                         </div>
                     </SidebarInset>

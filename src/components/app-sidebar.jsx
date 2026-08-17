@@ -58,7 +58,7 @@ const data = {
     },
     {
       title: "Plan & Billing",
-      url: "/dashboard/plan-billing",
+      url: "/dashboard/billing",
       icon: planAndBillingIcon,
     },
     {
