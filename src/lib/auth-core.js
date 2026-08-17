@@ -34,7 +34,13 @@ export function tryRefreshTokens(request, refreshToken) {
             _id: userId,
         });
 
-        const res = NextResponse.next();
+        // Update cookies for the current request
+        request.cookies.set("accessToken", newAccessToken);
+        request.cookies.set("refreshToken", newRefreshToken);
+
+        const res = NextResponse.next({
+            request
+        });
 
         setAccessCookie(res, newAccessToken);
 
