@@ -1,22 +1,11 @@
 "use client"
-
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible"
 import {
   SidebarGroup,
-  SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarMenuSub,
-  SidebarMenuSubButton,
-  SidebarMenuSubItem,
   useSidebar,
 } from "@/components/ui/sidebar"
-import { ChevronRightIcon } from "lucide-react"
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -28,7 +17,11 @@ export function NavMain({
   const { isMobile, setOpenMobile } = useSidebar();
 
   const isActive = (itemUrl) => {
-    return pathname === itemUrl || pathname.startsWith(itemUrl + "/");
+    if (!itemUrl) return false;
+
+    if (itemUrl === "/") return pathname === "/";
+    // Active only on exact match (no parent-route matching)
+    return pathname === itemUrl;
   };
 
   const handleNavigate = () => {
@@ -41,12 +34,12 @@ export function NavMain({
     <SidebarGroup>
       <SidebarMenu className="gap-y-4">
         {items.map((item) => (
-          <Link key={item.title} href={item.url} onClick={handleNavigate}>
+          <Link key={item.title} href={item.url} onClick={handleNavigate} className="cursor-pointer">
             <SidebarMenuItem>
               <SidebarMenuButton 
                 tooltip={item.title}
                 isActive={isActive(item.url)}
-                className={isActive(item.url) ? "bg-sidebar-accent text-sidebar-accent-foreground" : ""}
+                className={`${isActive(item.url) ? "bg-sidebar-accent text-sidebar-accent-foreground" : ""} cursor-pointer`}
               >
                 <Image
                   alt={`${item.title} icon`}
