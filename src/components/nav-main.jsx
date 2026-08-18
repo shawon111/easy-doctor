@@ -16,11 +16,16 @@ export function NavMain({
   const pathname = usePathname();
   const { isMobile, setOpenMobile } = useSidebar();
 
-  const isActive = (itemUrl) => {
+  const isActive = (item) => {
+    const itemUrl = item?.url;
     if (!itemUrl) return false;
 
+    // Treat root ('/') as active only on exact match
     if (itemUrl === "/") return pathname === "/";
-    // Active only on exact match (no parent-route matching)
+
+    if (item.matchChildren) return pathname === itemUrl || pathname.startsWith(itemUrl + "/");
+
+    // exact match only
     return pathname === itemUrl;
   };
 
@@ -38,8 +43,8 @@ export function NavMain({
             <SidebarMenuItem>
               <SidebarMenuButton 
                 tooltip={item.title}
-                isActive={isActive(item.url)}
-                className={`${isActive(item.url) ? "bg-sidebar-accent text-sidebar-accent-foreground" : ""} cursor-pointer`}
+                        isActive={isActive(item)}
+                        className={`${isActive(item) ? "bg-sidebar-accent text-sidebar-accent-foreground" : ""} cursor-pointer`}
               >
                 <Image
                   alt={`${item.title} icon`}
