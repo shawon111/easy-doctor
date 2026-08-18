@@ -5,7 +5,7 @@ import { useParams } from "next/navigation";
 export default function Navbar({ content = {}, slug, page , isDemo = false}) {
   const params = useParams();
   const resolvedSlug = slug ?? params?.slug;
-  const basePath = `/doctor/${resolvedSlug}`;
+  const basePath = isDemo? `/preview/${resolvedSlug}`:`/doctor/${resolvedSlug}`;
   const navLinks = content.navLinks || [];
   const brandName = content.brandName || "Doctor";
   const appointmentCta = content.appointmentCta || "Book Appointment";

@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 export default function NavbarOneDark({ content = {}, page = "home", slug , isDemo = false}) {
-  const base = `/doctor/${slug}`;
+  const base = isDemo? `/preview/${slug}`:`/doctor/${slug}`;
   const navLinks = content.navLinks || [];
   const brandName = content.brandName || "Doctor";
   const appointmentCta = content.appointmentCta || "Book Now";

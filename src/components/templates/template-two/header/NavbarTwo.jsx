@@ -8,7 +8,7 @@ export default function NavbarTwo({ content = {}, slug, page , isDemo = false}) 
   const params = useParams();
   const pathname = usePathname();
   const resolvedSlug = slug ?? params?.slug;
-  const basePath = `/doctor/${resolvedSlug}`;
+  const basePath = isDemo? `/preview/${resolvedSlug}`:`/doctor/${resolvedSlug}`;
   const navLinks = content.navLinks || [];
   const brandName = content.brandName || "Doctor";
   const appointmentCta = content.appointmentCta || "Book Appointment";

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef } from "react";
 
 export default function NavbarThree({ page = "home", slug, content, isDemo = false }) {
-  const base = slug ? `/doctor/${slug}` : "#";
+  const base = isDemo? `/preview/${slug}`:`/doctor/${slug}`;
   const navRef = useRef(null);
   const navLinks = content?.navLinks ?? [];
   const brandName = content?.brandName ?? "Doctor";
