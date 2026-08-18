@@ -1,5 +1,3 @@
-"use client";
-
 export function PageHeader() {
   return (
     <div className="flex flex-col gap-2">

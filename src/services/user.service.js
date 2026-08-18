@@ -60,7 +60,10 @@ export const getCurrentUser = async () => {
             _id: 1
         };
         const user = await User.findById(payload.sub).select(userInfoToReturn).lean();
-        return user;
+        return {
+            ...user,
+            _id: user._id.toString(),
+        };
     } catch(error) {
         console.error("Error occurred while fetching current user:", error);
         return null;

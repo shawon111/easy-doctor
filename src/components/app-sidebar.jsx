@@ -6,7 +6,6 @@ import * as React from "react"
 import overviewIcon from "@/assets/icons/overview-icon.png"
 import createWebsiteIcon from "@/assets/icons/create-website-icon.png"
 import editWebsiteIcon from "@/assets/icons/edit-website-icon.png"
-import websiteInfoIcon from "@/assets/icons/website-info-icon.png"
 import googlePresenceIcon from "@/assets/icons/google-presence-icon.png"
 import appointmentsIcon from "@/assets/icons/appointments-icon.png"
 import planAndBillingIcon from "@/assets/icons/plan-and-billing-icon.png"
@@ -40,11 +39,6 @@ const data = {
       title: "Edit Website",
       url: "/dashboard/website/edit",
       icon: editWebsiteIcon,
-    },
-    {
-      title: "Website Info",
-      url: "/dashboard/website/info",
-      icon: websiteInfoIcon,
     },
     {
       title: "Google Presence",
