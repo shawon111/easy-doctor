@@ -12,7 +12,16 @@ const UserSchema = new mongoose.Schema(
         slug: {
             type: String,
             unique: true,
-            index: true,
+        },
+
+        subdomain: {
+            type: String,
+            unique: true,
+        },
+
+        domain: {
+            type: String,
+            unique: true
         },
 
         email: {
@@ -20,7 +29,6 @@ const UserSchema = new mongoose.Schema(
             required: true,
             unique: true,
             lowercase: true,
-            index: true,
         },
 
         password: {
@@ -184,7 +192,7 @@ const UserSchema = new mongoose.Schema(
 
 // generate slug from name before saving
 UserSchema.pre("save", async function () {
-    // Don't regenerate unless name changed
+    // don't regenerate unless name changed
     if (!this.isModified("name")) {
         return ;
     }
