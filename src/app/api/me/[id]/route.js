@@ -6,7 +6,7 @@ import { withUser } from "@/lib/withUser";
 import { getUserById } from "@/services/user.service";
 import { NextResponse } from "next/server";
 
-export const GET = withUser(async (response, { params }, currentUser) => {
+export const GET = withUser(async (request, { params }, currentUser) => {
     try {
         await connectDB();
         const { id } = await params;

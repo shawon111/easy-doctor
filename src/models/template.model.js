@@ -8,7 +8,7 @@ const templateSchema = new mongoose.Schema(
             required: true,
             index: true,
         },
-        type: {
+        TemplateType: {
             type: String,
             required: true,
             unique: true,
