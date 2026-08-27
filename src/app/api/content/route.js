@@ -1,8 +1,8 @@
 import { connectDB } from "@/config/database";
 import { logger } from "@/lib/logger";
+import { withUser } from "@/lib/withUser";
 import { createOrUpdateContent } from "@/services/content.service";
 import { NextResponse } from "next/server";
-import { success } from "zod";
 
 export const PATCH = withUser(async (request, { params }, currentUser) => {
     try {
@@ -11,7 +11,7 @@ export const PATCH = withUser(async (request, { params }, currentUser) => {
         const { templateType, content } = contentData;
 
         // save or update content
-        const result = await createOrUpdateContent(templateType, content);
+        const result = await createOrUpdateContent(currentUser, templateType, content);
         return NextResponse.json(
             {
                 success: true,
