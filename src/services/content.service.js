@@ -10,23 +10,28 @@ const templateModels = {
 };
 
 export const createOrUpdateContent = async (user, templateType, content) => {
-    const userId = user?._id.toString();
-    const Template = templateModels[templateType];
-    // check template validity
-    if (!Template) {
-        throw new Error(`Invalid template type: ${templateType}`);
-    }
-
-    const saveContent = await Template.findOneAndUpdate(
-        { userId },
-        {
-            $set: content
-        },
-        {
-            new: true,
-            upsert: true,
-            runValidators: true,
+    try {
+        const userId = user?._id.toString();
+        const Template = templateModels[templateType];
+        // check template validity
+        if (!Template) {
+            throw new Error(`Invalid template type: ${templateType}`);
         }
-    );
-    return saveContent;
+
+        const saveContent = await Template.findOneAndUpdate(
+            { userId },
+            {
+                $set: content
+            },
+            {
+                new: true,
+                upsert: true,
+                runValidators: true,
+            }
+        );
+        return saveContent;
+    } catch (error) {
+        console.error("Error creating or updating content:", error);
+        throw error;
+    }
 }

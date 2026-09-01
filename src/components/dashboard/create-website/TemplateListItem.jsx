@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 
 const TemplateListItem = ({ template }) => {
@@ -19,8 +20,8 @@ const TemplateListItem = ({ template }) => {
                 <h3 className='font-medium text-on-background mb-1'>{title}</h3>
                 <p className="font-body-md text-body-md text-on-surface-variant mb-6">{description}</p>
                 <div className="mt-auto flex items-center gap-3">
-                    <button className="flex-1 bg-surface-container-low text-primary border border-outline-variant hover:bg-surface-container px-4 py-2.5 rounded-lg font-body-md text-body-md font-medium transition-colors cursor-pointer">Preview</button>
-                    <button className="flex-1 bg-primary-container text-on-primary-container hover:bg-primary px-4 py-2.5 rounded-lg font-body-md text-body-md font-medium transition-colors shadow-sm cursor-pointer">Choose</button>
+                    <Link href={`/preview/${template.identifier}`} target="_blank" className="flex-1 bg-surface-container-low text-primary border border-outline-variant hover:bg-surface-container px-4 py-2.5 rounded-lg font-body-md text-body-md font-medium transition-colors cursor-pointer text-center">Preview</Link>
+                    <Link href={`create/subdomain?template=${template.identifier}`} className="flex-1 bg-primary-container text-on-primary-container hover:bg-primary px-4 py-2.5 rounded-lg font-body-md text-body-md font-medium transition-colors shadow-sm cursor-pointer text-center">Choose</Link>
                 </div>
             </div>
         </div>

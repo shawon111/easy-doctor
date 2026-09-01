@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
+import { useQuery } from "@tanstack/react-query";
 
 const RESERVED_NAMES = ["admin", "app", "api", "help", "support", "pay"];
 
@@ -16,36 +17,74 @@ const slugify = (value) =>
         .replace(/[^a-z0-9]+/g, "-")
         .replace(/^-+|-+$/g, "");
 
-const getStatusFor = (value) => {
-    const slug = slugify(value);
-    if (!slug) return "idle";
-    if (value.trim().toLowerCase() !== slug || RESERVED_NAMES.includes(slug)) {
-        return "error";
-    }
-    return "valid";
-};
-
 const SubdomainInputCard = ({ value, onChange, className }) => {
-    const [status, setStatus] = useState(() =>
-        getStatusFor(value) === "valid" ? "available" : "idle"
-    );
+    const [debouncedSlug, setDebouncedSlug] = useState(() => slugify(value));
     const timerRef = useRef(null);
 
-    const handleChange = (e) => {
-        const next = e.target.value;
-        onChange(next);
+    useEffect(() => {
+        const nextSlug = slugify(value);
         clearTimeout(timerRef.current);
-        const base = getStatusFor(next);
-        if (base === "valid") {
-            setStatus("checking");
-            timerRef.current = setTimeout(() => setStatus("available"), 700);
-        } else {
-            setStatus(base);
-        }
+
+        timerRef.current = setTimeout(() => {
+            setDebouncedSlug(nextSlug);
+        }, 500);
+
+        return () => clearTimeout(timerRef.current);
+    }, [value]);
+
+    const slug = slugify(value);
+    const isWaitingForDebounce = Boolean(slug) && slug.length >= 2 && debouncedSlug !== slug;
+    const isReservedSubdomain = Boolean(slug) && RESERVED_NAMES.includes(slug);
+    const isReadyForCheck = Boolean(slug) && slug.length >= 2 && !RESERVED_NAMES.includes(slug);
+    const isValidSubdomain = isReadyForCheck && debouncedSlug === slug;
+    const fullUrl = `${slug || "your-practice"}.docxio.com`;
+
+    const handleChange = (e) => {
+        onChange(e.target.value);
     };
 
-    const slug = slugify(value) || "your-practice";
-    const fullUrl = `${slug}.docxio.com`;
+    // Query to check subdomain availability
+    const checkAvailability = async (subdomain) => {
+        const res = await fetch(
+            `/api/info/subdomain/search?subdomain=${encodeURIComponent(debouncedSlug)}`
+        );
+
+        if (!res.ok) {
+            throw new Error("Unable to check subdomain availability");
+        }
+
+        const json = await res.json();
+        console.log("Subdomain availability response:", json);
+        return json?.data;
+    }
+
+    const {
+        data: isAvailable,
+        isFetching,
+        isError,
+    } = useQuery({
+        queryKey: ["subdomain-status", debouncedSlug],
+        queryFn: () => checkAvailability(debouncedSlug),
+        enabled: isValidSubdomain,
+        retry: false,
+    });
+
+    const status = !value.trim()
+        ? "idle"
+        : slug.length < 2
+            ? "idle"
+            : isReservedSubdomain
+                ? "unavailable"
+                : isWaitingForDebounce
+                    ? "idle"
+                    : isFetching
+                        ? "checking"
+                        : isError
+                            ? "error"
+                            : isAvailable
+                                ? "available"
+                                : "unavailable";
+    const canContinue = status === "available";
 
     return (
         <Card className={`relative flex flex-col overflow-hidden p-0 ${className ?? ""}`}>
@@ -98,6 +137,20 @@ const SubdomainInputCard = ({ value, onChange, className }) => {
                         </div>
                     )}
 
+                    {status === "unavailable" && (
+                        <div className="mt-4 flex items-center gap-2 rounded-lg border border-red-500/20 bg-red-500/10 px-4 py-3">
+                            <span
+                                className="material-symbols-outlined text-[20px] text-red-600"
+                                style={{ fontVariationSettings: "'FILL' 1" }}
+                            >
+                                error
+                            </span>
+                            <p className="text-sm font-medium text-red-700">
+                                This address is already taken or reserved. Try another.
+                            </p>
+                        </div>
+                    )}
+
                     {status === "error" && (
                         <div className="mt-4 flex items-center gap-2 rounded-lg border border-red-500/20 bg-red-500/10 px-4 py-3">
                             <span
@@ -107,7 +160,7 @@ const SubdomainInputCard = ({ value, onChange, className }) => {
                                 error
                             </span>
                             <p className="text-sm font-medium text-red-700">
-                                This address is already taken. Try another.
+                                We could not verify this address. Please try again.
                             </p>
                         </div>
                     )}
@@ -123,8 +176,11 @@ const SubdomainInputCard = ({ value, onChange, className }) => {
                             Back to Templates
                         </Button>
                     </Link>
-                    <Link href="/dashboard/website/create/publish">
-                        <Button className="gap-2 cursor-pointer">
+                    <Link href={canContinue ? "/dashboard/website/create/publish" : "#"}
+                        aria-disabled={!canContinue}
+                        className={canContinue ? "" : "pointer-events-none"}
+                    >
+                        <Button className="gap-2 cursor-pointer" disabled={!canContinue}>
                             Continue
                             <span className="material-symbols-outlined text-[18px]">
                                 arrow_forward

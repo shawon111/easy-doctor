@@ -15,7 +15,7 @@ const templates = [
         image: templateOneImg
     },
     {
-        title: "Template One dark",
+        title: "Template One Dark",
         identifier: "template-one-dark",
         description: "lorem ipsum dolor sit amet. lorem ipsum dolor sit amet",
         badge: "Popular",
@@ -43,7 +43,7 @@ const templates = [
         image: templateThreeImg
     },
     {
-        title: "Template Three dark",
+        title: "Template Three Dark",
         identifier: "template-three-dark",
         description: "lorem ipsum dolor sit amet. lorem ipsum dolor sit amet",
         badge: "Modern",

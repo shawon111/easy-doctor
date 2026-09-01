@@ -7,7 +7,7 @@ import SubdomainInfoCard from "./SubdomainInfoCard";
 import BrowserPreviewCard from "./BrowserPreviewCard";
 
 const SubdomainPage = () => {
-    const [subdomain, setSubdomain] = useState("dr-ahmed");
+    const [subdomain, setSubdomain] = useState("");
 
     return (
         <div className="mx-auto w-full max-w-4xl flex-1 space-y-8 p-4 pb-12 sm:p-6 sm:pb-16 md:p-8 md:pb-20">
