@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
+import { useSearchParams } from "next/navigation";
 
 const RESERVED_NAMES = ["admin", "app", "api", "help", "support", "pay"];
 
@@ -18,9 +19,11 @@ const slugify = (value) =>
         .replace(/^-+|-+$/g, "");
 
 const SubdomainInputCard = ({ value, onChange, className }) => {
+    // states
     const [debouncedSlug, setDebouncedSlug] = useState(() => slugify(value));
     const timerRef = useRef(null);
 
+    // debounce the slug value to avoid excessive API calls
     useEffect(() => {
         const nextSlug = slugify(value);
         clearTimeout(timerRef.current);
@@ -32,6 +35,7 @@ const SubdomainInputCard = ({ value, onChange, className }) => {
         return () => clearTimeout(timerRef.current);
     }, [value]);
 
+    // derive states based on the slug and debouncedSlug
     const slug = slugify(value);
     const isWaitingForDebounce = Boolean(slug) && slug.length >= 2 && debouncedSlug !== slug;
     const isReservedSubdomain = Boolean(slug) && RESERVED_NAMES.includes(slug);
@@ -44,7 +48,7 @@ const SubdomainInputCard = ({ value, onChange, className }) => {
     };
 
     // Query to check subdomain availability
-    const checkAvailability = async (subdomain) => {
+    const checkAvailability = async () => {
         const res = await fetch(
             `/api/info/subdomain/search?subdomain=${encodeURIComponent(debouncedSlug)}`
         );
@@ -54,7 +58,6 @@ const SubdomainInputCard = ({ value, onChange, className }) => {
         }
 
         const json = await res.json();
-        console.log("Subdomain availability response:", json);
         return json?.data;
     }
 
@@ -85,6 +88,10 @@ const SubdomainInputCard = ({ value, onChange, className }) => {
                                 ? "available"
                                 : "unavailable";
     const canContinue = status === "available";
+
+    // get the query from the url
+    const searchParams = useSearchParams();
+    const template = searchParams.get("template");
 
     return (
         <Card className={`relative flex flex-col overflow-hidden p-0 ${className ?? ""}`}>
@@ -176,7 +183,7 @@ const SubdomainInputCard = ({ value, onChange, className }) => {
                             Back to Templates
                         </Button>
                     </Link>
-                    <Link href={canContinue ? "/dashboard/website/create/publish" : "#"}
+                    <Link href={canContinue ? `/dashboard/website/create/publish?template=${template}&subdomain=${encodeURIComponent(debouncedSlug)}` : "#"}
                         aria-disabled={!canContinue}
                         className={canContinue ? "" : "pointer-events-none"}
                     >
