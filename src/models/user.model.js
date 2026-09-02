@@ -144,9 +144,9 @@ const UserSchema = new mongoose.Schema(
         },
 
         websitePreferences: {
-            template: {
+            website: {
                 type: mongoose.Schema.Types.ObjectId,
-                ref: "Template",
+                ref: "Website",
             },
             show: {
                 bio: {

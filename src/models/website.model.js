@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const templateSchema = new mongoose.Schema(
+const websiteSchema = new mongoose.Schema(
     {
         userId: {
             type: mongoose.Schema.Types.ObjectId,
@@ -8,11 +8,11 @@ const templateSchema = new mongoose.Schema(
             required: true,
             index: true,
         },
-        TemplateType: {
+        templateType: {
             type: String,
             required: true,
             unique: true,
-            enum: ["template-one", "template-two", "template-three"],
+            enum: ["template-one", "template-two", "template-three", "template-one-dark", "template-two-dark", "template-three-dark"],
         },
         variant: {
             type: String,
@@ -31,6 +31,6 @@ const templateSchema = new mongoose.Schema(
     { timestamps: true }
 );
 
-const Template = mongoose.models.Template || mongoose.model("Template", templateSchema);
+const Website = mongoose.models.Website || mongoose.model("Website", websiteSchema);
 
-export default Template;
+export default Website;

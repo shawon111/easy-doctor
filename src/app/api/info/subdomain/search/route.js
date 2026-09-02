@@ -1,3 +1,4 @@
+import { connectDB } from "@/config/database";
 import { subdomainAvailability } from "@/services/info.service";
 import { NextResponse } from "next/server";
 
@@ -7,6 +8,7 @@ export const GET = async (request) => {
 
     // check if subdomain is available
     try {
+        await connectDB();
         const isAvailable = await subdomainAvailability(subdomainName);
         return NextResponse.json(
             {
@@ -17,7 +19,7 @@ export const GET = async (request) => {
             { status: 200 }
         );
     } catch (error) {
-        NextResponse.json(
+        return NextResponse.json(
             {
                 success: false,
                 message: error.message

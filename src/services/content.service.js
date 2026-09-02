@@ -5,8 +5,11 @@ import TemplateTwoContent from "@/models/template-two-content.model";
 // template models
 const templateModels = {
     "template-one": TemplateOneContent,
+    "template-one-dark": TemplateOneContent,
+    "template-two-dark": TemplateTwoContent,
     "template-two": TemplateTwoContent,
     "template-three": TemplateThreeContent,
+    "template-three-dark": TemplateThreeContent,
 };
 
 export const createOrUpdateContent = async (user, templateType, content) => {
