@@ -13,7 +13,7 @@ export default async function Home() {
             websites.map((website, index) => {
               return (
                 <li key={website._id}>
-                  <Link href={`/doctor/${website.subdomain}`}>Website {index + 1}</Link>
+                  <Link href={`http://${website.subdomain}.${process.env.NEXT_PUBLIC_BASE_DOMAIN}`}>Website {index + 1}</Link>
                 </li>
               )
             })
