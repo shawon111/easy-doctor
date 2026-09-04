@@ -17,6 +17,16 @@ export const linkItemSchema = new mongoose.Schema(
   { _id: false }
 );
 
+export const scheduleItemSchema = new mongoose.Schema(
+  {
+    location: { type: String, trim: true },
+    day: { type: String, trim: true },
+    hours: { type: String, trim: true },
+    available: { type: Boolean, default: true },
+  },
+  { _id: false }
+);
+
 export const imageSchema = new mongoose.Schema(
   {
     imageUrl: { type: String, trim: true },
@@ -47,8 +57,11 @@ export const statItemSchema = new mongoose.Schema(
 export const iconTextItemSchema = new mongoose.Schema(
   {
     icon: { type: String, trim: true },
+    number: { type: String, trim: true },
     title: { type: String, trim: true },
     description: { type: String, trim: true },
+    imageUrl: { type: String, trim: true },
+    imageAlt: { type: String, trim: true },
   },
   { _id: false }
 );
@@ -58,6 +71,7 @@ export const serviceCardSchema = new mongoose.Schema(
     icon: { type: String, trim: true },
     title: { type: String, trim: true },
     description: { type: String, trim: true },
+    href: { type: String, trim: true },
     iconClass: { type: String, trim: true },
     imageUrl: { type: String, trim: true },
     imageAlt: { type: String, trim: true },

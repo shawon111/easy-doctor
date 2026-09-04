@@ -18,7 +18,7 @@ export default function ServicesCtaDarkThree({ slug, content = {} , isDemo = fal
               {content.primaryCta}
             </Link>
             <a
-              href="#"
+              href={`${base}/about`}
               className="border border-outline text-on-surface px-10 py-4 rounded-lg font-bold text-body-lg hover:bg-surface-container-high transition-all"
             >
               {content.secondaryCta}

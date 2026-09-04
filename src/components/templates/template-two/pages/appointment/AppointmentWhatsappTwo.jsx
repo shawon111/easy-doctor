@@ -64,7 +64,7 @@ export default function AppointmentWhatsappTwo({ content = {} , isDemo = false})
           <div
             className="bg-cover bg-center w-full h-full"
             role="img"
-            aria-label="WhatsApp concierge service"
+            aria-label={content.imageAlt || "WhatsApp concierge service"}
             style={{ backgroundImage: `url('${imageSrc}')` }}
           />
         </div>

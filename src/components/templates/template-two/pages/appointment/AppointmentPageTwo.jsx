@@ -15,6 +15,7 @@ const AppointmentPageTwo = ({ slug, content, isDemo = false }) => {
       <AppointmentSchedulesTwo
         content={appointment.schedules}
         telehealthImage={appointment.whatsapp?.telehealthImage}
+        telehealthImageAlt={appointment.whatsapp?.telehealthImageAlt}
        isDemo={isDemo}/>
       <AppointmentWhatsappTwo content={appointment.whatsapp}  isDemo={isDemo}/>
       <AppointmentFaqTwo content={appointment.faq}  isDemo={isDemo}/>

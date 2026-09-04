@@ -8,6 +8,7 @@ import {
   linkItemSchema,
   locationImageSchema,
   serviceCardSchema,
+  scheduleItemSchema,
   statItemSchema,
   stepItemSchema,
   timelineItemSchema,
@@ -22,6 +23,7 @@ const templateThreeContentSchema = new mongoose.Schema(
       unique: true,
     },
     header: {
+      brandName: { type: String, trim: true },
       navLinks: [
         {
           label: { type: String, trim: true },
@@ -32,10 +34,12 @@ const templateThreeContentSchema = new mongoose.Schema(
       appointmentCta: { type: String, trim: true },
     },
     footer: {
+      brandName: { type: String, trim: true },
       tagline: { type: String, trim: true },
       copyright: { type: String, trim: true },
       resourceLinks: [linkItemSchema],
       legalLinks: [linkItemSchema],
+      specialties: [linkItemSchema],
       newsletter: {
         heading: { type: String, trim: true },
         body: { type: String, trim: true },
@@ -88,6 +92,11 @@ const templateThreeContentSchema = new mongoose.Schema(
           heading: { type: String, trim: true },
           directionsCta: { type: String, trim: true },
           mapImage: imageSchema,
+          contact: {
+            location: { type: String, trim: true },
+            phone: { type: String, trim: true },
+            hours: { type: String, trim: true },
+          },
           contactLabels: {
             location: { type: String, trim: true },
             phone: { type: String, trim: true },
@@ -103,6 +112,9 @@ const templateThreeContentSchema = new mongoose.Schema(
           body: { type: String, trim: true },
           imageUrl: { type: String, trim: true },
           imageAlt: { type: String, trim: true },
+          experienceStat: { type: String, trim: true },
+          livesTouchedStat: { type: String, trim: true },
+          innovationsStat: { type: String, trim: true },
         },
         journey: {
           heading: { type: String, trim: true },
@@ -183,11 +195,14 @@ const templateThreeContentSchema = new mongoose.Schema(
           legendClosed: { type: String, trim: true },
           statusAvailable: { type: String, trim: true },
           statusClosed: { type: String, trim: true },
+          items: [scheduleItemSchema],
         },
         whatsapp: {
           heading: { type: String, trim: true },
           body: { type: String, trim: true },
           cta: { type: String, trim: true },
+          whatsappUrl: { type: String, trim: true },
+          phoneDisplay: { type: String, trim: true },
         },
         chambers: {
           heading: { type: String, trim: true },

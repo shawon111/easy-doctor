@@ -11,9 +11,9 @@ export default function ServicesFeaturedTwoDark({ content = {}, slug , isDemo = 
   return (
     <section className="py-[120px] px-5 md:px-16 max-w-[1200px] mx-auto">
       <div className="mb-16">
-        <h2 className="font-headline-md text-headline-md mb-2">Featured Procedures</h2>
+        <h2 className="font-headline-md text-headline-md mb-2">{content.heading}</h2>
         <p className="font-body-md text-body-md text-on-surface-variant">
-          Our flagship interventions representing the pinnacle of modern medicine.
+          {content.body}
         </p>
       </div>
 

@@ -1,5 +1,6 @@
 export const templateTwoDefaults = {
   header: {
+    brandName: "{{name}}",
     navLinks: [
       { label: "Home", href: "", key: "home" },
       { label: "About", href: "/about", key: "about" },
@@ -9,9 +10,20 @@ export const templateTwoDefaults = {
   },
 
   footer: {
+    brandName: "{{name}}",
     tagline:
       "Excellence in precision medicine and executive healthcare for the global elite.",
     copyright: "© 2024 Dr. {{name}}. Excellence in Precision Medicine.",
+    phone: "",
+    socialUrl: "",
+    websiteUrl: "",
+    email: "",
+    practiceLinks: [
+      { label: "Our Approach", href: "/about" },
+      { label: "Specializations", href: "/services" },
+      { label: "Clinical Research", href: "/services" },
+      { label: "Patient Stories", href: "/about" },
+    ],
     resourceLinks: [
       { label: "Patient Portal", href: "#" },
       { label: "Privacy Policy", href: "#" },
@@ -75,6 +87,7 @@ export const templateTwoDefaults = {
             title: "Minimally Invasive Neuro-Regeneration",
             description:
               "Advanced protocols utilizing robotic precision and localized stem-cell delivery for cognitive restoration.",
+            href: "/services",
             imageUrl:
               "https://lh3.googleusercontent.com/aida-public/AB6AXuBB9u7mczd5j1pTng72G6DvLx7C_Kx6wJ4TyC2uP3iqsfTOLpUuKyGwqw_Y0uxNQ4liKtck5si65NfQpizmZooL6j2tr82hCGBseOjwneijHVtoantev4YsKjbDnHRuVFRHnqkDse3XvaFfbcEz0GV_FBCtmSGap0iVH8kDvv7GEnwmIr5rDPgepcsp2eVHrhuO7gYaDL7E2K8A3KC5fNLMb1JMecTo9oQvA5rLBNGjV4E8p65_gSv72A",
             imageAlt: "High-contrast medical equipment shot.",
@@ -84,6 +97,7 @@ export const templateTwoDefaults = {
             title: "Genomic Profile Screening",
             description:
               "Deep genetic mapping to predict and prevent chronic vascular pathologies.",
+            href: "/services",
             imageUrl:
               "https://lh3.googleusercontent.com/aida-public/AB6AXuAdRlGII0S6SiGvSN9OKxu3OgPZ438IC8ULONkjSeb7YIgvNtkpnhNbFWnbWpTM-NeomX_prMEW03XU28Mg6fHPvJZe7QxvWdwA0nh65spFQfqntZHAD2Xa1vGT5A8v10nb7S_V5Jb3OMSmfUMEb-N7OLq8HQulRYFEtezo0UOo1wZQvB37uL4exyaBy27tbWCFAaE9NjOQEPA5ZUQk5abLMzqrMeVS-cFU-9G0TM1s48d6hk4j-p87ag",
             imageAlt: "Genomic illustration.",
@@ -93,12 +107,14 @@ export const templateTwoDefaults = {
             title: "Longevity Optimization",
             description:
               "A holistic, executive-level health management plan focusing on bio-markers and hormonal balance.",
+            href: "/services",
           },
           {
             icon: "medical_services",
             title: "Executive Performance Medicine",
             description:
               "Custom nutritional and physiological engineering for high-performing professionals and athletes.",
+            href: "/services",
             imageUrl:
               "https://lh3.googleusercontent.com/aida-public/AB6AXuANlR6_GTLRQ5hdnA8hl-A654weJ8LGYcQTkNoHVe3fZ7BXo2meLy2mzZBzfgbkfcoQdVpkTOaLa_s_x4HBx_2zmJHNC-Z0k6O3PqLDzgD-rdGkn2gFNaerWAns27iZ3mLEKm9iBHn0P7jsg3knLf5XlqxzwrQPAYT_6GbMQGAUjHGlv9lropAYuTC9-7yX5q2b51SMpsfiqzGu0zOp12LWoN0OoqjccX2DQRbTK6VTWeIFSAeRYxKdWQ",
             imageAlt: "High-end medical vials.",
@@ -165,6 +181,11 @@ export const templateTwoDefaults = {
         imageAlt: "Vector map of Harley Street area.",
         imageUrl:
           "https://lh3.googleusercontent.com/aida-public/AB6AXuClqAmDaJPpOfZQ4FtOCxYCJZ9HEPYePeXq5yVOmzi_wx6xuD_yD906ZhIowQriEDGsscyHACNI7GovoqA6bO8nWSXhL73ndsnA8SDc72Ofpt3aRu5Xon7LU1omSI5ZCU51AqIU93HV5tmOvu_yb8J-93u4Rko6RsUqc3niWwOxHWUCyFjIa4AAsrhJnwn-FX9P2YwePI5NblitXMxUufqU50vqtmXKYl71-gQr9zRG4TFxjVRC7L93rA",
+        location: {
+          name: "Harley Street Registry",
+          address: "London, UK",
+          hours: "Monday - Friday: 9:00 AM - 5:00 PM",
+        },
       },
       finalCta: {
         heading: "The Pinnacle of Clinical Care",
@@ -384,19 +405,26 @@ export const templateTwoDefaults = {
         heading: "Chambers & Schedules",
         subheading:
           "Choose your preferred location for a face-to-face evaluation.",
+        items: [
+          { location: "Harley Street Registry", day: "Monday - Friday", hours: "9:00 AM - 5:00 PM" },
+          { location: "Central Clinical Suite", day: "Tuesday - Thursday", hours: "10:00 AM - 6:00 PM" },
+        ],
       },
       whatsapp: {
         heading: "Direct Access via WhatsApp",
         body: "For executive patients who value time and efficiency, our WhatsApp Concierge handles all appointment details instantly. No waiting on hold—just direct, personalized communication with our administrative team.",
         cta: "CHAT ON WHATSAPP",
+        whatsappUrl: "https://wa.me/dr-medlink",
         features: [
           "Priority Scheduling — Skip the queue for urgent consultations.",
           "End-to-End Privacy — All communications are encrypted and confidential.",
         ],
         imageUrl:
           "https://lh3.googleusercontent.com/aida-public/AB6AXuAryKDCaQLNj7Gq2TkxFFEMZGkG_1_lVuEPfceszUbcPVGdFBJzZua9CpVpgm2HsYl6BOX7Wvw-mvQ0JTew73mYjDSarvKD4OdXzOEvXi0Qx3qeo8W7Ga_ZpgsAEMXFN5Guyhp2Z4Gt-O30XpTWqylp2zQdIXvb2rLiT-ARHz_1QqPe0XKcp_Ws645-74mWUH47ruy_WXqapYzO3ybSdGZ3p7urn1INslzEwlil1UUvRDlWtewjuZFUng",
+        imageAlt: "A private WhatsApp concierge consultation",
         telehealthImage:
           "https://lh3.googleusercontent.com/aida-public/AB6AXuCjv5vpIPEslsLsiijC_4TQRAP9zvIE_Qhtga5G_exO0v9fd_KcH7cYb42b3PCHC64FvBpvoHxrijc88lBc_NNjIfKv-cZmBvMDrWjmyiWBUoTJdWCbf5Mg5lhs8-I0NmrQB6BYe6A4aWTWuo0BCD48ykkbM_S7M_i6X5oGbRTgAlZsmVchnxOe1Dmz1MvYKa2sLCojRHn4ostjGguTi1HkCBDRb3ATpAlSNtO_MM-5jMm9mWbyGoUt2w",
+        telehealthImageAlt: "Secure telehealth consultation",
       },
       faq: {
         heading: "Frequently Asked Questions",

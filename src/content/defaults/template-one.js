@@ -1,5 +1,6 @@
 export const templateOneDefaults = {
   header: {
+    brandName: "{{name}}",
     navLinks: [
       { label: "Home", href: "/", key: "home" },
       { label: "About", href: "/about", key: "about" },
@@ -8,6 +9,7 @@ export const templateOneDefaults = {
     appointmentCta: "Book Appointment",
   },
   footer: {
+    brandName: "{{name}}",
     tagline:
       "Precision medicine for a life lived to its fullest potential. Clinical elegance, personal connection.",
     copyright:
@@ -15,6 +17,8 @@ export const templateOneDefaults = {
     officeHoursLabel: "Office Hours",
     officeHours: "Monday - Friday: 9:00 AM - 5:00 PM",
     urgentCareLabel: "Urgent Care Line:",
+    phone: "",
+    socialUrl: "",
     resourceLinks: [
       { label: "Clinic Locations", href: "#" },
       { label: "Privacy Policy", href: "#" },
@@ -62,6 +66,9 @@ export const templateOneDefaults = {
           "https://lh3.googleusercontent.com/aida-public/AB6AXuCZm0_m40P1JS40jbijH63oQwT32n-U54apRIEaWxx_jC9GOzrKujhNnSCth51iO6OgwWp9mZuS9YD3jGEjWACTak_qiBOmHrr_-EbZ4jG7vEq0ERzWX7IdOZPjfO_DAaORn2tqzSp2Zkzod5UfW0UdwcagTnbq6YmGKUUHYRznHaRH99MIrXzmsY02dYox9vBoKTfvzcSXHKAKNa3khYxme5Nd_lVtLneBQ97A-1EQAovsKUHRRzH4DA",
         imageAlt:
           "A stethoscope resting on a marble surface next to a digital tablet in a clean consulting room",
+        imageUrlSecondary:
+          "https://lh3.googleusercontent.com/aida-public/AB6AXuAwbF8DBfY5iKBcJuS2gsog0qVe9-UID90sKW0LcvVD5Q8SsOdWbN4cYzg4v43dE272c0CQZwU40ZhO-TUesjG2pUg-VJfeEvAmSvRebrILkvwDnvZqShGA6MGt7oDiLSvTgbgheX089HOw-eZftVUVJiXH7dMyYVLrp0FsdkMWlnQVksKUWMgazzAdFKAWsNX0ZfoUiqwPWdQCtmmrP6nsTEmN8pom_FouTO3UCiQYRNEDq6i7vbispg",
+        imageAltSecondary: "A clinician reviewing a digital health record in a modern consulting room",
       },
       services: {
         heading: "Specialized Medical Services",
@@ -115,6 +122,10 @@ export const templateOneDefaults = {
         quote:
           "In three decades of practice, I've learned that the most effective tool in medicine isn't a laser or a drug—it's the ability to listen.",
         quoteAuthor: "DR. {{name}}",
+        quoteHeading: "Clinical Excellence Meets Personal Care",
+        quoteImageUrl:
+          "https://lh3.googleusercontent.com/aida-public/AB6AXuBcwDvF6ipEsG6rPGUBILKJXbJjzyOhIcdWSJu4QpL1J7CvTwFEk1ZPUjS803dWZf_ES7Sfl6Svye2Vr7_a4isSrTmfQwVCoq455xpIyZVpPzlUU36D7Q6r9CY1iPJGHBthUCwmMYaWh6ZB-ljDReIaKOOPsN4wRjWTHO-N8K_QP3Tz9K3xZygB7sH1guNSWnVIMUGAFEqyo2Q24LcJw3yjuMEIGkiLMO6OHyMZVUIIJsWl5HyWOAHi7w",
+        quoteImageAlt: "A medical professional portrait",
       },
       appointmentProcess: {
         heading: "The Journey to Better Health",
@@ -143,14 +154,22 @@ export const templateOneDefaults = {
       },
       clinicLocations: {
         heading: "Our Clinics",
-        mapImages: [
+        locations: [
           {
-            imageUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuAI-SdvQgT6ooXiwhtdYE0FflqijxOwO7SH7bDg4n4DUv2G2AwZ0tAQalGBjGABUG1fhaH2RmBmwPKq4J-xGRg1mEbq96iLF0ba686Ozo4yGY92YJrpYiIGrhrROFTOj9CvvQo9i5IvuT-81CC3Jm9sEEcGXE-E1WoupE27E8AjXMm07jt7bh5e4KDL0haCCTBrssM_9IP7UUrHFdeEW_bW5E2f4WtkkA-FjraLeFYYZslVVLJH65vOQQ",
-            imageAlt: "Map view of the Upper East Side, New York City, near Central Park",
+            name: "Upper East Side Clinic",
+            address: "New York, NY",
+            hours: "Monday - Friday: 9:00 AM - 5:00 PM",
+            mapImage:
+              "https://lh3.googleusercontent.com/aida-public/AB6AXuAI-SdvQgT6ooXiwhtdYE0FflqijxOwO7SH7bDg4n4DUv2G2AwZ0tAQalGBjGABUG1fhaH2RmBmwPKq4J-xGRg1mEbq96iLF0ba686Ozo4yGY92YJrpYiIGrhrROFTOj9CvvQo9i5IvuT-81CC3Jm9sEEcGXE-E1WoupE27E8AjXMm07jt7bh5e4KDL0haCCTBrssM_9IP7UUrHFdeEW_bW5E2f4WtkkA-FjraLeFYYZslVVLJH65vOQQ",
+            mapAlt: "Map view of the Upper East Side clinic",
           },
           {
-            imageUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuAmHkteCkevwmGF5l3RdD6FtBOisn2Djxe5QwkoMx3oyTwWXYMhIPk1e20TVVdlWzPpvx-6XoOxkKCGiAQZ2jkkpusnlN2A4bREfYAJ_fs18WWiJ4RPjY0Fm_WQ_c1KKer9NYsJahcjNul-0RGGOdOhCmbwBo4mlWCZAVO0ymZeitYeFqXgFKwWQGYClOqOypqfNkKB66NX9_MwdMxzi4P28tCXHBMpkn5oWc72j1I-WHWaOTW8e5rXKQ",
-            imageAlt: "Map view of Marylebone, London, near Harley Street",
+            name: "Marylebone Clinic",
+            address: "London, UK",
+            hours: "Monday - Friday: 9:00 AM - 5:00 PM",
+            mapImage:
+              "https://lh3.googleusercontent.com/aida-public/AB6AXuAmHkteCkevwmGF5l3RdD6FtBOisn2Djxe5QwkoMx3oyTwWXYMhIPk1e20TVVdlWzPpvx-6XoOxkKCGiAQZ2jkkpusnlN2A4bREfYAJ_fs18WWiJ4RPjY0Fm_WQ_c1KKer9NYsJahcjNul-0RGGOdOhCmbwBo4mlWCZAVO0ymZeitYeFqXgFKwWQGYClOqOypqfNkKB66NX9_MwdMxzi4P28tCXHBMpkn5oWc72j1I-WHWaOTW8e5rXKQ",
+            mapAlt: "Map view of the Marylebone clinic",
           },
         ],
       },
@@ -220,6 +239,16 @@ export const templateOneDefaults = {
         heading: "Where Excellence Resides",
         subheading:
           "Dr. {{name}} currently chairs the Precision Medicine Department at the Vance Clinical Institute, a state-of-the-art facility designed for patient comfort and surgical precision.",
+        locations: [
+          {
+            name: "Vance Clinical Institute",
+            address: "New York, NY",
+            hours: "Monday - Friday: 9:00 AM - 5:00 PM",
+          },
+        ],
+        imageUrl:
+          "https://lh3.googleusercontent.com/aida-public/AB6AXuC-JtnM4GUEG_-hpHQzxNdg0t6MYMX9xOVPcjXlGk39XKd3ZiBzGNv-o0Ez49Njbvw70u0id3e6ahXScC4jP-sQKpisIgyCKzJl1JUZf7IKICj8-R03YNDouEmJH6rk_9S2uT1d79n-TI3gmHtrb2lB3DiksPqFH1r02CfYCn6MhKwk5C3-0jGvejEHswgRKYW3xkjZXVoraYta5CyJW42kEHTfuOmehB21KclP62yNiHQi3uirxO87-Q",
+        imageAlt: "Map view of the clinical institute",
       },
       finalCta: {
         heading: "Ready to Experience Better Care?",
@@ -284,6 +313,9 @@ export const templateOneDefaults = {
         heading: "The Value of Precision Care",
         subheading:
           "Our services are not just about treating symptoms; they are about architecting a blueprint for your long-term wellness.",
+        imageUrl:
+          "https://lh3.googleusercontent.com/aida-public/AB6AXuDSQ4uIemD_xTtOwVnEu0nmn_APexm6QGm2BLP65hM7QcFVnbFVm0FoOOYWR9oRguBlyd9zFsbgb1grFcxr6e5D3hLv6g413aLUiAHgC9rF1UTKKMaD0-988mz7uNdfzMXFozyrqwz2-S9P7ZQjSO2x2xvvai7Rc3CAW8vy4K7g7kv9E4tau_P3KdMcYZEn_MOM_1GKx826eeLyuUjrRfKMyN06ZmItsLXLq0HGLxVW5QceCH4hpsJ78Q",
+        imageAlt: "A modern clinical diagnostic laboratory",
         items: [
           {
             icon: "verified_user",
@@ -346,6 +378,11 @@ export const templateOneDefaults = {
         badge: "DIRECT SCHEDULING",
         heading: "Book Your Consultation Today.",
         body: "Experience clinical elegance through our streamlined booking process. Connect directly with our team via WhatsApp for personalized scheduling and professional care.",
+        primaryCta: "Book via WhatsApp",
+        secondaryCta: "View Schedules",
+        imageUrl:
+          "https://lh3.googleusercontent.com/aida-public/AB6AXuDrI_-iJl8d3az-c3zTX2scS0feijBybba2fRXqjKnc2ZWzSgzq4vSt1Zf60XXveGwMrWd7uWP9SUfvzhmRC-4CfhHW6QBWVCg_XwGBITK4uQZuySo_ggYx3oyH-_pcU4Y5MrlYg-ZaY56SUfoZpn4hTGr5KGyYqnbwcnBr--V6F6gKqiTOiUiy2VXA0gaobkLSNBD59u5GlPDCqss1F6YUyPaArGTiWEqp6UHLaauteUk_E5CSagFPXg",
+        imageAlt: "A physician consulting with a patient",
       },
       howItWorks: {
         heading: "3 Simple Steps to Your Appointment",
@@ -374,6 +411,10 @@ export const templateOneDefaults = {
       schedule: {
         heading: "Clinic Locations & Hours",
         subheading: "Multiple locations across the city for your convenience.",
+        items: [
+          { location: "Upper East Side Clinic", day: "Monday - Friday", hours: "9:00 AM - 5:00 PM" },
+          { location: "Marylebone Clinic", day: "Monday - Friday", hours: "9:00 AM - 5:00 PM" },
+        ],
       },
       whatsappCta: {
         heading: "Ready to Schedule?",

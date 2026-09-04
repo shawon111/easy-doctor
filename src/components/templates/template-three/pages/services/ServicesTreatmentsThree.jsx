@@ -106,6 +106,8 @@ export default function ServicesTreatmentsThree({ content = {} , isDemo = false}
                 >
                   <div
                     className={`w-full h-full bg-cover bg-center ${imageMinHeight}`}
+                    role="img"
+                    aria-label={card.imageAlt || card.title || ""}
                     style={{ backgroundImage: `url('${card.imageUrl}')` }}
                   />
                   {card.cta && config.colSpan.includes("4") && (

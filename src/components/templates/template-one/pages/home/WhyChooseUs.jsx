@@ -31,7 +31,7 @@ export default function WhyChooseUsOne({ content = {} , isDemo = false}) {
           <Reveal className="delay-200">
             <div className="bg-surface-container-high rounded-[2.5rem] p-12 relative overflow-hidden h-full flex flex-col justify-center">
               <h3 className="font-headline-md text-headline-md text-on-surface mb-6 relative z-10">
-                Clinical Excellence Meets Personal Care
+                {content.quoteHeading || "Clinical Excellence Meets Personal Care"}
               </h3>
               {content.quote ? (
                 <p className="font-body-lg text-body-lg text-on-surface-variant mb-8 relative z-10 italic">
@@ -42,8 +42,8 @@ export default function WhyChooseUsOne({ content = {} , isDemo = false}) {
                 <div className="flex items-center gap-4 relative z-10">
                   <img
                     className="h-12 grayscale"
-                    alt=""
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcwDvF6ipEsG6rPGUBILKJXbJjzyOhIcdWSJu4QpL1J7CvTwFEk1ZPUjS803dWZf_ES7Sfl6Svye2Vr7_a4isSrTmfQwVCoq455xpIyZVpPzlUU36D7Q6r9CY1iPJGHBthUCwmMYaWh6ZB-ljDReIaKOOPsN4wRjWTHO-N8K_QP3Tz9K3xZygB7sH1guNSWnVIMUGAFEqyo2Q24LcJw3yjuMEIGkiLMO6OHyMZVUIIJsWl5HyWOAHi7w"
+                    alt={content.quoteImageAlt || ""}
+                    src={content.quoteImageUrl}
                   />
                   <p className="text-label-caps font-label-caps text-primary">{content.quoteAuthor}</p>
                 </div>

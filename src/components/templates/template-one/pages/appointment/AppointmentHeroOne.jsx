@@ -29,13 +29,13 @@ export default function AppointmentHeroOne({ content = {} , isDemo = false}) {
               href="#whatsapp-section"
             >
               <span className="material-symbols-outlined">chat</span>
-              Book via WhatsApp
+              {content.primaryCta || "Book via WhatsApp"}
             </a>
             <a
               className="border border-outline-variant text-on-surface-variant px-8 py-4 rounded-xl font-button hover:bg-surface-variant transition-all"
               href="#schedule"
             >
-              View Schedules
+              {content.secondaryCta || "View Schedules"}
             </a>
           </div>
         </div>
@@ -44,8 +44,8 @@ export default function AppointmentHeroOne({ content = {} , isDemo = false}) {
           <div className="rounded-3xl overflow-hidden shadow-[0px_20px_40px_rgba(30,41,59,0.08)] aspect-[4/5] relative">
             <img
               className="w-full h-full object-cover"
-              alt=""
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrI_-iJl8d3az-c3zTX2scS0feijBybba2fRXqjKnc2ZWzSgzq4vSt1Zf60XXveGwMrWd7uWP9SUfvzhmRC-4CfhHW6QBWVCg_XwGBITK4uQZuySo_ggYx3oyH-_pcU4Y5MrlYg-ZaY56SUfoZpn4hTGr5KGyYqnbwcnBr--V6F6gKqiTOiUiy2VXA0gaobkLSNBD59u5GlPDCqss1F6YUyPaArGTiWEqp6UHLaauteUk_E5CSagFPXg"
+              alt={content.imageAlt || ""}
+              src={content.imageUrl}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent" />
           </div>

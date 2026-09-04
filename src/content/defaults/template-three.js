@@ -1,5 +1,6 @@
 export const templateThreeDefaults = {
   header: {
+    brandName: "{{name}}",
     navLinks: [
       { label: "Home", href: "", key: "home" },
       { label: "About", href: "/about", key: "about" },
@@ -8,6 +9,7 @@ export const templateThreeDefaults = {
     appointmentCta: "Book Appointment",
   },
   footer: {
+    brandName: "{{name}}",
     tagline: "Advanced Clinical Excellence. Empowering health through precision technology.",
     copyright: "© 2024 {{name}}. Advanced Clinical Excellence. Empowering health through precision technology.",
     resourceLinks: [
@@ -17,6 +19,11 @@ export const templateThreeDefaults = {
       { label: "Patient Portal", href: "#" },
     ],
     legalLinks: [],
+    specialties: [
+      { label: "Precision Medicine", href: "/services" },
+      { label: "Longevity Care", href: "/services" },
+      { label: "Executive Health", href: "/services" },
+    ],
     newsletter: {
       heading: "Newsletter",
       body: "Latest health insights delivered to your inbox.",
@@ -165,6 +172,11 @@ export const templateThreeDefaults = {
           imageUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuAemNkH-1Vu0ccU2ZDI4fYpVK2ftWcKMvD86H106aFU9ribvKJFoinIIgh2BYWbWz0h461E7OJMCkdjPM8IysBgfI3FjJxED3ja4RKTjKwEKX5MpE-MXm9UfvXs1bslA1Fh75T9Vr5WDCj4D2bsKTBxnss1VvIhho8gcq52dY7hk7eU39Ch2gO9xLvQzTrJElz-iSvKZ9fUgM9T5yjftHpnRn3kl5CEQs5grSIohBIyLk6lz9MCwLGtFg",
           imageAlt: "A stylized, light-themed satellite map of a modern medical district in a metropolitan city.",
         },
+        contact: {
+          location: "Main Clinical Center",
+          phone: "+1 (212) 555-0147",
+          hours: "Monday - Friday: 9:00 AM - 5:00 PM",
+        },
         contactLabels: {
           location: "Main Clinical Center",
           phone: "Direct Inquiries",
@@ -187,6 +199,9 @@ export const templateThreeDefaults = {
           "https://lh3.googleusercontent.com/aida-public/AB6AXuC0UvJcRRGzeMnVHVjjXtnLb4votL8IteDuxDZoMBMVpVJGOKk-h0BcL08sXfFokA-cOo1p0SsfrOwac1Nso4BV3x2gC0QrMZoHxNOy-E6Z9IfkMBdSWPmugRqreXSFb0bGdnpfIjYIqX8q9tzPLq3OAXzVJuxeYXwM679Bugo2A_j8k-awrsDAbjGSxwoiM3DzXth4E2OLtitL8Sr4rEapTONQDNSO02L51czSuadSIGI3LL-ZaASnpQ",
         imageAlt:
           "A cinematic, low-angle portrait of a professional male doctor in his late 50s with kind eyes and graying hair.",
+        experienceStat: "25+",
+        livesTouchedStat: "15k+",
+        innovationsStat: "12",
       },
       journey: {
         heading: "A Journey Fueled by Curiosity.",
@@ -321,6 +336,7 @@ export const templateThreeDefaults = {
             cta: "Learn More",
             imageUrl:
               "https://lh3.googleusercontent.com/aida-public/AB6AXuAGYKY1RpnfgYlNy2lk_E5J7CszQgH2uaCqhZQ34-VkF9mumsvKOm5QNvVS0fvsEpBhgAhs_icG30JyDMiN1B-fSx0cFvEzstuYa863jaF56TUbCKCeUprN1WUPfPS6ZQ-MQhqi_MAWG0ZQttm9Ojw-LIdrRagdkLVJYkwV755uXh7aqZi53VZ2f6w7nd-PZNGaw-FZ_luPOhpndFm12Le-JODg5Uq4M5nPo93uy3djRTs_VxU9M0PiPQ",
+            imageAlt: "Advanced heart diagnostics equipment",
           },
           {
             badge: "LONGEVITY",
@@ -330,6 +346,7 @@ export const templateThreeDefaults = {
             cta: "View Protocols",
             imageUrl:
               "https://lh3.googleusercontent.com/aida-public/AB6AXuA0_8a2tJFDHgdDa3TZGOOtUO8KUGQc4cxgwcemrVHmJ2aLljs9JiB8xB85sPmFQmiKbwoVrYmy3KpYFlh6iuOCSFOLT3i7yTjukNl9OtEwdj3xnydANIt3TR0qbtBBItAWesuhYaasqy75OdAN72Kxxj3wwFcT1fVRG7wy_uR-N-uqU2ICj2OCQfQ77zVDyg33pvxuclmJwtr0cqvsnXCPv38D3rGgI1-K8rV7Vs1R-vi_zowWfuA9DQ",
+            imageAlt: "Biological age optimization consultation",
           },
           {
             badge: "WELLNESS",
@@ -339,6 +356,7 @@ export const templateThreeDefaults = {
             cta: "Explore Wellness",
             imageUrl:
               "https://lh3.googleusercontent.com/aida-public/AB6AXuCWXRMmKxZcNPH47VshHutojaWMjieS5qqYXWHsRkmm1XzZEeG3wSI8OZFbPyHMDVa0AOTm8cv-q2BunuF8z--dSeJm42b_4Q-w_y7fNv8ewHfYNKGOnIjWXJsG4b8Alha4i6AjQbCoMLz10QrZCufeX0QUTxi62aHvvKoYvES1LA3DWrzUbU0mVX6dZM44pvcyMSgU162x7zdW9V4W49OJ2jqYZJ5cL91qwIjKpJLAKKhh8jmFvDw68A",
+            imageAlt: "Holistic wellness consultation",
           },
           {
             badge: "FAMILY CARE",
@@ -352,6 +370,7 @@ export const templateThreeDefaults = {
             stat2Label: "Wait Times",
             imageUrl:
               "https://lh3.googleusercontent.com/aida-public/AB6AXuDbqI5NJ5xpQjxpTG1Aqsx-JZb6DTuiCqL_BLRL2mCwtqFdctAzFCRtUAC_3Tu0v-CSxM1VG-MNjQUAWP6p7DsWG_jpSdNtzym41WmsyhYQIQCNercTJULdTuU75FHbUbzMFzV1mIN8cmsb_tXry_eW92UcSBjf2xchY-FHSA29HPpjRrWejs6CltLzZv34wLz1P5RbxalYJiJtbTzQLm5IK2iWxA7poTAoKNxdYrFIqhaiJSreXjHxpg",
+            imageAlt: "Comprehensive clinic care",
           },
         ],
       },
@@ -444,11 +463,20 @@ export const templateThreeDefaults = {
         legendClosed: "Closed",
         statusAvailable: "Available",
         statusClosed: "Closed",
+        items: [
+          { day: "Monday", hours: "09:00 - 17:00", location: "Main Clinical Center", available: true },
+          { day: "Tuesday", hours: "09:00 - 17:00", location: "Main Clinical Center", available: true },
+          { day: "Wednesday", hours: "By appointment", location: "Main Clinical Center", available: false },
+          { day: "Thursday", hours: "10:00 - 18:00", location: "City Clinic", available: true },
+          { day: "Friday", hours: "09:00 - 15:00", location: "City Clinic", available: true },
+        ],
       },
       whatsapp: {
         heading: "Quick Appointment via WhatsApp",
         body: "Prefer a faster route? Skip the forms and chat directly with our medical concierge team to secure your slot instantly.",
         cta: "Open WhatsApp",
+        whatsappUrl: "https://wa.me/dr-medlink",
+        phoneDisplay: "+1 (212) 555-0147",
       },
       chambers: {
         heading: "World-Class Chambers",

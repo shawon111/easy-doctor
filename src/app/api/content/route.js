@@ -4,7 +4,7 @@ import { withUser } from "@/lib/withUser";
 import { createOrUpdateContent } from "@/services/content.service";
 import { getWebsiteByUserId } from "@/services/website.service";
 import { NextResponse } from "next/server";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 
 export const PATCH = withUser(async (request, { params }, currentUser) => {
     try {
@@ -16,6 +16,7 @@ export const PATCH = withUser(async (request, { params }, currentUser) => {
         const result = await createOrUpdateContent(currentUser, templateType, content);
         const website = await getWebsiteByUserId(currentUser._id);
         if (website?.subdomain) {
+            revalidateTag(`website-content:${website.subdomain}`, "max");
             const pages = ["", "/about", "/services", "/appointment"];
             pages.forEach((page) => revalidatePath(`/doctor/${website.subdomain}${page}`));
         }

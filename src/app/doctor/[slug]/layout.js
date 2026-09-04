@@ -1,8 +1,7 @@
 import { connectDB } from "@/config/database";
 import { getWebsiteLists } from "@/services/website.service";
 
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+export const revalidate = 3600;
 
 export const generateStaticParams = async () => {
   await connectDB();

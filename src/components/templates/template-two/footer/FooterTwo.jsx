@@ -5,6 +5,9 @@ export default function FooterTwo({ content = {} , isDemo = false}) {
   const resourceLinks = content.resourceLinks || [];
   const copyright = content.copyright || "";
   const legalLinks = content.legalLinks || [];
+  const practiceLinks = content.practiceLinks || [];
+  const websiteUrl = content.websiteUrl || "";
+  const email = content.email || "";
 
   return (
     <footer className="bg-surface-container-lowest border-t border-outline-variant/30">
@@ -21,10 +24,9 @@ export default function FooterTwo({ content = {} , isDemo = false}) {
         <div className="md:col-span-2 space-y-4">
           <h4 className="font-label-caps text-label-caps text-on-surface uppercase">Practice</h4>
           <ul className="space-y-2 font-body-md text-body-md text-on-surface-variant">
-            <li><a className="hover:text-primary transition-colors" href="#">Our Approach</a></li>
-            <li><a className="hover:text-primary transition-colors" href="#">Specializations</a></li>
-            <li><a className="hover:text-primary transition-colors" href="#">Clinical Research</a></li>
-            <li><a className="hover:text-primary transition-colors" href="#">Patient Stories</a></li>
+            {practiceLinks.map((link) => (
+              <li key={link.label}><a className="hover:text-primary transition-colors" href={link.href || "/"}>{link.label}</a></li>
+            ))}
           </ul>
         </div>
 
@@ -49,18 +51,18 @@ export default function FooterTwo({ content = {} , isDemo = false}) {
             <p className="font-headline-sm text-headline-sm text-on-surface">{phone}</p>
           ) : null}
           <div className="flex md:justify-end gap-4 mt-6">
-            <a
+            {websiteUrl ? <a
               className="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center hover:border-primary text-on-surface-variant hover:text-primary transition-all"
-              href="#"
+              href={websiteUrl}
             >
               <span className="material-symbols-outlined text-sm">language</span>
-            </a>
-            <a
+            </a> : null}
+            {email ? <a
               className="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center hover:border-primary text-on-surface-variant hover:text-primary transition-all"
-              href="#"
+              href={`mailto:${email}`}
             >
               <span className="material-symbols-outlined text-sm">mail</span>
-            </a>
+            </a> : null}
           </div>
         </div>
       </div>

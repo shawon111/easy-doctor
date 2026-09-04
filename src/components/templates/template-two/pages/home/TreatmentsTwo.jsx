@@ -37,7 +37,7 @@ export default function TreatmentsTwo({ content = {} , isDemo = false}) {
               </p>
               <a
                 className="inline-flex items-center gap-2 text-primary font-label-caps text-label-caps hover:gap-4 transition-all"
-                href="#"
+                href={featured.href || "/services"}
               >
                 Explore Procedure{" "}
                 <span className="material-symbols-outlined">north_east</span>
@@ -64,7 +64,7 @@ export default function TreatmentsTwo({ content = {} , isDemo = false}) {
               <p className="font-body-md text-body-md text-on-surface-variant mb-4">
                 {secondary.description}
               </p>
-              <a className="text-primary font-label-caps text-label-caps hover:underline" href="#">
+              <a className="text-primary font-label-caps text-label-caps hover:underline" href={secondary.href || "/services"}>
                 Learn More
               </a>
             </div>

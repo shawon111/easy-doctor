@@ -11,9 +11,9 @@ export default function ServicesFeaturedTwo({ content = {}, slug , isDemo = fals
   return (
     <section className="py-[120px] px-[20px] md:px-[64px] max-w-[1200px] mx-auto">
       <div className="mb-16">
-        <h2 className="svctwo-headline-md mb-2 text-[#1a1c1e]">Featured Procedures</h2>
+        <h2 className="svctwo-headline-md mb-2 text-[#1a1c1e]">{content.heading}</h2>
         <p className="svctwo-body-md text-[#44474e]">
-          Our flagship interventions representing the pinnacle of modern medicine.
+          {content.body}
         </p>
       </div>
 

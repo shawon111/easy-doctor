@@ -15,7 +15,7 @@ export default function AboutPreviewOneDark({ content = {}, slug, isDemo = false
                 <img
                   className="rounded-xl w-full h-64 object-cover grayscale hover:grayscale-0 transition-all duration-500"
                   alt={content.imageAlt || ""}
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZm0_m40P1JS40jbijH63oQwT32n-U54apRIEaWxx_jC9GOzrKujhNnSCth51iO6OgwWp9mZuS9YD3jGEjWACTak_qiBOmHrr_-EbZ4jG7vEq0ERzWX7IdOZPjfO_DAaORn2tqzSp2Zkzod5UfW0UdwcagTnbq6YmGKUUHYRznHaRH99MIrXzmsY02dYox9vBoKTfvzcSXHKAKNa3khYxme5Nd_lVtLneBQ97A-1EQAovsKUHRRzH4DA"
+                  src={content.imageUrl}
                 />
               </div>
             </div>
@@ -23,8 +23,8 @@ export default function AboutPreviewOneDark({ content = {}, slug, isDemo = false
               <div className="glass-card p-1 rounded-2xl">
                 <img
                   className="rounded-xl w-full h-80 object-cover grayscale hover:grayscale-0 transition-all duration-500"
-                  alt=""
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwbF8DBfY5iKBcJuS2gsog0qVe9-UID90sKW0LcvVD5Q8SsOdWbN4cYzg4v43dE272c0CQZwU40ZhO-TUesjG2pUg-VJfeEvAmSvRebrILkvwDnvZqShGA6MGt7oDiLSvTgbgheX089HOw-eZftVUVJiXH7dMyYVLrp0FsdkMWlnQVksKUWMgazzAdFKAWsNX0ZfoUiqwPWdQCtmmrP6nsTEmN8pom_FouTO3UCiQYRNEDq6i7vbispg"
+                  alt={content.imageAltSecondary || ""}
+                  src={content.imageUrlSecondary}
                 />
               </div>
             </div>

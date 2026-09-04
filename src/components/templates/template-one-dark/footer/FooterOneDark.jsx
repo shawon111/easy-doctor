@@ -23,12 +23,12 @@ export default function FooterOneDark({ content = {}, slug , isDemo = false}) {
             </p>
           ) : null}
           <div className="flex gap-4">
-            <a
+            {content.socialUrl ? <a
               className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary hover:bg-primary/5 transition-all"
-              href="#"
+              href={content.socialUrl}
             >
               <span className="material-symbols-outlined">share</span>
-            </a>
+            </a> : null}
             {phone ? (
               <a
                 className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary hover:bg-primary/5 transition-all"
@@ -36,14 +36,7 @@ export default function FooterOneDark({ content = {}, slug , isDemo = false}) {
               >
                 <span className="material-symbols-outlined">call</span>
               </a>
-            ) : (
-              <a
-                className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary hover:bg-primary/5 transition-all"
-                href="#"
-              >
-                <span className="material-symbols-outlined">call</span>
-              </a>
-            )}
+            ) : null}
           </div>
         </div>
 

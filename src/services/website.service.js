@@ -4,6 +4,7 @@ import "@/models/template-three-content.model";
 import "@/models/template-two-content.model";
 import Website from "@/models/website.model";
 import User from "@/models/user.model";
+import { unstable_cache } from "next/cache";
 
 // create website
 export const createWebsite = async (userId, websiteData) => {
@@ -51,20 +52,23 @@ export const getWebsiteLists = async () => {
 
 // get website by subdomain
 export const getWebsiteBySubdomain = async (subdomain) => {
-    await connectDB();
-    try {
-        let website = await Website.findOne({ subdomain }).populate('content');
+    const getCachedWebsite = unstable_cache(
+        async () => {
+            await connectDB();
+            let website = await Website.findOne({ subdomain }).populate("content").lean();
 
-        if (!website) {
-            const user = await User.findOne({ slug: subdomain }).select("_id");
-            if (user) {
-                website = await Website.findOne({ userId: user._id }).populate("content");
+            if (!website) {
+                const user = await User.findOne({ slug: subdomain }).select("_id").lean();
+                if (user) {
+                    website = await Website.findOne({ userId: user._id }).populate("content").lean();
+                }
             }
-        }
 
-        return website;
-    }catch (error) {
-        console.log("Error fetching website by subdomain:", error);
-        throw new Error('Failed to fetch website by subdomain');
-    }
+            return website;
+        },
+        ["website-by-subdomain", subdomain],
+        { tags: [`website-content:${subdomain}`] }
+    );
+
+    return getCachedWebsite();
 }

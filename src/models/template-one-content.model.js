@@ -3,11 +3,11 @@ import {
   ctaSchema,
   faqItemSchema,
   iconTextItemSchema,
-  imageSchema,
   linkItemSchema,
   serviceCardSchema,
   statItemSchema,
   stepItemSchema,
+  scheduleItemSchema,
   timelineItemSchema,
 } from "@/lib/content/shared-schemas";
 
@@ -29,6 +29,7 @@ const templateOneContentSchema = new mongoose.Schema(
       unique: true,
     },
     header: {
+      brandName: { type: String, trim: true },
       navLinks: [
         {
           label: { type: String, trim: true },
@@ -39,12 +40,15 @@ const templateOneContentSchema = new mongoose.Schema(
       appointmentCta: { type: String, trim: true },
     },
     footer: {
+      brandName: { type: String, trim: true },
       tagline: { type: String, trim: true },
       copyright: { type: String, trim: true },
       officeHoursLabel: { type: String, trim: true },
       officeHours: { type: String, trim: true },
       urgentCareLabel: { type: String, trim: true },
       urgentCareNote: { type: String, trim: true },
+      phone: { type: String, trim: true },
+      socialUrl: { type: String, trim: true },
       resourceLinks: [linkItemSchema],
       legalLinks: [linkItemSchema],
     },
@@ -73,6 +77,8 @@ const templateOneContentSchema = new mongoose.Schema(
           linkLabel: { type: String, trim: true },
           imageUrl: { type: String, trim: true },
           imageAlt: { type: String, trim: true },
+          imageUrlSecondary: { type: String, trim: true },
+          imageAltSecondary: { type: String, trim: true },
         },
         services: {
           heading: { type: String, trim: true },
@@ -84,6 +90,9 @@ const templateOneContentSchema = new mongoose.Schema(
           items: [iconTextItemSchema],
           quote: { type: String, trim: true },
           quoteAuthor: { type: String, trim: true },
+          quoteHeading: { type: String, trim: true },
+          quoteImageUrl: { type: String, trim: true },
+          quoteImageAlt: { type: String, trim: true },
         },
         appointmentProcess: {
           heading: { type: String, trim: true },
@@ -93,7 +102,15 @@ const templateOneContentSchema = new mongoose.Schema(
         clinicLocations: {
           heading: { type: String, trim: true },
           subheading: { type: String, trim: true },
-          mapImages: [imageSchema],
+          locations: [
+            {
+              name: { type: String, trim: true },
+              address: { type: String, trim: true },
+              hours: { type: String, trim: true },
+              mapImage: { type: String, trim: true },
+              mapAlt: { type: String, trim: true },
+            },
+          ],
         },
         finalCta: ctaSchema,
       },
@@ -124,6 +141,13 @@ const templateOneContentSchema = new mongoose.Schema(
         chambers: {
           heading: { type: String, trim: true },
           subheading: { type: String, trim: true },
+          locations: [
+            {
+              name: { type: String, trim: true },
+              address: { type: String, trim: true },
+              hours: { type: String, trim: true },
+            },
+          ],
           imageUrl: { type: String, trim: true },
           imageAlt: { type: String, trim: true },
         },
@@ -162,6 +186,8 @@ const templateOneContentSchema = new mongoose.Schema(
           body: { type: String, trim: true },
           imageUrl: { type: String, trim: true },
           imageAlt: { type: String, trim: true },
+          primaryCta: { type: String, trim: true },
+          secondaryCta: { type: String, trim: true },
         },
         howItWorks: {
           heading: { type: String, trim: true },
@@ -171,6 +197,7 @@ const templateOneContentSchema = new mongoose.Schema(
         schedule: {
           heading: { type: String, trim: true },
           subheading: { type: String, trim: true },
+          items: [scheduleItemSchema],
         },
         whatsappCta: {
           heading: { type: String, trim: true },

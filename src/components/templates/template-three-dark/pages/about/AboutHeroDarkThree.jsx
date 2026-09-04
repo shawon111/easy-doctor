@@ -24,12 +24,12 @@ export default function AboutHeroDarkThree({ content = {} , isDemo = false}) {
             </div>
             <div className="w-px h-12 bg-outline-variant" />
             <div className="flex flex-col">
-              <span className="text-secondary font-headline-lg">15k+</span>
+              <span className="text-secondary font-headline-lg">{content.livesTouchedStat}</span>
               <span className="text-on-surface-variant text-sm">Lives Touched</span>
             </div>
             <div className="w-px h-12 bg-outline-variant" />
             <div className="flex flex-col">
-              <span className="text-tertiary font-headline-lg">12</span>
+              <span className="text-tertiary font-headline-lg">{content.innovationsStat}</span>
               <span className="text-on-surface-variant text-sm">Innovations</span>
             </div>
           </div>

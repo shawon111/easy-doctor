@@ -10,9 +10,9 @@ export default function ServicesBenefitsOneDark({ content = {} , isDemo = false}
         <div className="order-2 lg:order-1">
           <div className="relative rounded-xl overflow-hidden aspect-[4/3] border border-white/10">
             <img
-              alt=""
+              alt={content.imageAlt || ""}
               className="w-full h-full object-cover filter contrast-110"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSQ4uIemD_xTtOwVnEu0nmn_APexm6QGm2BLP65hM7QcFVnbFVm0FoOOYWR9oRguBlyd9zFsbgb1grFcxr6e5D3hLv6g413aLUiAHgC9rF1UTKKMaD0-988mz7uNdfzMXFozyrqwz2-S9P7ZQjSO2x2xvvai7Rc3CAW8vy4K7g7kv9E4tau_P3KdMcYZEn_MOM_1GKx826eeLyuUjrRfKMyN06ZmItsLXLq0HGLxVW5QceCH4hpsJ78Q"
+              src={content.imageUrl}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent" />
           </div>

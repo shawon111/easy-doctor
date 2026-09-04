@@ -29,7 +29,7 @@ export default function ServicesGridOneDark({ content = {} , isDemo = false}) {
               </div>
               <h3 className="text-headline-md mb-4 uppercase tracking-tighter">{service.title}</h3>
               <p className="text-on-surface-variant mb-10 text-body-md leading-relaxed">{service.description}</p>
-              <a className="inline-flex items-center gap-3 text-cyber-mint font-label-md group-hover:gap-5 transition-all" href="#">
+              <a className="inline-flex items-center gap-3 text-cyber-mint font-label-md group-hover:gap-5 transition-all" href="/appointment">
                 Learn More <span className="material-symbols-outlined">north_east</span>
               </a>
             </GlassCardRevealOneDark>

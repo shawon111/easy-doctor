@@ -7,6 +7,7 @@ import {
   imageSchema,
   linkItemSchema,
   serviceCardSchema,
+  scheduleItemSchema,
   stepItemSchema,
   timelineItemSchema,
 } from "@/lib/content/shared-schemas";
@@ -29,6 +30,7 @@ const templateTwoContentSchema = new mongoose.Schema(
       unique: true,
     },
     header: {
+      brandName: { type: String, trim: true },
       navLinks: [
         {
           label: { type: String, trim: true },
@@ -39,8 +41,14 @@ const templateTwoContentSchema = new mongoose.Schema(
       appointmentCta: { type: String, trim: true },
     },
     footer: {
+      brandName: { type: String, trim: true },
       tagline: { type: String, trim: true },
       copyright: { type: String, trim: true },
+      phone: { type: String, trim: true },
+      socialUrl: { type: String, trim: true },
+      websiteUrl: { type: String, trim: true },
+      email: { type: String, trim: true },
+      practiceLinks: [linkItemSchema],
       resourceLinks: [linkItemSchema],
       legalLinks: [linkItemSchema],
     },
@@ -80,6 +88,11 @@ const templateTwoContentSchema = new mongoose.Schema(
         chamber: {
           heading: { type: String, trim: true },
           subheading: { type: String, trim: true },
+          location: {
+            name: { type: String, trim: true },
+            address: { type: String, trim: true },
+            hours: { type: String, trim: true },
+          },
           imageUrl: { type: String, trim: true },
           imageAlt: { type: String, trim: true },
         },
@@ -130,6 +143,12 @@ const templateTwoContentSchema = new mongoose.Schema(
           cta: { type: String, trim: true },
           imageUrl: { type: String, trim: true },
           imageAlt: { type: String, trim: true },
+          secondaryFeatured: {
+            heading: { type: String, trim: true },
+            body: { type: String, trim: true },
+            imageUrl: { type: String, trim: true },
+            imageAlt: { type: String, trim: true },
+          },
         },
         cards: {
           heading: { type: String, trim: true },
@@ -158,6 +177,7 @@ const templateTwoContentSchema = new mongoose.Schema(
         schedules: {
           heading: { type: String, trim: true },
           subheading: { type: String, trim: true },
+          items: [scheduleItemSchema],
           imageUrl: { type: String, trim: true },
           imageAlt: { type: String, trim: true },
         },
@@ -167,6 +187,9 @@ const templateTwoContentSchema = new mongoose.Schema(
           cta: { type: String, trim: true },
           imageUrl: { type: String, trim: true },
           imageAlt: { type: String, trim: true },
+          telehealthImage: { type: String, trim: true },
+          telehealthImageAlt: { type: String, trim: true },
+          whatsappUrl: { type: String, trim: true },
           features: [{ type: String, trim: true }],
         },
         faq: {

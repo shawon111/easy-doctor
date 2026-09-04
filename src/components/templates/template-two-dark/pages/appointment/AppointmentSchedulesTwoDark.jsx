@@ -18,7 +18,7 @@ function groupScheduleByLocation(items = []) {
   return Array.from(groups.values());
 }
 
-export default function AppointmentSchedulesTwoDark({ content = {}, telehealthImage , isDemo = false}) {
+export default function AppointmentSchedulesTwoDark({ content = {}, telehealthImage, telehealthImageAlt, isDemo = false}) {
   const chambers = groupScheduleByLocation(content.items);
   const telehealthSrc = content.imageUrl || telehealthImage || TELEHEALTH_IMAGE_FALLBACK;
 

@@ -42,10 +42,9 @@ export default function AboutChambersOne({ content = {} , isDemo = false}) {
             <div
               className="w-full h-full bg-cover bg-center"
               role="img"
-              aria-label=""
+              aria-label={content.imageAlt || ""}
               style={{
-                backgroundImage:
-                  "url('https://lh3.googleusercontent.com/aida-public/AB6AXuC-JtnM4GUEG_-hpHQzxNdg0t6MYMX9xOVPcjXlGk39XKd3ZiBzGNv-o0Ez49Njbvw70u0id3e6ahXScC4jP-sQKpisIgyCKzJl1JUZf7IKICj8-R03YNDouEmJH6rk_9S2uT1d79n-TI3gmHtrb2lB3DiksPqFH1r02CfYCn6MhKwk5C3-0jGvejEHswgRKYW3xkjZXVoraYta5CyJW42kEHTfuOmehB21KclP62yNiHQi3uirxO87-Q')",
+                backgroundImage: content.imageUrl ? `url('${content.imageUrl}')` : undefined,
               }}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />

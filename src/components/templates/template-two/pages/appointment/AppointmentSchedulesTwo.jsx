@@ -19,7 +19,7 @@ function groupScheduleByLocation(items = []) {
   return Array.from(groups.values());
 }
 
-export default function AppointmentSchedulesTwo({ content = {}, telehealthImage , isDemo = false}) {
+export default function AppointmentSchedulesTwo({ content = {}, telehealthImage, telehealthImageAlt, isDemo = false}) {
   const chambers = groupScheduleByLocation(content.items);
   const telehealthSrc = content.imageUrl || telehealthImage || TELEHEALTH_IMAGE_FALLBACK;
 
@@ -80,7 +80,7 @@ export default function AppointmentSchedulesTwo({ content = {}, telehealthImage 
             <div
               className="bg-cover bg-center w-full h-full"
               role="img"
-              aria-label="Telehealth consultation"
+              aria-label={telehealthImageAlt || "Telehealth consultation"}
               style={{ backgroundImage: `url('${telehealthSrc}')` }}
             />
           </div>
