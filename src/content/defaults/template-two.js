@@ -35,7 +35,7 @@ export const templateTwoDefaults = {
         secondaryCta: "View Clinical Registry",
         imageAlt:
           "A cinematic, high-end professional portrait of a distinguished male specialist doctor in a light, luxury medical suite.",
-        image:
+        imageUrl:
           "https://lh3.googleusercontent.com/aida-public/AB6AXuDXxKwFcSECIyn9rW8o_uDKX37xePMxOsbGbwQgrLqtpWtQKANCJnZQqNHdmWfnFbCdUqTyykWUoNvrAeUWb85qQ6-TPkWREcdFn9eRACqOH2u7GQGSo79HfitvGpnPTGxeJzL0lb4_5WtxMioB_Tq_fum1baQMDk7JEkK6-ew6rOWcpBMngJGUd0eW8XUksnh2HbYT47otp692cTcjl_EG01vZ3TBhX6oW7vqHQDw-N_EHaAcxoAKT1w",
       },
       credentials: {
@@ -75,7 +75,7 @@ export const templateTwoDefaults = {
             title: "Minimally Invasive Neuro-Regeneration",
             description:
               "Advanced protocols utilizing robotic precision and localized stem-cell delivery for cognitive restoration.",
-            image:
+            imageUrl:
               "https://lh3.googleusercontent.com/aida-public/AB6AXuBB9u7mczd5j1pTng72G6DvLx7C_Kx6wJ4TyC2uP3iqsfTOLpUuKyGwqw_Y0uxNQ4liKtck5si65NfQpizmZooL6j2tr82hCGBseOjwneijHVtoantev4YsKjbDnHRuVFRHnqkDse3XvaFfbcEz0GV_FBCtmSGap0iVH8kDvv7GEnwmIr5rDPgepcsp2eVHrhuO7gYaDL7E2K8A3KC5fNLMb1JMecTo9oQvA5rLBNGjV4E8p65_gSv72A",
             imageAlt: "High-contrast medical equipment shot.",
           },
@@ -84,7 +84,7 @@ export const templateTwoDefaults = {
             title: "Genomic Profile Screening",
             description:
               "Deep genetic mapping to predict and prevent chronic vascular pathologies.",
-            image:
+            imageUrl:
               "https://lh3.googleusercontent.com/aida-public/AB6AXuAdRlGII0S6SiGvSN9OKxu3OgPZ438IC8ULONkjSeb7YIgvNtkpnhNbFWnbWpTM-NeomX_prMEW03XU28Mg6fHPvJZe7QxvWdwA0nh65spFQfqntZHAD2Xa1vGT5A8v10nb7S_V5Jb3OMSmfUMEb-N7OLq8HQulRYFEtezo0UOo1wZQvB37uL4exyaBy27tbWCFAaE9NjOQEPA5ZUQk5abLMzqrMeVS-cFU-9G0TM1s48d6hk4j-p87ag",
             imageAlt: "Genomic illustration.",
           },
@@ -99,7 +99,7 @@ export const templateTwoDefaults = {
             title: "Executive Performance Medicine",
             description:
               "Custom nutritional and physiological engineering for high-performing professionals and athletes.",
-            image:
+            imageUrl:
               "https://lh3.googleusercontent.com/aida-public/AB6AXuANlR6_GTLRQ5hdnA8hl-A654weJ8LGYcQTkNoHVe3fZ7BXo2meLy2mzZBzfgbkfcoQdVpkTOaLa_s_x4HBx_2zmJHNC-Z0k6O3PqLDzgD-rdGkn2gFNaerWAns27iZ3mLEKm9iBHn0P7jsg3knLf5XlqxzwrQPAYT_6GbMQGAUjHGlv9lropAYuTC9-7yX5q2b51SMpsfiqzGu0zOp12LWoN0OoqjccX2DQRbTK6VTWeIFSAeRYxKdWQ",
             imageAlt: "High-end medical vials.",
           },
@@ -163,7 +163,7 @@ export const templateTwoDefaults = {
         subheading:
           "Located in the historic heart of London's medical excellence, our chambers provide a serene, private environment for executive consultation.",
         imageAlt: "Vector map of Harley Street area.",
-        image:
+        imageUrl:
           "https://lh3.googleusercontent.com/aida-public/AB6AXuClqAmDaJPpOfZQ4FtOCxYCJZ9HEPYePeXq5yVOmzi_wx6xuD_yD906ZhIowQriEDGsscyHACNI7GovoqA6bO8nWSXhL73ndsnA8SDc72Ofpt3aRu5Xon7LU1omSI5ZCU51AqIU93HV5tmOvu_yb8J-93u4Rko6RsUqc3niWwOxHWUCyFjIa4AAsrhJnwn-FX9P2YwePI5NblitXMxUufqU50vqtmXKYl71-gQr9zRG4TFxjVRC7L93rA",
       },
       finalCta: {
@@ -181,7 +181,7 @@ export const templateTwoDefaults = {
         languages: ["English", "French", "Arabic"],
         imageAlt:
           "A professional portrait of an executive male specialist doctor in his early 50s, wearing a bespoke navy suit and a white clinical coat.",
-        image:
+        imageUrl:
           "https://lh3.googleusercontent.com/aida-public/AB6AXuC6E94N4ihuxDnC1fKJmF2jN7fNcNgbm2BYOBjiBjvoKhWAFtOdRackfeSEGaNAOqXUZGYze11OX_DLJd1Jn2X1St5Sbj0paJDGp7UmiqbqHl9nwGWGoLDq1wfFeoPiXG3NL-Gn05fI172zWcz7P9k0A8adGWqtO8OeWoU-cTW1icWJKgzCELXF_t2Y4vMoZejyWfVCdojwZp9UKP6nvs-RF8rScj6x3vaMn9omwEE31xVTrLn5XmaLEA",
       },
       story: {
@@ -245,7 +245,7 @@ export const templateTwoDefaults = {
             title: "Central Heights Medical",
             description:
               "420 Park Avenue, 18th Floor, New York, NY 10022. Mon - Wed: 09:00 - 16:00. Friday: 09:00 - 13:00.",
-            image:
+            imageUrl:
               "https://lh3.googleusercontent.com/aida-public/AB6AXuB9PrktMatctpk7B9fA7GQbb7Yj-9yZ1luWjd5V1ZJ3VEq6xo0YI7ugWchnBb6XvGEgqB5ZsO5weNM9ZOQrnKb2VpQjT_vkBHLEBW6fTZIK9DupkYHefmOT2XnXgqg-INusxuk8zGj2QahaIyJuNR7DPiXhl4Dr_eFHYbsTqOu29tmiH5WhenizPHyHGFGJWhfWLcrSdU6D4ZKXbIWoLacqyMzx3wi1nFgtdbPrAzoyn25GAjIoksd6Vw",
             imageAlt: "An ultra-modern, high-end medical lobby",
           },
@@ -254,7 +254,7 @@ export const templateTwoDefaults = {
             title: "The Meridian Clinic",
             description:
               "12 Greenwich Way, Westchester County, NY. Thursday: 10:00 - 18:00. Saturday: By Appointment Only.",
-            image:
+            imageUrl:
               "https://lh3.googleusercontent.com/aida-public/AB6AXuDE_xsDMW8FE9hhemKWqrQ4RC4ytnt_yemNkPcXRnBJ5FkaoWCdyCo-1corigV-ZYSdM7tTAS1DsAuhQ8YZoOb2gD-Hg1JCLrKEO4GN7nVv0Apf8nyuw1UccTfCIht60SmEaKCgvn_dHiyxKD2dHze4j4OLxU2aog0RdwvuDgIEfRIz5OEHrediu28fTVvb5hhec_Cj8q-oHFPIvJt6J45DY04N2wW383jegkuUFwVv-emlQFCLzC7n_A",
             imageAlt: "The exterior of a private healthcare facility",
           },
@@ -280,12 +280,12 @@ export const templateTwoDefaults = {
         cta: "View Methodology",
         imageAlt:
           "A hyper-realistic surgical robot arm performing a micro-procedure under cinematic cool blue clinical lighting.",
-        image:
+        imageUrl:
           "https://lh3.googleusercontent.com/aida-public/AB6AXuAejtLRzK3bQa8whYcqiEkJObPaIDyqcXjcRn4X8JBxGYwYqh9wouWsYaKVXAMWpeTRTbtzvvJSwRKTTxMexesGEx5jDyNlX3quKr6GZ3xGJqcSeuhdr1LES0joedLZdSlv_J3gEIe3tmoqaPRE2DMT1YHXPUgBCWfhk0DvV-ZaYt10jf4D1s3XMhcw6B0vSwpCz9EkWB6Lqhp7Mgme8tYdzBEiRk6i13Ap16NUK3ME3sqWelrnZ8ULTw",
         secondaryFeatured: {
           heading: "Diagnostic Profiling",
           body: "Comprehensive executive wellness mapping using advanced multi-spectral imaging.",
-          image:
+          imageUrl:
             "https://lh3.googleusercontent.com/aida-public/AB6AXuABPsMRRcvFE3m0q-41aGeL5wwxttmmCsf28miCY4OBgq17WbomVzxasLVFOkli7_4kyk4U_QfTsMeDGyBNFNsh5mzdWxpCMghqcjuR3_xrTgJ5u8rzCZXiBOiq6tE0O0XxEjvxIqpluh7HDNQclINa9Lx1AfDUckaHivrugd5QONndl80RmnIGKMWn2_ElOYr8WskFNuVxCzQNJcXK9Kpzj4762-smUEg1JJ0M0yijYFEURaVCoR1HEQ",
           imageAlt:
             "Close up of a high-end medical diagnostic display showing complex biometric data.",
@@ -320,7 +320,7 @@ export const templateTwoDefaults = {
         heading: "The Standard of Executive Care",
         subheading:
           "We understand that our patients value discretion, time, and absolute technical certainty. Our practice is built on three pillars of excellence.",
-        image:
+        imageUrl:
           "https://lh3.googleusercontent.com/aida-public/AB6AXuCMnzyNVVzbtBCUayb8cPumdCi_8F0iPFr0wIttqUVZPsBSfXyB-y9RONuOLfCJCWohjlONLcOBNp3KTGS0UFwfWwOneaCxCLyFsuaW2j22MslZRdTygeeJE-5SsN7JiXYzrWnwwZTqiHjVl5Lucao9spI3sZQUFvCHNTd9yN7LwIJ8LSX_P_n2MZxRBQ5OPxaMEpZYiivcK3Eohf6c7k4zU3gZqhaeousdesI6Rx_OD3wmx5iFWXs3xg",
         imageAlt:
           "A portrait of a distinguished male specialist doctor in a perfectly tailored charcoal medical coat.",
@@ -393,7 +393,7 @@ export const templateTwoDefaults = {
           "Priority Scheduling — Skip the queue for urgent consultations.",
           "End-to-End Privacy — All communications are encrypted and confidential.",
         ],
-        image:
+        imageUrl:
           "https://lh3.googleusercontent.com/aida-public/AB6AXuAryKDCaQLNj7Gq2TkxFFEMZGkG_1_lVuEPfceszUbcPVGdFBJzZua9CpVpgm2HsYl6BOX7Wvw-mvQ0JTew73mYjDSarvKD4OdXzOEvXi0Qx3qeo8W7Ga_ZpgsAEMXFN5Guyhp2Z4Gt-O30XpTWqylp2zQdIXvb2rLiT-ARHz_1QqPe0XKcp_Ws645-74mWUH47ruy_WXqapYzO3ybSdGZ3p7urn1INslzEwlil1UUvRDlWtewjuZFUng",
         telehealthImage:
           "https://lh3.googleusercontent.com/aida-public/AB6AXuCjv5vpIPEslsLsiijC_4TQRAP9zvIE_Qhtga5G_exO0v9fd_KcH7cYb42b3PCHC64FvBpvoHxrijc88lBc_NNjIfKv-cZmBvMDrWjmyiWBUoTJdWCbf5Mg5lhs8-I0NmrQB6BYe6A4aWTWuo0BCD48ykkbM_S7M_i6X5oGbRTgAlZsmVchnxOe1Dmz1MvYKa2sLCojRHn4ostjGguTi1HkCBDRb3ATpAlSNtO_MM-5jMm9mWbyGoUt2w",

@@ -22,11 +22,11 @@ export default function TreatmentsTwoDark({ slug, content = {} , isDemo = false}
       <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-12 gap-6">
         {featured ? (
           <div className="md:col-span-8 glass-card p-12 min-h-[400px] flex flex-col justify-end relative overflow-hidden group">
-            {featured.image ? (
+            {featured.imageUrl ? (
               <img
                 className="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-[2000ms]"
                 alt={featured.imageAlt || featured.title}
-                src={featured.image}
+                src={featured.imageUrl}
               />
             ) : null}
             <div className="relative z-10 space-y-4">
@@ -46,12 +46,12 @@ export default function TreatmentsTwoDark({ slug, content = {} , isDemo = false}
 
         {secondary ? (
           <div className="md:col-span-4 glass-card p-8 flex flex-col justify-between group">
-            {secondary.image ? (
+            {secondary.imageUrl ? (
               <div className="w-full h-48 bg-surface-container rounded-lg mb-6 overflow-hidden">
                 <img
                   className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity"
                   alt={secondary.imageAlt || secondary.title}
-                  src={secondary.image}
+                  src={secondary.imageUrl}
                 />
               </div>
             ) : null}
@@ -79,12 +79,12 @@ export default function TreatmentsTwoDark({ slug, content = {} , isDemo = false}
 
         {quaternary ? (
           <div className="md:col-span-8 glass-card p-8 flex items-center gap-8 group">
-            {quaternary.image ? (
+            {quaternary.imageUrl ? (
               <div className="hidden sm:block w-48 h-48 rounded-lg overflow-hidden shrink-0">
                 <img
                   className="w-full h-full object-cover"
                   alt={quaternary.imageAlt || quaternary.title}
-                  src={quaternary.image}
+                  src={quaternary.imageUrl}
                 />
               </div>
             ) : null}

@@ -20,7 +20,7 @@ function normalizeFeatures(features = []) {
 
 export default function AppointmentWhatsappTwo({ content = {} , isDemo = false}) {
   const features = normalizeFeatures(content.features);
-  const imageSrc = content.image || WHATSAPP_IMAGE_FALLBACK;
+  const imageSrc = content.imageUrl || WHATSAPP_IMAGE_FALLBACK;
 
   return (
     <section className="py-[120px] px-[20px] md:px-[64px]" id="whatsapp">

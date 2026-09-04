@@ -3,7 +3,7 @@ const BENEFITS_IMAGE_FALLBACK =
 
 export default function ServicesBenefitsTwo({ content = {} , isDemo = false}) {
   const items = content.items || [];
-  const imageSrc = content.image || BENEFITS_IMAGE_FALLBACK;
+  const imageSrc = content.imageUrl || BENEFITS_IMAGE_FALLBACK;
 
   return (
     <section className="py-[120px] px-[20px] md:px-[64px] max-w-[1200px] mx-auto">

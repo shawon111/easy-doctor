@@ -3,7 +3,7 @@ const CHAMBER_IMAGE_FALLBACK =
 
 export default function ChamberTwoDark({ content = {} , isDemo = false}) {
   const location = content.location;
-  const imageSrc = content.image || CHAMBER_IMAGE_FALLBACK;
+  const imageSrc = content.imageUrl || CHAMBER_IMAGE_FALLBACK;
 
   return (
     <section className="py-[120px] px-5 md:px-16">

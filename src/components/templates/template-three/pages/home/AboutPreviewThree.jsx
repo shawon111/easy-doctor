@@ -16,20 +16,20 @@ export default function AboutPreviewThree({ slug, content = {} , isDemo = false}
           <div className="space-y-4 pt-12">
             {images.slice(0, 2).map((img) => (
               <div
-                key={img.src}
+                key={img.imageUrl}
                 className={`${img.className} rounded-3xl overflow-hidden border border-outline-variant/30 shadow-md`}
               >
-                <img className="w-full h-full object-cover" alt={img.alt} src={img.src} />
+                <img className="w-full h-full object-cover" alt={img.imageAlt} src={img.imageUrl} />
               </div>
             ))}
           </div>
           <div className="space-y-4">
             {images.slice(2).map((img) => (
               <div
-                key={img.src}
+                key={img.imageUrl}
                 className={`${img.className} rounded-3xl overflow-hidden border border-outline-variant/30 shadow-md`}
               >
-                <img className="w-full h-full object-cover" alt={img.alt} src={img.src} />
+                <img className="w-full h-full object-cover" alt={img.imageAlt} src={img.imageUrl} />
               </div>
             ))}
           </div>

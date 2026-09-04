@@ -22,8 +22,8 @@ export default function ServicesHeroOne({ content = {} , isDemo = false}) {
           <div className="w-full aspect-[4/5] rounded-xl overflow-hidden shadow-[0px_10px_30px_rgba(30,41,59,0.04)]">
             <img
               className="w-full h-full object-cover"
-              alt=""
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsd5_3hOf7MEQeFgx-V50yO_JAuyHywjjxjip_x0sLfmhDH6FhJVgfn8DG4M4BbzJ5-V-sY0CcLvVyP4hKbhjOHQx6mqqKHkuucHFDsVkU1XMjNBQBUahIx5CKWaMW8frekMD2kLmwjIWlVj7ZgMX4TBJq0CoxdqOmxLvSRfKMgHY59eqq12ethhQj5zEhxdGfQhGD5EoSC9NC1sZva3Vqa0WcHQ8kHPbVkhOcpKTEpE9N7zFPjQryig"
+              alt={content.imageAlt || ""}
+              src={content.imageUrl}
             />
           </div>
           <div className="absolute -bottom-8 -left-8 w-48 h-48 bg-primary/5 rounded-full blur-3xl" />

@@ -32,7 +32,7 @@ export default function HomeMapLocationDarkThree({ content = {} , isDemo = false
         </div>
 
         <div className="rounded-[32px] overflow-hidden border border-outline-variant/50 h-[400px] shadow-lg">
-          <img className="w-full h-full object-cover" alt={content.mapImage?.alt} src={content.mapImage?.src} />
+          <img className="w-full h-full object-cover" alt={content.mapImage?.imageAlt} src={content.mapImage?.imageUrl} />
         </div>
       </div>
     </section>

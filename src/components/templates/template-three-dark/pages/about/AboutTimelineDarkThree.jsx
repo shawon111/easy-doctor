@@ -46,7 +46,7 @@ export default function AboutTimelineDarkThree({ content = {} , isDemo = false})
                 </FadeInThree>
 
                 <FadeInThree className="md:w-[45%] rounded-xl overflow-hidden border border-outline-variant shadow-lg hidden md:block">
-                  <img className="w-full h-48 object-cover" alt={milestone.alt} src={milestone.image} />
+                  <img className="w-full h-48 object-cover" alt={milestone.imageAlt} src={milestone.imageUrl} />
                 </FadeInThree>
               </div>
             ))}

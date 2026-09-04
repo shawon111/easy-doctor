@@ -56,6 +56,7 @@ const templateOneContentSchema = new mongoose.Schema(
           body: { type: String, trim: true },
           primaryCta: { type: String, trim: true },
           secondaryCta: { type: String, trim: true },
+          imageUrl: { type: String, trim: true },
           imageAlt: { type: String, trim: true },
           statCard: {
             value: { type: String, trim: true },
@@ -69,6 +70,7 @@ const templateOneContentSchema = new mongoose.Schema(
           heading: { type: String, trim: true },
           body: { type: String, trim: true },
           linkLabel: { type: String, trim: true },
+          imageUrl: { type: String, trim: true },
           imageAlt: { type: String, trim: true },
         },
         services: {
@@ -100,6 +102,7 @@ const templateOneContentSchema = new mongoose.Schema(
           heading: { type: String, trim: true },
           body: { type: String, trim: true },
           experience: { type: Number },
+          imageUrl: { type: String, trim: true },
           imageAlt: { type: String, trim: true },
         },
         philosophy: {
@@ -120,6 +123,8 @@ const templateOneContentSchema = new mongoose.Schema(
         chambers: {
           heading: { type: String, trim: true },
           subheading: { type: String, trim: true },
+          imageUrl: { type: String, trim: true },
+          imageAlt: { type: String, trim: true },
         },
         finalCta: ctaSchema,
       },
@@ -128,6 +133,8 @@ const templateOneContentSchema = new mongoose.Schema(
           badge: { type: String, trim: true },
           heading: { type: String, trim: true },
           body: { type: String, trim: true },
+          imageUrl: { type: String, trim: true },
+          imageAlt: { type: String, trim: true },
         },
         treatmentsGrid: {
           heading: { type: String, trim: true },
@@ -137,6 +144,8 @@ const templateOneContentSchema = new mongoose.Schema(
         benefits: {
           heading: { type: String, trim: true },
           subheading: { type: String, trim: true },
+          imageUrl: { type: String, trim: true },
+          imageAlt: { type: String, trim: true },
           items: [iconTextItemSchema],
         },
         faq: {
@@ -150,6 +159,8 @@ const templateOneContentSchema = new mongoose.Schema(
           badge: { type: String, trim: true },
           heading: { type: String, trim: true },
           body: { type: String, trim: true },
+          imageUrl: { type: String, trim: true },
+          imageAlt: { type: String, trim: true },
         },
         howItWorks: {
           heading: { type: String, trim: true },

@@ -7,8 +7,8 @@ export default function ServicesBenefitsOne({ content = {} , isDemo = false}) {
         <div className="relative rounded-xl overflow-hidden aspect-square shadow-[0px_10px_30px_rgba(30,41,59,0.04)]">
           <img
             className="w-full h-full object-cover"
-            alt=""
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSQ4uIemD_xTtOwVnEu0nmn_APexm6QGm2BLP65hM7QcFVnbFVm0FoOOYWR9oRguBlyd9zFsbgb1grFcxr6e5D3hLv6g413aLUiAHgC9rF1UTKKMaD0-988mz7uNdfzMXFozyrqwz2-S9P7ZQjSO2x2xvvai7Rc3CAW8vy4K7g7kv9E4tau_P3KdMcYZEn_MOM_1GKx826eeLyuUjrRfKMyN06ZmItsLXLq0HGLxVW5QceCH4hpsJ78Q"
+            alt={content.imageAlt || ""}
+            src={content.imageUrl}
           />
         </div>
 

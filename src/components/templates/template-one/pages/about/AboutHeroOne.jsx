@@ -4,7 +4,7 @@ const HERO_IMAGE_FALLBACK =
   "https://lh3.googleusercontent.com/aida-public/AB6AXuBtIcOn5s8uXofUKNHfqczLLOWAnkOaZdVnAGVe5ZUYtv8tuQNH72g1A4aP6PHg-jpgAajEFQDp0BzqSWmwUlL6hChndREg-88t_lMhR-Be8mG8Bqg1LzYhtW2thD3I7SqW9x2h4inO6i6Btll1ILcFPcZKNnDuodiamvTzgiBHxl4yw2YlsP59yFqyi94osRqkB3pBuAviNJ14mLgiMoWizrjD27hFYCtK9oE6UN94NrO3fEg9mF4-gA";
 
 export default function AboutHeroOne({ content = {} }) {
-  const imageSrc = content.image || HERO_IMAGE_FALLBACK;
+  const imageSrc = content.imageUrl || HERO_IMAGE_FALLBACK;
 
   return (
     <Reveal

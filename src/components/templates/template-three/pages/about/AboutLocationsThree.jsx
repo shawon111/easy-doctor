@@ -16,8 +16,8 @@ export default function AboutLocationsThree({ content = {} , isDemo = false}) {
               <div className="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-transparent to-transparent z-10" />
               <img
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                alt={location.alt || location.city}
-                src={location.image}
+                alt={location.imageAlt || location.city}
+                src={location.imageUrl}
               />
               <div className="absolute bottom-6 left-6 z-20">
                 <h4 className="font-headline-md text-white">{location.city}</h4>

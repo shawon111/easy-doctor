@@ -106,7 +106,7 @@ export default function ServicesTreatmentsThree({ content = {} , isDemo = false}
                 >
                   <div
                     className={`w-full h-full bg-cover bg-center ${imageMinHeight}`}
-                    style={{ backgroundImage: `url('${card.image}')` }}
+                    style={{ backgroundImage: `url('${card.imageUrl}')` }}
                   />
                   {card.cta && config.colSpan.includes("4") && (
                     <button

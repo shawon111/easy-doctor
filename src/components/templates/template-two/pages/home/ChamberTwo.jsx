@@ -3,7 +3,7 @@ const CHAMBER_IMAGE_FALLBACK =
 
 export default function ChamberTwo({ content = {} , isDemo = false}) {
   const location = content.location;
-  const imageSrc = content.image || CHAMBER_IMAGE_FALLBACK;
+  const imageSrc = content.imageUrl || CHAMBER_IMAGE_FALLBACK;
 
   return (
     <section className="py-section-gap px-margin-mobile md:px-margin-desktop bg-surface-container-lowest">

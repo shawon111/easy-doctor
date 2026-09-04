@@ -23,7 +23,7 @@ export default function ServicesHeroOneDark({ content = {} , isDemo = false}) {
             <img
               alt=""
               className="w-full h-full object-cover filter contrast-125 grayscale hover:grayscale-0 transition-all duration-700"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsd5_3hOf7MEQeFgx-V50yO_JAuyHywjjxjip_x0sLfmhDH6FhJVgfn8DG4M4BbzJ5-V-sY0CcLvVyP4hKbhjOHQx6mqqKHkuucHFDsVkU1XMjNBQBUahIx5CKWaMW8frekMD2kLmwjIWlVj7ZgMX4TBJq0CoxdqOmxLvSRfKMgHY59eqq12ethhQj5zEhxdGfQhGD5EoSC9NC1sZva3Vqa0WcHQ8kHPbVkhOcpKTEpE9N7zFPjQryig"
+              src={content.imageUrl}
             />
           </div>
           <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-cobalt/20 rounded-full blur-[80px]" />

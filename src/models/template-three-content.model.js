@@ -52,6 +52,7 @@ const templateThreeContentSchema = new mongoose.Schema(
           body: { type: String, trim: true },
           primaryCta: { type: String, trim: true },
           secondaryCta: { type: String, trim: true },
+          imageUrl: { type: String, trim: true },
           imageAlt: { type: String, trim: true },
           statCard: {
             value: { type: String, trim: true },
@@ -100,6 +101,7 @@ const templateThreeContentSchema = new mongoose.Schema(
           badge: { type: String, trim: true },
           heading: { type: String, trim: true },
           body: { type: String, trim: true },
+          imageUrl: { type: String, trim: true },
           imageAlt: { type: String, trim: true },
         },
         journey: {
@@ -107,6 +109,7 @@ const templateThreeContentSchema = new mongoose.Schema(
           body: { type: String, trim: true },
           quote: { type: String, trim: true },
           quoteAuthor: { type: String, trim: true },
+          imageUrl: { type: String, trim: true },
           imageAlt: { type: String, trim: true },
         },
         timeline: {
@@ -142,7 +145,8 @@ const templateThreeContentSchema = new mongoose.Schema(
               body: { type: String, trim: true },
               bullets: [{ type: String, trim: true }],
               cta: { type: String, trim: true },
-              image: { type: String, trim: true },
+              imageUrl: { type: String, trim: true },
+              imageAlt: { type: String, trim: true },
               stat1Value: { type: String, trim: true },
               stat1Label: { type: String, trim: true },
               stat2Value: { type: String, trim: true },
@@ -153,6 +157,8 @@ const templateThreeContentSchema = new mongoose.Schema(
         benefits: {
           heading: { type: String, trim: true },
           subheading: { type: String, trim: true },
+          imageUrl: { type: String, trim: true },
+          imageAlt: { type: String, trim: true },
           items: [iconTextItemSchema],
         },
         faq: {

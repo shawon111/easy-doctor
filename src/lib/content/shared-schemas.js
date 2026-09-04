@@ -19,8 +19,8 @@ export const linkItemSchema = new mongoose.Schema(
 
 export const imageSchema = new mongoose.Schema(
   {
-    src: { type: String, trim: true },
-    alt: { type: String, trim: true },
+    imageUrl: { type: String, trim: true },
+    imageAlt: { type: String, trim: true },
   },
   { _id: false }
 );
@@ -59,6 +59,8 @@ export const serviceCardSchema = new mongoose.Schema(
     title: { type: String, trim: true },
     description: { type: String, trim: true },
     iconClass: { type: String, trim: true },
+    imageUrl: { type: String, trim: true },
+    imageAlt: { type: String, trim: true },
   },
   { _id: false }
 );
@@ -80,8 +82,8 @@ export const timelineItemSchema = new mongoose.Schema(
     title: { type: String, trim: true },
     description: { type: String, trim: true },
     mobileDescription: { type: String, trim: true },
-    image: { type: String, trim: true },
-    alt: { type: String, trim: true },
+    imageUrl: { type: String, trim: true },
+    imageAlt: { type: String, trim: true },
     reverse: { type: Boolean, default: false },
   },
   { _id: false }
@@ -91,8 +93,8 @@ export const chamberImageSchema = new mongoose.Schema(
   {
     label: { type: String, trim: true },
     title: { type: String, trim: true },
-    image: { type: String, trim: true },
-    alt: { type: String, trim: true },
+    imageUrl: { type: String, trim: true },
+    imageAlt: { type: String, trim: true },
   },
   { _id: false }
 );
@@ -101,8 +103,8 @@ export const locationImageSchema = new mongoose.Schema(
   {
     city: { type: String, trim: true },
     subtitle: { type: String, trim: true },
-    image: { type: String, trim: true },
-    alt: { type: String, trim: true },
+    imageUrl: { type: String, trim: true },
+    imageAlt: { type: String, trim: true },
   },
   { _id: false }
 );

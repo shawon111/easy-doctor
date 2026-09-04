@@ -6,7 +6,7 @@ const HERO_IMAGE_FALLBACK =
 
 export default function HeroOne({ content = {}, slug , isDemo = false}) {
   const base = slug ? `/doctor/${slug}` : "#";
-  const imageSrc = content.image || HERO_IMAGE_FALLBACK;
+  const imageSrc = content.imageUrl || HERO_IMAGE_FALLBACK;
   const statCard = content.statCard;
 
   return (

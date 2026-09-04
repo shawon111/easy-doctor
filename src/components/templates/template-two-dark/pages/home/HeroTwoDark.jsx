@@ -5,7 +5,7 @@ const HERO_IMAGE_FALLBACK =
 
 export default function HeroTwoDark({ slug, content = {} , isDemo = false}) {
   const base = slug ? `/doctor/${slug}` : "#";
-  const imageSrc = content.image || HERO_IMAGE_FALLBACK;
+  const imageSrc = content.imageUrl || HERO_IMAGE_FALLBACK;
 
   return (
     <section className="relative min-h-[921px] flex items-center pt-20 px-5 md:px-16 overflow-hidden">

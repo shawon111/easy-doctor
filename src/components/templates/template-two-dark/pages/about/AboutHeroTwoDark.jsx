@@ -3,7 +3,7 @@ const HERO_IMAGE_FALLBACK =
 
 export default function AboutHeroTwoDark({ content = {} }) {
   const languages = content.languages || [];
-  const imageSrc = content.image || HERO_IMAGE_FALLBACK;
+  const imageSrc = content.imageUrl || HERO_IMAGE_FALLBACK;
 
   return (
     <section className="relative min-h-[716px] flex items-center overflow-hidden pt-20">

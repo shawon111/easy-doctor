@@ -34,8 +34,8 @@ export default function MapLocationThree({ content = {} , isDemo = false}) {
         <div className="rounded-[32px] overflow-hidden border border-outline-variant/50 h-[400px] shadow-lg">
           <img
             className="w-full h-full object-cover"
-            alt={content.mapImage?.alt}
-            src={content.mapImage?.src}
+            alt={content.mapImage?.imageAlt}
+            src={content.mapImage?.imageUrl}
           />
         </div>
       </div>

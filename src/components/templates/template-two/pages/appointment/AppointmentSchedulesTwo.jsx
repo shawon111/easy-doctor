@@ -21,7 +21,7 @@ function groupScheduleByLocation(items = []) {
 
 export default function AppointmentSchedulesTwo({ content = {}, telehealthImage , isDemo = false}) {
   const chambers = groupScheduleByLocation(content.items);
-  const telehealthSrc = telehealthImage || TELEHEALTH_IMAGE_FALLBACK;
+  const telehealthSrc = content.imageUrl || telehealthImage || TELEHEALTH_IMAGE_FALLBACK;
 
   return (
     <section className="py-[120px] px-[20px] md:px-[64px]" id="schedules">

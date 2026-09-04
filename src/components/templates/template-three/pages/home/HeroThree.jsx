@@ -5,7 +5,7 @@ const DEFAULT_HERO_IMAGE =
 
 export default function HeroThree({ slug, content = {} , isDemo = false}) {
   const base = slug ? `/doctor/${slug}` : "#";
-  const heroImage = content.image || DEFAULT_HERO_IMAGE;
+  const heroImage = content.imageUrl || DEFAULT_HERO_IMAGE;
 
   return (
     <section className="relative min-h-[870px] flex items-center overflow-hidden hero-gradient">

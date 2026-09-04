@@ -53,6 +53,7 @@ const templateTwoContentSchema = new mongoose.Schema(
           body: { type: String, trim: true },
           primaryCta: { type: String, trim: true },
           secondaryCta: { type: String, trim: true },
+          imageUrl: { type: String, trim: true },
           imageAlt: { type: String, trim: true },
         },
         credentials: {
@@ -79,6 +80,7 @@ const templateTwoContentSchema = new mongoose.Schema(
         chamber: {
           heading: { type: String, trim: true },
           subheading: { type: String, trim: true },
+          imageUrl: { type: String, trim: true },
           imageAlt: { type: String, trim: true },
         },
         finalCta: ctaSchema,
@@ -89,6 +91,7 @@ const templateTwoContentSchema = new mongoose.Schema(
           heading: { type: String, trim: true },
           body: { type: String, trim: true },
           languages: [{ type: String, trim: true }],
+          imageUrl: { type: String, trim: true },
           imageAlt: { type: String, trim: true },
         },
         story: {
@@ -125,6 +128,7 @@ const templateTwoContentSchema = new mongoose.Schema(
           heading: { type: String, trim: true },
           body: { type: String, trim: true },
           cta: { type: String, trim: true },
+          imageUrl: { type: String, trim: true },
           imageAlt: { type: String, trim: true },
         },
         cards: {
@@ -135,6 +139,8 @@ const templateTwoContentSchema = new mongoose.Schema(
         benefits: {
           heading: { type: String, trim: true },
           subheading: { type: String, trim: true },
+          imageUrl: { type: String, trim: true },
+          imageAlt: { type: String, trim: true },
           items: [iconTextItemSchema],
         },
         faq: {
@@ -152,11 +158,15 @@ const templateTwoContentSchema = new mongoose.Schema(
         schedules: {
           heading: { type: String, trim: true },
           subheading: { type: String, trim: true },
+          imageUrl: { type: String, trim: true },
+          imageAlt: { type: String, trim: true },
         },
         whatsapp: {
           heading: { type: String, trim: true },
           body: { type: String, trim: true },
           cta: { type: String, trim: true },
+          imageUrl: { type: String, trim: true },
+          imageAlt: { type: String, trim: true },
           features: [{ type: String, trim: true }],
         },
         faq: {

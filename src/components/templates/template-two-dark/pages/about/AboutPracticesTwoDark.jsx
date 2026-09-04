@@ -10,7 +10,7 @@ function getPracticeLocations(content = {}) {
         key: loc.title,
         name: loc.title,
         badge: index === 0 ? "PRIMARY CHAMBER" : "PRIVATE CONSULTANCY",
-        image: loc.image,
+        imageUrl: loc.imageUrl,
         description: loc.description,
       };
     }
@@ -19,7 +19,7 @@ function getPracticeLocations(content = {}) {
       key: loc.subtitle || loc.city || loc.address,
       name: loc.subtitle || loc.city || "Clinic",
       badge: loc.city || "",
-      image: loc.image,
+      imageUrl: loc.imageUrl,
       address: loc.address,
       hours: loc.hours,
     };
@@ -52,12 +52,12 @@ export default function AboutPracticesTwoDark({ content = {}, slug , isDemo = fa
                 key={location.key}
                 className="bg-surface-container rounded-lg overflow-hidden border border-outline-variant/30 group"
               >
-                {location.image ? (
+                {location.imageUrl ? (
                   <div className="h-48 relative overflow-hidden">
                     <img
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
                       alt={location.name}
-                      src={location.image}
+                      src={location.imageUrl}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
                     <div className="absolute bottom-4 left-6">

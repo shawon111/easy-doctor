@@ -6,7 +6,7 @@ const FEATURED_IMAGE_FALLBACK =
 export default function ServicesFeaturedTwo({ content = {}, slug , isDemo = false}) {
   const secondary = content.secondaryFeatured || {};
   const base = slug ? `/doctor/${slug}` : "#";
-  const imageSrc = content.image || FEATURED_IMAGE_FALLBACK;
+  const imageSrc = content.imageUrl || FEATURED_IMAGE_FALLBACK;
 
   return (
     <section className="py-[120px] px-[20px] md:px-[64px] max-w-[1200px] mx-auto">
@@ -41,12 +41,12 @@ export default function ServicesFeaturedTwo({ content = {}, slug , isDemo = fals
         </div>
 
         <div className="md:col-span-4 group relative overflow-hidden rounded-[8px] svctwo-glass-panel p-2 h-[500px] flex flex-col">
-          {secondary.image ? (
+          {secondary.imageUrl ? (
             <div className="h-1/2 overflow-hidden">
               <img
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 alt={secondary.imageAlt || secondary.heading || ""}
-                src={secondary.image}
+                src={secondary.imageUrl}
               />
             </div>
           ) : null}

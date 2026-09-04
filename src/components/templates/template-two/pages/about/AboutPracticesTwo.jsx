@@ -11,7 +11,7 @@ function getPracticeLocations(content = {}) {
         name: loc.title,
         tag: index === 0 ? "PRIMARY CHAMBER" : "PRIVATE CONSULTANCY",
         alt: loc.imageAlt || loc.title,
-        image: loc.image,
+        imageUrl: loc.imageUrl,
         description: loc.description,
       };
     }
@@ -20,8 +20,8 @@ function getPracticeLocations(content = {}) {
       key: loc.subtitle || loc.city || loc.address,
       name: loc.subtitle || loc.city || "Clinic",
       tag: loc.city || "",
-      alt: loc.alt || loc.subtitle || "",
-      image: loc.image,
+      alt: loc.imageAlt || loc.subtitle || "",
+      imageUrl: loc.imageUrl,
       address: loc.address,
       hours: loc.hours,
     };
@@ -56,12 +56,12 @@ export default function AboutPracticesTwo({ content = {}, slug , isDemo = false}
                 key={loc.key}
                 className="bg-white rounded-[8px] overflow-hidden border border-[#c6c6cd]/50 group shadow-sm"
               >
-                {loc.image ? (
+                {loc.imageUrl ? (
                   <div className="h-48 relative overflow-hidden">
                     <img
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
-                      alt={loc.alt}
-                      src={loc.image}
+                      alt={loc.imageAlt}
+                      src={loc.imageUrl}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                     <div className="absolute bottom-4 left-6">
