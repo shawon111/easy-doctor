@@ -1,10 +1,10 @@
-import TemplateRenderer from "./TemplateRenderer";
+import PreviewClient from "./PreviewClient";
 
 const HomePreview = async ({ params }) => {
     const { template } = await params;
     return (
         <div>
-            <TemplateRenderer page={"home"} slug={template} isDemo={true} template={template} />
+            <PreviewClient template={template} />
         </div>
     );
 };

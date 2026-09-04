@@ -5,6 +5,8 @@ import Website from "@/models/website.model";
 import { createOrUpdateContent } from "@/services/content.service";
 import { createWebsite } from "@/services/website.service";
 import { NextResponse } from "next/server";
+import { withUser } from "@/lib/withUser";
+import { getWebsiteByUserId } from "@/services/website.service";
 
 const templateTypeToVariantmap = {
     "template-one": "light",
@@ -23,6 +25,18 @@ const templateTypeToContentTypeMap = {
     "template-three": "TemplateThreeContent",
     "template-three-dark": "TemplateThreeContent"
 }
+
+export const GET = withUser(async (request, context, currentUser) => {
+    try {
+        const website = await getWebsiteByUserId(currentUser._id);
+        return NextResponse.json({ success: true, data: website });
+    } catch (error) {
+        return NextResponse.json(
+            { success: false, message: "Failed to fetch website" },
+            { status: 500 }
+        );
+    }
+});
 
 // create a new website
 export const POST = async (request) => {

@@ -2,7 +2,9 @@ import { connectDB } from "@/config/database";
 import { logger } from "@/lib/logger";
 import { withUser } from "@/lib/withUser";
 import { createOrUpdateContent } from "@/services/content.service";
+import { getWebsiteByUserId } from "@/services/website.service";
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 
 export const PATCH = withUser(async (request, { params }, currentUser) => {
     try {
@@ -12,6 +14,11 @@ export const PATCH = withUser(async (request, { params }, currentUser) => {
 
         // save or update content
         const result = await createOrUpdateContent(currentUser, templateType, content);
+        const website = await getWebsiteByUserId(currentUser._id);
+        if (website?.subdomain) {
+            const pages = ["", "/about", "/services", "/appointment"];
+            pages.forEach((page) => revalidatePath(`/doctor/${website.subdomain}${page}`));
+        }
         return NextResponse.json(
             {
                 success: true,
