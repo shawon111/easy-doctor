@@ -42,6 +42,7 @@ const templateOneContentSchema = new mongoose.Schema(
       tagline: { type: String, trim: true },
       copyright: { type: String, trim: true },
       officeHoursLabel: { type: String, trim: true },
+      officeHours: { type: String, trim: true },
       urgentCareLabel: { type: String, trim: true },
       urgentCareNote: { type: String, trim: true },
       resourceLinks: [linkItemSchema],

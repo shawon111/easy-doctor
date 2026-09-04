@@ -13,6 +13,7 @@ export const templateOneDefaults = {
     copyright:
       "© 2024 Dr. {{name}}. All Rights Reserved. Clinical Elegance in Practice.",
     officeHoursLabel: "Office Hours",
+    officeHours: "Monday - Friday: 9:00 AM - 5:00 PM",
     urgentCareLabel: "Urgent Care Line:",
     resourceLinks: [
       { label: "Clinic Locations", href: "#" },
@@ -231,6 +232,10 @@ export const templateOneDefaults = {
         badge: "CLINICAL EXCELLENCE",
         heading: "Comprehensive Medical Care",
         body: "Merging cutting-edge medical precision with a compassionate, patient-first approach. We provide specialized care tailored to your unique biological profile and lifestyle needs.",
+        imageUrl:
+          "https://lh3.googleusercontent.com/aida-public/AB6AXuDrI_-iJl8d3az-c3zTX2scS0feijBybba2fRXqjKnc2ZWzSgzq4vSt1Zf60XXveGwMrWd7uWP9SUfvzhmRC-4CfhHW6QBWVCg_XwGBITK4uQZuySo_ggYx3oyH-_pcU4Y5MrlYg-ZaY56SUfoZpn4hTGr5KGyYqnbwcnBr--V6F6gKqiTOiUiy2VXA0gaobkLSNBD59u5GlPDCqss1F6YUyPaArGTiWEqp6UHLaauteUk_E5CSagFPXg",
+        imageAlt:
+          "A physician in a white medical coat in a bright minimalist medical office",
       },
       treatmentsGrid: {
         heading: "Specialized Medical Services",

@@ -21,7 +21,7 @@ export default function ServicesHeroOneDark({ content = {} , isDemo = false}) {
         <div className="lg:col-span-5 relative group">
           <div className="w-full aspect-square rounded-[3rem] overflow-hidden border-2 border-white/10 cyber-border">
             <img
-              alt=""
+              alt={content.imageAlt || ""}
               className="w-full h-full object-cover filter contrast-125 grayscale hover:grayscale-0 transition-all duration-700"
               src={content.imageUrl}
             />
