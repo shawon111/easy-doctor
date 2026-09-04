@@ -23,6 +23,7 @@ import { loginSchema } from "./auth/login-schema"
 import { useMutation } from "@tanstack/react-query"
 import toast from "react-hot-toast"
 import { useRouter } from "next/navigation"
+import { logger } from "@/lib/logger"
 
 export function LoginForm({
   className,
@@ -62,8 +63,9 @@ export function LoginForm({
       toast.success("Logged in successfully!");
       router.push("/dashboard");
     },
-    onError: () => {
-      toast.error("Invalid enmail or password");
+    onError: (error) => {
+      logger.error("Error message:", error.message);
+      toast.error("Invalid email or password");
     }
   })
   const onSubmit = (data) => {

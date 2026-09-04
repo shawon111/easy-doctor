@@ -11,6 +11,13 @@ const SYSTEM_SUBDOMAINS = [
     "api",
 ];
 
+const PROTECTED_API_PATHS = [
+    "/api/auth/logout",
+    "/api/me",
+    "/api/appointment",
+    "/api/website",
+];
+
 export function proxy(request) {
     // rewrite url and handle subdomain routing
     const { pathname } = request.nextUrl;
@@ -47,7 +54,8 @@ export function proxy(request) {
 
     if (
         subdomain &&
-        !SYSTEM_SUBDOMAINS.includes(subdomain)
+        !SYSTEM_SUBDOMAINS.includes(subdomain) &&
+        !pathname.startsWith("/api/")
     ) {
         const url = request.nextUrl.clone();
 
@@ -60,10 +68,16 @@ export function proxy(request) {
     const isDashboard =
         request.nextUrl.pathname.startsWith("/dashboard");
 
-    const isApiRoute =
-        request.nextUrl.pathname.startsWith("/api");
+    const isProtectedApiRoute = PROTECTED_API_PATHS.some(
+        (protectedPath) =>
+            pathname === protectedPath ||
+            pathname.startsWith(`${protectedPath}/`)
+    ) || (
+        pathname === "/api/content" &&
+        request.method !== "GET"
+    );
 
-    if (!isDashboard && !isApiRoute) {
+    if (!isDashboard && !isProtectedApiRoute) {
         return NextResponse.next();
     }
 
