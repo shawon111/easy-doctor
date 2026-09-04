@@ -48,7 +48,8 @@ export const POST = async (request) => {
             templateType,
             templateVariant: templateVariant,
             contentType,
-            content: generateContentDoc._id
+            content: generateContentDoc._id,
+            subdomain
         })
 
         // update the user document with the new website info

@@ -5,6 +5,7 @@ import TemplateThreePageRenderer from "@/components/templates/template-three/Tem
 import TemplateTwoDarkPageRenderer from "@/components/templates/template-two-dark/TemplateTwoDarkPageRenderer";
 import TemplateTwoPageRenderer from "@/components/templates/template-two/TemplateTwoPageRenderer";
 import { getWebsiteBySubdomain } from "@/services/website.service";
+import { notFound } from "next/navigation";
 
 
 // renderer and template mapping
@@ -22,7 +23,9 @@ const pageName = "home";
 const DoctorHomePage = async ({ params }) => {
   const { slug } = await params;
   const website = await getWebsiteBySubdomain(slug);
+  if (!website) notFound();
   const TemplatePageRenderer = templateMapping[website.templateType]
+  if (!TemplatePageRenderer) notFound();
   return <TemplatePageRenderer page={pageName} slug={slug} />;
 };
 

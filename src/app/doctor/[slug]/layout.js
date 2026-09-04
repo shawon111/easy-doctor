@@ -1,13 +1,13 @@
 import { connectDB } from "@/config/database";
-import { getDoctorsList } from "@/services/user.service";
+import { getWebsiteLists } from "@/services/website.service";
 
 export const revalidate = 900;
 
 export const generateStaticParams = async () => {
   await connectDB();
-  const doctors = (await getDoctorsList()) ?? [];
-  return doctors.map((doctor) => ({
-    slug: doctor?.slug,
+  const websites = (await getWebsiteLists()) ?? [];
+  return websites.map((website) => ({
+    slug: website?.subdomain,
   }));
 };
 

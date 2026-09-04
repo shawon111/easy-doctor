@@ -3,17 +3,19 @@ import "@/models/template-one-content.model";
 import "@/models/template-three-content.model";
 import "@/models/template-two-content.model";
 import Website from "@/models/website.model";
+import User from "@/models/user.model";
 
 // create website
 export const createWebsite = async (userId, websiteData) => {
     try {
-        const { templateType, templateVariant, contentType, content } = websiteData;
+        const { templateType, templateVariant, contentType, content, subdomain } = websiteData;
         const newWebsite = await Website.create({
             userId,
             templateType: templateType,
             variant: templateVariant,
             contentType,
-            content
+            content,
+            subdomain
         });
         return newWebsite;
     } catch (error) {
@@ -51,7 +53,15 @@ export const getWebsiteLists = async () => {
 export const getWebsiteBySubdomain = async (subdomain) => {
     await connectDB();
     try {
-        const website = await Website.findOne({ subdomain }).populate('content');
+        let website = await Website.findOne({ subdomain }).populate('content');
+
+        if (!website) {
+            const user = await User.findOne({ slug: subdomain }).select("_id");
+            if (user) {
+                website = await Website.findOne({ userId: user._id }).populate("content");
+            }
+        }
+
         return website;
     }catch (error) {
         console.log("Error fetching website by subdomain:", error);
