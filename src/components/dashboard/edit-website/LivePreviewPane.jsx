@@ -33,7 +33,7 @@ const LivePreviewPane = () => {
             <div className="flex w-1/2 items-center justify-center gap-2 rounded-md border border-border/50 bg-card px-4 py-1 shadow-sm">
               <span className="material-symbols-outlined text-[12px]">lock</span>
               <span className="font-mono text-[10px] text-muted-foreground">
-                drahmedrahman.docxio.com
+                drahmedrahman.{process.env.NEXT_PUBLIC_BASE_DOMAIN}
               </span>
             </div>
           </div>

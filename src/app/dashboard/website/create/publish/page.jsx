@@ -1,4 +1,5 @@
 import PublishPage from "@/components/dashboard/create-website/publish";
+import { requireUser } from "@/lib/requireUser";
 import { redirect } from "next/navigation";
 import React from "react";
 
@@ -8,7 +9,7 @@ const PublishSitePage = async ({ searchParams }) => {
 
     // check the user and act
     const user = await requireUser();
-    if(!user?.websiteCreated) {
+    if(user?.websiteCreated) {
         redirect("/dashboard/website/create");
     }
 

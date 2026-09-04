@@ -15,7 +15,7 @@ const SubdomainInfoCard = () => {
                         What is a subdomain?
                     </h3>
                     <p className="text-sm leading-relaxed text-muted-foreground">
-                        A subdomain is a unique prefix to our main domain (docxio.com) that
+                        A subdomain is a unique prefix to our main domain ({process.env.NEXT_PUBLIC_BASE_DOMAIN}) that
                         identifies your specific practice. It&apos;s an easy, free way to get
                         your website live immediately.
                     </p>

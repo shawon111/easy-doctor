@@ -41,7 +41,7 @@ const SubdomainInputCard = ({ value, onChange, className }) => {
     const isReservedSubdomain = Boolean(slug) && RESERVED_NAMES.includes(slug);
     const isReadyForCheck = Boolean(slug) && slug.length >= 2 && !RESERVED_NAMES.includes(slug);
     const isValidSubdomain = isReadyForCheck && debouncedSlug === slug;
-    const fullUrl = `${slug || "your-practice"}.docxio.com`;
+    const fullUrl = `${slug || "your-practice"}.${process.env.NEXT_PUBLIC_BASE_DOMAIN}`;
 
     const handleChange = (e) => {
         onChange(e.target.value);
@@ -116,7 +116,7 @@ const SubdomainInputCard = ({ value, onChange, className }) => {
                         />
                         <div className="flex h-11 items-center justify-center border-l border-l-border bg-muted px-4">
                             <span className="pointer-events-none whitespace-nowrap text-sm font-medium text-muted-foreground md:text-base">
-                                .docxio.com
+                                .{process.env.NEXT_PUBLIC_BASE_DOMAIN}
                             </span>
                         </div>
                     </div>

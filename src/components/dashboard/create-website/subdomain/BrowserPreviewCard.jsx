@@ -32,7 +32,7 @@ const BrowserPreviewCard = ({ subdomain }) => {
                             </span>
                             <span className="w-full truncate text-left font-mono text-xs text-foreground">
                                 {slug}
-                                <span className="text-muted-foreground">.docxio.com</span>
+                                <span className="text-muted-foreground">.{process.env.NEXT_PUBLIC_BASE_DOMAIN}</span>
                             </span>
                         </div>
                     </div>

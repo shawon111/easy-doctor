@@ -9,7 +9,7 @@ const SubdomainSelectPage = async ({ searchParams }) => {
 
     // check the user and act
     const user = await requireUser();
-    if (!user?.websiteCreated) {
+    if (user?.websiteCreated) {
         redirect("/dashboard/website/create");
     }
 
