@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 export default function NavbarOneDark({ content = {}, page = "home", slug , isDemo = false}) {
-  const base = isDemo? `/preview/${slug}`:`/doctor/${slug}`;
+  const base = isDemo ? `/preview/${slug}` : "";
   const navLinks = content.navLinks || [];
   const brandName = content.brandName || "Doctor";
   const appointmentCta = content.appointmentCta || "Book Now";
@@ -15,7 +15,7 @@ export default function NavbarOneDark({ content = {}, page = "home", slug , isDe
 
         <div className="hidden md:flex items-center gap-10">
           {navLinks.map((link) => {
-            const href = link.href ? `${base}${link.href}` : base;
+            const href = link.href ? `${base}${link.href}` : base || "/";
             const isActive = page === link.key;
 
             return (

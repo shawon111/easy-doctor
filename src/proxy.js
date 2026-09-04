@@ -2,11 +2,65 @@ import { NextResponse } from "next/server";
 import { verifyAccessToken } from "@/lib/jwt";
 import { redirectToLogin, tryRefreshTokens } from "@/lib/auth-core";
 
+const ROOT_DOMAIN = process.env.NEXT_PUBLIC_BASE_DOMAIN;
+
+const SYSTEM_SUBDOMAINS = [
+    "www",
+    "dashboard",
+    "app",
+    "api",
+];
+
 export function proxy(request) {
+    // rewrite url and handle subdomain routing
+    const { pathname } = request.nextUrl;
+
+    const hostname = request.headers.get("host");
+
+    if (!hostname) {
+        return NextResponse.next();
+    }
+    const host = hostname.split(":")[0];
+
+    // Keep Next.js bundles and public files at their original paths.
+    if (
+        pathname.startsWith("/_next/") ||
+        pathname === "/favicon.ico" ||
+        pathname.includes(".")
+    ) {
+        return NextResponse.next();
+    }
+
+    let subdomain = null;
+    // Local:
+    if (host.endsWith(".localhost")) {
+        subdomain = host.replace(".localhost", "");
+    }
+
+    // Production:
+    else if (
+        ROOT_DOMAIN &&
+        host.endsWith(`.${ROOT_DOMAIN}`)
+    ) {
+        subdomain = host.replace(`.${ROOT_DOMAIN}`, "");
+    }
+
+    if (
+        subdomain &&
+        !SYSTEM_SUBDOMAINS.includes(subdomain)
+    ) {
+        const url = request.nextUrl.clone();
+
+        url.pathname = `/doctor/${subdomain}${pathname}`;
+
+        return NextResponse.rewrite(url);
+    }
+
+    // dashboard and api protected routes
     const isDashboard =
         request.nextUrl.pathname.startsWith("/dashboard");
 
-        const isApiRoute =
+    const isApiRoute =
         request.nextUrl.pathname.startsWith("/api");
 
     if (!isDashboard && !isApiRoute) {
@@ -39,6 +93,7 @@ export function proxy(request) {
 
 export const config = {
     matcher: [
+        "/:path*",
         "/dashboard/:path*",
         "/api/me/:path*",
         "/api/auth/logout",

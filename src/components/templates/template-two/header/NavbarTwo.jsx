@@ -1,14 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { useParams, usePathname } from "next/navigation";
+import { useParams } from "next/navigation";
 import { useEffect, useRef } from "react";
 
 export default function NavbarTwo({ content = {}, slug, page , isDemo = false}) {
   const params = useParams();
-  const pathname = usePathname();
   const resolvedSlug = slug ?? params?.slug;
-  const basePath = isDemo? `/preview/${resolvedSlug}`:`/doctor/${resolvedSlug}`;
+  const basePath = isDemo ? `/preview/${resolvedSlug}` : "";
   const navLinks = content.navLinks || [];
   const brandName = content.brandName || "Doctor";
   const appointmentCta = content.appointmentCta || "Book Appointment";
@@ -57,7 +56,7 @@ export default function NavbarTwo({ content = {}, slug, page , isDemo = false}) 
 
       <div className="hidden md:flex space-x-8">
         {navLinks.map((link) => {
-          const href = link.href ? `${basePath}${link.href}` : basePath;
+          const href = link.href ? `${basePath}${link.href}` : basePath || "/";
           const active = isActive(link.href, link.key);
 
           return (

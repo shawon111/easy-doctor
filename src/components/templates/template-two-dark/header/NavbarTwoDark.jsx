@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef } from "react";
 
 export default function NavbarTwoDark({ page = "home", slug, content = {} , isDemo = false}) {
-  const base = isDemo ? `/preview/${slug}` : `/doctor/${slug}`;
+  const base = isDemo ? `/preview/${slug}` : "";
   const navLinks = content.navLinks || [];
   const brandName = content.brandName || "Doctor";
   const appointmentCta = content.appointmentCta || "Book Appointment";
@@ -44,7 +44,7 @@ export default function NavbarTwoDark({ page = "home", slug, content = {} , isDe
 
       <div className="hidden md:flex space-x-8">
         {navLinks.map((link) => {
-          const href = link.href ? `${base}${link.href}` : base;
+          const href = link.href ? `${base}${link.href}` : base || "/";
           const isActive = page === link.key;
 
           return (

@@ -27,6 +27,15 @@ const websiteSchema = new mongoose.Schema(
             type: mongoose.Schema.Types.ObjectId,
             refPath: "contentType",
         },
+        subdomain: {
+            type: String,
+            required: true,
+            unique: true,
+        },
+        domain: {
+            type: String,
+            unique: true,
+        }
     },
     { timestamps: true }
 );

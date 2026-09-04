@@ -5,7 +5,7 @@ import { useParams } from "next/navigation";
 export default function Navbar({ content = {}, slug, page , isDemo = false}) {
   const params = useParams();
   const resolvedSlug = slug ?? params?.slug;
-  const basePath = isDemo? `/preview/${resolvedSlug}`:`/doctor/${resolvedSlug}`;
+  const basePath = isDemo ? `/preview/${resolvedSlug}` : "";
   const navLinks = content.navLinks || [];
   const brandName = content.brandName || "Doctor";
   const appointmentCta = content.appointmentCta || "Book Appointment";
@@ -19,7 +19,7 @@ export default function Navbar({ content = {}, slug, page , isDemo = false}) {
 
         <div className="hidden md:flex items-center gap-gutter">
           {navLinks.map((link) => {
-            const href = link.href ? `${basePath}${link.href}` : basePath;
+            const href = link.href ? `${basePath}${link.href}` : basePath || "/";
             const isActive = page ? page === link.key : false;
 
             return (
