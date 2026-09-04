@@ -1,11 +1,5 @@
 "use client";
 
-// Shared client component — the only interactive piece in this set.
-// The original <script> used an IntersectionObserver to fade+slide each
-// top-level section's direct child div into view on scroll. That needs
-// the browser, so it's isolated here. Every other component stays a
-// Server Component and simply wraps its content in <RevealTwo>, passing
-// server-rendered children straight through the client boundary.
 
 import { useEffect, useRef, useState } from "react";
 

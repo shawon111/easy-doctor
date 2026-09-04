@@ -12,7 +12,7 @@ export default function AboutPageTwoDark({ slug, content, isDemo = false }) {
 
   return (
     <>
-      <AboutHeroTwoDark content={about.hero} user={isDemo ? undefined : content?.user}  isDemo={isDemo}/>
+      <AboutHeroTwoDark content={about.hero} isDemo={isDemo}/>
       <div className="gold-shimmer opacity-50" />
       <AboutStoryTwoDark content={about.story}  isDemo={isDemo}/>
       <AboutTimelineTwoDark content={about.timeline}  isDemo={isDemo}/>

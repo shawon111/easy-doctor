@@ -18,7 +18,7 @@ export default function HomeTwoDark({ slug, content, isDemo = false }) {
       <GoldDividerTwoDark  isDemo={isDemo}/>
       <CredentialsTwoDark content={home.credentials}  isDemo={isDemo}/>
       <TreatmentsTwoDark slug={slug} content={home.treatments}  isDemo={isDemo}/>
-      <TimelineTwoDark content={home.timeline} user={isDemo ? undefined : content?.user}  isDemo={isDemo}/>
+      <TimelineTwoDark content={home.timeline} isDemo={isDemo}/>
       <OnboardingTwoDark content={home.onboarding}  isDemo={isDemo}/>
       <ChamberTwoDark content={home.chamber}  isDemo={isDemo}/>
       <CtaTwoDark slug={slug} content={home.finalCta}  isDemo={isDemo}/>

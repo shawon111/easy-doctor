@@ -28,7 +28,7 @@ export const templateTwoDefaults = {
     home: {
       hero: {
         badge: "Exclusive Precision Care",
-        heading: "{{name}}",
+        heading: "Dr. John",
         credentialsLine: "MD, PhD, FRCP (Lond)",
         body: "Pioneering executive medicine with a focus on longevity, cognitive performance, and bespoke surgical precision. Serving the world's most discerning patients with uncompromising excellence.",
         primaryCta: "Schedule Consultation",
@@ -109,6 +109,7 @@ export const templateTwoDefaults = {
         heading: "A Career Defined by Precision",
         subheading:
           "Medicine is not merely a science, but an art. It does not consist of compounding pills and plasters; it deals with the very processes of life.",
+        experience: 25,
         items: [
           {
             period: "2018 — Present",
@@ -175,7 +176,7 @@ export const templateTwoDefaults = {
     about: {
       hero: {
         badge: "EXCELLENCE IN PRECISION MEDICINE",
-        heading: "About {{name}}",
+        heading: "About Dr. John",
         body: "Redefining the standards of specialized care through a legacy of clinical mastery, academic rigor, and an unwavering commitment to patient longevity.",
         languages: ["English", "French", "Arabic"],
         imageAlt:

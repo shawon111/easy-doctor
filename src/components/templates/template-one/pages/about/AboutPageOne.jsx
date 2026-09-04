@@ -13,9 +13,9 @@ const AboutPageOne = ({ slug, content, isDemo = false }) => {
 
     return (
         <>
-            <AboutHeroOne content={about.hero} user={isDemo ? undefined : content?.user}  isDemo={isDemo}/>
+            <AboutHeroOne content={about.hero} isDemo={isDemo}/>
             <AboutPhilosophyOne content={about.philosophy}  isDemo={isDemo}/>
-            <AboutBioStatsOne content={about.bioStats} user={isDemo ? undefined : content?.user}  isDemo={isDemo}/>
+            <AboutBioStatsOne content={about.bioStats} isDemo={isDemo}/>
             <AboutTimelineOne content={about.timeline}  isDemo={isDemo}/>
             <AboutChambersOne content={about.chambers}  isDemo={isDemo}/>
             <AboutFinalCtaOne content={about.finalCta} slug={slug}  isDemo={isDemo}/>

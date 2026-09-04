@@ -5,10 +5,10 @@ function splitHeading(heading = "") {
   return { lead: words.join(" "), accent };
 }
 
-export default function TimelineTwo({ content = {}, user = {}, isDemo = false }) {
+export default function TimelineTwo({ content = {} }) {
   const items = content.items || [];
   const { lead, accent } = splitHeading(content.heading);
-  const experienceStat = !isDemo && user.experience ? `${user.experience}+` : "25+";
+  const experienceStat = content.experience ? `${content.experience}+` : "25+";
 
   return (
     <section className="py-section-gap px-margin-mobile md:px-margin-desktop bg-surface-container-lowest">

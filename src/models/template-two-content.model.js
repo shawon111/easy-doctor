@@ -68,6 +68,7 @@ const templateTwoContentSchema = new mongoose.Schema(
         timeline: {
           heading: { type: String, trim: true },
           subheading: { type: String, trim: true },
+          experience: { type: Number },
           items: [timelineItemSchema],
         },
         onboarding: {
@@ -87,6 +88,7 @@ const templateTwoContentSchema = new mongoose.Schema(
           badge: { type: String, trim: true },
           heading: { type: String, trim: true },
           body: { type: String, trim: true },
+          languages: [{ type: String, trim: true }],
           imageAlt: { type: String, trim: true },
         },
         story: {

@@ -12,9 +12,9 @@ export default function AboutPageOneDark({ slug, content, isDemo = false }) {
 
   return (
     <>
-      <AboutHeroOneDark content={about.hero} user={isDemo ? undefined : content?.user}  isDemo={isDemo}/>
+      <AboutHeroOneDark content={about.hero} isDemo={isDemo}/>
       <AboutPhilosophyOneDark content={about.philosophy}  isDemo={isDemo}/>
-      <AboutBioStatsOneDark content={about.bioStats} user={isDemo ? undefined : content?.user}  isDemo={isDemo}/>
+      <AboutBioStatsOneDark content={about.bioStats} isDemo={isDemo}/>
       <AboutTimelineOneDark content={about.timeline}  isDemo={isDemo}/>
       <AboutChambersOneDark content={about.chambers}  isDemo={isDemo}/>
       <AboutFinalCtaOneDark content={about.finalCta} slug={slug}  isDemo={isDemo}/>

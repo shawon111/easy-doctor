@@ -19,7 +19,7 @@ const HomePageTwo = ({ content, isDemo = false }) => {
       </div>
       <CredentialsTwo content={home.credentials}  isDemo={isDemo}/>
       <TreatmentsTwo content={home.treatments}  isDemo={isDemo}/>
-      <TimelineTwo content={home.timeline} user={isDemo ? undefined : content?.user}  isDemo={isDemo}/>
+      <TimelineTwo content={home.timeline} isDemo={isDemo}/>
       <OnboardingTwo content={home.onboarding}  isDemo={isDemo}/>
       <ChamberTwo content={home.chamber}  isDemo={isDemo}/>
       <CtaTwo content={home.finalCta}  isDemo={isDemo}/>

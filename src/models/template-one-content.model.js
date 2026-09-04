@@ -99,6 +99,7 @@ const templateOneContentSchema = new mongoose.Schema(
           badge: { type: String, trim: true },
           heading: { type: String, trim: true },
           body: { type: String, trim: true },
+          experience: { type: Number },
           imageAlt: { type: String, trim: true },
         },
         philosophy: {
@@ -107,6 +108,8 @@ const templateOneContentSchema = new mongoose.Schema(
         },
         bioStats: {
           heading: { type: String, trim: true },
+          body: { type: String, trim: true },
+          languages: [{ type: String, trim: true }],
           stats: [statItemSchema],
         },
         timeline: {

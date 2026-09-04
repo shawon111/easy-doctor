@@ -161,6 +161,7 @@ export const templateOneDefaults = {
         badge: "About the Physician",
         heading: "Meet Dr. {{name}}.",
         body: "A pioneer in modern clinical practice, blending world-class medical expertise with a deeply personal commitment to patient well-being and clinical elegance.",
+        experience: 25,
         imageAlt:
           "Dr. {{name}}, a physician in a white medical coat, in a bright minimalist medical office",
       },

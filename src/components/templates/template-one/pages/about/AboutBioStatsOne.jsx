@@ -1,15 +1,9 @@
 import Reveal from "@/components/templates/ui/Reveal";
 
-export default function AboutBioStatsOne({ content = {}, user = {}, isDemo = false }) {
+export default function AboutBioStatsOne({ content = {} }) {
   const stats = content.stats || [];
-  const languages = isDemo ? content.languages || [] : user.languages || [];
-  const bioParagraphs = isDemo
-    ? content.body
-      ? content.body.split("\n\n")
-      : []
-    : user.bio
-      ? user.bio.split("\n\n")
-      : [];
+  const languages = content.languages || [];
+  const bioParagraphs = content.body ? content.body.split("\n\n") : [];
 
   return (
     <Reveal

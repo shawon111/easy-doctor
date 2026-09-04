@@ -26,7 +26,7 @@ const DoctorHomePage = async ({ params }) => {
   if (!website) notFound();
   const TemplatePageRenderer = templateMapping[website.templateType]
   if (!TemplatePageRenderer) notFound();
-  return <TemplatePageRenderer page={pageName} slug={slug} />;
+  return <TemplatePageRenderer page={pageName} content={website?.content ?? {}} slug={slug} />;
 };
 
 export default DoctorHomePage;

@@ -12,7 +12,7 @@ const AboutPageTwo = ({ slug, content, isDemo = false }) => {
 
   return (
     <>
-      <AboutHeroTwo content={about.hero} user={isDemo ? undefined : content?.user}  isDemo={isDemo}/>
+      <AboutHeroTwo content={about.hero} isDemo={isDemo}/>
       <div className="abtwo-gold-shimmer opacity-30" />
       <AboutStoryTwo content={about.story}  isDemo={isDemo}/>
       <AboutTimelineTwo content={about.timeline}  isDemo={isDemo}/>
