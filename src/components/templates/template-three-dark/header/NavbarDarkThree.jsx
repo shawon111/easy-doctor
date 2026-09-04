@@ -5,6 +5,10 @@ export default function NavbarDarkThree({ page = "home", slug, content, isDemo =
   const navLinks = content?.navLinks ?? [];
   const brandName = content?.brandName ?? "Doctor";
   const appointmentCta = content?.appointmentCta ?? "Book Appointment";
+  const appointmentCtaLink = content?.appointmentCtaLink || "/appointment";
+  const appointmentHref = appointmentCtaLink.startsWith("/")
+    ? `${base}${appointmentCtaLink}`
+    : appointmentCtaLink;
 
   return (
     <nav className="t3d-nav fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-outline-variant/30 h-20">
@@ -35,7 +39,7 @@ export default function NavbarDarkThree({ page = "home", slug, content, isDemo =
         </div>
 
         <Link
-          href={`${base}/appointment`}
+          href={appointmentHref}
           className="bg-primary-container text-on-primary-container px-6 py-2.5 rounded-lg font-headline-md text-[16px] hover:opacity-90 active:scale-95 transition-all"
         >
           {appointmentCta}

@@ -5,6 +5,10 @@ export default function NavbarOneDark({ content = {}, page = "home", slug , isDe
   const navLinks = content.navLinks || [];
   const brandName = content.brandName || "Doctor";
   const appointmentCta = content.appointmentCta || "Book Now";
+  const appointmentCtaLink = content.appointmentCtaLink || "/appointment";
+  const appointmentHref = appointmentCtaLink.startsWith("/")
+    ? `${base}${appointmentCtaLink}`
+    : appointmentCtaLink;
 
   return (
     <nav className="fixed top-0 w-full z-50 glass-nav">
@@ -34,7 +38,7 @@ export default function NavbarOneDark({ content = {}, page = "home", slug , isDe
           })}
           <Link
             className="bg-primary-container text-on-primary-container px-6 py-2.5 rounded-full font-bold text-label-md tracking-widest uppercase glow-button"
-            href={`${base}/appointment`}
+            href={appointmentHref}
           >
             {appointmentCta}
           </Link>

@@ -32,6 +32,7 @@ const templateThreeContentSchema = new mongoose.Schema(
         },
       ],
       appointmentCta: { type: String, trim: true },
+      appointmentCtaLink: { type: String, trim: true },
     },
     footer: {
       brandName: { type: String, trim: true },

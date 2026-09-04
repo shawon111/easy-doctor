@@ -9,6 +9,10 @@ export default function NavbarThree({ page = "home", slug, content, isDemo = fal
   const navLinks = content?.navLinks ?? [];
   const brandName = content?.brandName ?? "Doctor";
   const appointmentCta = content?.appointmentCta ?? "Book Appointment";
+  const appointmentCtaLink = content?.appointmentCtaLink || "/appointment";
+  const appointmentHref = appointmentCtaLink.startsWith("/")
+    ? `${base}${appointmentCtaLink}`
+    : appointmentCtaLink;
 
   useEffect(() => {
     const nav = navRef.current;
@@ -58,7 +62,7 @@ export default function NavbarThree({ page = "home", slug, content, isDemo = fal
         </div>
 
         <Link
-          href={`${base}/appointment`}
+          href={appointmentHref}
           className="bg-primary text-on-primary px-6 py-2.5 rounded-lg font-headline-md text-[16px] hover:opacity-90 active:scale-95 transition-all"
         >
           {appointmentCta}

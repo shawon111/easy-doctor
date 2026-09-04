@@ -7,6 +7,7 @@ export const templateOneDefaults = {
       { label: "Services", href: "/services", key: "services" },
     ],
     appointmentCta: "Book Appointment",
+    appointmentCtaLink: "/appointment",
   },
   footer: {
     brandName: "{{name}}",

@@ -8,6 +8,10 @@ export default function NavbarTwoDark({ page = "home", slug, content = {} , isDe
   const navLinks = content.navLinks || [];
   const brandName = content.brandName || "Doctor";
   const appointmentCta = content.appointmentCta || "Book Appointment";
+  const appointmentCtaLink = content.appointmentCtaLink || "/appointment";
+  const appointmentHref = appointmentCtaLink.startsWith("/")
+    ? `${base}${appointmentCtaLink}`
+    : appointmentCtaLink;
 
   const navRef = useRef(null);
   const lastScroll = useRef(0);
@@ -64,7 +68,7 @@ export default function NavbarTwoDark({ page = "home", slug, content = {} , isDe
       </div>
 
       <Link
-        href={`${base}/appointment`}
+        href={appointmentHref}
         className="bg-primary text-on-primary font-label-caps text-label-caps px-6 py-3 rounded-lg luxury-button-hover transition-all active:scale-95"
       >
         {appointmentCta}

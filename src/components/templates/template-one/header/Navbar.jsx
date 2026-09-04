@@ -9,6 +9,10 @@ export default function Navbar({ content = {}, slug, page , isDemo = false}) {
   const navLinks = content.navLinks || [];
   const brandName = content.brandName || "Doctor";
   const appointmentCta = content.appointmentCta || "Book Appointment";
+  const appointmentCtaLink = content.appointmentCtaLink || "/appointment";
+  const appointmentHref = appointmentCtaLink.startsWith("/")
+    ? `${basePath}${appointmentCtaLink}`
+    : appointmentCtaLink;
 
   return (
     <nav className="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl shadow-sm">
@@ -40,7 +44,7 @@ export default function Navbar({ content = {}, slug, page , isDemo = false}) {
             type="button"
             className="bg-primary text-on-primary rounded-lg font-button text-button scale-95 active:scale-90 transition-transform"
           >
-            <Link className="block px-6 py-2.5 w-full h-full" href={`${basePath}/appointment`}>
+            <Link className="block px-6 py-2.5 w-full h-full" href={appointmentHref}>
               {appointmentCta}
             </Link>
           </button>
