@@ -27,6 +27,16 @@ const templateTypeToContentTypeMap = {
 // create a new website
 export const POST = async (request) => {
     const { templateType, subdomain } = await request.json();
+    if (
+        !templateType ||
+        !templateTypeToVariantmap[templateType] ||
+        !subdomain?.trim()
+    ) {
+        return NextResponse.json(
+            { error: "A valid template type and subdomain are required" },
+            { status: 400 }
+        );
+    }
     const templateVariant = templateTypeToVariantmap[templateType];
     const contentType = templateTypeToContentTypeMap[templateType];
     try {

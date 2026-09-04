@@ -11,7 +11,6 @@ const websiteSchema = new mongoose.Schema(
         templateType: {
             type: String,
             required: true,
-            unique: true,
             enum: ["template-one", "template-two", "template-three", "template-one-dark", "template-two-dark", "template-three-dark"],
         },
         variant: {
@@ -35,6 +34,7 @@ const websiteSchema = new mongoose.Schema(
         domain: {
             type: String,
             unique: true,
+            sparse: true,
         }
     },
     { timestamps: true }

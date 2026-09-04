@@ -27,7 +27,7 @@ export const createOrUpdateContent = async (user, templateType, content) => {
                 $set: content
             },
             {
-                new: true,
+                returnDocument: "after",
                 upsert: true,
                 runValidators: true,
             }
