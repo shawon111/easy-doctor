@@ -33,8 +33,6 @@ const websiteSchema = new mongoose.Schema(
         },
         domain: {
             type: String,
-            unique: true,
-            sparse: true,
         }
     },
     { timestamps: true }

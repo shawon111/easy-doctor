@@ -1,8 +1,43 @@
 "use client";
 
+import { useState } from "react";
+import { useFormContext } from "react-hook-form";
+import toast from "react-hot-toast";
+import { Upload } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { uploadToCloudinary } from "@/lib/uploadToCloudinary";
 import { Field, TextField } from "./form-field";
 
 export function StepAccount({ register, errors }) {
+  const { setValue, watch } = useFormContext();
+  const [uploading, setUploading] = useState(false);
+  const profilePicture = watch("profilePicture");
+
+  async function handleImageChange(event) {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    if (!file.type.startsWith("image/")) {
+      toast.error("Please select an image file.");
+      return;
+    }
+    if (file.size > 5 * 1024 * 1024) {
+      toast.error("Profile pictures must be smaller than 5MB.");
+      return;
+    }
+
+    setUploading(true);
+    try {
+      const uploaded = await uploadToCloudinary(file);
+      setValue("profilePicture", uploaded.url, { shouldValidate: true, shouldDirty: true });
+      toast.success("Profile picture uploaded.");
+    } catch (error) {
+      toast.error(error.message || "Profile picture upload failed.");
+    } finally {
+      setUploading(false);
+      event.target.value = "";
+    }
+  }
+
   return (
     <div className="space-y-4">
       <Field
@@ -66,19 +101,24 @@ export function StepAccount({ register, errors }) {
       </Field>
 
       <Field
-        label="Profile picture URL"
+        label="Profile picture"
         htmlFor="profilePicture"
         optional
-        hint="Link to your profile photo"
         error={errors.profilePicture?.message}
       >
-        <TextField
-          id="profilePicture"
-          type="url"
-          placeholder="https://example.com/photo.jpg"
-          error={errors.profilePicture?.message}
-          {...register("profilePicture")}
-        />
+        <div className="flex items-center gap-3">
+          {profilePicture ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={profilePicture} alt="Profile preview" className="size-14 rounded-full object-cover" />
+          ) : null}
+          <Button type="button" variant="outline" disabled={uploading} asChild>
+            <label htmlFor="profilePicture" className="cursor-pointer">
+              <Upload className="size-4" />
+              {uploading ? "Uploading..." : profilePicture ? "Change picture" : "Upload picture"}
+            </label>
+          </Button>
+          <input id="profilePicture" type="file" accept="image/*" className="sr-only" onChange={handleImageChange} />
+        </div>
       </Field>
     </div>
   );

@@ -5,6 +5,7 @@ import "@/models/template-two-content.model";
 import Website from "@/models/website.model";
 import User from "@/models/user.model";
 import { unstable_cache } from "next/cache";
+import { replaceTemplateVariables } from "@/lib/content/resolve-template-content";
 
 // create website
 export const createWebsite = async (userId, websiteData) => {
@@ -55,13 +56,25 @@ export const getWebsiteBySubdomain = async (subdomain) => {
     const getCachedWebsite = unstable_cache(
         async () => {
             await connectDB();
-            let website = await Website.findOne({ subdomain }).populate("content").lean();
+            let website = await Website.findOne({ subdomain })
+                .populate("content")
+                .populate("userId", "name")
+                .lean();
 
             if (!website) {
                 const user = await User.findOne({ slug: subdomain }).select("_id").lean();
                 if (user) {
-                    website = await Website.findOne({ userId: user._id }).populate("content").lean();
+                    website = await Website.findOne({ userId: user._id })
+                        .populate("content")
+                        .populate("userId", "name")
+                        .lean();
                 }
+            }
+
+            if (website?.content) {
+                website.content = replaceTemplateVariables(website.content, {
+                    name: website.userId?.name || "Doctor",
+                });
             }
 
             return website;

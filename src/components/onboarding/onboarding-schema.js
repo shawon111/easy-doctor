@@ -14,7 +14,9 @@ const clinicAddressSchema = z.object({
   address: z.string().trim().min(1, "Address is required"),
   city: z.string().trim().min(1, "City is required"),
   country: z.string().trim().min(1, "Country is required"),
-  visitingHours: z.string().trim().min(1, "Visiting hours are required"),
+  visitingHours: z
+    .string()
+    .regex(/^\d{2}:\d{2} - \d{2}:\d{2}$/, "Select opening and closing times"),
   visitingDays: z.string().trim().min(1, "Visiting days are required"),
 });
 

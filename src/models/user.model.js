@@ -21,7 +21,6 @@ const UserSchema = new mongoose.Schema(
 
         domain: {
             type: String,
-            unique: true
         },
 
         email: {

@@ -331,6 +331,7 @@ export default function ContentEditor() {
     queryKey: ["website-editor"],
     queryFn: fetchWebsite,
   });
+  
   const [page, setPage] = useState("home");
   const [section, setSection] = useState("");
   const [content, setContent] = useState(null);
@@ -345,6 +346,7 @@ export default function ContentEditor() {
     [page, resolvedContent]
   );
   const activeSection = sections.includes(section) ? section : sections[0];
+
 
   const saveMutation = useMutation({
     mutationFn: async ({ content }) => {
@@ -367,6 +369,10 @@ export default function ContentEditor() {
     },
     onError: (saveError) => toast.error(saveError.message),
   });
+
+  if (!website) {
+    return <div className="p-8 text-destructive">Website is not created yet.</div>;
+  }
 
   if (isLoading) return <div className="p-8 text-muted-foreground">Loading website editor...</div>;
   if (isError) return <div className="p-8 text-destructive">{error.message}</div>;

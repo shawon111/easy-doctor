@@ -2,10 +2,17 @@ import mongoose from "mongoose";
 
 const SEOSchema = new mongoose.Schema(
     {
-        useId: {
+        userId: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "User",
             required: true,
+            unique: true,
+        },
+        websiteId: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Website",
+            required: true,
+            unique: true,
         },
         siteName: {
             type: String,
@@ -29,6 +36,10 @@ const SEOSchema = new mongoose.Schema(
             default: [],
         },
         defaultSpecialty: {
+            type: String,
+            trim: true,
+        },
+        canonicalUrl: {
             type: String,
             trim: true,
         },
@@ -164,19 +175,19 @@ const SEOSchema = new mongoose.Schema(
             },
         },
         location: {
-            City: {
+            city: {
                 type: String,
                 trim: true,
             },
-            District: {
+            district: {
                 type: String,
                 trim: true,
             },
-            Country: {
+            country: {
                 type: String,
                 trim: true,
             },
-            ZipCode: {
+            zipCode: {
                 type: String,
                 trim: true,
             },

@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useState } from "react";
 
 export default function NavbarOneDark({ content = {}, page = "home", slug , isDemo = false}) {
   const base = isDemo ? `/preview/${slug}` : "";
@@ -9,11 +12,12 @@ export default function NavbarOneDark({ content = {}, page = "home", slug , isDe
   const appointmentHref = appointmentCtaLink.startsWith("/")
     ? `${base}${appointmentCtaLink}`
     : appointmentCtaLink;
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <nav className="fixed top-0 w-full z-50 glass-nav">
       <div className="flex justify-between items-center h-20 px-10 max-w-[1440px] mx-auto">
-        <Link href={base} className="text-headline-md font-bold tracking-tighter text-secondary">
+        <Link href={base || "/"} className="text-headline-md font-bold tracking-tighter text-secondary">
           {brandName}
         </Link>
 
@@ -44,12 +48,26 @@ export default function NavbarOneDark({ content = {}, page = "home", slug , isDe
           </Link>
         </div>
 
-        <button type="button" className="md:hidden text-primary" aria-label="Menu">
+        <button type="button" className="md:hidden text-primary" aria-label="Menu" aria-expanded={isOpen} onClick={() => setIsOpen((open) => !open)}>
           <span className="material-symbols-outlined" style={{ fontSize: "32px" }}>
             menu
           </span>
         </button>
       </div>
+      {isOpen ? (
+        <div className="md:hidden border-t border-outline-variant bg-surface px-10 py-4">
+          <div className="flex flex-col gap-4">
+            {navLinks.map((link) => (
+              <Link key={link.key || link.label} href={link.href ? `${base}${link.href}` : base || "/"} onClick={() => setIsOpen(false)} className="text-on-surface-variant">
+                {link.label}
+              </Link>
+            ))}
+            <Link href={appointmentHref} onClick={() => setIsOpen(false)} className="bg-primary-container text-on-primary-container rounded-full px-6 py-2.5 text-center">
+              {appointmentCta}
+            </Link>
+          </div>
+        </div>
+      ) : null}
     </nav>
   );
 }

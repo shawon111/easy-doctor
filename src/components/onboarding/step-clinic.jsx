@@ -13,7 +13,7 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
-import { BOOKING_OPTIONS } from "./onboarding-utils";
+import { BOOKING_OPTIONS, VISITING_DAYS } from "./onboarding-utils";
 import { Field, TextField, getFieldError } from "./form-field";
 
 export function StepClinic({ register, control, errors }) {
@@ -145,47 +145,62 @@ export function StepClinic({ register, control, errors }) {
                   />
                 </Field>
 
-                <Field
-                  label="Visiting hours"
-                  htmlFor={`clinicAddress.${index}.visitingHours`}
-                  required
-                  className="sm:col-span-2"
-                  error={getFieldError(
-                    errors,
-                    `clinicAddress.${index}.visitingHours`
-                  )}
-                >
-                  <TextField
-                    id={`clinicAddress.${index}.visitingHours`}
-                    placeholder="9am–5pm"
-                    error={getFieldError(
-                      errors,
-                      `clinicAddress.${index}.visitingHours`
-                    )}
-                    {...register(`clinicAddress.${index}.visitingHours`)}
-                  />
-                </Field>
+                <Controller
+                  control={control}
+                  name={`clinicAddress.${index}.visitingHours`}
+                  render={({ field }) => {
+                    const [openingTime = "", closingTime = ""] = (field.value || "").split(" - ");
+                    return (
+                      <Field
+                        label="Visiting hours"
+                        required
+                        className="sm:col-span-2"
+                        error={getFieldError(errors, `clinicAddress.${index}.visitingHours`)}
+                      >
+                        <div className="grid grid-cols-2 gap-3">
+                          <TextField type="time" aria-label="Opening time" value={openingTime} onChange={(event) => field.onChange(`${event.target.value} - ${closingTime}`)} />
+                          <TextField type="time" aria-label="Closing time" value={closingTime} onChange={(event) => field.onChange(`${openingTime} - ${event.target.value}`)} />
+                        </div>
+                      </Field>
+                    );
+                  }}
+                />
 
-                <Field
-                  label="Visiting days"
-                  htmlFor={`clinicAddress.${index}.visitingDays`}
-                  required
-                  className="sm:col-span-2"
-                  error={getFieldError(
-                    errors,
-                    `clinicAddress.${index}.visitingDays`
-                  )}
-                >
-                  <TextField
-                    id={`clinicAddress.${index}.visitingDays`}
-                    placeholder="Sunday - Thursday"
-                    error={getFieldError(
-                      errors,
-                      `clinicAddress.${index}.visitingDays`
-                    )}
-                    {...register(`clinicAddress.${index}.visitingDays`)}
-                  />
-                </Field>
+                <Controller
+                  control={control}
+                  name={`clinicAddress.${index}.visitingDays`}
+                  render={({ field }) => {
+                    const selectedDays = field.value ? field.value.split(", ") : [];
+                    return (
+                      <Field
+                        label="Visiting days"
+                        required
+                        className="sm:col-span-2"
+                        error={getFieldError(errors, `clinicAddress.${index}.visitingDays`)}
+                      >
+                        <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+                          {VISITING_DAYS.map((day) => {
+                            const checked = selectedDays.includes(day);
+                            return (
+                              <label key={day} className="flex items-center gap-2 rounded-md border px-3 py-2 text-sm">
+                                <input
+                                  type="checkbox"
+                                  checked={checked}
+                                  onChange={() => field.onChange(
+                                    checked
+                                      ? selectedDays.filter((selectedDay) => selectedDay !== day).join(", ")
+                                      : [...selectedDays, day].join(", ")
+                                  )}
+                                />
+                                {day}
+                              </label>
+                            );
+                          })}
+                        </div>
+                      </Field>
+                    );
+                  }}
+                />
               </CardContent>
             </Card>
           ))}

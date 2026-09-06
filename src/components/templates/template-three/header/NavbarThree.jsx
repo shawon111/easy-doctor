@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function NavbarThree({ page = "home", slug, content, isDemo = false }) {
   const base = isDemo ? `/preview/${slug}` : "";
@@ -13,6 +13,7 @@ export default function NavbarThree({ page = "home", slug, content, isDemo = fal
   const appointmentHref = appointmentCtaLink.startsWith("/")
     ? `${base}${appointmentCtaLink}`
     : appointmentCtaLink;
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const nav = navRef.current;
@@ -36,7 +37,7 @@ export default function NavbarThree({ page = "home", slug, content, isDemo = fal
       className="t3-nav fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-outline-variant/30 h-20"
     >
       <div className="flex justify-between items-center max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop h-full">
-        <Link href={base} className="font-headline-md text-headline-md font-bold text-primary">
+        <Link href={base || "/"} className="font-headline-md text-headline-md font-bold text-primary">
           {brandName}
         </Link>
 
@@ -63,11 +64,24 @@ export default function NavbarThree({ page = "home", slug, content, isDemo = fal
 
         <Link
           href={appointmentHref}
-          className="bg-primary text-on-primary px-6 py-2.5 rounded-lg font-headline-md text-[16px] hover:opacity-90 active:scale-95 transition-all"
+          className="hidden md:block bg-primary text-on-primary px-6 py-2.5 rounded-lg font-headline-md text-[16px] hover:opacity-90 active:scale-95 transition-all"
         >
           {appointmentCta}
         </Link>
+        <button type="button" className="md:hidden text-primary" aria-label="Menu" aria-expanded={isOpen} onClick={() => setIsOpen((open) => !open)}>
+          <span className="material-symbols-outlined" style={{ fontSize: "32px" }}>menu</span>
+        </button>
       </div>
+      {isOpen ? (
+        <div className="md:hidden border-t border-outline-variant bg-background p-5">
+          <div className="flex flex-col gap-4">
+            {navLinks.map((link) => (
+              <Link key={link.key || link.label} href={link.href ? `${base}${link.href}` : base || "/"} onClick={() => setIsOpen(false)}>{link.label}</Link>
+            ))}
+            <Link href={appointmentHref} onClick={() => setIsOpen(false)} className="bg-primary text-on-primary rounded-lg px-6 py-2.5 text-center">{appointmentCta}</Link>
+          </div>
+        </div>
+      ) : null}
     </nav>
   );
 }

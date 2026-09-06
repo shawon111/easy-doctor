@@ -1,6 +1,7 @@
 "use client";
 
-import { useFieldArray } from "react-hook-form";
+import { useState } from "react";
+import { useFieldArray, Controller } from "react-hook-form";
 import { Plus, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -11,6 +12,7 @@ import {
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Field, TextField, getFieldError } from "./form-field";
+import { MEDICAL_SPECIALTIES } from "./onboarding-utils";
 
 export function StepProfessional({ register, control, errors }) {
   const { fields, append, remove } = useFieldArray({
@@ -21,16 +23,17 @@ export function StepProfessional({ register, control, errors }) {
   return (
     <div className="space-y-6">
       <Field
-        label="Specialization"
+        label="Medical specialty"
         htmlFor="specialization"
         required
         error={errors.specialization?.message}
       >
-        <TextField
-          id="specialization"
-          placeholder="e.g. Cardiology, Dermatology"
-          error={errors.specialization?.message}
-          {...register("specialization")}
+        <Controller
+          control={control}
+          name="specialization"
+          render={({ field }) => (
+            <SpecialtyPicker value={field.value} onChange={field.onChange} error={errors.specialization?.message} />
+          )}
         />
       </Field>
 
@@ -67,6 +70,7 @@ export function StepProfessional({ register, control, errors }) {
             onClick={() =>
               append({ degree: "", institution: "", year: "" })
             }
+
           >
             <Plus className="size-4" />
             Add
@@ -156,6 +160,45 @@ export function StepProfessional({ register, control, errors }) {
       </div>
 
       <Separator />
+    </div>
+  );
+}
+
+function SpecialtyPicker({ value, onChange, error }) {
+  const [query, setQuery] = useState("");
+  const matches = MEDICAL_SPECIALTIES.filter((specialty) =>
+    specialty.toLowerCase().includes(query.toLowerCase())
+  );
+
+  return (
+    <div className="space-y-2">
+      <TextField
+        id="specialization"
+        value={query || value || ""}
+        placeholder="Search and select a specialty"
+        error={error}
+        onChange={(event) => {
+          setQuery(event.target.value);
+          onChange("");
+        }}
+      />
+      {(!value || query) && (
+        <div className="max-h-48 overflow-y-auto rounded-lg border bg-background p-1">
+          {matches.length ? matches.map((specialty) => (
+            <button
+              key={specialty}
+              type="button"
+              className="block w-full rounded-md px-3 py-2 text-left text-sm hover:bg-muted"
+              onClick={() => {
+                onChange(specialty);
+                setQuery("");
+              }}
+            >
+              {specialty}
+            </button>
+          )) : <p className="px-3 py-2 text-sm text-muted-foreground">No specialties found.</p>}
+        </div>
+      )}
     </div>
   );
 }

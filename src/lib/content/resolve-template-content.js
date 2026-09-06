@@ -48,3 +48,26 @@ export function resolveTemplateContent(content, defaults, isDemo = false) {
 
   return result;
 }
+
+export function replaceTemplateVariables(value, variables = {}) {
+  if (typeof value === "string") {
+    return value.replace(/\{\{(\w+)\}\}/g, (match, key) =>
+      variables[key] === undefined ? match : String(variables[key])
+    );
+  }
+
+  if (Array.isArray(value)) {
+    return value.map((item) => replaceTemplateVariables(item, variables));
+  }
+
+  if (value && typeof value === "object") {
+    return Object.fromEntries(
+      Object.entries(value).map(([key, item]) => [
+        key,
+        replaceTemplateVariables(item, variables),
+      ])
+    );
+  }
+
+  return value;
+}
