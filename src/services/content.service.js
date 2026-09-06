@@ -34,7 +34,6 @@ export const createOrUpdateContent = async (user, templateType, content) => {
         );
         return saveContent;
     } catch (error) {
-        console.error("Error creating or updating content:", error);
         throw error;
     }
 }

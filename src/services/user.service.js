@@ -3,37 +3,52 @@ import { verifyAccessToken } from "@/lib/jwt";
 import User from "@/models/user.model";
 import bcrypt from "bcryptjs";
 import { cookies } from "next/headers";
+import { createSeo } from "./seo.service";
+import mongoose from "mongoose";
 
 // create a new user
 export const createUser = async (userData) => {
     const { name, email, password, phone, specialization, qualifications, experience, clinicAddress, bio, bookingPreferences, treatments, languages, socialLinks, profilePicture, } = userData;
+    const session = await mongoose.startSession();
+    try {
+        const result = await session.withTransaction(async () => {
+            const checkUserExists = await User.findOne({ email: email.toLowerCase() });
+            if (checkUserExists && checkUserExists.email === email.toLowerCase()) {
+                throw new Error("User with this email already exists");
+            }
 
-    const checkUserExists = await User.findOne({ email: email.toLowerCase() });
-    if (checkUserExists && checkUserExists.email === email.toLowerCase()) {
-        throw new Error("User with this email already exists");
+            const hashedPassword = await bcrypt.hash(password, 10);
+
+            const newUser = new User({
+                name,
+                email: email.toLowerCase(),
+                password: hashedPassword,
+                phone,
+                specialization,
+                qualifications,
+                experience,
+                clinicAddress,
+                bio,
+                bookingPreferences,
+                treatments,
+                languages,
+                socialLinks,
+                profilePicture,
+            });
+
+            const savedUser = await newUser.save({session});
+
+            // create seo for the user website
+            const generateSeo = await createSeo(savedUser, session);
+            
+            return savedUser;
+        })
+        return result;
+    } catch (error) {
+        throw new Error("Failed to create user")
+    } finally {
+        await session.endSession();
     }
-
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    const newUser = new User({
-        name,
-        email: email.toLowerCase(),
-        password: hashedPassword,
-        phone,
-        specialization,
-        qualifications,
-        experience,
-        clinicAddress,
-        bio,
-        bookingPreferences,
-        treatments,
-        languages,
-        socialLinks,
-        profilePicture,
-    });
-
-    const savedUser = await newUser.save();
-    return savedUser;
 }
 
 // get current user from access token in cookies
@@ -64,7 +79,7 @@ export const getCurrentUser = async () => {
             ...user,
             _id: user._id.toString(),
         };
-    } catch(error) {
+    } catch (error) {
         console.error("Error occurred while fetching current user:", error);
         return null;
     }
@@ -106,10 +121,10 @@ export const getUserBySlug = async (slug) => {
 }
 
 // get doctors list
-export const getDoctorsList = async ()=> {
+export const getDoctorsList = async () => {
     const users = await User.find({}).select({
         slug: 1,
-        _id: 1, 
+        _id: 1,
     });
 
     return users;

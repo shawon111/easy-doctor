@@ -11,8 +11,9 @@ const SEOSchema = new mongoose.Schema(
         websiteId: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "Website",
-            required: true,
+            default: undefined,
             unique: true,
+            sparse: true
         },
         siteName: {
             type: String,
@@ -195,6 +196,6 @@ const SEOSchema = new mongoose.Schema(
     },
 )
 
-const SEO = mongoose.model.SEO || mongoose.model("SEO", SEOSchema);
+const SEO = mongoose.models.SEO || mongoose.model("SEO", SEOSchema);
 
 export default SEO;

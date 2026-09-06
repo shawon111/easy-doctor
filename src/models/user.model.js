@@ -16,7 +16,9 @@ const UserSchema = new mongoose.Schema(
 
         subdomain: {
             type: String,
+            default: undefined,
             unique: true,
+            sparse: true
         },
 
         domain: {
@@ -193,7 +195,7 @@ const UserSchema = new mongoose.Schema(
 UserSchema.pre("save", async function () {
     // don't regenerate unless name changed
     if (!this.isModified("name")) {
-        return ;
+        return;
     }
 
     const baseSlug = slugify(this.name, {
