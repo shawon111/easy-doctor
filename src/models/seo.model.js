@@ -59,6 +59,11 @@ const SEOSchema = new mongoose.Schema(
                     maxlength: 160,
                 },
 
+                keywords: {
+                    type: [String],
+                    default: [],
+                },
+
                 ogImage: {
                     type: String,
                     trim: true,
@@ -76,6 +81,11 @@ const SEOSchema = new mongoose.Schema(
                     type: String,
                     trim: true,
                     maxlength: 160,
+                },
+
+                keywords: {
+                    type: [String],
+                    default: [],
                 },
 
                 ogImage: {
@@ -97,6 +107,11 @@ const SEOSchema = new mongoose.Schema(
                     maxlength: 160,
                 },
 
+                keywords: {
+                    type: [String],
+                    default: [],
+                },
+
                 ogImage: {
                     type: String,
                     trim: true,
@@ -114,6 +129,11 @@ const SEOSchema = new mongoose.Schema(
                     type: String,
                     trim: true,
                     maxlength: 160,
+                },
+
+                keywords: {
+                    type: [String],
+                    default: [],
                 },
 
                 ogImage: {

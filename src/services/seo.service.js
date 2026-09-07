@@ -504,6 +504,7 @@ export const updateSeo = async (userId, updates) => {
             {
                 upsert: false,
                 runValidators: true,
+                new: true,
             }
         )
         return updatedSeo;
@@ -511,3 +512,8 @@ export const updateSeo = async (userId, updates) => {
         throw new Error("failed to update SEO content")
     }
 }
+
+export const getSeoByUserId = async (userId) => {
+    await connectDB();
+    return SEO.findOne({ userId }).lean();
+};

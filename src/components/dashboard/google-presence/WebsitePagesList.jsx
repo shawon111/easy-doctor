@@ -3,24 +3,25 @@
 import { WebsitePageItem } from "./WebsitePageItem";
 
 const PAGES = [
-  { icon: "home",              label: "Home",              slug: "/index",       active: true,  status: "live"          },
-  { icon: "info",              label: "About the Practice", slug: "/about"                                              },
-  { icon: "medical_services",  label: "Services",           slug: "/services"                                           },
-  { icon: "calendar_month",    label: "Book Appointment",   slug: "/appointment",             status: "needs-review"   },
+  { key: "site", icon: "language", label: "Site SEO", slug: "All pages", status: "live" },
+  { key: "home", icon: "home", label: "Home", slug: "/index", status: "live" },
+  { key: "about", icon: "info", label: "About the Practice", slug: "/about" },
+  { key: "services", icon: "medical_services", label: "Services", slug: "/services" },
+  { key: "appointment", icon: "calendar_month", label: "Book Appointment", slug: "/appointment", status: "needs-review" },
 ];
-export function WebsitePagesList({ activeIndex = 0, onSelect }) {
+export function WebsitePagesList({ activeKey = "site", onSelect }) {
   return (
     <div className="lg:col-span-4 overflow-hidden rounded-2xl border border-border bg-card shadow-[0px_4px_12px_rgba(0,0,0,0.03)]">
       <div className="border-b border-border bg-muted/30 p-4">
         <h2 className="text-lg font-semibold text-foreground">Website Pages</h2>
       </div>
       <div className="flex flex-col divide-y divide-border/50">
-        {PAGES.map((page, i) => (
+        {PAGES.map((page) => (
           <WebsitePageItem
             key={page.slug}
             {...page}
-            active={i === activeIndex}
-            onClick={() => onSelect?.(i)}
+            active={page.key === activeKey}
+            onClick={() => onSelect?.(page.key)}
           />
         ))}
       </div>

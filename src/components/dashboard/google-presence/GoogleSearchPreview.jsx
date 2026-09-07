@@ -2,7 +2,6 @@
 
 export function GoogleSearchPreview({
   url = process.env.NEXT_PUBLIC_BASE_DOMAIN,
-  breadcrumbs = "dr › ahmed-rahman",
   title = "Dr. Ahmed Rahman | Top Cardiologist in Khulna | Book Now",
   description = "Comprehensive cardiac care in Khulna. Dr. Ahmed Rahman specializes in advanced heart conditions, preventative cardiology, and patient-centered treatment plans. Schedule your consultation online today.",
 }) {
@@ -23,12 +22,6 @@ export function GoogleSearchPreview({
               <span className="material-symbols-outlined text-[14px]">public</span>
               {url}
             </span>
-            {breadcrumbs.split("›").map((seg, i, arr) => (
-              <span key={i} className="flex items-center gap-2">
-                {i > 0 && <span className="text-[#4d5156]">›</span>}
-                <span>{seg.trim()}</span>
-              </span>
-            ))}
           </div>
           <h3 className="cursor-pointer text-lg font-medium leading-6 text-[#1a0dab] hover:underline sm:truncate sm:text-xl sm:leading-[26px]">
             {title}
