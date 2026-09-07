@@ -2,20 +2,7 @@
 
 import { cn } from "@/lib/utils";
 
-const STATUS_BADGE = {
-  live: (
-    <span className="rounded-full bg-[#10B981]/10 px-2 py-1 text-[11px] font-semibold uppercase tracking-wider text-[#10B981]">
-      LIVE
-    </span>
-  ),
-  "needs-review": (
-    <span className="rounded-full bg-[#F59E0B]/10 px-2 py-1 text-[11px] font-semibold uppercase tracking-wider text-[#F59E0B]">
-      NEEDS REVIEW
-    </span>
-  ),
-};
-
-export function WebsitePageItem({ icon, label, slug, active, status, onClick }) {
+export function WebsitePageItem({ icon, label, slug, active, onClick }) {
   return (
     <div
       onClick={onClick}
@@ -47,14 +34,6 @@ export function WebsitePageItem({ icon, label, slug, active, status, onClick }) 
           <p className="truncate font-mono text-xs text-muted-foreground">{slug}</p>
         </div>
       </div>
-
-      {status ? (
-        <span className="shrink-0">{STATUS_BADGE[status]}</span>
-      ) : (
-        <button className="shrink-0 text-sm font-medium text-primary opacity-100 transition-opacity sm:opacity-0 sm:group-hover:opacity-100">
-          Edit
-        </button>
-      )}
     </div>
   );
 }

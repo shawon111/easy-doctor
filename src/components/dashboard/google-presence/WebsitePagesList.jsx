@@ -5,7 +5,7 @@ import { WebsitePageItem } from "./WebsitePageItem";
 const PAGES = [
   { key: "site", icon: "language", label: "Site SEO", slug: "All pages", status: "live" },
   { key: "home", icon: "home", label: "Home", slug: "/index", status: "live" },
-  { key: "about", icon: "info", label: "About the Practice", slug: "/about" },
+  { key: "about", icon: "info", label: "About", slug: "/about" },
   { key: "services", icon: "medical_services", label: "Services", slug: "/services" },
   { key: "appointment", icon: "calendar_month", label: "Book Appointment", slug: "/appointment", status: "needs-review" },
 ];

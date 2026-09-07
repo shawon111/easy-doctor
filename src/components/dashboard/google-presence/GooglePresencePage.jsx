@@ -4,63 +4,62 @@ import { PageHeader } from "./PageHeader";
 import { WebsitePagesList } from "./WebsitePagesList";
 import { GoogleSearchPreview } from "./GoogleSearchPreview";
 import { MetaDataEditForm } from "./MetaDataEditForm";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
+const fetchSeo = async () => {
+  const response = await fetch("/api/seo");
+  const payload = await response.json();
+  if (!response.ok) throw new Error(payload.message || "Unable to load SEO settings.");
+  return payload.data;
+};
+
 export function GooglePresencePage() {
-  const [seo, setSeo] = useState(null);
   const [activeKey, setActiveKey] = useState("site");
-  const [loading, setLoading] = useState(true);
-  const [loadError, setLoadError] = useState("");
-  const [saving, setSaving] = useState(false);
+  const queryClient = useQueryClient();
+  const {
+    data: seo,
+    isLoading,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: ["seo-settings"],
+    queryFn: fetchSeo,
+    onError: (queryError) => toast.error(queryError.message),
+  });
 
-  useEffect(() => {
-    const loadSeo = async () => {
-      const response = await fetch("/api/seo");
-      const payload = await response.json();
-      if (!response.ok) throw new Error(payload.message || "Unable to load SEO settings.");
-      setSeo(payload.data);
-    };
-
-    loadSeo()
-      .catch((error) => {
-        setLoadError(error.message);
-        toast.error(error.message);
-      })
-      .finally(() => setLoading(false));
-  }, []);
-
-  const activeData = activeKey === "site" ? seo : seo?.pages?.[activeKey];
-
-  const saveSeo = async (values) => {
-    setSaving(true);
-    try {
+  const saveMutation = useMutation({
+    mutationFn: async ({ pageKey, values }) => {
       const response = await fetch("/api/seo", {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          scope: activeKey === "site" ? "site" : "page",
-          page: activeKey === "site" ? undefined : activeKey,
+          scope: pageKey === "site" ? "site" : "page",
+          page: pageKey === "site" ? undefined : pageKey,
           ...values,
         }),
       });
       const payload = await response.json();
       if (!response.ok) throw new Error(payload.message || "Unable to save SEO settings.");
-      setSeo(payload.data);
+      return payload.data;
+    },
+    onSuccess: (updatedSeo) => {
+      queryClient.setQueryData(["seo-settings"], updatedSeo);
       toast.success("SEO settings saved.");
-    } catch (error) {
-      toast.error(error.message);
-    } finally {
-      setSaving(false);
-    }
-  };
+    },
+    onError: (saveError) => toast.error(saveError.message),
+  });
 
-  if (loading) {
+  const activeData = activeKey === "site" ? seo : seo?.pages?.[activeKey];
+  const saveSeo = (values) => saveMutation.mutate({ pageKey: activeKey, values });
+
+  if (isLoading) {
     return <div className="p-8 text-sm text-muted-foreground">Loading SEO settings...</div>;
   }
 
-  if (loadError) {
-    return <div className="p-8 text-sm text-destructive">{loadError}</div>;
+  if (isError) {
+    return <div className="p-8 text-sm text-destructive">{error.message}</div>;
   }
 
   return (
@@ -78,7 +77,7 @@ export function GooglePresencePage() {
             data={seo}
             pageKey={activeKey}
             onSave={saveSeo}
-            saving={saving}
+            saving={saveMutation.isPending}
           />
         </div>
       </div>

@@ -41,7 +41,7 @@ export function MetaDataEditForm({ data, pageKey, onSave, onDiscard, saving }) {
 
   const pageLabel = pageKey === "site"
     ? "Site"
-    : { home: "Home", about: "About the Practice", services: "Services", appointment: "Book Appointment" }[pageKey];
+    : { home: "Home", about: "About", services: "Services", appointment: "Book Appointment" }[pageKey];
   const slug = pageKey === "site" ? "All pages" : pageKey === "home" ? "/index" : `/${pageKey}`;
 
   return (

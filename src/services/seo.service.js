@@ -72,6 +72,35 @@ const getServiceName = (specialty) => {
     );
 };
 
+const getProfessionalTitle = (specialty) => {
+    const professionalTitles = {
+        "Allergy and Immunology": "Allergist and Immunologist",
+        Anesthesiology: "Anesthesiologist",
+        "Cardiothoracic Surgery": "Cardiothoracic Surgeon",
+        "Colorectal Surgery": "Colorectal Surgeon",
+        "Critical Care Medicine": "Critical Care Specialist",
+        "Emergency Medicine": "Emergency Medicine Specialist",
+        "Family Medicine": "Family Medicine Specialist",
+        "General Surgery": "General Surgeon",
+        "Internal Medicine": "Internal Medicine Specialist",
+        "Interventional Radiologist": "Interventional Radiologist",
+        "Neurosurgeon": "Neurosurgeon",
+        "Obstetrician and Gynecologist": "Obstetrician and Gynecologist",
+        "Physical Medicine and Rehabilitation": "Physical Medicine and Rehabilitation Specialist",
+        "Thoracic Surgeon": "Thoracic Surgeon",
+    };
+
+    if (professionalTitles[specialty]) {
+        return professionalTitles[specialty];
+    }
+
+    if (specialty.endsWith(" Surgery")) {
+        return `${specialty.slice(0, -" Surgery".length)} Surgeon`;
+    }
+
+    return specialty;
+};
+
 
 // primary location
 
@@ -175,6 +204,65 @@ const generateKeywords = ({
     return unique(keywords);
 };
 
+const generatePageKeywords = ({
+    name,
+    specialty,
+    service,
+    city,
+    treatments,
+    page,
+    qualifications = [],
+}) => {
+    const locationSuffix = city ? ` in ${city}` : "";
+    const keywords = [];
+
+    if (page === "home") {
+        keywords.push(
+            name,
+            specialty,
+            `${specialty}${locationSuffix}`,
+            `${name}${locationSuffix}`,
+            `${service}${locationSuffix}`,
+            ...treatments.slice(0, 4).map((treatment) => `${treatment}${locationSuffix}`),
+        );
+    }
+
+    if (page === "about") {
+        keywords.push(
+            `about ${name}`,
+            `${name} ${specialty}`,
+            `${specialty}${locationSuffix}`,
+            `${name} experience`,
+            ...qualifications.slice(0, 3).map((qualification) => `${name} ${qualification}`),
+        );
+    }
+
+    if (page === "services") {
+        keywords.push(
+            service,
+            `${service} services`,
+            `${service} services${locationSuffix}`,
+            ...treatments.flatMap((treatment) => [
+                treatment,
+                `${treatment}${locationSuffix}`,
+                `${name} ${treatment}`,
+            ]),
+        );
+    }
+
+    if (page === "appointment") {
+        keywords.push(
+            `${name} appointment`,
+            `book appointment with ${name}`,
+            `${specialty} consultation${locationSuffix}`,
+            `${service} appointment${locationSuffix}`,
+            `contact ${name}`,
+        );
+    }
+
+    return unique(keywords);
+};
+
 // MAIN FUNCTION
 
 const generateSeoContent = (user) => {
@@ -210,6 +298,7 @@ const generateSeoContent = (user) => {
     const service = getServiceName(
         specialty
     );
+    const professionalTitle = getProfessionalTitle(specialty);
 
     // Primary location
 
@@ -282,17 +371,17 @@ const generateSeoContent = (user) => {
     if (treatmentPhrase && city) {
 
         defaultDescription =
-            `${name} is a ${specialty} in ${city}, ${country}. Services include ${treatmentPhrase}.`;
+            `${name} is a ${professionalTitle} in ${city}, ${country}. Services include ${treatmentPhrase}.`;
 
     } else if (city) {
 
         defaultDescription =
-            `${name} is a ${specialty} in ${city}, ${country}. Explore professional services and appointment options.`;
+            `${name} is a ${professionalTitle} in ${city}, ${country}. Explore professional services and appointment options.`;
 
     } else {
 
         defaultDescription =
-            `${name} is a ${specialty}. Explore professional services and appointment options.`;
+            `${name} is a ${professionalTitle}. Explore professional services and appointment options.`;
     }
 
 
@@ -303,23 +392,23 @@ const generateSeoContent = (user) => {
     if (treatmentPhrase && city) {
 
         homeDescription =
-            `Meet ${name}, a ${specialty} in ${city}, ${country}. Explore ${service.toLowerCase()} services including ${treatmentPhrase}.`;
+            `Meet ${name}, a ${professionalTitle} in ${city}, ${country}. Explore ${service.toLowerCase()} services including ${treatmentPhrase}.`;
 
     } else if (city) {
 
         homeDescription =
-            `Meet ${name}, a ${specialty} in ${city}, ${country}. Explore professional services and appointment options.`;
+            `Meet ${name}, a ${professionalTitle} in ${city}, ${country}. Explore professional services and appointment options.`;
 
     } else {
 
         homeDescription =
-            `Meet ${name}, a ${specialty}. Explore professional services and appointment options.`;
+            `Meet ${name}, a ${professionalTitle}. Explore professional services and appointment options.`;
     }
 
     // About description
 
     const aboutParts = [
-        `Learn about ${name}, a ${specialty}`,
+        `Learn about ${name}, a ${professionalTitle}`,
     ];
 
     if (city) {
@@ -372,12 +461,12 @@ const generateSeoContent = (user) => {
     if (city) {
 
         appointmentDescription =
-            `Contact ${name}, a ${specialty} in ${city}, to inquire about appointments and consultation options.`;
+            `Contact ${name}, a ${professionalTitle} in ${city}, to inquire about appointments and consultation options.`;
 
     } else {
 
         appointmentDescription =
-            `Contact ${name}, a ${specialty}, to inquire about appointments and consultation options.`;
+            `Contact ${name}, a ${professionalTitle}, to inquire about appointments and consultation options.`;
     }
 
     // keywords
@@ -388,6 +477,42 @@ const generateSeoContent = (user) => {
         city,
         treatments,
     });
+
+    const pageKeywords = {
+        home: generatePageKeywords({
+            name,
+            specialty,
+            service,
+            city,
+            treatments,
+            page: "home",
+        }),
+        about: generatePageKeywords({
+            name,
+            specialty,
+            service,
+            city,
+            treatments,
+            qualifications,
+            page: "about",
+        }),
+        services: generatePageKeywords({
+            name,
+            specialty,
+            service,
+            city,
+            treatments,
+            page: "services",
+        }),
+        appointment: generatePageKeywords({
+            name,
+            specialty,
+            service,
+            city,
+            treatments,
+            page: "appointment",
+        }),
+    };
 
     // social media Open Graph (og) title and description
 
@@ -428,6 +553,8 @@ const generateSeoContent = (user) => {
                     homeDescription,
                     220
                 ),
+
+                keywords: pageKeywords.home,
             },
 
             about: {
@@ -440,6 +567,8 @@ const generateSeoContent = (user) => {
                     aboutDescription,
                     220
                 ),
+
+                keywords: pageKeywords.about,
             },
 
             services: {
@@ -452,6 +581,8 @@ const generateSeoContent = (user) => {
                     servicesDescription,
                     220
                 ),
+
+                keywords: pageKeywords.services,
             },
 
             appointment: {
@@ -464,6 +595,8 @@ const generateSeoContent = (user) => {
                     appointmentDescription,
                     220
                 ),
+
+                keywords: pageKeywords.appointment,
             },
         },
 
@@ -515,5 +648,11 @@ export const updateSeo = async (userId, updates) => {
 
 export const getSeoByUserId = async (userId) => {
     await connectDB();
-    return SEO.findOne({ userId }).lean();
+    try {
+        const result = await SEO.findOne({ userId }).lean();
+        return result;
+    } catch (error) {
+        throw new Error("failed to get SEO content")
+    }
+
 };
