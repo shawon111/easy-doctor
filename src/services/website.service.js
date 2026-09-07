@@ -7,34 +7,22 @@ import User from "@/models/user.model";
 import { unstable_cache } from "next/cache";
 import { replaceTemplateVariables } from "@/lib/content/resolve-template-content";
 import { updateSeo } from "./seo.service";
-import mongoose from "mongoose";
 
 // create website
-export const createWebsite = async (userId, websiteData) => {
-    const session = await mongoose.startSession();
-    try {
-        const { templateType, templateVariant, contentType, content, subdomain } = websiteData;
-        const result = await session.withTransaction(async () => {
-            const [newWebsite] = await Website.create([{
-                userId,
-                templateType: templateType,
-                variant: templateVariant,
-                contentType,
-                content,
-                subdomain
-            }], { session });
+export const createWebsite = async (userId, websiteData, session) => {
+    const { templateType, templateVariant, contentType, content, subdomain } = websiteData;
+    const [newWebsite] = await Website.create([{
+        userId,
+        templateType,
+        variant: templateVariant,
+        contentType,
+        content,
+        subdomain
+    }], { session });
 
-            // add website id to seo
-            const updateSeoWithWebsiteInfo = await updateSeo(userId, { websiteId: newWebsite?._id }, session)
+    await updateSeo(userId, { websiteId: newWebsite._id }, session);
 
-            return newWebsite[0];
-        })
-        return result;
-    } catch (error) {
-        throw new Error('Failed to create website');
-    } finally {
-        await session.endSession();
-    }
+    return newWebsite;
 }
 
 // get website by userId

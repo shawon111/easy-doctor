@@ -1,5 +1,4 @@
 import { connectDB } from "@/config/database";
-import { requireUser } from "@/lib/requireUser";
 import User from "@/models/user.model";
 import Website from "@/models/website.model";
 import { createOrUpdateContent } from "@/services/content.service";
@@ -7,6 +6,7 @@ import { createWebsite } from "@/services/website.service";
 import { NextResponse } from "next/server";
 import { withUser } from "@/lib/withUser";
 import { getWebsiteByUserId } from "@/services/website.service";
+import mongoose from "mongoose";
 
 const templateTypeToVariantmap = {
     "template-one": "light",
@@ -39,7 +39,7 @@ export const GET = withUser(async (request, context, currentUser) => {
 });
 
 // create a new website
-export const POST = async (request) => {
+export const POST = withUser(async (request, context, currentUser) => {
     const { templateType, subdomain } = await request.json();
     if (
         !templateType ||
@@ -53,50 +53,63 @@ export const POST = async (request) => {
     }
     const templateVariant = templateTypeToVariantmap[templateType];
     const contentType = templateTypeToContentTypeMap[templateType];
+    let session;
+
     try {
         await connectDB();
-        // get user info
-        const user = await requireUser();
+        session = await mongoose.startSession();
+        const newWebsite = await session.withTransaction(async () => {
+            const existingWebsite = await Website.findOne(
+                { userId: currentUser._id },
+                null,
+                { session }
+            );
+            if (existingWebsite) {
+                throw new Error("User already has a website");
+            }
 
-        // check if the user already has a website
-        const existingWebsite = await Website.findOne({ userId: user?._id });
-        if (existingWebsite) {
-            return NextResponse.json({ error: 'User already has a website' }, { status: 400 });
-        }
+            const generateContentDoc = await createOrUpdateContent(
+                currentUser,
+                templateType,
+                {},
+                session
+            );
 
-        // create content first based on selected template type
-        const generateContentDoc = await createOrUpdateContent(user, templateType, {});
+            const website = await createWebsite(currentUser._id, {
+                templateType,
+                templateVariant,
+                contentType,
+                content: generateContentDoc._id,
+                subdomain
+            }, session);
 
-        // now create the website with the generated content
-        const newWebsite = await createWebsite(user?._id, {
-            templateType,
-            templateVariant: templateVariant,
-            contentType,
-            content: generateContentDoc._id,
-            subdomain
-        })
-
-        // update the user document with the new website info
-        if (newWebsite) {
             const updatedUser = await User.findByIdAndUpdate(
-                user?._id,
+                currentUser._id,
                 {
                     $set: {
                         subdomain,
                         websiteCreated: true,
-                        "websitePreferences.website": newWebsite._id,
+                        "websitePreferences.website": website._id,
                     },
-                }
+                },
+                { session, new: true }
             );
 
             if (!updatedUser) {
                 throw new Error("Unable to update user with website information");
             }
-        }
+
+            return website;
+        });
 
         return NextResponse.json({ success: true, data: newWebsite }, { status: 201 });
 
     } catch (error) {
-        return NextResponse.json({ error: 'Failed to create website' }, { status: 500 });
+        const status = error.message === "User already has a website" ? 400 : 500;
+        return NextResponse.json({ error: error.message || 'Failed to create website' }, { status });
+    } finally {
+        if (session) {
+            await session.endSession();
+        }
     }
-}
+});

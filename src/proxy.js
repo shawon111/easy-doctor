@@ -33,7 +33,11 @@ export function proxy(request) {
     if (
         pathname.startsWith("/_next/") ||
         pathname === "/favicon.ico" ||
-        pathname.includes(".")
+        (
+            pathname.includes(".") &&
+            pathname !== "/robots.txt" &&
+            pathname !== "/sitemap.xml"
+        )
     ) {
         return NextResponse.next();
     }
@@ -50,6 +54,24 @@ export function proxy(request) {
         host.endsWith(`.${ROOT_DOMAIN}`)
     ) {
         subdomain = host.replace(`.${ROOT_DOMAIN}`, "");
+    }
+
+
+    // robots.txt
+    if (subdomain && pathname === "/robots.txt") {
+        const url = request.nextUrl.clone();
+        url.pathname = `/doctor/${subdomain}/robots.txt`;
+
+        return NextResponse.rewrite(url);
+    }
+
+
+    // sitemap.xml
+    if (subdomain && pathname === "/sitemap.xml") {
+        const url = request.nextUrl.clone();
+        url.pathname = `/doctor/${subdomain}/sitemap.xml`;
+
+        return NextResponse.rewrite(url);
     }
 
     if (
@@ -73,9 +95,9 @@ export function proxy(request) {
             pathname === protectedPath ||
             pathname.startsWith(`${protectedPath}/`)
     ) || (
-        pathname === "/api/content" &&
-        request.method !== "GET"
-    );
+            pathname === "/api/content" &&
+            request.method !== "GET"
+        );
 
     if (!isDashboard && !isProtectedApiRoute) {
         return NextResponse.next();

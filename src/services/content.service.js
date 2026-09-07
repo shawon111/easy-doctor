@@ -12,7 +12,7 @@ const templateModels = {
     "template-three-dark": TemplateThreeContent,
 };
 
-export const createOrUpdateContent = async (user, templateType, content) => {
+export const createOrUpdateContent = async (user, templateType, content, session) => {
     try {
         const userId = user?._id.toString();
         const Template = templateModels[templateType];
@@ -30,6 +30,7 @@ export const createOrUpdateContent = async (user, templateType, content) => {
                 returnDocument: "after",
                 upsert: true,
                 runValidators: true,
+                ...(session && { session }),
             }
         );
         return saveContent;

@@ -120,12 +120,31 @@ export const getUserBySlug = async (slug) => {
     return user;
 }
 
+// get user by subdomain
+export const getUserBySubdomain = async (subdomain) => {
+    try{
+        const result = await User.findOne({subdomain}).select({
+            name: 1,
+            phone: 1,
+            email: 1,
+            specialization: 1,
+            bio: 1,
+            clinicAddress: 1,
+            socialLinks: 1,
+            subdomain: 1
+        }).lean();
+        return result
+    }catch(error){
+        throw new Error("Failed to get user")
+    }
+}
+
 // get doctors list
 export const getDoctorsList = async () => {
     const users = await User.find({}).select({
         slug: 1,
         _id: 1,
-    });
+    }).lean();
 
     return users;
 }
