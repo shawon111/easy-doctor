@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
@@ -12,9 +13,11 @@ export function AccountSection() {
       <h2 className="mb-6 text-lg font-semibold text-[#0F172A]">Account Information</h2>
 
       <div className="mb-6 flex flex-col items-start gap-4 sm:mb-8 sm:flex-row sm:items-center sm:gap-6">
-        <img
+        <Image
           src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8-eNaDdnS7QB5t4e83gv6yuusQ7W8xeTtogFzbztUAuIS3mLejtKU_9mkIrpyWMjWNB-XUUninVbdKurUBgLfKzaWPEh7gqEbnWw9H22W4genm1RjxEJfssfT_RYbiYl7PA2mWTLxnfXnUNgvVIbbW2FydZMTES307LkujaorHIhY7hEsQvD5aMGmviM624koTgUAh_wiWw0t8GteDGFWuf9G59veZSGpLk7QnTdIA_3iXMsZYaTl6w"
           alt="Profile Photo"
+          width={80}
+          height={80}
           className="h-20 w-20 rounded-full border border-[#E2E8F0] object-cover"
         />
         <div>

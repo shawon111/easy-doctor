@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 
 const ProfilePhotoInput = ({ src, name }) => {
@@ -7,10 +8,12 @@ const ProfilePhotoInput = ({ src, name }) => {
       <label className="mb-2 block text-sm font-semibold text-foreground">Profile Photo</label>
       <div className="flex items-center gap-6">
         <div className="group relative h-24 w-24 flex-shrink-0 cursor-pointer overflow-hidden rounded-full border-2 border-card bg-muted shadow-sm">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src={src}
             alt="Current Profile Photo"
+            width={96}
+            height={96}
+            unoptimized
             className="h-full w-full object-cover"
           />
           <div className="absolute inset-0 flex items-center justify-center bg-foreground/40 opacity-0 transition-opacity group-hover:opacity-100">

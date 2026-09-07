@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { useFormContext } from "react-hook-form";
 import toast from "react-hot-toast";
 import { Upload } from "lucide-react";
@@ -108,8 +109,13 @@ export function StepAccount({ register, errors }) {
       >
         <div className="flex items-center gap-3">
           {profilePicture ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img src={profilePicture} alt="Profile preview" className="size-14 rounded-full object-cover" />
+            <Image
+              src={profilePicture}
+              alt="Profile preview"
+              width={56}
+              height={56}
+              className="size-14 rounded-full object-cover"
+            />
           ) : null}
           <Button type="button" variant="outline" disabled={uploading} asChild>
             <label htmlFor="profilePicture" className="cursor-pointer">

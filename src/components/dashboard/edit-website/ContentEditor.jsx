@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import Image from "next/image";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { templateOneDefaults } from "@/content/defaults/template-one";
@@ -110,8 +111,14 @@ function ImageField({ label, value, onChange }) {
     <div className="space-y-2">
       <Label>{label}</Label>
       {value ? (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img src={value} alt="" className="h-32 w-full rounded-lg border object-cover" />
+        <Image
+          src={value}
+          alt={`${label} preview`}
+          width={640}
+          height={256}
+          unoptimized
+          className="h-32 w-full rounded-lg border object-cover"
+        />
       ) : null}
       <div className="flex gap-2">
         <Input value={value || ""} onChange={(event) => onChange(event.target.value)} placeholder="Image URL" />

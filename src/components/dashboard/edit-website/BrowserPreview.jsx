@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 const HERO_IMAGE =
   "https://ui-avatars.com/api/?name=Ahmed+Rahman&size=512&background=0050cb&color=ffffff&bold=true";
@@ -33,10 +34,11 @@ const HeroPreview = () => (
       </div>
       <div className="relative h-64 w-64 shrink-0 md:h-80 md:w-80">
         <div className="absolute inset-0 translate-x-4 translate-y-4 rounded-full bg-primary/10" />
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
+        <Image
           src={HERO_IMAGE}
           alt="Dr. Ahmed Rahman Hero Image"
+          width={320}
+          height={320}
           className="relative z-10 h-full w-full rounded-full border-4 border-card object-cover shadow-lg"
         />
       </div>
