@@ -529,12 +529,12 @@ const generateSeoContent = (user) => {
 
         defaultTitle: truncate(
             defaultTitle,
-            90
+            70
         ),
 
         defaultDescription: truncate(
             defaultDescription,
-            220
+            160
         ),
 
         keywords,
@@ -546,12 +546,12 @@ const generateSeoContent = (user) => {
             home: {
                 title: truncate(
                     homeTitle,
-                    90
+                    70
                 ),
 
                 description: truncate(
                     homeDescription,
-                    220
+                    160
                 ),
 
                 keywords: pageKeywords.home,
@@ -560,12 +560,12 @@ const generateSeoContent = (user) => {
             about: {
                 title: truncate(
                     aboutTitle,
-                    90
+                    70
                 ),
 
                 description: truncate(
                     aboutDescription,
-                    220
+                    160
                 ),
 
                 keywords: pageKeywords.about,
@@ -574,12 +574,12 @@ const generateSeoContent = (user) => {
             services: {
                 title: truncate(
                     servicesTitle,
-                    90
+                    70
                 ),
 
                 description: truncate(
                     servicesDescription,
-                    220
+                    160
                 ),
 
                 keywords: pageKeywords.services,
@@ -588,12 +588,12 @@ const generateSeoContent = (user) => {
             appointment: {
                 title: truncate(
                     appointmentTitle,
-                    90
+                    70
                 ),
 
                 description: truncate(
                     appointmentDescription,
-                    220
+                    160
                 ),
 
                 keywords: pageKeywords.appointment,
@@ -621,24 +621,26 @@ export const createSeo = async (user, session) => {
     await connectDB();
     try {
         const content = generateSeoContent(user);
-        const result = await SEO.create([content], session);
+        const result = await SEO.create([content], { session });
         return result[0];
     } catch (error) {
         throw new Error("error creating seo content")
     }
 }
 
-export const updateSeo = async (userId, updates) => {
+export const updateSeo = async (userId, updates, session) => {
     await connectDB();
+    const options = {
+        new: true,
+        upsert: false,
+        runValidators: true,
+        ...(session && { session })
+    }
     try {
         const updatedSeo = await SEO.findOneAndUpdate(
             { userId },
             { $set: updates },
-            {
-                upsert: false,
-                runValidators: true,
-                new: true,
-            }
+            options
         )
         return updatedSeo;
     } catch (error) {
