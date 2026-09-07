@@ -1,4 +1,5 @@
 import { Hanken_Grotesk, Inter, JetBrains_Mono, Manrope, Playfair_Display, Syne } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import QueryProvider from "@/providers/QueryProvider";
 import ToasterProvider from "@/providers/ToasterProvider";
@@ -49,13 +50,15 @@ export default function RootLayout({ children }) {
       lang="en"
       className={`${inter.variable} ${playfairDisplay.variable} ${manrope.variable} ${syne.variable} ${hankenGrotesk.variable} ${jetbrainsMono.variable} h-full antialiased scroll-smooth`}
     >
-      <head>
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-        />
-      </head>
       <body className="min-h-full flex flex-col">
+        <Script id="material-symbols-loader" strategy="afterInteractive">
+          {`(() => {
+            const link = document.createElement("link");
+            link.rel = "stylesheet";
+            link.href = "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap";
+            document.head.appendChild(link);
+          })();`}
+        </Script>
         <ToasterProvider />
         <QueryProvider>
           {children}

@@ -59,12 +59,14 @@ export default function FooterTwoDark({ slug, content = {} , isDemo = false}) {
             {websiteUrl ? <Link
               className="w-10 h-10 rounded-full border border-outline-variant/30 flex items-center justify-center hover:border-tertiary text-on-surface-variant hover:text-tertiary transition-all"
               href={websiteUrl}
+              aria-label="Visit practice website"
             >
               <span className="material-symbols-outlined text-sm">language</span>
             </Link> : null}
             {email ? <Link
               className="w-10 h-10 rounded-full border border-outline-variant/30 flex items-center justify-center hover:border-tertiary text-on-surface-variant hover:text-tertiary transition-all"
               href={`mailto:${email}`}
+              aria-label={`Email ${brandName || "the practice"}`}
             >
               <span className="material-symbols-outlined text-sm">mail</span>
             </Link> : null}
