@@ -1,3 +1,4 @@
+import Image from "next/image";
 export default function HomeMapLocationDarkThree({ content = {} , isDemo = false}) {
   const contact = content.contact || {};
   const labels = content.contactLabels || {};
@@ -32,7 +33,7 @@ export default function HomeMapLocationDarkThree({ content = {} , isDemo = false
         </div>
 
         <div className="rounded-[32px] overflow-hidden border border-outline-variant/50 h-[400px] shadow-lg">
-          <img className="w-full h-full object-cover" alt={content.mapImage?.imageAlt} src={content.mapImage?.imageUrl} />
+          <Image width={1200} height={800} className="w-full h-full object-cover" alt={content.mapImage?.imageAlt} src={content.mapImage?.imageUrl} />
         </div>
       </div>
     </section>

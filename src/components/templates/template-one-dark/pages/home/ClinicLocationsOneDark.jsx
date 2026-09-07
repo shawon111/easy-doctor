@@ -1,3 +1,4 @@
+import Image from "next/image";
 import RevealOneDark from "../../ui/RevealOneDark";
 
 const DELAYS = ["", "delay-100"];
@@ -23,7 +24,7 @@ export default function ClinicLocationsOneDark({ content = {}, isDemo = false })
               <div className="h-80 relative overflow-hidden">
                 {clinic.mapImage ? (
                   <div className="absolute inset-0 grayscale group-hover:grayscale-0 transition-all duration-1000">
-                    <img
+                    <Image width={1200} height={800}
                       className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-1000"
                       alt={clinic.mapAlt || clinic.name}
                       src={clinic.mapImage}

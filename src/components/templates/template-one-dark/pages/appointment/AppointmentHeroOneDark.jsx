@@ -1,3 +1,5 @@
+import Image from "next/image";
+import Link from "next/link";
 import SectionFadeOneDark from "../../ui/SectionFadeOneDark";
 
 export default function AppointmentHeroOneDark({ content = {}, isDemo = false }) {
@@ -21,27 +23,27 @@ export default function AppointmentHeroOneDark({ content = {}, isDemo = false })
             </p>
           ) : null}
           <div className="flex flex-wrap gap-4">
-            <a
+            <Link
               className="bg-neon-mint text-on-secondary px-10 py-5 rounded-full font-label-md flex items-center gap-3 whatsapp-neon transition-all group"
               href="#whatsapp-section"
             >
               <span className="material-symbols-outlined text-2xl">chat</span>
               {content.primaryCta || "Book via WhatsApp"}
-            </a>
-            <a
+            </Link>
+            <Link
               className="border border-outline text-on-surface px-10 py-5 rounded-full font-label-md hover:bg-surface-variant transition-all flex items-center gap-2"
               href="#schedule"
             >
               <span className="material-symbols-outlined">grid_view</span>
               {content.secondaryCta || "View Schedules"}
-            </a>
+            </Link>
           </div>
         </div>
         <div className="relative hidden lg:block">
           <div className="rounded-xl overflow-hidden aspect-[4/5] relative border border-white/10 glass-card p-2">
-            <img
+            <Image width={1200} height={800}
               className="w-full h-full object-cover rounded-lg opacity-80"
-              alt={content.imageAlt || ""}
+              alt={content.imageAlt  || "Medical practice image"}
               src={content.imageUrl}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />

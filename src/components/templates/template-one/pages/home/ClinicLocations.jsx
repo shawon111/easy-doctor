@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Reveal from "@/components/templates/ui/Reveal";
 
 const DELAYS = ["", "delay-100"];
@@ -23,7 +24,7 @@ export default function ClinicLocationsOne({ content = {} , isDemo = false}) {
               <div className="h-64 bg-surface-container-high relative">
                 {clinic.mapImage ? (
                   <div className="absolute inset-0 grayscale opacity-60">
-                    <img className="w-full h-full object-cover" alt={clinic.mapAlt || clinic.name} src={clinic.mapImage} />
+                    <Image width={1200} height={800} className="w-full h-full object-cover" alt={clinic.mapAlt || clinic.name} src={clinic.mapImage} />
                   </div>
                 ) : null}
                 <div className="absolute inset-0 bg-gradient-to-t from-white to-transparent" />

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import SectionFadeOneDark from "../../ui/SectionFadeOneDark";
 
 export default function AppointmentWhatsappOneDark({ content = {}, isDemo = false }) {
@@ -19,7 +20,7 @@ export default function AppointmentWhatsappOneDark({ content = {}, isDemo = fals
           ) : null}
         </div>
         <div className="relative z-10 w-full md:w-auto">
-          <a
+          <Link
             className="flex flex-col items-center bg-neon-mint text-on-secondary-fixed px-10 md:px-16 py-12 rounded-xl transition-all shadow-2xl whatsapp-neon group w-full border border-white/20 active:scale-95"
             href={whatsappUrl}
             target="_blank"
@@ -42,7 +43,7 @@ export default function AppointmentWhatsappOneDark({ content = {}, isDemo = fals
                 {features[0]}
               </div>
             ) : null}
-          </a>
+          </Link>
         </div>
         <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-neon-mint/20 rounded-full blur-[100px]" aria-hidden="true" />
         <div className="absolute -top-20 -right-20 w-64 h-64 bg-white/10 rounded-full blur-[80px]" aria-hidden="true" />

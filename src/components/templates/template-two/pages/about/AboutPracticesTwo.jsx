@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import RevealTwo from "./RevealTwo";
 
@@ -58,7 +59,7 @@ export default function AboutPracticesTwo({ content = {}, slug , isDemo = false}
               >
                 {loc.imageUrl ? (
                   <div className="h-48 relative overflow-hidden">
-                    <img
+                    <Image width={1200} height={800}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
                       alt={loc.imageAlt}
                       src={loc.imageUrl}

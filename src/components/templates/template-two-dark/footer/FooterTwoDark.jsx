@@ -29,9 +29,9 @@ export default function FooterTwoDark({ slug, content = {} , isDemo = false}) {
           <ul className="space-y-2 font-body-md text-body-md">
             {practiceLinks.map((link) => (
               <li key={link.label}>
-                <a className="text-on-surface-variant hover:text-tertiary transition-colors" href={link.href || "/"}>
+                <Link className="text-on-surface-variant hover:text-tertiary transition-colors" href={link.href || "/"}>
                   {link.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
@@ -42,9 +42,9 @@ export default function FooterTwoDark({ slug, content = {} , isDemo = false}) {
           <ul className="space-y-2 font-body-md text-body-md">
             {resourceLinks.map((link) => (
               <li key={link.label}>
-                <a className="text-on-surface-variant hover:text-tertiary transition-colors" href={link.href || "#"}>
+                <Link className="text-on-surface-variant hover:text-tertiary transition-colors" href={link.href || "#"}>
                   {link.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
@@ -56,18 +56,18 @@ export default function FooterTwoDark({ slug, content = {} , isDemo = false}) {
             <p className="font-headline-sm text-headline-sm text-on-surface">{phone}</p>
           ) : null}
           <div className="flex justify-end gap-4 mt-6">
-            {websiteUrl ? <a
+            {websiteUrl ? <Link
               className="w-10 h-10 rounded-full border border-outline-variant/30 flex items-center justify-center hover:border-tertiary text-on-surface-variant hover:text-tertiary transition-all"
               href={websiteUrl}
             >
               <span className="material-symbols-outlined text-sm">language</span>
-            </a> : null}
-            {email ? <a
+            </Link> : null}
+            {email ? <Link
               className="w-10 h-10 rounded-full border border-outline-variant/30 flex items-center justify-center hover:border-tertiary text-on-surface-variant hover:text-tertiary transition-all"
               href={`mailto:${email}`}
             >
               <span className="material-symbols-outlined text-sm">mail</span>
-            </a> : null}
+            </Link> : null}
           </div>
         </div>
       </div>

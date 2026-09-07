@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import RevealOneDark from "../../ui/RevealOneDark";
 
@@ -12,18 +13,18 @@ export default function AboutPreviewOneDark({ content = {}, slug, isDemo = false
           <div className="grid grid-cols-2 gap-6">
             <div className="pt-16">
               <div className="glass-card p-1 rounded-2xl">
-                <img
+                <Image width={1200} height={800}
                   className="rounded-xl w-full h-64 object-cover grayscale hover:grayscale-0 transition-all duration-500"
-                  alt={content.imageAlt || ""}
+                  alt={content.imageAlt  || "Medical practice image"}
                   src={content.imageUrl}
                 />
               </div>
             </div>
             <div>
               <div className="glass-card p-1 rounded-2xl">
-                <img
+                <Image width={1200} height={800}
                   className="rounded-xl w-full h-80 object-cover grayscale hover:grayscale-0 transition-all duration-500"
-                  alt={content.imageAltSecondary || ""}
+                  alt={content.imageAltSecondary  || "Medical practice image"}
                   src={content.imageUrlSecondary}
                 />
               </div>

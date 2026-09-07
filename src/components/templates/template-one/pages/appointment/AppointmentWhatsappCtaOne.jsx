@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Reveal from "@/components/templates/ui/Reveal";
 
 export default function AppointmentWhatsappCtaOne({ content = {} , isDemo = false}) {
@@ -23,7 +24,7 @@ export default function AppointmentWhatsappCtaOne({ content = {} , isDemo = fals
         </div>
 
         <div className="relative z-10 w-full md:w-auto">
-          <a
+          <Link
             className="flex flex-col items-center bg-surface-container-lowest text-on-background px-8 md:px-12 py-8 rounded-[32px] hover:scale-105 active:scale-95 transition-all shadow-2xl group w-full"
             href={whatsappUrl}
             target="_blank"
@@ -46,7 +47,7 @@ export default function AppointmentWhatsappCtaOne({ content = {} , isDemo = fals
                 {features[0]}
               </p>
             ) : null}
-          </a>
+          </Link>
         </div>
 
         <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-white/10 rounded-full blur-2xl" />

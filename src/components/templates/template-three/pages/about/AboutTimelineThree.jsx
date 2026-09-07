@@ -1,3 +1,4 @@
+import Image from "next/image";
 import FadeInThree from "../../ui/FadeInThree";
 
 const TIMELINE_STYLES = [
@@ -46,7 +47,7 @@ export default function AboutTimelineThree({ content = {} , isDemo = false}) {
                 </FadeInThree>
 
                 <FadeInThree className="md:w-[45%] rounded-xl overflow-hidden border border-outline-variant shadow-lg hidden md:block">
-                  <img className="w-full h-48 object-cover" alt={milestone.imageAlt} src={milestone.imageUrl} />
+                  <Image width={1200} height={800} className="w-full h-48 object-cover" alt={milestone.imageAlt} src={milestone.imageUrl} />
                 </FadeInThree>
               </div>
             ))}

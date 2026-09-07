@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 const HERO_IMAGE_FALLBACK =
@@ -47,9 +48,9 @@ export default function HeroTwoDark({ slug, content = {} , isDemo = false}) {
         <div className="md:col-span-5 relative group mt-12 md:mt-0">
           <div className="absolute -inset-4 bg-tertiary/10 rounded-xl blur-3xl group-hover:bg-tertiary/20 transition-all duration-700" />
           <div className="relative rounded-xl overflow-hidden glass-card p-2">
-            <img
+            <Image width={1200} height={800}
               className="w-full aspect-[4/5] object-cover rounded-lg"
-              alt={content.imageAlt || ""}
+              alt={content.imageAlt  || "Medical practice image"}
               src={imageSrc}
             />
           </div>

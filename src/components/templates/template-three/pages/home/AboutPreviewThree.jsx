@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 const IMAGE_CLASSES = ["aspect-[4/5]", "aspect-square", "aspect-square", "aspect-[4/5]"];
@@ -19,7 +20,7 @@ export default function AboutPreviewThree({ slug, content = {} , isDemo = false}
                 key={img.imageUrl}
                 className={`${img.className} rounded-3xl overflow-hidden border border-outline-variant/30 shadow-md`}
               >
-                <img className="w-full h-full object-cover" alt={img.imageAlt} src={img.imageUrl} />
+                <Image width={1200} height={800} className="w-full h-full object-cover" alt={img.imageAlt} src={img.imageUrl} />
               </div>
             ))}
           </div>
@@ -29,7 +30,7 @@ export default function AboutPreviewThree({ slug, content = {} , isDemo = false}
                 key={img.imageUrl}
                 className={`${img.className} rounded-3xl overflow-hidden border border-outline-variant/30 shadow-md`}
               >
-                <img className="w-full h-full object-cover" alt={img.imageAlt} src={img.imageUrl} />
+                <Image width={1200} height={800} className="w-full h-full object-cover" alt={img.imageAlt} src={img.imageUrl} />
               </div>
             ))}
           </div>

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/templates/ui/Reveal";
 
@@ -11,16 +12,16 @@ export default function AboutPreviewOne({ content = {}, slug , isDemo = false}) 
         <Reveal className="order-2 md:order-1">
           <div className="grid grid-cols-2 gap-4">
             <div className="pt-12">
-              <img
+              <Image width={1200} height={800}
                 className="rounded-2xl soft-bloom w-full h-64 object-cover"
-                alt={content.imageAlt || ""}
+                alt={content.imageAlt  || "Medical practice image"}
                 src={content.imageUrl}
               />
             </div>
             <div>
-              <img
+              <Image width={1200} height={800}
                 className="rounded-2xl soft-bloom w-full h-80 object-cover"
-                alt={content.imageAltSecondary || ""}
+                alt={content.imageAltSecondary  || "Medical practice image"}
                 src={content.imageUrlSecondary}
               />
             </div>

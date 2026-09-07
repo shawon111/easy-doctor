@@ -1,3 +1,4 @@
+import Image from "next/image";
 import SectionFadeOneDark from "../../ui/SectionFadeOneDark";
 
 const HERO_IMAGE_FALLBACK =
@@ -38,8 +39,8 @@ export default function AboutHeroOneDark({ content = {}, isDemo = false }) {
         </div>
         <div className="relative group">
           <div className="absolute -inset-4 bg-primary/10 rounded-[3rem] blur-3xl group-hover:bg-primary/20 transition-all duration-700" />
-          <img
-            alt={content.imageAlt || ""}
+          <Image width={1200} height={800}
+            alt={content.imageAlt  || "Medical practice image"}
             className="relative w-full aspect-square object-cover rounded-[3rem] border border-white/10"
             src={imageSrc}
           />

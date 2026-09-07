@@ -1,3 +1,5 @@
+import Image from "next/image";
+import Link from "next/link";
 export default function TreatmentsTwo({ content = {} , isDemo = false}) {
   const items = content.items || [];
   const [featured, secondary, tertiary, quaternary] = items;
@@ -22,7 +24,7 @@ export default function TreatmentsTwo({ content = {} , isDemo = false}) {
         {featured ? (
           <div className="md:col-span-8 glass-card p-12 min-h-[400px] flex flex-col justify-end relative overflow-hidden group border-outline-variant shadow-md">
             {featured.imageUrl ? (
-              <img
+              <Image width={1200} height={800}
                 className="absolute inset-0 w-full h-full object-cover opacity-10 group-hover:scale-105 transition-transform duration-[2000ms]"
                 alt={featured.imageAlt || featured.title}
                 src={featured.imageUrl}
@@ -35,13 +37,13 @@ export default function TreatmentsTwo({ content = {} , isDemo = false}) {
               <p className="font-body-md text-body-md text-on-surface-variant max-w-lg">
                 {featured.description}
               </p>
-              <a
+              <Link
                 className="inline-flex items-center gap-2 text-primary font-label-caps text-label-caps hover:gap-4 transition-all"
                 href={featured.href || "/services"}
               >
                 Explore Procedure{" "}
                 <span className="material-symbols-outlined">north_east</span>
-              </a>
+              </Link>
             </div>
           </div>
         ) : null}
@@ -50,7 +52,7 @@ export default function TreatmentsTwo({ content = {} , isDemo = false}) {
           <div className="md:col-span-4 glass-card p-8 flex flex-col justify-between group border-outline-variant shadow-sm">
             {secondary.imageUrl ? (
               <div className="w-full h-48 bg-surface-container rounded-lg mb-6 overflow-hidden">
-                <img
+                <Image width={1200} height={800}
                   className="w-full h-full object-cover opacity-40 group-hover:opacity-100 transition-opacity"
                   alt={secondary.imageAlt || secondary.title}
                   src={secondary.imageUrl}
@@ -64,9 +66,9 @@ export default function TreatmentsTwo({ content = {} , isDemo = false}) {
               <p className="font-body-md text-body-md text-on-surface-variant mb-4">
                 {secondary.description}
               </p>
-              <a className="text-primary font-label-caps text-label-caps hover:underline" href={secondary.href || "/services"}>
+              <Link className="text-primary font-label-caps text-label-caps hover:underline" href={secondary.href || "/services"}>
                 Learn More
-              </a>
+              </Link>
             </div>
           </div>
         ) : null}
@@ -89,7 +91,7 @@ export default function TreatmentsTwo({ content = {} , isDemo = false}) {
           <div className="md:col-span-8 glass-card p-8 flex items-center gap-8 group border-outline-variant shadow-sm">
             {quaternary.imageUrl ? (
               <div className="hidden sm:block w-48 h-48 rounded-lg overflow-hidden shrink-0 border border-outline-variant">
-                <img
+                <Image width={1200} height={800}
                   className="w-full h-full object-cover"
                   alt={quaternary.imageAlt || quaternary.title}
                   src={quaternary.imageUrl}

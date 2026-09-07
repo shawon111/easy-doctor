@@ -30,7 +30,7 @@ const DoctorLayout = async ({ children, params }) => {
     user,
     baseUrl,
   });
-  return <div>
+  return <>
     <script
       type="application/ld+json"
       dangerouslySetInnerHTML={{
@@ -38,7 +38,7 @@ const DoctorLayout = async ({ children, params }) => {
       }}
     />
     {children}
-  </div>;
+  </>;
 };
 
 export default DoctorLayout;

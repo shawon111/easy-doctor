@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 const DEFAULT_HERO_IMAGE =
@@ -31,13 +32,13 @@ export default function HeroThree({ slug, content = {} , isDemo = false}) {
               <span className="material-symbols-outlined text-2xl">arrow_forward</span>
             </Link>
             {content.whatsappUrl && (
-              <a
+              <Link
                 className="bg-surface-container text-on-surface px-8 py-4 rounded-xl font-headline-md text-[18px] flex items-center gap-3 border border-outline-variant hover:border-primary transition-all"
                 href={content.whatsappUrl}
               >
                 <span className="material-symbols-outlined text-2xl text-[#128C7E]">chat_bubble</span>
                 {content.secondaryCta}
-              </a>
+              </Link>
             )}
           </div>
         </div>
@@ -45,7 +46,7 @@ export default function HeroThree({ slug, content = {} , isDemo = false}) {
         <div className="relative group">
           <div className="absolute inset-0 bg-primary/10 blur-[100px] rounded-full opacity-30 group-hover:opacity-50 transition-opacity" />
           <div className="relative aspect-square rounded-[40px] overflow-hidden border border-outline-variant/30 shadow-xl">
-            <img className="w-full h-full object-cover" alt={content.imageAlt} src={heroImage} />
+            <Image width={1200} height={800} className="w-full h-full object-cover" alt={content.imageAlt} src={heroImage} />
           </div>
 
           <div className="absolute -bottom-8 -left-8 glass-card p-6 rounded-2xl shadow-lg border border-outline/10">

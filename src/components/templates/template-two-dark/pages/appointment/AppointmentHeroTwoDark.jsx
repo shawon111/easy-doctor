@@ -1,3 +1,4 @@
+import Link from "next/link";
 export default function AppointmentHeroTwoDark({ content = {} , isDemo = false}) {
   return (
     <section className="relative pt-[120px] pb-20 px-5 md:px-16 text-center">
@@ -12,18 +13,18 @@ export default function AppointmentHeroTwoDark({ content = {} , isDemo = false})
           {content.body}
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-4 pt-4">
-          <a
+          <Link
             href="#schedules"
             className="bg-primary text-on-primary px-8 py-4 rounded font-label-caps text-label-caps luxury-button-shadow transition-all"
           >
             View Visiting Hours
-          </a>
-          <a
+          </Link>
+          <Link
             href="#whatsapp"
             className="border border-tertiary text-tertiary px-8 py-4 rounded font-label-caps text-label-caps luxury-button-shadow transition-all"
           >
             Instant WhatsApp Booking
-          </a>
+          </Link>
         </div>
       </div>
       <div className="gold-divider mt-20 opacity-50" />

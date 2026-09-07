@@ -1,3 +1,4 @@
+import Image from "next/image";
 export default function ServicesBenefitsOne({ content = {} , isDemo = false}) {
   const items = content.items || [];
 
@@ -5,9 +6,9 @@ export default function ServicesBenefitsOne({ content = {} , isDemo = false}) {
     <section className="py-section-padding px-margin-mobile md:px-margin-desktop bg-surface-container-low">
       <div className="max-w-[1200px] mx-auto grid lg:grid-cols-2 gap-gutter items-center">
         <div className="relative rounded-xl overflow-hidden aspect-square shadow-[0px_10px_30px_rgba(30,41,59,0.04)]">
-          <img
+          <Image width={1200} height={800}
             className="w-full h-full object-cover"
-            alt={content.imageAlt || ""}
+            alt={content.imageAlt  || "Medical practice image"}
             src={content.imageUrl}
           />
         </div>

@@ -23,19 +23,19 @@ export default function FooterOneDark({ content = {}, slug , isDemo = false}) {
             </p>
           ) : null}
           <div className="flex gap-4">
-            {content.socialUrl ? <a
+            {content.socialUrl ? <Link
               className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary hover:bg-primary/5 transition-all"
               href={content.socialUrl}
             >
               <span className="material-symbols-outlined">share</span>
-            </a> : null}
+            </Link> : null}
             {phone ? (
-              <a
+              <Link
                 className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary hover:bg-primary/5 transition-all"
                 href={`tel:${phone}`}
               >
                 <span className="material-symbols-outlined">call</span>
-              </a>
+              </Link>
             ) : null}
           </div>
         </div>

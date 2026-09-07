@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Reveal from "@/components/templates/ui/Reveal";
 
 export default function WhyChooseUsOne({ content = {} , isDemo = false}) {
@@ -40,9 +41,9 @@ export default function WhyChooseUsOne({ content = {} , isDemo = false}) {
               ) : null}
               {content.quoteAuthor ? (
                 <div className="flex items-center gap-4 relative z-10">
-                  <img
+                  <Image width={1200} height={800}
                     className="h-12 grayscale"
-                    alt={content.quoteImageAlt || ""}
+                    alt={content.quoteImageAlt  || "Medical practice image"}
                     src={content.quoteImageUrl}
                   />
                   <p className="text-label-caps font-label-caps text-primary">{content.quoteAuthor}</p>

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/templates/ui/Reveal";
 
@@ -47,9 +48,9 @@ export default function HeroOne({ content = {}, slug , isDemo = false}) {
 
         <Reveal className="relative delay-200">
           <div className="aspect-[4/5] rounded-[2rem] overflow-hidden soft-bloom-lg border-8 border-white">
-            <img
+            <Image width={1200} height={800}
               className="w-full h-full object-cover"
-              alt={content.imageAlt || ""}
+              alt={content.imageAlt  || "Medical practice image"}
               src={imageSrc}
             />
           </div>

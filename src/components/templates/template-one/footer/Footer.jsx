@@ -25,19 +25,19 @@ export default function FooterOne({ content = {}, slug , isDemo = false}) {
             </p>
           ) : null}
           <div className="flex gap-4">
-            {content.socialUrl ? <a
+            {content.socialUrl ? <Link
               className="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary transition-all"
               href={content.socialUrl}
             >
               <span className="material-symbols-outlined">share</span>
-            </a> : null}
+            </Link> : null}
             {phone ? (
-              <a
+              <Link
                 className="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary transition-all"
                 href={`tel:${phone}`}
               >
                 <span className="material-symbols-outlined">call</span>
-              </a>
+              </Link>
             ) : null}
           </div>
         </div>

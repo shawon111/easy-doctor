@@ -1,3 +1,4 @@
+import Image from "next/image";
 import RevealOneDark from "../../ui/RevealOneDark";
 
 const ICON_CLASSES = [
@@ -48,9 +49,9 @@ export default function WhyChooseUsOneDark({ content = {}, isDemo = false }) {
               ) : null}
               {content.quoteAuthor ? (
                 <div className="flex items-center gap-6 relative z-10">
-                  <img
+                  <Image width={1200} height={800}
                     className="h-10 invert brightness-100"
-                    alt={content.quoteImageAlt || ""}
+                    alt={content.quoteImageAlt  || "Medical practice image"}
                     src={content.quoteImageUrl}
                   />
                   <p className="text-xs font-bold tracking-[0.3em] text-primary uppercase">{content.quoteAuthor}</p>

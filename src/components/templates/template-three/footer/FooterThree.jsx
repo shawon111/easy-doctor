@@ -21,12 +21,12 @@ export default function FooterThree({ slug, content, isDemo = false }) {
           <ul className="space-y-3">
             {resourceLinks.map((link) => (
               <li key={link.label}>
-                <a
+                <Link
                   className="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors"
                   href={link.href}
                 >
                   {link.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>

@@ -1,3 +1,4 @@
+import Link from "next/link";
 export default function AppointmentHeroTwo({ content = {} , isDemo = false}) {
   return (
     <section className="relative pt-[120px] pb-20 px-[20px] md:px-[64px] text-center">
@@ -10,18 +11,18 @@ export default function AppointmentHeroTwo({ content = {} , isDemo = false}) {
           {content.body}
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-4 pt-4">
-          <a
+          <Link
             className="bg-[#2563eb] text-white px-8 py-4 rounded-[8px] apttwo-label-caps apttwo-luxury-btn-shadow transition-all"
             href="#schedules"
           >
             View Visiting Hours
-          </a>
-          <a
+          </Link>
+          <Link
             className="border border-[#2563eb] text-[#2563eb] px-8 py-4 rounded-[8px] apttwo-label-caps apttwo-luxury-btn-shadow transition-all hover:bg-[#2563eb]/5"
             href="#whatsapp"
           >
             Instant WhatsApp Booking
-          </a>
+          </Link>
         </div>
       </div>
       <div className="apttwo-gold-divider mt-20 opacity-30" />

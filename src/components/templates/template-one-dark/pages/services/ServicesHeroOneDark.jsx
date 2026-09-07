@@ -1,3 +1,4 @@
+import Image from "next/image";
 export default function ServicesHeroOneDark({ content = {} , isDemo = false}) {
   return (
     <section className="relative py-16 px-6 md:px-10 hero-gradient overflow-hidden">
@@ -20,8 +21,8 @@ export default function ServicesHeroOneDark({ content = {} , isDemo = false}) {
         </div>
         <div className="lg:col-span-5 relative group">
           <div className="w-full aspect-square rounded-[3rem] overflow-hidden border-2 border-white/10 cyber-border">
-            <img
-              alt={content.imageAlt || ""}
+            <Image width={1200} height={800}
+              alt={content.imageAlt  || "Medical practice image"}
               className="w-full h-full object-cover filter contrast-125 grayscale hover:grayscale-0 transition-all duration-700"
               src={content.imageUrl}
             />

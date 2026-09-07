@@ -1,3 +1,4 @@
+import Image from "next/image";
 const CHAMBER_CLASSES = ["", "lg:col-span-2", ""];
 
 export default function AppointmentChambersDarkThree({ content = {} , isDemo = false}) {
@@ -15,7 +16,7 @@ export default function AppointmentChambersDarkThree({ content = {} , isDemo = f
             key={chamber.title}
             className={`relative h-64 md:h-80 rounded-2xl overflow-hidden group border border-outline-variant/30 ${chamber.className}`}
           >
-            <img
+            <Image width={1200} height={800}
               alt={chamber.imageAlt}
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               src={chamber.imageUrl}

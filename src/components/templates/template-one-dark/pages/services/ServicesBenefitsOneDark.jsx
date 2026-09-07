@@ -1,3 +1,4 @@
+import Image from "next/image";
 export default function ServicesBenefitsOneDark({ content = {} , isDemo = false}) {
   const items = content.items || [];
 
@@ -9,8 +10,8 @@ export default function ServicesBenefitsOneDark({ content = {} , isDemo = false}
       <div className="max-w-[1440px] mx-auto grid lg:grid-cols-2 gap-8 items-center relative z-10">
         <div className="order-2 lg:order-1">
           <div className="relative rounded-xl overflow-hidden aspect-[4/3] border border-white/10">
-            <img
-              alt={content.imageAlt || ""}
+            <Image width={1200} height={800}
+              alt={content.imageAlt  || "Medical practice image"}
               className="w-full h-full object-cover filter contrast-110"
               src={content.imageUrl}
             />

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import SectionFadeTwoDark from "../../ui/SectionFadeTwoDark";
 
@@ -54,7 +55,7 @@ export default function AboutPracticesTwoDark({ content = {}, slug , isDemo = fa
               >
                 {location.imageUrl ? (
                   <div className="h-48 relative overflow-hidden">
-                    <img
+                    <Image width={1200} height={800}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
                       alt={location.name}
                       src={location.imageUrl}

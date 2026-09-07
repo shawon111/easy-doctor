@@ -1,3 +1,4 @@
+import Image from "next/image";
 export default function AboutLocationsThree({ content = {} , isDemo = false}) {
   const items = content.items || [];
 
@@ -14,7 +15,7 @@ export default function AboutLocationsThree({ content = {} , isDemo = false}) {
           {items.map((location) => (
             <div key={location.city} className="relative h-64 rounded-xl overflow-hidden group shadow-lg">
               <div className="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-transparent to-transparent z-10" />
-              <img
+              <Image width={1200} height={800}
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 alt={location.imageAlt || location.city}
                 src={location.imageUrl}

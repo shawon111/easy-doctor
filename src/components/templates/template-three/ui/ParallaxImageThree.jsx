@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 
 import { useEffect, useRef } from "react";
 
@@ -19,7 +20,7 @@ export default function ParallaxImageThree({ src, alt, className = "", isDemo = 
   }, []);
 
   return (
-    <img
+    <Image width={1200} height={800}
       ref={imageRef}
       className={`relative z-10 w-full h-[500px] object-cover rounded-2xl border border-outline-variant shadow-xl transition-transform ${className}`}
       alt={alt}

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import RevealTwo from "./RevealTwo";
 
 const HERO_IMAGE_FALLBACK =
@@ -39,9 +40,9 @@ export default function AboutHeroTwo({ content = {} }) {
 
         <div className="md:col-span-5 relative mt-12 md:mt-0">
           <div className="aspect-[4/5] bg-[#e6e8ea] p-2 rounded-[8px] relative overflow-hidden group shadow-lg">
-            <img
+            <Image width={1200} height={800}
               className="w-full h-full object-cover rounded-[8px] shadow-md transition-transform duration-700 group-hover:scale-105"
-              alt={content.imageAlt || ""}
+              alt={content.imageAlt  || "Medical practice image"}
               src={imageSrc}
             />
           </div>

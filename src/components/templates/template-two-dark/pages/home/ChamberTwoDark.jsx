@@ -1,3 +1,4 @@
+import Image from "next/image";
 const CHAMBER_IMAGE_FALLBACK =
   "https://lh3.googleusercontent.com/aida-public/AB6AXuClqAmDaJPpOfZQ4FtOCxYCJZ9HEPYePeXq5yVOmzi_wx6xuD_yD906ZhIowQriEDGsscyHACNI7GovoqA6bO8nWSXhL73ndsnA8SDc72Ofpt3aRu5Xon7LU1omSI5ZCU51AqIU93HV5tmOvu_yb8J-93u4Rko6RsUqc3niWwOxHWUCyFjIa4AAsrhJnwn-FX9P2YwePI5NblitXMxUufqU50vqtmXKYl71-gQr9zRG4TFxjVRC7L93rA";
 
@@ -39,9 +40,9 @@ export default function ChamberTwoDark({ content = {} , isDemo = false}) {
 
         <div className="md:col-span-7 h-[450px] rounded-xl overflow-hidden glass-card relative group">
           <div className="w-full h-full bg-surface-container-high relative overflow-hidden">
-            <img
+            <Image width={1200} height={800}
               className="w-full h-full object-cover grayscale opacity-50 contrast-125 group-hover:scale-105 transition-transform duration-[4000ms]"
-              alt={content.imageAlt || ""}
+              alt={content.imageAlt  || "Medical practice image"}
               src={imageSrc}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />

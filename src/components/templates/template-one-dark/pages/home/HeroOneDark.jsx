@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import RevealOneDark from "../../ui/RevealOneDark";
 
@@ -48,9 +49,9 @@ export default function HeroOneDark({ content = {}, slug, isDemo = false }) {
 
         <RevealOneDark className="relative delay-200" isDemo={isDemo}>
           <div className="aspect-[4/5] rounded-xl overflow-hidden glass-card p-2 border border-white/10">
-            <img
+            <Image width={1200} height={800}
               className="w-full h-full object-cover rounded-lg grayscale hover:grayscale-0 transition-all duration-700"
-              alt={content.imageAlt || ""}
+              alt={content.imageAlt  || "Medical practice image"}
               src={imageSrc}
             />
           </div>

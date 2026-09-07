@@ -1,3 +1,4 @@
+import Image from "next/image";
 const HERO_IMAGE_FALLBACK =
   "https://lh3.googleusercontent.com/aida-public/AB6AXuC6E94N4ihuxDnC1fKJmF2jN7fNcNgbm2BYOBjiBjvoKhWAFtOdRackfeSEGaNAOqXUZGYze11OX_DLJd1Jn2X1St5Sbj0paJDGp7UmiqbqHl9nwGWGoLDq1wfFeoPiXG3NL-Gn05fI172zWcz7P9k0A8adGWqtO8OeWoU-cTW1icWJKgzCELXF_t2Y4vMoZejyWfVCdojwZp9UKP6nvs-RF8rScj6x3vaMn9omwEE31xVTrLn5XmaLEA";
 
@@ -29,9 +30,9 @@ export default function AboutHeroTwoDark({ content = {} }) {
         </div>
         <div className="md:col-span-5 relative mt-12 md:mt-0">
           <div className="aspect-[4/5] glass-card p-2 rounded-lg relative overflow-hidden group">
-            <img
+            <Image width={1200} height={800}
               className="w-full h-full object-cover rounded shadow-2xl transition-transform duration-700 group-hover:scale-105"
-              alt={content.imageAlt || ""}
+              alt={content.imageAlt  || "Medical practice image"}
               src={imageSrc}
             />
           </div>

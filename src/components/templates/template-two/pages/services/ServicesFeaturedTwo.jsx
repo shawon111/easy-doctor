@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 const FEATURED_IMAGE_FALLBACK =
@@ -43,9 +44,9 @@ export default function ServicesFeaturedTwo({ content = {}, slug , isDemo = fals
         <div className="md:col-span-4 group relative overflow-hidden rounded-[8px] svctwo-glass-panel p-2 h-[500px] flex flex-col">
           {secondary.imageUrl ? (
             <div className="h-1/2 overflow-hidden">
-              <img
+              <Image width={1200} height={800}
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                alt={secondary.imageAlt || secondary.heading || ""}
+                alt={secondary.imageAlt || secondary.heading  || "Medical practice image"}
                 src={secondary.imageUrl}
               />
             </div>

@@ -1,3 +1,4 @@
+import Image from "next/image";
 const DEFAULT_HERO_IMAGE =
   "https://lh3.googleusercontent.com/aida-public/AB6AXuCwpZmJK4q5FM8vcTZB_TAivyNi8GAzDB3Hw8AV2tSk_zt3UN2PZjlv5qexJd2tGgFeZHhhoXJpkk6zt44YAULkXLZCWQaF-HktGQcvHTByHX5DJS38yj4DNlp03chBQeMx6cAeUYOVqpysLgOSJ_Zl-F49HvdtWWsrBIRtp9H39DJLjLuFE7mepNfzjdyWFdhEAGJPKQiBs0PggdHnALQzvB9rZ-p13vtCyxTymCU1sUzd57AEaL2CwQ";
 
@@ -37,7 +38,7 @@ export default function AboutHeroDarkThree({ content = {} , isDemo = false}) {
 
         <div className="relative group">
           <div className="absolute -inset-4 bg-gradient-to-tr from-primary/20 to-secondary/20 rounded-2xl blur-2xl group-hover:blur-3xl transition-all" />
-          <img
+          <Image width={1200} height={800}
             className="relative z-10 w-full h-[500px] object-cover rounded-2xl border border-outline-variant/30 shadow-2xl"
             alt={content.imageAlt}
             src={heroImage}

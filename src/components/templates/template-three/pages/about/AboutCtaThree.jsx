@@ -17,12 +17,12 @@ export default function AboutCtaThree({ slug, content = {} , isDemo = false}) {
             >
               {content.primaryCta}
             </Link>
-            <a
+            <Link
               href={`${base}/services`}
               className="border-2 border-white/30 text-white px-10 py-4 rounded-xl font-bold text-lg hover:bg-white/10 transition-all"
             >
               {content.secondaryCta}
-            </a>
+            </Link>
           </div>
         </div>
       </div>

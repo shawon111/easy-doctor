@@ -1,3 +1,5 @@
+import Image from "next/image";
+import Link from "next/link";
 import Reveal from "@/components/templates/ui/Reveal";
 
 export default function AppointmentHeroOne({ content = {} , isDemo = false}) {
@@ -24,27 +26,27 @@ export default function AppointmentHeroOne({ content = {} , isDemo = false}) {
             </p>
           ) : null}
           <div className="flex flex-wrap gap-4">
-            <a
+            <Link
               className="bg-primary text-on-primary px-8 py-4 rounded-xl font-button flex items-center gap-2 hover:shadow-lg transition-all group"
               href="#whatsapp-section"
             >
               <span className="material-symbols-outlined">chat</span>
               {content.primaryCta || "Book via WhatsApp"}
-            </a>
-            <a
+            </Link>
+            <Link
               className="border border-outline-variant text-on-surface-variant px-8 py-4 rounded-xl font-button hover:bg-surface-variant transition-all"
               href="#schedule"
             >
               {content.secondaryCta || "View Schedules"}
-            </a>
+            </Link>
           </div>
         </div>
 
         <div className="relative hidden lg:block">
           <div className="rounded-3xl overflow-hidden shadow-[0px_20px_40px_rgba(30,41,59,0.08)] aspect-[4/5] relative">
-            <img
+            <Image width={1200} height={800}
               className="w-full h-full object-cover"
-              alt={content.imageAlt || ""}
+              alt={content.imageAlt  || "Medical practice image"}
               src={content.imageUrl}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent" />

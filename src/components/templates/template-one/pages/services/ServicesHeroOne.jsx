@@ -1,3 +1,4 @@
+import Image from "next/image";
 export default function ServicesHeroOne({ content = {} , isDemo = false}) {
   return (
     <section className="relative py-section-padding px-margin-mobile md:px-margin-desktop bg-surface-container-lowest overflow-hidden">
@@ -20,9 +21,9 @@ export default function ServicesHeroOne({ content = {} , isDemo = false}) {
 
         <div className="relative hidden md:block">
           <div className="w-full aspect-[4/5] rounded-xl overflow-hidden shadow-[0px_10px_30px_rgba(30,41,59,0.04)]">
-            <img
+            <Image width={1200} height={800}
               className="w-full h-full object-cover"
-              alt={content.imageAlt || ""}
+              alt={content.imageAlt  || "Medical practice image"}
               src={content.imageUrl}
             />
           </div>

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Reveal from "@/components/templates/ui/Reveal";
 
 const HERO_IMAGE_FALLBACK =
@@ -41,9 +42,9 @@ export default function AboutHeroOne({ content = {} }) {
 
         <div className="relative group">
           <div className="absolute -inset-4 bg-primary/5 rounded-3xl blur-3xl group-hover:bg-primary/10 transition-all duration-700" />
-          <img
+          <Image width={1200} height={800}
             className="relative w-full aspect-square object-cover rounded-3xl shadow-[0px_10px_30px_rgba(30,41,59,0.04)]"
-            alt={content.imageAlt || ""}
+            alt={content.imageAlt  || "Medical practice image"}
             src={imageSrc}
           />
         </div>

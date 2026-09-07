@@ -1,3 +1,4 @@
+import Link from "next/link";
 export default function AppointmentWhatsappThree({ content = {} , isDemo = false}) {
   return (
     <section className="mb-24 relative overflow-hidden rounded-3xl group">
@@ -16,13 +17,13 @@ export default function AppointmentWhatsappThree({ content = {} , isDemo = false
           <p className="font-body-lg text-body-lg text-on-surface-variant mb-8 max-w-xl">{content.body}</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
             {content.whatsappUrl && (
-              <a
+              <Link
                 className="bg-[#25D366] text-white px-10 py-5 rounded-xl font-bold flex items-center justify-center gap-3 shadow-lg shadow-[#25D366]/20 hover:shadow-[#25D366]/30 transition-all active:scale-95"
                 href={content.whatsappUrl}
               >
                 <span className="material-symbols-outlined t3-icon-filled text-[18px]">chat</span>
                 {content.cta}
-              </a>
+              </Link>
             )}
             {content.phoneDisplay && (
               <div className="flex items-center gap-3 px-6 py-4 rounded-xl border border-outline-variant bg-surface-container-low">

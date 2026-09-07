@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export default function TreatmentsTwoDark({ slug, content = {} , isDemo = false}) {
@@ -23,7 +24,7 @@ export default function TreatmentsTwoDark({ slug, content = {} , isDemo = false}
         {featured ? (
           <div className="md:col-span-8 glass-card p-12 min-h-[400px] flex flex-col justify-end relative overflow-hidden group">
             {featured.imageUrl ? (
-              <img
+              <Image width={1200} height={800}
                 className="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-[2000ms]"
                 alt={featured.imageAlt || featured.title}
                 src={featured.imageUrl}
@@ -48,7 +49,7 @@ export default function TreatmentsTwoDark({ slug, content = {} , isDemo = false}
           <div className="md:col-span-4 glass-card p-8 flex flex-col justify-between group">
             {secondary.imageUrl ? (
               <div className="w-full h-48 bg-surface-container rounded-lg mb-6 overflow-hidden">
-                <img
+                <Image width={1200} height={800}
                   className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity"
                   alt={secondary.imageAlt || secondary.title}
                   src={secondary.imageUrl}
@@ -81,7 +82,7 @@ export default function TreatmentsTwoDark({ slug, content = {} , isDemo = false}
           <div className="md:col-span-8 glass-card p-8 flex items-center gap-8 group">
             {quaternary.imageUrl ? (
               <div className="hidden sm:block w-48 h-48 rounded-lg overflow-hidden shrink-0">
-                <img
+                <Image width={1200} height={800}
                   className="w-full h-full object-cover"
                   alt={quaternary.imageAlt || quaternary.title}
                   src={quaternary.imageUrl}
