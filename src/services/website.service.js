@@ -7,20 +7,23 @@ import User from "@/models/user.model";
 import { unstable_cache } from "next/cache";
 import { replaceTemplateVariables } from "@/lib/content/resolve-template-content";
 import { updateSeo } from "./seo.service";
+import SEO from "@/models/seo.model";
 
 // create website
 export const createWebsite = async (userId, websiteData, session) => {
     const { templateType, templateVariant, contentType, content, subdomain } = websiteData;
+    const findSeo = await SEO.findOne({userId}).session(session).select({
+        _id: 1
+    })
     const [newWebsite] = await Website.create([{
         userId,
         templateType,
         variant: templateVariant,
         contentType,
         content,
-        subdomain
+        subdomain,
+        seo: findSeo?._id
     }], { session });
-
-    await updateSeo(userId, { websiteId: newWebsite._id }, session);
 
     return newWebsite;
 }

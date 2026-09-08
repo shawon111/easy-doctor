@@ -8,13 +8,6 @@ const SEOSchema = new mongoose.Schema(
             required: true,
             unique: true,
         },
-        websiteId: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Website",
-            default: undefined,
-            unique: true,
-            sparse: true
-        },
         siteName: {
             type: String,
             trim: true,

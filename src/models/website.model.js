@@ -33,6 +33,11 @@ const websiteSchema = new mongoose.Schema(
         },
         domain: {
             type: String,
+        },
+        seo: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "SEO",
+            required: true
         }
     },
     { timestamps: true }
