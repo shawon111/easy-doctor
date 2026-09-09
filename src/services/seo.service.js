@@ -521,6 +521,7 @@ const generateSeoContent = (user) => {
     const ogDescription = city
         ? `${name} is a ${specialty} in ${city}. Explore services, professional information and appointment options.`
         : `${name} is a ${specialty}. Explore services, professional information and appointment options.`;
+    const ogImage = clean(user.profilePicture);
 
 
     return {
@@ -555,6 +556,7 @@ const generateSeoContent = (user) => {
                 ),
 
                 keywords: pageKeywords.home,
+                ogImage,
             },
 
             about: {
@@ -569,6 +571,7 @@ const generateSeoContent = (user) => {
                 ),
 
                 keywords: pageKeywords.about,
+                ogImage,
             },
 
             services: {
@@ -583,6 +586,7 @@ const generateSeoContent = (user) => {
                 ),
 
                 keywords: pageKeywords.services,
+                ogImage,
             },
 
             appointment: {
@@ -597,6 +601,7 @@ const generateSeoContent = (user) => {
                 ),
 
                 keywords: pageKeywords.appointment,
+                ogImage,
             },
         },
 
@@ -611,6 +616,7 @@ const generateSeoContent = (user) => {
                 ogDescription,
                 200
             ),
+            ogImage,
         },
 
         location,
@@ -658,3 +664,13 @@ export const getSeoByUserId = async (userId) => {
     }
 
 };
+
+export const getSeoBySubdomain = async (subdomain) => {
+    await connectDB();
+    try {
+        const result = await SEO.findOne({ subdomain }).lean();
+        return result;
+    } catch (error) {
+        throw new Error("failed to get seo data")
+    }
+}

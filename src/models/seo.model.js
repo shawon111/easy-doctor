@@ -8,6 +8,18 @@ const SEOSchema = new mongoose.Schema(
             required: true,
             unique: true,
         },
+        subdomain: {
+            type: String,
+            default: undefined,
+            unique: true,
+            sparse: true,
+        },
+        domain: {
+            type: String,
+            default: undefined,
+            unique: true,
+            sparse: true,
+        },
         siteName: {
             type: String,
             trim: true,

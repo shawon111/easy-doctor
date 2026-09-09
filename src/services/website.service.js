@@ -6,7 +6,6 @@ import Website from "@/models/website.model";
 import User from "@/models/user.model";
 import { unstable_cache } from "next/cache";
 import { replaceTemplateVariables } from "@/lib/content/resolve-template-content";
-import { updateSeo } from "./seo.service";
 import SEO from "@/models/seo.model";
 
 // create website
@@ -15,6 +14,39 @@ export const createWebsite = async (userId, websiteData, session) => {
     const findSeo = await SEO.findOne({userId}).session(session).select({
         _id: 1
     })
+    if (!findSeo) {
+        throw new Error("SEO settings not found for user");
+    }
+
+    const canonicalUrl = `https://${subdomain}.${process.env.NEXT_PUBLIC_BASE_DOMAIN}`;
+    const user = await User.findById(userId).select("profilePicture").session(session);
+    if (!user) {
+        throw new Error("User not found");
+    }
+
+    const updatedSeo = await SEO.findOneAndUpdate(
+        { _id: findSeo._id },
+        {
+            $set: {
+                canonicalUrl,
+                subdomain,
+                "pages.home.ogImage": user.profilePicture,
+                "pages.about.ogImage": user.profilePicture,
+                "pages.services.ogImage": user.profilePicture,
+                "pages.appointment.ogImage": user.profilePicture,
+                "social.ogImage": user.profilePicture,
+            },
+        },
+        {
+            session,
+            new: true,
+            runValidators: true,
+        }
+    );
+    if (!updatedSeo) {
+        throw new Error("Unable to update SEO canonical URL");
+    }
+
     const [newWebsite] = await Website.create([{
         userId,
         templateType,
@@ -22,7 +54,7 @@ export const createWebsite = async (userId, websiteData, session) => {
         contentType,
         content,
         subdomain,
-        seo: findSeo?._id
+        seo: findSeo._id
     }], { session });
 
     return newWebsite;
@@ -32,7 +64,9 @@ export const createWebsite = async (userId, websiteData, session) => {
 export const getWebsiteByUserId = async (userId) => {
     await connectDB();
     try {
-        const website = await Website.findOne({ userId }).populate('content');
+        const website = await Website.findOne({ userId })
+            .populate('content')
+            .populate('seo');
         return website;
     } catch (error) {
         console.log("Error fetching website:", error);
@@ -60,6 +94,7 @@ export const getWebsiteBySubdomain = async (subdomain) => {
             await connectDB();
             let website = await Website.findOne({ subdomain })
                 .populate("content")
+                .populate("seo")
                 .populate("userId", "name")
                 .lean();
 
@@ -68,6 +103,7 @@ export const getWebsiteBySubdomain = async (subdomain) => {
                 if (user) {
                     website = await Website.findOne({ userId: user._id })
                         .populate("content")
+                        .populate("seo")
                         .populate("userId", "name")
                         .lean();
                 }

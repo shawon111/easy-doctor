@@ -5,6 +5,7 @@ import { NextResponse } from "next/server";
 const PAGE_KEYS = ["home", "about", "services", "appointment"];
 const MAX_TITLE_LENGTH = 70;
 const MAX_DESCRIPTION_LENGTH = 160;
+const MAX_IMAGE_URL_LENGTH = 2048;
 
 const cleanText = (value) => String(value ?? "").trim().replace(/\s+/g, " ");
 
@@ -20,6 +21,7 @@ const normalizeSeoUpdates = (payload) => {
     const title = cleanText(payload?.title);
     const description = cleanText(payload?.description);
     const keywords = cleanKeywords(payload?.keywords);
+    const ogImage = cleanText(payload?.ogImage);
 
     if (title.length > MAX_TITLE_LENGTH) {
         throw new Error(`Title must be ${MAX_TITLE_LENGTH} characters or fewer`);
@@ -29,11 +31,16 @@ const normalizeSeoUpdates = (payload) => {
         throw new Error(`Description must be ${MAX_DESCRIPTION_LENGTH} characters or fewer`);
     }
 
+    if (ogImage.length > MAX_IMAGE_URL_LENGTH) {
+        throw new Error(`OG image URL must be ${MAX_IMAGE_URL_LENGTH} characters or fewer`);
+    }
+
     if (payload?.scope === "site") {
         return {
             defaultTitle: title,
             defaultDescription: description,
             keywords,
+            "social.ogImage": ogImage,
         };
     }
 
@@ -45,6 +52,7 @@ const normalizeSeoUpdates = (payload) => {
         [`pages.${payload.page}.title`]: title,
         [`pages.${payload.page}.description`]: description,
         [`pages.${payload.page}.keywords`]: keywords,
+        [`pages.${payload.page}.ogImage`]: ogImage,
     };
 };
 

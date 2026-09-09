@@ -16,6 +16,7 @@ export function MetaDataEditForm({ data, pageKey, onSave, onDiscard, saving }) {
       description:
         source?.description || (pageKey === "site" ? data?.defaultDescription : ""),
       keywords: (pageKey === "site" ? data?.keywords : source?.keywords || []).join(", "),
+      ogImage: pageKey === "site" ? data?.social?.ogImage || "" : source?.ogImage || "",
     };
   };
 
@@ -36,6 +37,7 @@ export function MetaDataEditForm({ data, pageKey, onSave, onDiscard, saving }) {
       title: form.title,
       description: form.description,
       keywords: form.keywords.split(",").map((keyword) => keyword.trim()).filter(Boolean),
+      ogImage: form.ogImage.trim(),
     });
   };
 
@@ -77,6 +79,18 @@ export function MetaDataEditForm({ data, pageKey, onSave, onDiscard, saving }) {
           <label htmlFor="keywords" className="text-sm font-bold text-foreground">Keywords</label>
           <Input id="keywords" value={form.keywords} onChange={updateField("keywords")} placeholder="cardiologist, heart care, Khulna" />
           <p className="text-xs text-muted-foreground">Separate keywords with commas.</p>
+        </div>
+
+        <div className="flex flex-col gap-2">
+          <label htmlFor="og-image" className="text-sm font-bold text-foreground">Open Graph Image URL</label>
+          <Input
+            id="og-image"
+            type="url"
+            value={form.ogImage}
+            onChange={updateField("ogImage")}
+            placeholder="https://example.com/profile-image.jpg"
+          />
+          <p className="text-xs text-muted-foreground">Used when this page is shared on social media.</p>
         </div>
 
         <div className="mt-2 flex flex-col-reverse gap-2 border-t border-border pt-5 sm:flex-row sm:justify-end sm:gap-3 sm:pt-6">
