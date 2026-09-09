@@ -11,7 +11,7 @@ import SEO from "@/models/seo.model";
 // create website
 export const createWebsite = async (userId, websiteData, session) => {
     const { templateType, templateVariant, contentType, content, subdomain } = websiteData;
-    const findSeo = await SEO.findOne({userId}).session(session).select({
+    const findSeo = await SEO.findOne({ userId }).session(session).select({
         _id: 1
     })
     if (!findSeo) {
@@ -88,13 +88,15 @@ export const getWebsiteLists = async () => {
 }
 
 // get website by subdomain
-export const getWebsiteBySubdomain = async (subdomain) => {
+export const getWebsiteBySubdomain = async (subdomain, pageName) => {
     const getCachedWebsite = unstable_cache(
         async () => {
             await connectDB();
             let website = await Website.findOne({ subdomain })
-                .populate("content")
-                .populate("seo")
+                .populate({
+                    path: "content",
+                    select: `pages.${pageName} header footer`
+                })
                 .populate("userId", "name")
                 .lean();
 
@@ -102,8 +104,10 @@ export const getWebsiteBySubdomain = async (subdomain) => {
                 const user = await User.findOne({ slug: subdomain }).select("_id").lean();
                 if (user) {
                     website = await Website.findOne({ userId: user._id })
-                        .populate("content")
-                        .populate("seo")
+                        .populate({
+                            path: "content",
+                            select: `pages.${pageName} header footer`
+                        })
                         .populate("userId", "name")
                         .lean();
                 }

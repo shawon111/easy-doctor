@@ -2,7 +2,7 @@ import { connectDB } from "@/config/database";
 import { generateStructuredData } from "@/lib/seo/generateStructureddata";
 import { getSeoBySubdomain } from "@/services/seo.service";
 import { getUserBySubdomain } from "@/services/user.service";
-import { getWebsiteBySubdomain, getWebsiteLists } from "@/services/website.service";
+import { getWebsiteLists } from "@/services/website.service";
 
 export const generateStaticParams = async () => {
   await connectDB();

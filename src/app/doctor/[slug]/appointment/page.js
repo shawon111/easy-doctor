@@ -62,7 +62,7 @@ export async function generateMetadata({ params }) {
 
 const AppointmentPage = async ({ params }) => {
   const { slug } = await params;
-  const website = await getWebsiteBySubdomain(slug);
+  const website = await getWebsiteBySubdomain(slug, pageName);
   if (!website) notFound();
   const TemplatePageRenderer = templateMapping[website.templateType];
   if (!TemplatePageRenderer) notFound();
