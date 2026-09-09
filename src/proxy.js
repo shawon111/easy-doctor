@@ -35,6 +35,7 @@ export function proxy(request) {
         pathname === "/favicon.ico" ||
         (
             pathname.includes(".") &&
+            pathname !== "/favicon.svg" &&
             pathname !== "/robots.txt" &&
             pathname !== "/sitemap.xml"
         )
@@ -54,6 +55,14 @@ export function proxy(request) {
         host.endsWith(`.${ROOT_DOMAIN}`)
     ) {
         subdomain = host.replace(`.${ROOT_DOMAIN}`, "");
+    }
+
+    // Rewrite each hosted site's favicon to its dynamic route.
+    if (subdomain && pathname === "/favicon.svg") {
+        const url = request.nextUrl.clone();
+        url.pathname = `/doctor/${subdomain}/favicon.svg`;
+
+        return NextResponse.rewrite(url);
     }
 
 

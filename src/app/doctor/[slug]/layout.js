@@ -26,6 +26,10 @@ export async function generateMetadata({ params }) {
     title: seo.defaultTitle,
     description: seo.defaultDescription,
 
+    icons: {
+      icon: "/favicon.svg",
+    },
+
     alternates: {
       canonical: `${canonicalUrl}/`,
     },
