@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 const ACTIVITY_ITEMS = [
   { title: "Booking inquiry initiated", source: "Via Website Homepage", time: "10:42 AM" },
@@ -36,7 +37,7 @@ export function WhatsAppActivityCard({ items = ACTIVITY_ITEMS }) {
   return (
     <div className="flex h-[400px] flex-col rounded-2xl border border-border bg-card p-4 shadow-[0px_4px_12px_rgba(0,0,0,0.03)] sm:p-6">
       <div className="mb-4 flex items-center justify-between sm:mb-6">
-        <h3 className="text-base font-semibold text-foreground">Recent WhatsApp Clicks</h3>
+        <h3 className="text-base font-semibold text-foreground">Recent Appointments</h3>
         <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full text-muted-foreground hover:text-primary">
           <span className="material-symbols-outlined">more_vert</span>
         </Button>
@@ -46,12 +47,13 @@ export function WhatsAppActivityCard({ items = ACTIVITY_ITEMS }) {
           <ActivityItem key={idx} {...item} />
         ))}
       </div>
-      <Button
+      <Link
         variant="ghost"
-        className="mt-4 w-full font-medium text-primary hover:bg-secondary hover:text-primary"
+        href="/dashboard/appointments"
+        className="mt-4 bg-[#F1F5F9] inline-flex items-center justify-center text-primary rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground"
       >
-        View All Activity
-      </Button>
+        View All Bookings
+      </Link>
     </div>
   );
 }
