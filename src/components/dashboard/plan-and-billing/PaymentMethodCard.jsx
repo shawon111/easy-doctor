@@ -1,5 +1,3 @@
-"use client";
-
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -25,10 +23,6 @@ export function PaymentMethodCard({ className }) {
           <p className="text-sm text-muted-foreground">Visa ending in 4242 • Expires 12/25</p>
         </div>
       </div>
-
-      <Button variant="link" className="h-auto w-fit p-0 text-sm font-medium text-primary">
-        Update Method
-      </Button>
     </div>
   );
 }

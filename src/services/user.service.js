@@ -7,7 +7,7 @@ import { createSeo } from "./seo.service";
 import mongoose from "mongoose";
 
 // create a new user
-export const createUser = async (userData) => {
+export const createUser = async (userData, withPro) => {
     const { name, email, password, phone, specialization, qualifications, experience, clinicAddress, bio, bookingPreferences, treatments, languages, socialLinks, profilePicture, } = userData;
     const session = await mongoose.startSession();
     try {
@@ -18,6 +18,12 @@ export const createUser = async (userData) => {
             }
 
             const hashedPassword = await bcrypt.hash(password, 10);
+            const expiresAt = new Date();
+            if (withPro) {
+                expiresAt.setMonth(expiresAt.getMonth() + withPro?.months)
+            } else {
+                expiresAt.setDate(expiresAt.getDate() + 15);
+            }
 
             const newUser = new User({
                 name,
@@ -34,13 +40,14 @@ export const createUser = async (userData) => {
                 languages,
                 socialLinks,
                 profilePicture,
+                expiresAt
             });
 
-            const savedUser = await newUser.save({session});
+            const savedUser = await newUser.save({ session });
 
             // create seo for the user website
             const generateSeo = await createSeo(savedUser, session);
-            
+
             return savedUser;
         })
         return result;
@@ -72,6 +79,7 @@ export const getCurrentUser = async () => {
             websiteCreated: 1,
             profileCompleted: 1,
             userLevel: 1,
+            profilePicture: 1,
             _id: 1
         };
         const user = await User.findById(payload.sub).select(userInfoToReturn).lean();
@@ -122,8 +130,8 @@ export const getUserBySlug = async (slug) => {
 
 // get user by subdomain
 export const getUserBySubdomain = async (subdomain) => {
-    try{
-        const result = await User.findOne({subdomain}).select({
+    try {
+        const result = await User.findOne({ subdomain }).select({
             name: 1,
             phone: 1,
             email: 1,
@@ -134,7 +142,7 @@ export const getUserBySubdomain = async (subdomain) => {
             subdomain: 1
         }).lean();
         return result
-    }catch(error){
+    } catch (error) {
         throw new Error("Failed to get user")
     }
 }
@@ -147,4 +155,16 @@ export const getDoctorsList = async () => {
     }).lean();
 
     return users;
+}
+
+// logout
+export const logoutuser = async () => {
+    const cookieStore = await cookies();
+    try{
+        cookieStore.delete("accessToken")
+        cookieStore.delete("refreshToken")
+        return true;
+    }catch(error){
+        throw new Error("failed to logout user")
+    }
 }

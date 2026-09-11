@@ -1,5 +1,3 @@
-"use client";
-
 import { PageHeader } from "./PageHeader";
 import { CurrentPlanCard } from "./CurrentPlanCard";
 import { ComparePlansTable } from "./ComparePlansTable";

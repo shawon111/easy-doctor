@@ -1,6 +1,5 @@
-"use client";
-
 import { Button } from "@/components/ui/button";
+import { requireUser } from "@/lib/requireUser";
 import { cn } from "@/lib/utils";
 
 function PlanFeature({ label }) {
@@ -12,14 +11,42 @@ function PlanFeature({ label }) {
   );
 }
 
-const PLAN_FEATURES = [
+const FREE_PLAN_FEATURES = [
+  "Digital Profile",
   "Professional website",
-  "Custom template",
+  "Website editing",
+  "Analytics",
+  "Free templates",
   "Google optimization",
-  "WhatsApp appointments",
+  "Whatsapp booking",
+  "Appointment booking",
+  "Free subdomain",
 ];
 
-export function CurrentPlanCard({ className }) {
+const PRO_PLAN_FEATURES = [
+  "Digital Profile",
+  "Professional website",
+  "Website editing",
+  "Analytics",
+  "Free templates",
+  "Google optimization",
+  "Whatsapp booking",
+  "Appointment booking",
+  "Free subdomain",
+  "Custom domain",
+]
+
+export async function CurrentPlanCard({ className }) {
+  // get user info
+  const user = await requireUser();
+  const { userLevel } = user;
+  // select plan features
+  let planFeatures = FREE_PLAN_FEATURES;
+  if(userLevel === "pro"){
+    planFeatures = PRO_PLAN_FEATURES
+  }else{
+    planFeatures = FREE_PLAN_FEATURES
+  }
   return (
     <div
       className={cn(
@@ -31,7 +58,7 @@ export function CurrentPlanCard({ className }) {
     >
       <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-sky-200/40 blur-2xl transition-transform duration-500 group-hover:scale-110" />
 
-      <div className="relative z-10 flex h-full flex-col">
+      <div className="relative z-10 flex flex-col">
         {/* Card header */}
         <div className="mb-6 flex items-start justify-between">
           <div>
@@ -51,29 +78,19 @@ export function CurrentPlanCard({ className }) {
 
         {/* Pricing */}
         <div className="mb-6">
-          <span className="text-[32px] font-bold tracking-tight text-foreground">PRO</span>
+          <span className="text-[32px] font-bold tracking-tight text-foreground uppercase">{userLevel === "free" ? "Free Trial": userLevel}</span>
           <div className="mt-2 text-2xl font-semibold text-foreground">
-            ৳4,500{" "}
-            <span className="text-sm font-normal text-muted-foreground">/ year</span>
+            ৳500{" "}
+            <span className="text-sm font-normal text-muted-foreground">/ month</span>
           </div>
           <p className="mt-1 text-sm text-muted-foreground">Next billing date: Oct 15, 2024</p>
         </div>
 
         {/* Feature list */}
         <div className="mt-auto space-y-3 border-t border-border pt-5">
-          {PLAN_FEATURES.map((f) => (
+          {planFeatures.map((f) => (
             <PlanFeature key={f} label={f} />
           ))}
-        </div>
-
-        {/* Actions */}
-        <div className="mt-6 flex flex-col gap-2 sm:flex-row sm:gap-3">
-          <Button variant="secondary" className="flex-1 text-sm font-semibold">
-            Manage
-          </Button>
-          <Button variant="outline" className="flex-1 text-sm font-semibold text-primary hover:text-primary">
-            Invoices
-          </Button>
         </div>
       </div>
     </div>

@@ -1,7 +1,6 @@
-"use client";
-
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { requireUser } from "@/lib/requireUser";
 
 function CheckIcon({ supported, highlight }) {
   if (supported) {
@@ -23,14 +22,21 @@ function CheckIcon({ supported, highlight }) {
 }
 
 const FEATURES = [
-  { label: "Digital Profile",         free: true,  pro: true,  ultra: true  },
-  { label: "Custom Domain",           free: false, pro: true,  ultra: true  },
-  { label: "SEO Optimization",        free: false, pro: true,  ultra: true  },
-  { label: "WhatsApp Booking",        free: false, pro: true,  ultra: true  },
-  { label: "Automated SMS Reminders", free: false, pro: false, ultra: true  },
+  { label: "Digital Profile", free: true, pro: true },
+  { label: "Professional Website", free: true, pro: true },
+  { label: "Website editing", free: true, pro: true },
+  { label: "Analytics", free: true, pro: true },
+  { label: "Free templates", free: true, pro: true },
+  { label: "Google optimization", free: true, pro: true },
+  { label: "WhatsApp Booking", free: true, pro: true },
+  { label: "Appointment Booking", free: true, pro: true },
+  { label: "Free Subdomain", free: true, pro: true },
+  { label: "Custom Domain", free: false, pro: true },
 ];
 
-export function ComparePlansTable({ className }) {
+export async function ComparePlansTable({ className }) {
+  const user = await requireUser();
+  const { userLevel } = user;
   return (
     <div
       className={cn(
@@ -58,19 +64,22 @@ export function ComparePlansTable({ className }) {
                 Features
               </th>
 
-              <th className="w-[20%] border-b border-border px-4 pb-4 pt-2 text-center font-semibold text-muted-foreground">
-                Free
+              <th className="relative w-[20%] border-b border-border px-4 pb-4 pt-2 text-center font-semibold text-muted-foreground">
+                {
+                  userLevel === "free" && <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-primary px-2 py-0.5 text-[10px] font-bold uppercase text-primary-foreground">
+                    Current
+                  </span>
+                }
+                Free Trial
               </th>
 
               <th className="relative w-[20%] border-b-2 border-primary px-4 pb-4 pt-2 text-center font-semibold text-primary">
-                <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-primary px-2 py-0.5 text-[10px] font-bold uppercase text-primary-foreground">
-                  Current
-                </span>
+                {
+                  userLevel === "pro" && <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-primary px-2 py-0.5 text-[10px] font-bold uppercase text-primary-foreground">
+                    Current
+                  </span>
+                }
                 Pro
-              </th>
-
-              <th className="w-[20%] border-b border-border px-4 pb-4 pt-2 text-center font-semibold text-orange-700">
-                Ultra
               </th>
             </tr>
           </thead>
@@ -88,9 +97,6 @@ export function ComparePlansTable({ className }) {
                 <td className="border-b border-border/50 bg-blue-50/50 px-4 py-3 text-center group-hover:bg-blue-50">
                   <CheckIcon supported={row.pro} highlight />
                 </td>
-                <td className="border-b border-border/50 px-4 py-3 text-center">
-                  <CheckIcon supported={row.ultra} />
-                </td>
               </tr>
             ))}
 
@@ -102,11 +108,7 @@ export function ComparePlansTable({ className }) {
               </td>
 
               <td className="bg-blue-50/50 px-4 py-4 text-center group-hover:bg-blue-50">
-                <div className="text-sm font-bold text-primary">৳4,500/yr</div>
-              </td>
-
-              <td className="px-4 py-4 text-center">
-                <div className="mb-2 text-sm font-bold text-orange-700">৳9,000/yr</div>
+                <div className="text-sm font-bold text-primary">৳5,500/yr</div>
                 <Button
                   size="sm"
                   className="w-full bg-orange-100 text-orange-700 hover:bg-orange-200"

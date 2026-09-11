@@ -20,12 +20,17 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar"
 import { ChevronsUpDownIcon, SparklesIcon, BadgeCheckIcon, CreditCardIcon, BellIcon, LogOutIcon } from "lucide-react"
+import Image from "next/image"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 
 export function NavUser({
   user
 }) {
   const { isMobile } = useSidebar()
+
+  // use router
+  const router = useRouter();
 
   // Get first two letters from name
   const getInitials = (name) => {
@@ -37,7 +42,19 @@ export function NavUser({
       .slice(0, 2)
   }
 
-  const initials = getInitials(user.name)
+  const initials = getInitials(user.name);
+
+  // logout
+  const handleLogOut = async() => {
+    const response = await fetch("/api/auth/logout", {
+      method: "POST"
+    });
+    const data = await response.json()
+    if(data.data===true){
+      router.push("/login");
+      router.refresh()
+    }
+  }
 
   return (
     <SidebarMenu>
@@ -48,7 +65,15 @@ export function NavUser({
               size="lg"
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground">
               <Avatar className="h-8 w-8 rounded-lg">
-                <AvatarFallback className="rounded-lg">{initials}</AvatarFallback>
+                {
+                  user.profilePicture ? <Image
+                    width={32}
+                    height={32}
+                    alt="User Image"
+                    src={user?.profilePicture}
+                    className="rounded-full"
+                  /> : <AvatarFallback className="rounded-lg">{initials}</AvatarFallback>
+                }
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
                 <span className="truncate font-medium">{user.name}</span>
@@ -65,7 +90,15 @@ export function NavUser({
             <DropdownMenuLabel className="p-0 font-normal">
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                 <Avatar className="h-8 w-8 rounded-lg">
-                  <AvatarFallback className="rounded-lg">{initials}</AvatarFallback>
+                  {
+                    user.profilePicture ? <Image
+                      width={32}
+                      height={32}
+                      alt="User Image"
+                      src={user?.profilePicture}
+                      className="rounded-full"
+                    /> : <AvatarFallback className="rounded-lg">{initials}</AvatarFallback>
+                  }
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
                   <span className="truncate font-medium">{user.name}</span>
@@ -76,7 +109,7 @@ export function NavUser({
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem>
-                <Link className="flex gap-x-2 items-center" href="/dashboard/plan-billing">
+                <Link className="flex gap-x-2 items-center" href="/dashboard/billing">
                   <SparklesIcon />
                   Upgrade to Pro
                 </Link>
@@ -85,14 +118,14 @@ export function NavUser({
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem>
-                <Link className="flex gap-x-2 items-center" href="/dashboard/plan-billing">
+                <Link className="flex gap-x-2 items-center" href="/dashboard/billing">
                   <CreditCardIcon />
                   Billing
                 </Link>
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
+            <DropdownMenuItem onClick={()=> handleLogOut()}>
               <LogOutIcon />
               Log out
             </DropdownMenuItem>

@@ -182,8 +182,17 @@ const UserSchema = new mongoose.Schema(
         },
         userLevel: {
             type: String,
-            enum: ["free", "pro", "ultra"],
+            enum: ["free", "pro"],
             default: "free",
+        },
+        expiresAt: {
+            type: Date,
+            required: true
+        },
+        googleAnalyticsId: {
+            type: String,
+            trim: true,
+            default: undefined
         }
     },
     {

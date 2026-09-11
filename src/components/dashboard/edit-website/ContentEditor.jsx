@@ -402,7 +402,7 @@ export default function ContentEditor() {
   }
 
   return (
-    <div className="flex h-full min-h-0 w-full flex-col overflow-hidden bg-muted/30">
+    <div className="flex h-full min-h-0 w-full flex-col overflow-hidden bg-muted/30n">
       <div className="border-b bg-card px-4 py-4 md:px-6">
         <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
           <div>
