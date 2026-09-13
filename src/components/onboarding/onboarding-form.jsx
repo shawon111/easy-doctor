@@ -28,7 +28,7 @@ import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
-function OnboardingSteps({ currentStep }) {
+function OnboardingSteps({ currentStep, setIsUploading }) {
   const {
     register,
     control,
@@ -38,7 +38,7 @@ function OnboardingSteps({ currentStep }) {
 
   switch (currentStep) {
     case 0:
-      return <StepAccount register={register} errors={errors} />;
+      return <StepAccount setIsUploading={setIsUploading} register={register} errors={errors} />;
     case 1:
       return (
         <StepProfessional
@@ -133,6 +133,8 @@ export function OnboardingForm() {
 
   const step = STEPS[currentStep];
 
+  // track profile image upload
+  const [isUploading, setIsUploading] = useState(false)
   return (
     <div className="mx-auto w-full max-w-2xl px-4 py-6 sm:py-10">
       <StepIndicator currentStep={currentStep} />
@@ -146,7 +148,7 @@ export function OnboardingForm() {
 
           <form onSubmit={handleSubmit(onSubmit)}>
             <CardContent>
-              <OnboardingSteps currentStep={currentStep} />
+              <OnboardingSteps setIsUploading={setIsUploading} currentStep={currentStep} />
             </CardContent>
 
             <CardFooter className="flex flex-col-reverse gap-3 border-t bg-muted/30 sm:flex-row sm:justify-between">
@@ -175,6 +177,7 @@ export function OnboardingForm() {
                   key="continue-button"
                   type="button"
                   onClick={goNext}
+                  disabled={isUploading}
                   className="w-full sm:w-auto cursor-pointer"
                 >
                   Continue

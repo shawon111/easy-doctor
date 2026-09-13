@@ -52,6 +52,7 @@ export const createUser = async (userData, withPro) => {
         })
         return result;
     } catch (error) {
+        console.log("checking error", error)
         throw new Error("Failed to create user")
     } finally {
         await session.endSession();

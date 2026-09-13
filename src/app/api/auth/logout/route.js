@@ -1,8 +1,9 @@
 import { logger } from "@/lib/logger"
+import { withUser } from "@/lib/withUser";
 import { logoutuser } from "@/services/user.service"
 import { NextResponse } from "next/server"
 
-export const POST = async()=>{
+export const POST = withUser(async()=>{
     try{
         const logOut = await logoutuser();
         if(!logoutuser) {
@@ -19,4 +20,4 @@ export const POST = async()=>{
             message: "failed to logout user"
         }, {status: 500})
     }
-}
+})

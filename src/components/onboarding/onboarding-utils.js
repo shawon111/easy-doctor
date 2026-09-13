@@ -55,6 +55,7 @@ export const MEDICAL_SPECIALTIES = [
   "Infectious Disease Specialist",
   "Internal Medicine",
   "Interventional Radiologist",
+  "Medicine Specialist",
   "Neonatologist",
   "Nephrologist",
   "Neurologist",

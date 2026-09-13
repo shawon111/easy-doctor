@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { uploadToCloudinary } from "@/lib/uploadToCloudinary";
 import { Field, TextField } from "./form-field";
 
-export function StepAccount({ register, errors }) {
+export function StepAccount({ register, errors, setIsUploading }) {
   const { setValue, watch } = useFormContext();
   const [uploading, setUploading] = useState(false);
   const profilePicture = watch("profilePicture");
@@ -27,6 +27,7 @@ export function StepAccount({ register, errors }) {
     }
 
     setUploading(true);
+    setIsUploading(true)
     try {
       const uploaded = await uploadToCloudinary(file);
       setValue("profilePicture", uploaded.url, { shouldValidate: true, shouldDirty: true });
@@ -35,6 +36,7 @@ export function StepAccount({ register, errors }) {
       toast.error(error.message || "Profile picture upload failed.");
     } finally {
       setUploading(false);
+      setIsUploading(false)
       event.target.value = "";
     }
   }

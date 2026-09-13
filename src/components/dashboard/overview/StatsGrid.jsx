@@ -4,7 +4,6 @@ import { StatCard } from "./StatCard";
 export async function StatsGrid() {
   const user = await requireUser();
   const { websiteCreated, userLevel } = user;
-  console.log("website created", websiteCreated)
   return (
     <div className="mb-6 grid grid-cols-1 gap-4 sm:mb-8 sm:gap-6 lg:grid-cols-3">
 

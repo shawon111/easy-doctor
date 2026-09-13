@@ -19,6 +19,7 @@ export const specialtyToService = {
     "Infectious Disease Specialist": "Infectious Disease",
     "Internal Medicine": "Internal Medicine",
     "Interventional Radiologist": "Interventional Radiology",
+    "Medicine SPecialist": "Medicine",
     "Neonatologist": "Neonatal Care",
     "Nephrologist": "Nephrology",
     "Neurologist": "Neurology",
