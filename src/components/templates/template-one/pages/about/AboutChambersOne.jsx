@@ -1,7 +1,9 @@
 import Reveal from "@/components/templates/ui/Reveal";
+import { toGoogleMapsEmbedUrl } from "@/lib/content/map-embed";
 
 export default function AboutChambersOne({ content = {} , isDemo = false}) {
   const locations = content.locations || [];
+  const mapSrc = toGoogleMapsEmbedUrl(content.mapUrl);
 
   return (
     <Reveal
@@ -39,15 +41,20 @@ export default function AboutChambersOne({ content = {} , isDemo = false}) {
           </div>
 
           <div className="rounded-3xl overflow-hidden shadow-[0px_10px_30px_rgba(30,41,59,0.04)] aspect-[4/3] relative">
-            <div
-              className="w-full h-full bg-cover bg-center"
-              role="img"
-              aria-label={content.imageAlt || ""}
-              style={{
-                backgroundImage: content.imageUrl ? `url('${content.imageUrl}')` : undefined,
-              }}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+            {mapSrc ? (
+              <iframe
+                title={content.heading || "Chamber location map"}
+                src={mapSrc}
+                className="absolute inset-0 w-full h-full border-0"
+                loading="lazy"
+                allowFullScreen
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            ) : (
+              <div className="w-full h-full bg-surface-container-high flex items-center justify-center p-6 text-center text-sm text-on-surface-variant">
+                Add a Google Maps link to show the chamber location.
+              </div>
+            )}
           </div>
         </div>
       </div>

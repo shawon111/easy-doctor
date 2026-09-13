@@ -12,7 +12,7 @@ export const templateThreeDefaults = {
   footer: {
     brandName: "{{name}}",
     tagline: "Advanced Clinical Excellence. Empowering health through precision technology.",
-    copyright: "© 2024 {{name}}. Advanced Clinical Excellence. Empowering health through precision technology.",
+    copyright: "© 2026 {{name}}. Advanced Clinical Excellence. Empowering health through precision technology.",
     resourceLinks: [
       { label: "Privacy Policy", href: "#" },
       { label: "Terms of Service", href: "#" },
@@ -169,10 +169,7 @@ export const templateThreeDefaults = {
       mapLocation: {
         heading: "Find Our Clinic",
         directionsCta: "Get Driving Directions",
-        mapImage: {
-          imageUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuAemNkH-1Vu0ccU2ZDI4fYpVK2ftWcKMvD86H106aFU9ribvKJFoinIIgh2BYWbWz0h461E7OJMCkdjPM8IysBgfI3FjJxED3ja4RKTjKwEKX5MpE-MXm9UfvXs1bslA1Fh75T9Vr5WDCj4D2bsKTBxnss1VvIhho8gcq52dY7hk7eU39Ch2gO9xLvQzTrJElz-iSvKZ9fUgM9T5yjftHpnRn3kl5CEQs5grSIohBIyLk6lz9MCwLGtFg",
-          imageAlt: "A stylized, light-themed satellite map of a modern medical district in a metropolitan city.",
-        },
+        mapUrl: "https://www.google.com/maps?q=Main+Clinical+Center,+New+York,+NY",
         contact: {
           location: "Main Clinical Center",
           phone: "+1 (212) 555-0147",

@@ -1,5 +1,5 @@
-import Image from "next/image";
 import Reveal from "@/components/templates/ui/Reveal";
+import { toGoogleMapsEmbedUrl } from "@/lib/content/map-embed";
 
 const DELAYS = ["", "delay-100"];
 
@@ -22,12 +22,16 @@ export default function ClinicLocationsOne({ content = {} , isDemo = false}) {
               className={`bg-white rounded-[2rem] overflow-hidden soft-bloom border border-outline-variant/30 ${DELAYS[index] || ""}`}
             >
               <div className="h-64 bg-surface-container-high relative">
-                {clinic.mapImage ? (
-                  <div className="absolute inset-0 grayscale opacity-60">
-                    <Image width={1200} height={800} className="w-full h-full object-cover" alt={clinic.mapAlt || clinic.name} src={clinic.mapImage} />
-                  </div>
+                {clinic.mapUrl ? (
+                  <iframe
+                    title={`${clinic.name} location map`}
+                    src={toGoogleMapsEmbedUrl(clinic.mapUrl)}
+                    className="absolute inset-0 w-full h-full border-0"
+                    loading="lazy"
+                    allowFullScreen
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
                 ) : null}
-                <div className="absolute inset-0 bg-gradient-to-t from-white to-transparent" />
               </div>
               <div className="p-8">
                 <h3 className="font-headline-md text-headline-md text-on-surface mb-2">
@@ -41,9 +45,16 @@ export default function ClinicLocationsOne({ content = {} , isDemo = false}) {
                   <span className="text-label-caps font-label-caps text-on-surface-variant">
                     {clinic.hours}
                   </span>
-                  <button type="button" className="text-primary font-button text-button hover:underline">
-                    Get Directions
-                  </button>
+                  {clinic.mapUrl ? (
+                    <a
+                      href={clinic.mapUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary font-button text-button hover:underline"
+                    >
+                      Get Directions
+                    </a>
+                  ) : null}
                 </div>
               </div>
             </Reveal>

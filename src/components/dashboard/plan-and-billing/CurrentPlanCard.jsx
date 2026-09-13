@@ -83,7 +83,7 @@ export async function CurrentPlanCard({ className }) {
             ৳500{" "}
             <span className="text-sm font-normal text-muted-foreground">/ month</span>
           </div>
-          <p className="mt-1 text-sm text-muted-foreground">Next billing date: Oct 15, 2024</p>
+          <p className="mt-1 text-sm text-muted-foreground">Next billing date: Oct 15, 2026</p>
         </div>
 
         {/* Feature list */}

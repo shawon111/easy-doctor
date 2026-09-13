@@ -92,7 +92,7 @@ const templateThreeContentSchema = new mongoose.Schema(
         mapLocation: {
           heading: { type: String, trim: true },
           directionsCta: { type: String, trim: true },
-          mapImage: imageSchema,
+          mapUrl: { type: String, trim: true },
           contact: {
             location: { type: String, trim: true },
             phone: { type: String, trim: true },

@@ -16,10 +16,12 @@ export default function ServicesBenefitsTwo({ content = {} , isDemo = false}) {
             alt={content.imageAlt  || "Medical practice image"}
             src={imageSrc}
           />
-          <div className="absolute bottom-6 right-6 z-20 bg-white shadow-xl px-6 py-4 rounded-[4px] border border-black/5">
-            <p className="svctwo-headline-sm text-[#2563eb]">25+ Years</p>
-            <p className="svctwo-label-caps text-[#44474e]">Clinical Mastery</p>
-          </div>
+          {content.badge ? (
+            <div className="absolute bottom-6 right-6 z-20 bg-white shadow-xl px-6 py-4 rounded-[4px] border border-black/5">
+              <p className="svctwo-headline-sm text-[#2563eb]">{content.badge.value}</p>
+              <p className="svctwo-label-caps text-[#44474e]">{content.badge.label}</p>
+            </div>
+          ) : null}
         </div>
 
         <div className="space-y-12 lg:pl-16">

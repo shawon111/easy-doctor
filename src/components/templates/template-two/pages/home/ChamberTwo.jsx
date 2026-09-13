@@ -1,10 +1,8 @@
-import Image from "next/image";
-const CHAMBER_IMAGE_FALLBACK =
-  "https://lh3.googleusercontent.com/aida-public/AB6AXuClqAmDaJPpOfZQ4FtOCxYCJZ9HEPYePeXq5yVOmzi_wx6xuD_yD906ZhIowQriEDGsscyHACNI7GovoqA6bO8nWSXhL73ndsnA8SDc72Ofpt3aRu5Xon7LU1omSI5ZCU51AqIU93HV5tmOvu_yb8J-93u4Rko6RsUqc3niWwOxHWUCyFjIa4AAsrhJnwn-FX9P2YwePI5NblitXMxUufqU50vqtmXKYl71-gQr9zRG4TFxjVRC7L93rA";
+import { toGoogleMapsEmbedUrl } from "@/lib/content/map-embed";
 
-export default function ChamberTwo({ content = {} , isDemo = false}) {
+export default function ChamberTwo({ content = {}, isDemo = false }) {
   const location = content.location;
-  const imageSrc = content.imageUrl || CHAMBER_IMAGE_FALLBACK;
+  const mapSrc = toGoogleMapsEmbedUrl(content.mapUrl);
 
   return (
     <section className="py-section-gap px-margin-mobile md:px-margin-desktop bg-surface-container-lowest">
@@ -38,23 +36,33 @@ export default function ChamberTwo({ content = {} , isDemo = false}) {
             </div>
           ) : null}
 
-          <button
-            type="button"
-            className="text-primary font-label-caps text-label-caps border-b border-primary pb-1 hover:text-on-surface hover:border-on-surface transition-all"
-          >
-            Get Directions
-          </button>
+          {content.mapUrl ? (
+            <a
+              href={content.mapUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary font-label-caps text-label-caps border-b border-primary pb-1 hover:text-on-surface hover:border-on-surface transition-all inline-block"
+            >
+              Get Directions
+            </a>
+          ) : null}
         </div>
 
-        <div className="md:col-span-7 h-[450px] rounded-xl overflow-hidden glass-card relative group border-outline-variant shadow-lg">
-          <div className="w-full h-full bg-surface-container-high relative overflow-hidden">
-            <Image width={1200} height={800}
-              className="w-full h-full object-cover grayscale opacity-30 contrast-125 group-hover:scale-105 transition-transform duration-[4000ms]"
-              alt={content.imageAlt  || "Medical practice image"}
-              src={imageSrc}
+        <div className="md:col-span-7 h-[450px] rounded-xl overflow-hidden glass-card border-outline-variant shadow-lg">
+          {mapSrc ? (
+            <iframe
+              title={content.heading || "Chamber location map"}
+              src={mapSrc}
+              className="w-full h-full border-0"
+              loading="lazy"
+              allowFullScreen
+              referrerPolicy="no-referrer-when-downgrade"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent" />
-          </div>
+          ) : (
+            <div className="w-full h-full bg-surface-container-high flex items-center justify-center p-6 text-center text-sm text-on-surface-variant">
+              Add a Google Maps link to show the chamber location.
+            </div>
+          )}
         </div>
       </div>
     </section>

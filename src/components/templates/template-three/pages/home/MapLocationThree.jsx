@@ -1,7 +1,9 @@
-import Image from "next/image";
+import { toGoogleMapsEmbedUrl } from "@/lib/content/map-embed";
+
 export default function MapLocationThree({ content = {} , isDemo = false}) {
   const contact = content.contact || {};
   const labels = content.contactLabels || {};
+  const mapSrc = toGoogleMapsEmbedUrl(content.mapUrl);
   const contactInfo = [
     { icon: "location_on", title: labels.location, detail: contact.location },
     { icon: "call", title: labels.phone, detail: contact.phone },
@@ -24,20 +26,33 @@ export default function MapLocationThree({ content = {} , isDemo = false}) {
               </div>
             ))}
           </div>
-          <button
-            type="button"
-            className="bg-surface-container text-on-surface px-8 py-3 rounded-lg border border-outline-variant hover:bg-surface-container-high transition-colors"
-          >
-            {content.directionsCta}
-          </button>
+          {content.mapUrl && content.directionsCta ? (
+            <a
+              href={content.mapUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-surface-container text-on-surface px-8 py-3 rounded-lg border border-outline-variant hover:bg-surface-container-high transition-colors inline-block"
+            >
+              {content.directionsCta}
+            </a>
+          ) : null}
         </div>
 
         <div className="rounded-[32px] overflow-hidden border border-outline-variant/50 h-[400px] shadow-lg">
-          <Image width={1200} height={800}
-            className="w-full h-full object-cover"
-            alt={content.mapImage?.imageAlt}
-            src={content.mapImage?.imageUrl}
-          />
+          {mapSrc ? (
+            <iframe
+              title={content.heading || "Clinic location map"}
+              src={mapSrc}
+              className="w-full h-full border-0"
+              loading="lazy"
+              allowFullScreen
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          ) : (
+            <div className="w-full h-full bg-surface-container-high flex items-center justify-center p-6 text-center text-sm text-on-surface-variant">
+              Add a Google Maps link to show the clinic location.
+            </div>
+          )}
         </div>
       </div>
     </section>

@@ -1,5 +1,5 @@
-import Image from "next/image";
 import RevealOneDark from "../../ui/RevealOneDark";
+import { toGoogleMapsEmbedUrl } from "@/lib/content/map-embed";
 
 const DELAYS = ["", "delay-100"];
 
@@ -20,18 +20,19 @@ export default function ClinicLocationsOneDark({ content = {}, isDemo = false })
             <RevealOneDark
               key={clinic.name}
               className={`glass-card rounded-[2.5rem] overflow-hidden border border-white/10 group ${DELAYS[index] || ""}`}
-             isDemo={isDemo}>
+              isDemo={isDemo}
+            >
               <div className="h-80 relative overflow-hidden">
-                {clinic.mapImage ? (
-                  <div className="absolute inset-0 grayscale group-hover:grayscale-0 transition-all duration-1000">
-                    <Image width={1200} height={800}
-                      className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-1000"
-                      alt={clinic.mapAlt || clinic.name}
-                      src={clinic.mapImage}
-                    />
-                  </div>
+                {clinic.mapUrl ? (
+                  <iframe
+                    title={`${clinic.name} location map`}
+                    src={toGoogleMapsEmbedUrl(clinic.mapUrl)}
+                    className="absolute inset-0 w-full h-full border-0"
+                    loading="lazy"
+                    allowFullScreen
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
                 ) : null}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#111318] via-transparent to-transparent" />
               </div>
               <div className="p-12">
                 <h3 className="font-headline-md text-3xl text-secondary mb-4">{clinic.name}</h3>
@@ -43,12 +44,16 @@ export default function ClinicLocationsOneDark({ content = {}, isDemo = false })
                   <span className="text-xs font-bold tracking-widest text-on-surface-variant/60 uppercase">
                     {clinic.hours}
                   </span>
-                  <button
-                    type="button"
-                    className="text-primary font-bold tracking-widest uppercase text-xs hover:text-secondary-fixed transition-colors"
-                  >
-                    Get Directions
-                  </button>
+                  {clinic.mapUrl ? (
+                    <a
+                      href={clinic.mapUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary font-bold tracking-widest uppercase text-xs hover:text-secondary-fixed transition-colors"
+                    >
+                      Get Directions
+                    </a>
+                  ) : null}
                 </div>
               </div>
             </RevealOneDark>

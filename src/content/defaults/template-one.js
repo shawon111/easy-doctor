@@ -14,7 +14,7 @@ export const templateOneDefaults = {
     tagline:
       "Precision medicine for a life lived to its fullest potential. Clinical elegance, personal connection.",
     copyright:
-      "© 2024 Dr. {{name}}. All Rights Reserved. Clinical Elegance in Practice.",
+      "© 2026 Dr. {{name}}. All Rights Reserved. Clinical Elegance in Practice.",
     officeHoursLabel: "Office Hours",
     officeHours: "Monday - Friday: 9:00 AM - 5:00 PM",
     urgentCareLabel: "Urgent Care Line:",
@@ -160,17 +160,13 @@ export const templateOneDefaults = {
             name: "Upper East Side Clinic",
             address: "New York, NY",
             hours: "Monday - Friday: 9:00 AM - 5:00 PM",
-            mapImage:
-              "https://lh3.googleusercontent.com/aida-public/AB6AXuAI-SdvQgT6ooXiwhtdYE0FflqijxOwO7SH7bDg4n4DUv2G2AwZ0tAQalGBjGABUG1fhaH2RmBmwPKq4J-xGRg1mEbq96iLF0ba686Ozo4yGY92YJrpYiIGrhrROFTOj9CvvQo9i5IvuT-81CC3Jm9sEEcGXE-E1WoupE27E8AjXMm07jt7bh5e4KDL0haCCTBrssM_9IP7UUrHFdeEW_bW5E2f4WtkkA-FjraLeFYYZslVVLJH65vOQQ",
-            mapAlt: "Map view of the Upper East Side clinic",
+            mapUrl: "https://www.google.com/maps?q=Upper+East+Side,+New+York,+NY",
           },
           {
             name: "Marylebone Clinic",
             address: "London, UK",
             hours: "Monday - Friday: 9:00 AM - 5:00 PM",
-            mapImage:
-              "https://lh3.googleusercontent.com/aida-public/AB6AXuAmHkteCkevwmGF5l3RdD6FtBOisn2Djxe5QwkoMx3oyTwWXYMhIPk1e20TVVdlWzPpvx-6XoOxkKCGiAQZ2jkkpusnlN2A4bREfYAJ_fs18WWiJ4RPjY0Fm_WQ_c1KKer9NYsJahcjNul-0RGGOdOhCmbwBo4mlWCZAVO0ymZeitYeFqXgFKwWQGYClOqOypqfNkKB66NX9_MwdMxzi4P28tCXHBMpkn5oWc72j1I-WHWaOTW8e5rXKQ",
-            mapAlt: "Map view of the Marylebone clinic",
+            mapUrl: "https://www.google.com/maps?q=Marylebone,+London,+UK",
           },
         ],
       },
@@ -247,9 +243,7 @@ export const templateOneDefaults = {
             hours: "Monday - Friday: 9:00 AM - 5:00 PM",
           },
         ],
-        imageUrl:
-          "https://lh3.googleusercontent.com/aida-public/AB6AXuC-JtnM4GUEG_-hpHQzxNdg0t6MYMX9xOVPcjXlGk39XKd3ZiBzGNv-o0Ez49Njbvw70u0id3e6ahXScC4jP-sQKpisIgyCKzJl1JUZf7IKICj8-R03YNDouEmJH6rk_9S2uT1d79n-TI3gmHtrb2lB3DiksPqFH1r02CfYCn6MhKwk5C3-0jGvejEHswgRKYW3xkjZXVoraYta5CyJW42kEHTfuOmehB21KclP62yNiHQi3uirxO87-Q",
-        imageAlt: "Map view of the clinical institute",
+        mapUrl: "https://www.google.com/maps?q=Vance+Clinical+Institute,+New+York,+NY",
       },
       finalCta: {
         heading: "Ready to Experience Better Care?",

@@ -1,7 +1,9 @@
 import SectionFadeOneDark from "../../ui/SectionFadeOneDark";
+import { toGoogleMapsEmbedUrl } from "@/lib/content/map-embed";
 
 export default function AboutChambersOneDark({ content = {}, isDemo = false }) {
   const locations = content.locations || [];
+  const mapSrc = toGoogleMapsEmbedUrl(content.mapUrl);
 
   return (
     <SectionFadeOneDark className="py-32 px-6 md:px-10 mesh-gradient" isDemo={isDemo}>
@@ -34,14 +36,20 @@ export default function AboutChambersOneDark({ content = {}, isDemo = false }) {
             </div>
           </div>
           <div className="rounded-[3rem] overflow-hidden border border-white/10 aspect-[4/3] relative">
-            <div
-              aria-hidden="true"
-              className="w-full h-full bg-cover bg-center"
-              style={{
-                backgroundImage: content.imageUrl ? `url('${content.imageUrl}')` : undefined,
-              }}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent" />
+            {mapSrc ? (
+              <iframe
+                title={content.heading || "Chamber location map"}
+                src={mapSrc}
+                className="absolute inset-0 w-full h-full border-0"
+                loading="lazy"
+                allowFullScreen
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            ) : (
+              <div className="w-full h-full bg-surface-container-high flex items-center justify-center p-6 text-center text-sm text-on-surface-variant">
+                Add a Google Maps link to show the chamber location.
+              </div>
+            )}
           </div>
         </div>
       </div>

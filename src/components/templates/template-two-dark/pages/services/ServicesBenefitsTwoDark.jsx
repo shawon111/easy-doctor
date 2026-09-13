@@ -16,10 +16,12 @@ export default function ServicesBenefitsTwoDark({ content = {} , isDemo = false}
             alt={content.imageAlt  || "Medical practice image"}
             src={imageSrc}
           />
-          <div className="absolute bottom-6 right-6 z-20 glass-panel px-6 py-4 rounded shadow-2xl">
-            <p className="font-headline-sm text-headline-sm text-tertiary">25+ Years</p>
-            <p className="font-label-caps text-label-caps text-on-surface-variant">Clinical Mastery</p>
-          </div>
+          {content.badge ? (
+            <div className="absolute bottom-6 right-6 z-20 glass-panel px-6 py-4 rounded shadow-2xl">
+              <p className="font-headline-sm text-headline-sm text-tertiary">{content.badge.value}</p>
+              <p className="font-label-caps text-label-caps text-on-surface-variant">{content.badge.label}</p>
+            </div>
+          ) : null}
         </div>
 
         <div className="space-y-12 lg:pl-16">

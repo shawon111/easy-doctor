@@ -21,13 +21,13 @@ export default function AccordionThree({ items, variant = "default", isDemo = fa
             key={item.question}
             className={
               isServices
-                ? "bg-white rounded-lg overflow-hidden border border-outline-variant/50"
-                : "bg-white border border-outline-variant rounded-xl overflow-hidden shadow-sm"
+                ? "bg-[#0B1326] rounded-lg overflow-hidden border border-outline-variant/50"
+                : "bg-[#0B1326] border border-outline-variant rounded-xl overflow-hidden shadow-sm"
             }
           >
             <button
               type="button"
-              className={`w-full flex items-center justify-between p-6 text-left hover:bg-surface-container-lowest transition-colors ${
+              className={`w-full flex items-center justify-between p-6 text-left hover:bg-[#0B1326] transition-colors ${
                 isServices ? "" : ""
               }`}
               onClick={() => toggle(index)}

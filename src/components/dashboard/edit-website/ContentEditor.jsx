@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import { templateOneDefaults } from "@/content/defaults/template-one";
 import { templateTwoDefaults } from "@/content/defaults/template-two";
 import { templateThreeDefaults } from "@/content/defaults/template-three";
+import { toGoogleMapsEmbedUrl } from "@/lib/content/map-embed";
 import { uploadToCloudinary } from "@/lib/uploadToCloudinary";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -72,12 +73,25 @@ function isImageKey(key) {
   return key === "imageUrl" || key === "image";
 }
 
+function isMapLinkKey(key) {
+  return key === "mapUrl" || key === "mapLink" || key === "mapLinkUrl";
+}
+
+const LINK_LIST_KEYS = new Set(["label", "href", "link", "key", "text", "url"]);
+
 function isLinkList(value, template) {
-  const items = value.length > 0 ? value : template;
-  return Array.isArray(items) && items.length > 0 && items.every(
-    (item) => item && typeof item === "object" && ("label" in item || "href" in item)
+  const items = Array.isArray(value) && value.length > 0 ? value : template;
+  if (!Array.isArray(items) || items.length === 0) return false;
+
+  return items.every(
+    (item) =>
+      item &&
+      typeof item === "object" &&
+      ("link" in item || "href" in item) &&
+      Object.keys(item).every((key) => LINK_LIST_KEYS.has(key))
   );
 }
+
 
 function ImageField({ label, value, onChange }) {
   const [uploading, setUploading] = useState(false);
@@ -129,6 +143,37 @@ function ImageField({ label, value, onChange }) {
           </label>
         </Button>
       </div>
+    </div>
+  );
+}
+
+function MapLinkEditor({ label, value, onChange }) {
+  const embedUrl = toGoogleMapsEmbedUrl(value || "");
+
+  return (
+    <div className="space-y-2">
+      <Label>{label}</Label>
+      {embedUrl ? (
+        <div className="h-52 w-full overflow-hidden rounded-lg border">
+          <iframe
+            title={`${label} preview`}
+            src={embedUrl}
+            className="h-full w-full border-0"
+            loading="lazy"
+            allowFullScreen
+            referrerPolicy="no-referrer-when-downgrade"
+          />
+        </div>
+      ) : (
+        <div className="flex h-24 w-full items-center justify-center rounded-lg border border-dashed p-3 text-center text-sm text-muted-foreground">
+          Add a Google Maps link to show the location map.
+        </div>
+      )}
+      <Input
+        value={value || ""}
+        onChange={(event) => onChange(event.target.value)}
+        placeholder="https://www.google.com/maps?q=Harley+Street,+London"
+      />
     </div>
   );
 }
@@ -191,6 +236,16 @@ function FieldEditor({ value, template, path, onChange }) {
   if (isImageKey(path.split(".").at(-1))) {
     return (
       <ImageField
+        label={labelFor(path.split(".").at(-1))}
+        value={value}
+        onChange={onChange}
+      />
+    );
+  }
+
+  if (isMapLinkKey(path.split(".").at(-1))) {
+    return (
+      <MapLinkEditor
         label={labelFor(path.split(".").at(-1))}
         value={value}
         onChange={onChange}
@@ -338,7 +393,7 @@ export default function ContentEditor() {
     queryKey: ["website-editor"],
     queryFn: fetchWebsite,
   });
-  
+
   const [page, setPage] = useState("home");
   const [section, setSection] = useState("");
   const [content, setContent] = useState(null);
@@ -377,12 +432,12 @@ export default function ContentEditor() {
     onError: (saveError) => toast.error(saveError.message),
   });
 
-  if (!website) {
-    return <div className="p-8 text-destructive">Website is not created yet.</div>;
-  }
 
   if (isLoading) return <div className="p-8 text-muted-foreground">Loading website editor...</div>;
   if (isError) return <div className="p-8 text-destructive">{error.message}</div>;
+  if (!website) {
+    return <div className="p-8 text-destructive">Website is not created yet.</div>;
+  }
   if (!resolvedContent || !defaults) return <div className="p-8 text-destructive">Unsupported template type.</div>;
 
   const isSiteSection = activeSection === "header" || activeSection === "footer";

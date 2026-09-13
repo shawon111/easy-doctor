@@ -8,6 +8,7 @@ import {
   linkItemSchema,
   serviceCardSchema,
   scheduleItemSchema,
+  statItemSchema,
   stepItemSchema,
   timelineItemSchema,
 } from "@/lib/content/shared-schemas";
@@ -94,8 +95,7 @@ const templateTwoContentSchema = new mongoose.Schema(
             address: { type: String, trim: true },
             hours: { type: String, trim: true },
           },
-          imageUrl: { type: String, trim: true },
-          imageAlt: { type: String, trim: true },
+          mapUrl: { type: String, trim: true },
         },
         finalCta: ctaSchema,
       },
@@ -161,6 +161,7 @@ const templateTwoContentSchema = new mongoose.Schema(
           subheading: { type: String, trim: true },
           imageUrl: { type: String, trim: true },
           imageAlt: { type: String, trim: true },
+          badge: statItemSchema,
           items: [iconTextItemSchema],
         },
         faq: {

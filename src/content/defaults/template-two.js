@@ -14,7 +14,7 @@ export const templateTwoDefaults = {
     brandName: "{{name}}",
     tagline:
       "Excellence in precision medicine and executive healthcare for the global elite.",
-    copyright: "© 2024 Dr. {{name}}. Excellence in Precision Medicine.",
+    copyright: "© 2026 Dr. {{name}}. Excellence in Precision Medicine.",
     phone: "",
     socialUrl: "",
     websiteUrl: "",
@@ -179,9 +179,7 @@ export const templateTwoDefaults = {
         heading: "The Harley Street Registry",
         subheading:
           "Located in the historic heart of London's medical excellence, our chambers provide a serene, private environment for executive consultation.",
-        imageAlt: "Vector map of Harley Street area.",
-        imageUrl:
-          "https://lh3.googleusercontent.com/aida-public/AB6AXuClqAmDaJPpOfZQ4FtOCxYCJZ9HEPYePeXq5yVOmzi_wx6xuD_yD906ZhIowQriEDGsscyHACNI7GovoqA6bO8nWSXhL73ndsnA8SDc72Ofpt3aRu5Xon7LU1omSI5ZCU51AqIU93HV5tmOvu_yb8J-93u4Rko6RsUqc3niWwOxHWUCyFjIa4AAsrhJnwn-FX9P2YwePI5NblitXMxUufqU50vqtmXKYl71-gQr9zRG4TFxjVRC7L93rA",
+        mapUrl: "https://www.google.com/maps?q=Harley+Street,+London,+UK",
         location: {
           name: "Harley Street Registry",
           address: "London, UK",
@@ -218,7 +216,7 @@ export const templateTwoDefaults = {
         subheading: "CHRONOLOGY OF EXCELLENCE",
         items: [
           {
-            period: "2024",
+            period: "2026",
             title: "Global Medical Excellence Award",
             description:
               "Recognized for groundbreaking research in preventive genomics.",
@@ -346,6 +344,10 @@ export const templateTwoDefaults = {
           "https://lh3.googleusercontent.com/aida-public/AB6AXuCMnzyNVVzbtBCUayb8cPumdCi_8F0iPFr0wIttqUVZPsBSfXyB-y9RONuOLfCJCWohjlONLcOBNp3KTGS0UFwfWwOneaCxCLyFsuaW2j22MslZRdTygeeJE-5SsN7JiXYzrWnwwZTqiHjVl5Lucao9spI3sZQUFvCHNTd9yN7LwIJ8LSX_P_n2MZxRBQ5OPxaMEpZYiivcK3Eohf6c7k4zU3gZqhaeousdesI6Rx_OD3wmx5iFWXs3xg",
         imageAlt:
           "A portrait of a distinguished male specialist doctor in a perfectly tailored charcoal medical coat.",
+        badge: {
+          value: "25+ Years",
+          label: "Clinical Mastery",
+        },
         items: [
           {
             icon: "precision_manufacturing",
