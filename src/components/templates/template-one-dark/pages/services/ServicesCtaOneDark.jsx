@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 export default function ServicesCtaOneDark({ content = {}, slug , isDemo = false}) {
-  const base = slug ? `/doctor/${slug}` : "#";
+  const base = isDemo ? `/preview/${slug}` : "";
 
   return (
     <section className="px-6 md:px-10 pb-16 pt-16">

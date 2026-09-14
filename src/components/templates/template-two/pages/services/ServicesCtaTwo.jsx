@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 export default function ServicesCtaTwo({ content = {}, slug , isDemo = false}) {
-  const base = slug ? `/doctor/${slug}` : "#";
+  const base = isDemo ? `/preview/${slug}` : "";
 
   return (
     <section className="py-[120px] px-[20px] md:px-[64px] relative overflow-hidden">

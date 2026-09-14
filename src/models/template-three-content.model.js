@@ -44,8 +44,6 @@ const templateThreeContentSchema = new mongoose.Schema(
       newsletter: {
         heading: { type: String, trim: true },
         body: { type: String, trim: true },
-        placeholder: { type: String, trim: true },
-        buttonLabel: { type: String, trim: true },
       },
     },
     pages: {

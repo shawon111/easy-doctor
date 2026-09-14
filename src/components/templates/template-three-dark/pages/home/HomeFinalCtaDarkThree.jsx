@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 export default function HomeFinalCtaDarkThree({ slug, content = {} , isDemo = false}) {
-  const base = slug ? `/doctor/${slug}` : "#";
+  const base = isDemo ? `/preview/${slug}` : "";
 
   return (
     <section className="mb-20 px-margin-mobile md:px-margin-desktop">

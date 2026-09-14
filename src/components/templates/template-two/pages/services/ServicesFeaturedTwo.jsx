@@ -6,7 +6,7 @@ const FEATURED_IMAGE_FALLBACK =
 
 export default function ServicesFeaturedTwo({ content = {}, slug , isDemo = false}) {
   const secondary = content.secondaryFeatured || {};
-  const base = slug ? `/doctor/${slug}` : "#";
+  const base = isDemo ? `/preview/${slug}` : "";
   const imageSrc = content.imageUrl || FEATURED_IMAGE_FALLBACK;
 
   return (

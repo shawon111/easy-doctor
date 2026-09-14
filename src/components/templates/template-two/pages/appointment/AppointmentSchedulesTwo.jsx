@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const TELEHEALTH_IMAGE_FALLBACK =
   "https://lh3.googleusercontent.com/aida-public/AB6AXuCjv5vpIPEslsLsiijC_4TQRAP9zvIE_Qhtga5G_exO0v9fd_KcH7cYb42b3PCHC64FvBpvoHxrijc88lBc_NNjIfKv-cZmBvMDrWjmyiWBUoTJdWCbf5Mg5lhs8-I0NmrQB6BYe6A4aWTWuo0BCD48ykkbM_S7M_i6X5oGbRTgAlZsmVchnxOe1Dmz1MvYKa2sLCojRHn4ostjGguTi1HkCBDRb3ATpAlSNtO_MM-5jMm9mWbyGoUt2w";
 
@@ -66,12 +68,12 @@ export default function AppointmentSchedulesTwo({ content = {}, telehealthImage,
                 </div>
               ))}
             </div>
-            <button
-              type="button"
-              className="mt-8 w-full border border-[#2563eb] text-[#2563eb] hover:bg-[#2563eb] hover:text-white py-3 rounded-[8px] apttwo-label-caps transition-all"
+            <Link
+              className="block text-center mt-8 w-full border border-[#2563eb] text-[#2563eb] hover:bg-[#2563eb] hover:text-white py-3 rounded-[8px] apttwo-label-caps transition-all"
+              href="#whatsapp"
             >
               Select This Clinic
-            </button>
+            </Link>
           </div>
         ))}
 
@@ -101,12 +103,12 @@ export default function AppointmentSchedulesTwo({ content = {}, telehealthImage,
               <span className="text-[#d97706] font-bold">2 Slots Today</span>
             </div>
           </div>
-          <button
-            type="button"
-            className="relative z-10 mt-8 w-full bg-[#2563eb] text-white py-3 rounded-[8px] apttwo-label-caps hover:bg-[#2563eb]/90 transition-all"
+          <Link
+            className="block text-center relative z-10 mt-8 w-full bg-[#2563eb] text-white py-3 rounded-[8px] apttwo-label-caps hover:bg-[#2563eb]/90 transition-all"
+            href="#whatsapp"
           >
             Book Online Session
-          </button>
+          </Link>
         </div>
       </div>
     </section>

@@ -42,14 +42,12 @@ export default function Navbar({ content = {}, slug, page , isDemo = false}) {
               </Link>
             );
           })}
-          <button
-            type="button"
-            className="bg-primary text-on-primary rounded-lg font-button text-button scale-95 active:scale-90 transition-transform"
+          <Link
+            className="bg-primary text-on-primary rounded-lg font-button text-button px-6 py-2.5 scale-95 active:scale-90 transition-transform inline-block"
+            href={appointmentHref}
           >
-            <Link className="block px-6 py-2.5 w-full h-full" href={appointmentHref}>
-              {appointmentCta}
-            </Link>
-          </button>
+            {appointmentCta}
+          </Link>
         </div>
 
         <button type="button" className="md:hidden text-primary" aria-label="Menu" aria-expanded={isOpen} onClick={() => setIsOpen((open) => !open)}>

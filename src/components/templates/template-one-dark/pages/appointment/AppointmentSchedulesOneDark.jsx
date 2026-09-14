@@ -1,3 +1,4 @@
+import Link from "next/link";
 import SectionFadeOneDark from "../../ui/SectionFadeOneDark";
 
 const CARD_STYLES = [
@@ -60,12 +61,14 @@ export default function AppointmentSchedulesOneDark({ content = {}, isDemo = fal
                     <span className="text-on-surface font-bold">{item.hours}</span>
                   </div>
                 </div>
-                <button
-                  type="button"
-                  className={`mt-10 w-full py-5 rounded-full border font-label-md transition-all uppercase tracking-widest ${style.buttonClass}`}
+                <Link
+                  className={`mt-10 w-full py-5 rounded-full border font-label-md transition-all uppercase tracking-widest text-center block ${style.buttonClass}`}
+                  href={`https://www.google.com/maps?q=${encodeURIComponent(item.location || "")}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   Get Directions
-                </button>
+                </Link>
               </div>
             );
           })}

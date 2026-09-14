@@ -2,7 +2,7 @@ import Link from "next/link";
 import RevealOneDark from "../../ui/RevealOneDark";
 
 export default function FinalCTAOneDark({ content = {}, slug, isDemo = false }) {
-  const base = slug ? `/doctor/${slug}` : "#";
+  const base = isDemo ? `/preview/${slug}` : "";
 
   return (
     <section className="px-10 max-w-[1440px] mx-auto mb-[120px]">

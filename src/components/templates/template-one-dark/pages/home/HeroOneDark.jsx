@@ -6,7 +6,7 @@ const HERO_IMAGE_FALLBACK =
   "https://lh3.googleusercontent.com/aida-public/AB6AXuDTyxeutP7i3bLEgOgReazJq3fL8gL_0nt-ZGg7tXDH26cuyHhAjEY_V0Ht4_Q_h-_sIcfCK5Kj2zn0tLJfkGSkLidk_x-eIwZsKtHSYGri4uoLUvsz1-T8u9X9JwdfPUma0Qi01jqaPZAT5EBM3U-Z-DmmCQKReacdwWCpkwAeBv00vHIfaxo4ylI1UmYSfO0kddOLLOBy8N0vd4ouvwUeTowUmhLHTDT3n5HEsHysG_2WybeexPH1cw";
 
 export default function HeroOneDark({ content = {}, slug, isDemo = false }) {
-  const base = slug ? `/doctor/${slug}` : "#";
+  const base = isDemo ? `/preview/${slug}` : "";
   const imageSrc = content.imageUrl || HERO_IMAGE_FALLBACK;
   const statCard = content.statCard;
 

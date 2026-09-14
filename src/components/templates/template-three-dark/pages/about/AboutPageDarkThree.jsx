@@ -16,7 +16,7 @@ export default function AboutPageDarkThree({ slug, content, isDemo = false }) {
       <AboutHeroDarkThree content={about.hero}  isDemo={isDemo}/>
       <AboutJourneyDarkThree content={about.journey}  isDemo={isDemo}/>
       <AboutTimelineDarkThree content={about.timeline}  isDemo={isDemo}/>
-      <AboutPillarsDarkThree content={about.pillars}  isDemo={isDemo}/>
+      <AboutPillarsDarkThree content={about.pillars} slug={slug}  isDemo={isDemo}/>
       <AboutLocationsDarkThree content={about.locations}  isDemo={isDemo}/>
       <AboutCtaDarkThree slug={slug} content={about.finalCta}  isDemo={isDemo}/>
     </div>

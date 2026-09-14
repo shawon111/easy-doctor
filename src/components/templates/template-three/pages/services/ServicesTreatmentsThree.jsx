@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const CARD_CONFIG = [
   {
     colSpan: "md:col-span-8",
@@ -28,8 +30,9 @@ const CARD_CONFIG = [
   },
 ];
 
-export default function ServicesTreatmentsThree({ content = {} , isDemo = false}) {
+export default function ServicesTreatmentsThree({ content = {} , slug, isDemo = false}) {
   const cards = content.cards || [];
+  const base = isDemo ? `/preview/${slug}` : "";
 
   return (
     <section className="py-24 bg-surface-container-lowest">
@@ -39,14 +42,12 @@ export default function ServicesTreatmentsThree({ content = {} , isDemo = false}
             <h2 className="font-headline-lg text-headline-lg text-on-surface mb-4">{content.heading}</h2>
             <p className="font-body-md text-body-md text-on-surface-variant">{content.subheading}</p>
           </div>
-          <div className="flex gap-4">
-            <div className="w-12 h-12 rounded-lg border border-outline-variant flex items-center justify-center text-primary cursor-pointer hover:bg-primary/5 transition-colors">
-              <span className="material-symbols-outlined text-xl">west</span>
-            </div>
-            <div className="w-12 h-12 rounded-lg border border-outline-variant flex items-center justify-center text-primary cursor-pointer hover:bg-primary/5 transition-colors">
-              <span className="material-symbols-outlined text-xl">east</span>
-            </div>
-          </div>
+          <Link
+            className="flex items-center gap-2 text-primary border border-primary/20 px-6 py-2.5 rounded-lg hover:bg-primary/5 transition-all font-semibold"
+            href={`${base}/appointment`}
+          >
+            Book Appointment <span className="material-symbols-outlined text-xl">north_east</span>
+          </Link>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-gutter">
@@ -92,12 +93,12 @@ export default function ServicesTreatmentsThree({ content = {} , isDemo = false}
                   )}
 
                   {card.cta && (
-                    <button
-                      type="button"
+                    <Link
                       className={`flex items-center gap-2 ${config.ctaClass} font-bold hover:gap-4 transition-all ${config.showStats ? "hidden" : ""}`}
+                      href={`${base}/appointment`}
                     >
                       {card.cta} <span className="material-symbols-outlined text-xl">arrow_forward</span>
-                    </button>
+                    </Link>
                   )}
                 </div>
 
@@ -111,12 +112,12 @@ export default function ServicesTreatmentsThree({ content = {} , isDemo = false}
                     style={{ backgroundImage: `url('${card.imageUrl}')` }}
                   />
                   {card.cta && config.colSpan.includes("4") && (
-                    <button
-                      type="button"
+                    <Link
                       className={`flex items-center gap-2 ${config.ctaClass} font-bold hover:gap-4 transition-all mt-6`}
+                      href={`${base}/appointment`}
                     >
                       {card.cta} <span className="material-symbols-outlined text-xl">arrow_forward</span>
-                    </button>
+                    </Link>
                   )}
                 </div>
               </div>

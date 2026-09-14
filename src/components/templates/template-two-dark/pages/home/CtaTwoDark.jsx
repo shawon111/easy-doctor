@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 export default function CtaTwoDark({ slug, content = {} , isDemo = false}) {
-  const base = slug ? `/doctor/${slug}` : "#";
+  const base = isDemo ? `/preview/${slug}` : "";
 
   return (
     <section className="mb-[120px] px-5 md:px-16">

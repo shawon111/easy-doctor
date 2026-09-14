@@ -1,9 +1,11 @@
 import Image from "next/image";
+import Link from "next/link";
 const HERO_IMAGE_FALLBACK =
   "https://lh3.googleusercontent.com/aida-public/AB6AXuDXxKwFcSECIyn9rW8o_uDKX37xePMxOsbGbwQgrLqtpWtQKANCJnZQqNHdmWfnFbCdUqTyykWUoNvrAeUWb85qQ6-TPkWREcdFn9eRACqOH2u7GQGSo79HfitvGpnPTGxeJzL0lb4_5WtxMioB_Tq_fum1baQMDk7JEkK6-ew6rOWcpBMngJGUd0eW8XUksnh2HbYT47otp692cTcjl_EG01vZ3TBhX6oW7vqHQDw-N_EHaAcxoAKT1w";
 
-export default function HeroTwo({ content = {} , isDemo = false}) {
+export default function HeroTwo({ content = {} , slug, isDemo = false}) {
   const imageSrc = content.imageUrl || HERO_IMAGE_FALLBACK;
+  const base = isDemo ? `/preview/${slug}` : "";
 
   return (
     <section className="relative min-h-[921px] flex items-center pt-20 px-margin-mobile md:px-margin-desktop overflow-hidden">
@@ -28,21 +30,21 @@ export default function HeroTwo({ content = {} , isDemo = false}) {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 pt-4">
-            <button
-              type="button"
+            <Link
               className="px-8 py-4 bg-primary text-on-primary font-label-caps text-label-caps rounded-lg luxury-button-hover transition-all flex items-center gap-2 group"
+              href={`${base}/appointment`}
             >
               {content.primaryCta}
               <span className="material-symbols-outlined transition-transform group-hover:translate-x-1">
                 arrow_forward
               </span>
-            </button>
-            <button
-              type="button"
-              className="px-8 py-4 border border-outline text-on-surface font-label-caps text-label-caps rounded-lg hover:bg-surface-container transition-all"
+            </Link>
+            <Link
+              className="px-8 py-4 border border-outline text-on-surface font-label-caps text-label-caps rounded-lg hover:bg-surface-container transition-all text-center"
+              href={`${base}/services`}
             >
               {content.secondaryCta}
-            </button>
+            </Link>
           </div>
         </div>
 

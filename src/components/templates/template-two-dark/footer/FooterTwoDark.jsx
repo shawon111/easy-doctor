@@ -1,14 +1,17 @@
 import Link from "next/link";
+import { templateTwoDefaults } from "@/content/defaults/template-two";
+import { pickLinks } from "@/lib/content/normalize-links";
 
 export default function FooterTwoDark({ slug, content = {} , isDemo = false}) {
-  const base = slug ? `/doctor/${slug}` : "#";
+  const base = isDemo ? `/preview/${slug}` : "";
+  const toHref = (href) => (href?.startsWith("/") ? `${base}${href}` : href || base || "/");
   const brandName = content.brandName || "Doctor";
   const tagline = content.tagline || "";
   const phone = content.phone || "";
-  const resourceLinks = content.resourceLinks || [];
+  const resourceLinks = pickLinks(content.resourceLinks, templateTwoDefaults.footer.resourceLinks);
   const copyright = content.copyright || "";
-  const legalLinks = content.legalLinks || [];
-  const practiceLinks = content.practiceLinks || [];
+  const legalLinks = pickLinks(content.legalLinks, templateTwoDefaults.footer.legalLinks);
+  const practiceLinks = pickLinks(content.practiceLinks, templateTwoDefaults.footer.practiceLinks);
   const websiteUrl = content.websiteUrl || "";
   const email = content.email || "";
 
@@ -29,7 +32,7 @@ export default function FooterTwoDark({ slug, content = {} , isDemo = false}) {
           <ul className="space-y-2 font-body-md text-body-md">
             {practiceLinks.map((link) => (
               <li key={link.label}>
-                <Link className="text-on-surface-variant hover:text-tertiary transition-colors" href={link.href || "/"}>
+                <Link className="text-on-surface-variant hover:text-tertiary transition-colors" href={toHref(link.href)}>
                   {link.label}
                 </Link>
               </li>
@@ -42,7 +45,7 @@ export default function FooterTwoDark({ slug, content = {} , isDemo = false}) {
           <ul className="space-y-2 font-body-md text-body-md">
             {resourceLinks.map((link) => (
               <li key={link.label}>
-                <Link className="text-on-surface-variant hover:text-tertiary transition-colors" href={link.href || "#"}>
+                <Link className="text-on-surface-variant hover:text-tertiary transition-colors" href={toHref(link.href)}>
                   {link.label}
                 </Link>
               </li>
@@ -79,7 +82,9 @@ export default function FooterTwoDark({ slug, content = {} , isDemo = false}) {
         {legalLinks.length > 0 ? (
           <div className="flex gap-8">
             {legalLinks.map((link) => (
-              <span key={link.label}>{link.label}</span>
+              <Link key={link.label} className="hover:text-tertiary transition-colors" href={toHref(link.href)}>
+                {link.label}
+              </Link>
             ))}
           </div>
         ) : null}

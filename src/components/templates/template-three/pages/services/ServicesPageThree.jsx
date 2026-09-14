@@ -12,7 +12,7 @@ export default function ServicesPageThree({ slug, content, isDemo = false }) {
   return (
     <>
       <ServicesHeroThree content={services.hero}  isDemo={isDemo}/>
-      <ServicesTreatmentsThree content={services.treatments}  isDemo={isDemo}/>
+      <ServicesTreatmentsThree content={services.treatments} slug={slug}  isDemo={isDemo}/>
       <ServicesBenefitsThree content={services.benefits}  isDemo={isDemo}/>
       <ServicesFaqThree content={services.faq}  isDemo={isDemo}/>
       <ServicesCtaThree slug={slug} content={services.finalCta}  isDemo={isDemo}/>

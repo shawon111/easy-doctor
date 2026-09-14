@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 export default function ServicesCtaDarkThree({ slug, content = {} , isDemo = false}) {
-  const base = slug ? `/doctor/${slug}` : "#";
+  const base = isDemo ? `/preview/${slug}` : "";
 
   return (
     <section className="py-24 relative overflow-hidden">

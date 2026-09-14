@@ -14,9 +14,11 @@ export const templateThreeDefaults = {
     tagline: "Advanced Clinical Excellence. Empowering health through precision technology.",
     copyright: "© 2026 {{name}}. Advanced Clinical Excellence. Empowering health through precision technology.",
     resourceLinks: [
-      { label: "Privacy Policy", href: "#" },
-      { label: "Terms of Service", href: "#" },
-      { label: "Clinic Locations", href: "#" },
+      { label: "Home", href: "/" },
+      { label: "About", href: "/about" },
+      { label: "Services", href: "/services" },
+      { label: "Appointment", href: "/appointment" },
+      { label: "Privacy Policy", href: "/privacy-policy" },
     ],
     legalLinks: [],
     specialties: [
@@ -25,10 +27,8 @@ export const templateThreeDefaults = {
       { label: "Executive Health", href: "/services" },
     ],
     newsletter: {
-      heading: "Newsletter",
-      body: "Latest health insights delivered to your inbox.",
-      placeholder: "Email address",
-      buttonLabel: "JOIN",
+      heading: "Need an Appointment?",
+      body: "Our clinic team is happy to help you find a suitable time.",
     },
   },
   pages: {

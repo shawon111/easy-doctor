@@ -1,7 +1,9 @@
 import Link from "next/link";
+import { templateOneDefaults } from "@/content/defaults/template-one";
+import { pickLinks } from "@/lib/content/normalize-links";
 
 export default function FooterOneDark({ content = {}, slug , isDemo = false}) {
-  const base = slug ? `/doctor/${slug}` : "#";
+  const base = isDemo ? `/preview/${slug}` : "";
   const brandName = content.brandName || "Doctor";
   const tagline = content.tagline || "";
   const copyright = content.copyright || "";
@@ -9,8 +11,8 @@ export default function FooterOneDark({ content = {}, slug , isDemo = false}) {
   const officeHours = content.officeHours;
   const officeHoursLabel = content.officeHoursLabel || "Office Hours";
   const urgentCareLabel = content.urgentCareLabel || "Urgent Care Line";
-  const resourceLinks = content.resourceLinks || [];
-  const legalLinks = content.legalLinks || [];
+  const resourceLinks = pickLinks(content.resourceLinks, templateOneDefaults.footer.resourceLinks);
+  const legalLinks = pickLinks(content.legalLinks, templateOneDefaults.footer.legalLinks);
 
   return (
     <footer className="bg-surface-container-lowest w-full pt-[120px] pb-12 border-t border-white/5">
@@ -49,7 +51,7 @@ export default function FooterOneDark({ content = {}, slug , isDemo = false}) {
               <li key={link.label}>
                 <Link
                   className="text-on-surface-variant hover:text-primary transition-colors text-sm font-medium"
-                  href={link.href?.startsWith("/") ? `${base}${link.href}` : link.href || base}
+                  href={link.href?.startsWith("/") ? `${base}${link.href}` : link.href || base || "/"}
                 >
                   {link.label}
                 </Link>
@@ -65,7 +67,7 @@ export default function FooterOneDark({ content = {}, slug , isDemo = false}) {
               <li key={link.label}>
                 <Link
                   className="text-on-surface-variant hover:text-primary transition-colors text-sm font-medium"
-                  href={link.href?.startsWith("/") ? `${base}${link.href}` : link.href || "#"}
+                  href={link.href?.startsWith("/") ? `${base}${link.href}` : link.href || base || "/"}
                 >
                   {link.label}
                 </Link>

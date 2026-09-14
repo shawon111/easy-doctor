@@ -4,7 +4,7 @@ import Link from "next/link";
 const IMAGE_CLASSES = ["aspect-[4/5]", "aspect-square", "aspect-square", "aspect-[4/5]"];
 
 export default function HomeAboutPreviewDarkThree({ slug, content = {} , isDemo = false}) {
-  const base = slug ? `/doctor/${slug}` : "#";
+  const base = isDemo ? `/preview/${slug}` : "";
   const images = (content.images || []).map((img, index) => ({
     ...img,
     className: IMAGE_CLASSES[index] || "aspect-square",

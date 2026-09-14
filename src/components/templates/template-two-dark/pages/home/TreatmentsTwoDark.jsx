@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function TreatmentsTwoDark({ slug, content = {} , isDemo = false}) {
-  const base = slug ? `/doctor/${slug}` : "#";
+  const base = isDemo ? `/preview/${slug}` : "";
   const items = content.items || [];
   const [featured, secondary, tertiary, quaternary] = items;
 

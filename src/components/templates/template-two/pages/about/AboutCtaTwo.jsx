@@ -2,7 +2,7 @@ import Link from "next/link";
 import RevealTwo from "./RevealTwo";
 
 export default function AboutCtaTwo({ content = {}, slug , isDemo = false}) {
-  const base = slug ? `/doctor/${slug}` : "#";
+  const base = isDemo ? `/preview/${slug}` : "";
 
   return (
     <section className="py-[120px] px-[20px] md:px-[64px] text-center relative overflow-hidden bg-[#f7f9fb]">

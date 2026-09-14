@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 export default function AppointmentCtaTwoDark({ content = {}, slug , isDemo = false}) {
-  const base = slug ? `/doctor/${slug}` : "#";
+  const base = isDemo ? `/preview/${slug}` : "";
 
   return (
     <section className="py-[120px] px-5 md:px-16 text-center bg-background relative overflow-hidden">

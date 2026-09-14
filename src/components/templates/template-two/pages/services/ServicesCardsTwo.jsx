@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function ServicesCardsTwo({ content = {}, slug , isDemo = false}) {
   const items = content.items || [];
-  const base = slug ? `/doctor/${slug}` : "#";
+  const base = isDemo ? `/preview/${slug}` : "";
 
   return (
     <section className="py-[120px] bg-[#f2f4f6]/50 relative overflow-hidden">
@@ -17,12 +17,12 @@ export default function ServicesCardsTwo({ content = {}, slug , isDemo = false})
             <p className="svctwo-body-md text-[#44474e]">{content.subheading}</p>
           </div>
           <div className="hidden md:block">
-            <button
-              type="button"
-              className="bg-[#2563eb] text-white svctwo-label-caps px-8 py-3 rounded-[4px] hover:bg-[#2563eb]/90 transition-all shadow-sm active:scale-95"
+            <Link
+              className="inline-block bg-[#2563eb] text-white svctwo-label-caps px-8 py-3 rounded-[4px] hover:bg-[#2563eb]/90 transition-all shadow-sm active:scale-95"
+              href={`${base}/appointment`}
             >
-              Download Catalog
-            </button>
+              Book Appointment
+            </Link>
           </div>
         </div>
 

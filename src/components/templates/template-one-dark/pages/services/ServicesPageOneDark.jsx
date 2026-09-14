@@ -12,7 +12,7 @@ export default function ServicesPageOneDark({ slug, content, isDemo = false }) {
   return (
     <>
       <ServicesHeroOneDark content={services.hero}  isDemo={isDemo}/>
-      <ServicesGridOneDark content={services.treatmentsGrid}  isDemo={isDemo}/>
+      <ServicesGridOneDark content={services.treatmentsGrid} slug={slug}  isDemo={isDemo}/>
       <ServicesBenefitsOneDark content={services.benefits}  isDemo={isDemo}/>
       <ServicesFaqOneDark content={services.faq}  isDemo={isDemo}/>
       <ServicesCtaOneDark content={services.ctaBanner} slug={slug}  isDemo={isDemo}/>

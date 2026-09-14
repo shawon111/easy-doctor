@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 export default function ServicesCtaBannerOne({ content = {}, slug , isDemo = false}) {
-  const base = slug ? `/doctor/${slug}` : "#";
+  const base = isDemo ? `/preview/${slug}` : "";
 
   return (
     <section className="px-margin-mobile md:px-margin-desktop pb-section-padding">

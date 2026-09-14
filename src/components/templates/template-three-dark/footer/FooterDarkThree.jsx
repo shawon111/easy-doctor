@@ -1,10 +1,13 @@
 import Link from "next/link";
+import { templateThreeDefaults } from "@/content/defaults/template-three";
+import { pickLinks } from "@/lib/content/normalize-links";
 
 export default function FooterDarkThree({ slug, content, isDemo = false }) {
-  const base = slug ? `/doctor/${slug}` : "#";
+  const base = isDemo ? `/preview/${slug}` : "";
+  const toHref = (href) => (href?.startsWith("/") ? `${base}${href}` : href || base || "/");
   const brandName = content?.brandName ?? "Doctor";
   const copyright = content?.copyright ?? "";
-  const resourceLinks = content?.resourceLinks ?? [];
+  const resourceLinks = pickLinks(content?.resourceLinks, templateThreeDefaults.footer.resourceLinks);
   const specialties = content?.specialties ?? [];
   const newsletter = content?.newsletter ?? {};
 
@@ -23,7 +26,7 @@ export default function FooterDarkThree({ slug, content, isDemo = false }) {
               <li key={link.label}>
                 <Link
                   className="font-body-md text-body-md text-on-surface-variant hover:text-secondary-fixed transition-colors"
-                  href={link.href}
+                  href={toHref(link.href)}
                 >
                   {link.label}
                 </Link>
@@ -50,17 +53,14 @@ export default function FooterDarkThree({ slug, content, isDemo = false }) {
 
         <div>
           <h5 className="font-headline-md text-[18px] mb-6 text-on-surface">{newsletter.heading}</h5>
-          <p className="text-on-surface-variant text-sm mb-4">{newsletter.body}</p>
-          <div className="flex gap-2">
-            <input
-              className="bg-surface-container border border-outline-variant rounded-lg px-4 py-2 flex-1 focus:border-primary focus:ring-0 transition-colors text-on-surface"
-              placeholder={newsletter.placeholder}
-              type="email"
-            />
-            <button type="button" className="bg-primary text-on-primary px-4 py-2 rounded-lg font-label-sm">
-              {newsletter.buttonLabel}
-            </button>
-          </div>
+          <p className="text-on-surface-variant text-sm mb-6">{newsletter.body}</p>
+          <Link
+            className="inline-flex items-center gap-2 text-primary font-label-sm hover:gap-3 transition-all"
+            href={`${base}/appointment`}
+          >
+            Book an appointment
+            <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
+          </Link>
         </div>
       </div>
     </footer>

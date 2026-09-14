@@ -21,14 +21,13 @@ export const templateOneDefaults = {
     phone: "",
     socialUrl: "",
     resourceLinks: [
-      { label: "Clinic Locations", href: "#" },
-      { label: "Privacy Policy", href: "#" },
-      { label: "FAQs", href: "#" },
+      { label: "Appointment", href: "/appointment" },
+      { label: "Privacy Policy", href: "/privacy-policy" },
     ],
     legalLinks: [
-      { label: "Home", href: "#" },
-      { label: "About", href: "#" },
-      { label: "Medical Services", href: "#" },
+      { label: "Home", href: "/" },
+      { label: "About", href: "/about" },
+      { label: "Services", href: "/services" },
     ],
   },
   pages: {

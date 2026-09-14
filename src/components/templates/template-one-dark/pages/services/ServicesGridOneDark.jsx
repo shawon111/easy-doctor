@@ -1,8 +1,10 @@
 import Link from "next/link";
 import GlassCardRevealOneDark from "../../ui/GlassCardRevealOneDark";
 
-export default function ServicesGridOneDark({ content = {} , isDemo = false}) {
+export default function ServicesGridOneDark({ content = {} , slug, isDemo = false}) {
   const items = content.items || [];
+  const base = isDemo ? `/preview/${slug}` : "";
+  const toHref = (href) => (href?.startsWith("/") ? `${base}${href}` : href || base || "/");
 
   return (
     <section className="py-16 px-6 md:px-10 bg-surface-container-lowest">
@@ -30,7 +32,7 @@ export default function ServicesGridOneDark({ content = {} , isDemo = false}) {
               </div>
               <h3 className="text-headline-md mb-4 uppercase tracking-tighter">{service.title}</h3>
               <p className="text-on-surface-variant mb-10 text-body-md leading-relaxed">{service.description}</p>
-              <Link className="inline-flex items-center gap-3 text-cyber-mint font-label-md group-hover:gap-5 transition-all" href="/appointment">
+              <Link className="inline-flex items-center gap-3 text-cyber-mint font-label-md group-hover:gap-5 transition-all" href={service.href ? toHref(service.href) : `${base}/appointment`}>
                 Learn More <span className="material-symbols-outlined">north_east</span>
               </Link>
             </GlassCardRevealOneDark>

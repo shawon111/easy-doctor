@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Reveal from "@/components/templates/ui/Reveal";
 
 const BADGE_CLASSES = [
@@ -50,9 +51,14 @@ export default function AppointmentScheduleOne({ content = {} , isDemo = false})
                 </div>
               </div>
 
-              <button className="mt-stack-md w-full py-4 rounded-xl border border-primary text-primary font-button hover:bg-primary/5 transition-colors">
+              <Link
+                className="mt-stack-md w-full py-4 rounded-xl border border-primary text-primary font-button hover:bg-primary/5 transition-colors block text-center"
+                href={`https://www.google.com/maps?q=${encodeURIComponent(item.location || "")}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Get Directions
-              </button>
+              </Link>
             </div>
           ))}
         </div>

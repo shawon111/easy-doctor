@@ -2,7 +2,7 @@ import Link from "next/link";
 import Reveal from "@/components/templates/ui/Reveal";
 
 export default function FinalCTAOne({ content = {}, slug , isDemo = false}) {
-  const base = slug ? `/doctor/${slug}` : "#";
+  const base = isDemo ? `/preview/${slug}` : "";
 
   return (
     <section className="px-margin-desktop max-w-container-max mx-auto mb-section-padding">

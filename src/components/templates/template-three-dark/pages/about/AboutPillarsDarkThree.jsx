@@ -1,3 +1,4 @@
+import Link from "next/link";
 import FadeInThree from "../../../template-three/ui/FadeInThree";
 
 const PILLAR_STYLES = [
@@ -6,7 +7,8 @@ const PILLAR_STYLES = [
   { iconClass: "bg-tertiary/10 text-tertiary-fixed-dim", shadowClass: "hover:shadow-tertiary/5" },
 ];
 
-export default function AboutPillarsDarkThree({ content = {} , isDemo = false}) {
+export default function AboutPillarsDarkThree({ content = {} , slug, isDemo = false}) {
+  const base = isDemo ? `/preview/${slug}` : "";
   const items = (content.items || []).map((item, index) => ({
     ...item,
     ...PILLAR_STYLES[index % PILLAR_STYLES.length],
@@ -20,12 +22,12 @@ export default function AboutPillarsDarkThree({ content = {} , isDemo = false}) 
             <h2 className="font-headline-lg text-headline-lg text-on-surface">{content.heading}</h2>
             <p className="text-on-surface-variant mt-4">{content.subheading}</p>
           </div>
-          <button
-            type="button"
+          <Link
             className="flex items-center gap-2 text-primary border border-primary/20 px-6 py-2.5 rounded-lg hover:bg-primary/5 transition-all font-semibold"
+            href={`${base}/appointment`}
           >
             {content.cta} <span className="material-symbols-outlined text-xl">north_east</span>
-          </button>
+          </Link>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter">

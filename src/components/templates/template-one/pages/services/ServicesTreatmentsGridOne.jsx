@@ -1,7 +1,10 @@
+import Link from "next/link";
 import Reveal from "@/components/templates/ui/Reveal";
 
-export default function ServicesTreatmentsGridOne({ content = {} , isDemo = false}) {
+export default function ServicesTreatmentsGridOne({ content = {} , slug, isDemo = false}) {
   const items = content.items || [];
+  const base = isDemo ? `/preview/${slug}` : "";
+  const toHref = (href) => (href?.startsWith("/") ? `${base}${href}` : href || base || "/");
 
   return (
     <section className="py-section-padding px-margin-mobile md:px-margin-desktop bg-surface">
@@ -32,9 +35,12 @@ export default function ServicesTreatmentsGridOne({ content = {} , isDemo = fals
               <p className="text-on-surface-variant mb-8 text-body-md leading-relaxed">
                 {service.description}
               </p>
-              <button className="flex items-center gap-2 text-primary font-button hover:gap-4 transition-all">
+              <Link
+                className="flex items-center gap-2 text-primary font-button hover:gap-4 transition-all"
+                href={service.href ? toHref(service.href) : `${base}/appointment`}
+              >
                 Learn More <span className="material-symbols-outlined">arrow_forward</span>
-              </button>
+              </Link>
             </Reveal>
           ))}
         </div>

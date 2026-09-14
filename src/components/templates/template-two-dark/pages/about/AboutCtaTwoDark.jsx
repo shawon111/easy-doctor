@@ -2,7 +2,7 @@ import Link from "next/link";
 import SectionFadeTwoDark from "../../ui/SectionFadeTwoDark";
 
 export default function AboutCtaTwoDark({ content = {}, slug , isDemo = false}) {
-  const base = slug ? `/doctor/${slug}` : "#";
+  const base = isDemo ? `/preview/${slug}` : "";
 
   return (
     <SectionFadeTwoDark className="py-[120px] px-5 md:px-16 text-center relative overflow-hidden">

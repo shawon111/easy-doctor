@@ -13,7 +13,7 @@ const ServicesPageOne = ({ slug, content, isDemo = false }) => {
     return (
         <>
             <ServicesHeroOne content={services.hero}  isDemo={isDemo}/>
-            <ServicesTreatmentsGridOne content={services.treatmentsGrid}  isDemo={isDemo}/>
+            <ServicesTreatmentsGridOne content={services.treatmentsGrid} slug={slug}  isDemo={isDemo}/>
             <ServicesBenefitsOne content={services.benefits}  isDemo={isDemo}/>
             <ServicesFaqOne content={services.faq}  isDemo={isDemo}/>
             <ServicesCtaBannerOne content={services.ctaBanner} slug={slug}  isDemo={isDemo}/>

@@ -70,12 +70,6 @@ function labelFor(key) {
 }
 
 function isImageKey(key) {
-  // Matches every image field used by the template schemas: image, imageUrl,
-  // imageUrlSecondary, quoteImageUrl, telehealthImage, and the imageUrl
-  // entries inside "images" galleries. Alt-text companions END in
-  // "Alt"/"AltSecondary" (imageAlt, quoteImageAlt, telehealthImageAlt, ...)
-  // and are NOT upload fields. The end anchor matters: "telehealthImage"
-  // contains "alt" inside "health" but is a real image field.
   return /image/i.test(key) && !/(?:alt|altsecondary)$/i.test(key);
 }
 

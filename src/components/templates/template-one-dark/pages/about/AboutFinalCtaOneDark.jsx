@@ -2,7 +2,7 @@ import Link from "next/link";
 import SectionFadeOneDark from "../../ui/SectionFadeOneDark";
 
 export default function AboutFinalCtaOneDark({ content = {}, slug, isDemo = false }) {
-  const base = slug ? `/doctor/${slug}` : "#";
+  const base = isDemo ? `/preview/${slug}` : "";
 
   return (
     <SectionFadeOneDark className="py-32 px-6 md:px-10 text-center bg-surface-container-lowest" isDemo={isDemo}>

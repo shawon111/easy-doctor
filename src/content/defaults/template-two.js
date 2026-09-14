@@ -20,19 +20,18 @@ export const templateTwoDefaults = {
     websiteUrl: "",
     email: "",
     practiceLinks: [
-      { label: "Our Approach", href: "/about" },
-      { label: "Specializations", href: "/services" },
-      { label: "Clinical Research", href: "/services" },
-      { label: "Patient Stories", href: "/about" },
+      { label: "Home", href: "/" },
+      { label: "About", href: "/about" },
+      { label: "Services", href: "/services" },
     ],
     resourceLinks: [
-      { label: "Privacy Policy", href: "#" },
-      { label: "Terms of Service", href: "#" },
-      { label: "Careers", href: "#" },
+      { label: "Appointment", href: "/appointment" },
+      { label: "Privacy Policy", href: "/privacy-policy" },
     ],
     legalLinks: [
-      { label: "GMC Reg No. 1234567", href: "#" },
-      { label: "Fellow of the Royal Society of Medicine", href: "#" },
+      { label: "Home", href: "/" },
+      { label: "About", href: "/about" },
+      { label: "Services", href: "/services" },
     ],
   },
 

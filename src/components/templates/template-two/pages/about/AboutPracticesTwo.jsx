@@ -31,7 +31,7 @@ function getPracticeLocations(content = {}) {
 
 export default function AboutPracticesTwo({ content = {}, slug , isDemo = false}) {
   const locations = getPracticeLocations(content);
-  const base = slug ? `/doctor/${slug}` : "#";
+  const base = isDemo ? `/preview/${slug}` : "";
 
   return (
     <section className="py-[120px] bg-[#eceef0]">

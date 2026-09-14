@@ -29,7 +29,7 @@ function getPracticeLocations(content = {}) {
 
 export default function AboutPracticesTwoDark({ content = {}, slug , isDemo = false}) {
   const locations = getPracticeLocations(content);
-  const base = slug ? `/doctor/${slug}` : "#";
+  const base = isDemo ? `/preview/${slug}` : "";
 
   return (
     <SectionFadeTwoDark className="py-[120px] bg-surface-container-highest/20">

@@ -3,7 +3,7 @@ import Link from "next/link";
 import RevealOneDark from "../../ui/RevealOneDark";
 
 export default function AboutPreviewOneDark({ content = {}, slug, isDemo = false }) {
-  const aboutHref = slug ? `/doctor/${slug}/about` : "#";
+  const aboutHref = isDemo ? `/preview/${slug}/about` : `/about`;
   const paragraphs = content.body ? content.body.split("\n\n") : [];
 
   return (

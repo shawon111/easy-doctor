@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 export default function HomeServicesGridDarkThree({ slug, content = {} , isDemo = false}) {
-  const base = slug ? `/doctor/${slug}` : "#";
+  const base = isDemo ? `/preview/${slug}` : "";
   const items = content.items || [];
 
   return (

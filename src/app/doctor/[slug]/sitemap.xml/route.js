@@ -20,6 +20,7 @@ export async function GET(request, { params }) {
         `${baseUrl}/about`,
         `${baseUrl}/services`,
         `${baseUrl}/appointment`,
+        `${baseUrl}/privacy-policy`,
     ];
 
     const body = `<?xml version="1.0" encoding="UTF-8"?>

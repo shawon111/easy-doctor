@@ -1,8 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-export default function TreatmentsTwo({ content = {} , isDemo = false}) {
+export default function TreatmentsTwo({ content = {} , slug, isDemo = false}) {
   const items = content.items || [];
   const [featured, secondary, tertiary, quaternary] = items;
+  const base = isDemo ? `/preview/${slug}` : "";
+  const toHref = (href) => (href?.startsWith("/") ? `${base}${href}` : href || base || "/");
 
   return (
     <section className="py-section-gap px-margin-mobile md:px-margin-desktop">
@@ -39,7 +41,7 @@ export default function TreatmentsTwo({ content = {} , isDemo = false}) {
               </p>
               <Link
                 className="inline-flex items-center gap-2 text-primary font-label-caps text-label-caps hover:gap-4 transition-all"
-                href={featured.href || "/services"}
+                href={featured.href ? toHref(featured.href) : `${base}/services`}
               >
                 Explore Procedure{" "}
                 <span className="material-symbols-outlined">north_east</span>
@@ -66,7 +68,7 @@ export default function TreatmentsTwo({ content = {} , isDemo = false}) {
               <p className="font-body-md text-body-md text-on-surface-variant mb-4">
                 {secondary.description}
               </p>
-              <Link className="text-primary font-label-caps text-label-caps hover:underline" href={secondary.href || "/services"}>
+              <Link className="text-primary font-label-caps text-label-caps hover:underline" href={secondary.href ? toHref(secondary.href) : `${base}/services`}>
                 Learn More
               </Link>
             </div>
@@ -105,13 +107,13 @@ export default function TreatmentsTwo({ content = {} , isDemo = false}) {
               <p className="font-body-md text-body-md text-on-surface-variant mb-4">
                 {quaternary.description}
               </p>
-              <button
-                type="button"
+              <Link
                 className="text-primary font-label-caps text-label-caps flex items-center gap-2"
+                href={quaternary.href ? toHref(quaternary.href) : `${base}/services`}
               >
                 Protocol Details{" "}
-                <span className="material-symbols-outlined text-sm">open_in_new</span>
-              </button>
+                <span className="material-symbols-outlined text-sm">north_east</span>
+              </Link>
             </div>
           </div>
         ) : null}
