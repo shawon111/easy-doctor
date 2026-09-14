@@ -23,14 +23,12 @@ export const templateOneDefaults = {
     resourceLinks: [
       { label: "Clinic Locations", href: "#" },
       { label: "Privacy Policy", href: "#" },
-      { label: "New Patient Forms", href: "#" },
       { label: "FAQs", href: "#" },
     ],
     legalLinks: [
       { label: "Home", href: "#" },
       { label: "About", href: "#" },
       { label: "Medical Services", href: "#" },
-      { label: "Patient Portal", href: "#" },
     ],
   },
   pages: {

@@ -8,6 +8,7 @@ import mongoose from "mongoose";
 
 // create a new user
 export const createUser = async (userData, withPro) => {
+    await connectDB();
     const { name, email, password, phone, specialization, qualifications, experience, clinicAddress, bio, bookingPreferences, treatments, languages, socialLinks, profilePicture, } = userData;
     const session = await mongoose.startSession();
     try {
@@ -96,6 +97,7 @@ export const getCurrentUser = async () => {
 
 // login user by checking email and password
 export const loginUser = async (email, password) => {
+    await connectDB();
     const user = await User.findOne({ email: email.toLowerCase() }).select({ password: 1, _id: 1 }).lean();
     if (!user) {
         throw new Error("User not found");
@@ -109,6 +111,7 @@ export const loginUser = async (email, password) => {
 
 // get user by id
 export const getUserById = async (id) => {
+    await connectDB();
     const user = await User.findById(id).select({
         password: 0,
     }).lean();
@@ -120,6 +123,7 @@ export const getUserById = async (id) => {
 
 // get user by slug
 export const getUserBySlug = async (slug) => {
+    await connectDB();
     const user = await User.findOne({ slug }).select({
         password: 0,
     }).lean()
@@ -131,6 +135,7 @@ export const getUserBySlug = async (slug) => {
 
 // get user by subdomain
 export const getUserBySubdomain = async (subdomain) => {
+    await connectDB()
     try {
         const result = await User.findOne({ subdomain }).select({
             name: 1,
@@ -144,12 +149,14 @@ export const getUserBySubdomain = async (subdomain) => {
         }).lean();
         return result
     } catch (error) {
+        console.log("the error is from layout", error)
         throw new Error("Failed to get user")
     }
 }
 
 // get doctors list
 export const getDoctorsList = async () => {
+    await connectDB();
     const users = await User.find({}).select({
         slug: 1,
         _id: 1,

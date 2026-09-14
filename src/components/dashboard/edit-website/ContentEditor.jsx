@@ -70,7 +70,13 @@ function labelFor(key) {
 }
 
 function isImageKey(key) {
-  return key === "imageUrl" || key === "image";
+  // Matches every image field used by the template schemas: image, imageUrl,
+  // imageUrlSecondary, quoteImageUrl, telehealthImage, and the imageUrl
+  // entries inside "images" galleries. Alt-text companions END in
+  // "Alt"/"AltSecondary" (imageAlt, quoteImageAlt, telehealthImageAlt, ...)
+  // and are NOT upload fields. The end anchor matters: "telehealthImage"
+  // contains "alt" inside "health" but is a real image field.
+  return /image/i.test(key) && !/(?:alt|altsecondary)$/i.test(key);
 }
 
 function isMapLinkKey(key) {
@@ -233,17 +239,23 @@ function LinkListEditor({ label, value, onChange }) {
 }
 
 function FieldEditor({ value, template, path, onChange }) {
-  if (isImageKey(path.split(".").at(-1))) {
+  const lastKey = path.split(".").at(-1);
+  // Image and map fields are single text/URL values; only apply these custom
+  // editors to scalars so array collections (e.g. an "images" gallery) are
+  // never rendered as a single image upload field.
+  const isScalarField = value === null || value === undefined || typeof value === "string";
+
+  if (isScalarField && isImageKey(lastKey)) {
     return (
       <ImageField
-        label={labelFor(path.split(".").at(-1))}
+        label={labelFor(lastKey)}
         value={value}
         onChange={onChange}
       />
     );
   }
 
-  if (isMapLinkKey(path.split(".").at(-1))) {
+  if (isScalarField && isMapLinkKey(lastKey)) {
     return (
       <MapLinkEditor
         label={labelFor(path.split(".").at(-1))}

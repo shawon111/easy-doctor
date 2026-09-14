@@ -26,7 +26,6 @@ export const templateTwoDefaults = {
       { label: "Patient Stories", href: "/about" },
     ],
     resourceLinks: [
-      { label: "Patient Portal", href: "#" },
       { label: "Privacy Policy", href: "#" },
       { label: "Terms of Service", href: "#" },
       { label: "Careers", href: "#" },

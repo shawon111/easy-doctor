@@ -17,7 +17,6 @@ export const templateThreeDefaults = {
       { label: "Privacy Policy", href: "#" },
       { label: "Terms of Service", href: "#" },
       { label: "Clinic Locations", href: "#" },
-      { label: "Patient Portal", href: "#" },
     ],
     legalLinks: [],
     specialties: [
