@@ -11,8 +11,8 @@ export const templateThreeDefaults = {
   },
   footer: {
     brandName: "{{name}}",
-    tagline: "Advanced Clinical Excellence. Empowering health through precision technology.",
-    copyright: "© 2026 {{name}}. Advanced Clinical Excellence. Empowering health through precision technology.",
+    tagline: "One doctor, fully invested in your health. Modern medicine, delivered personally.",
+    copyright: "© 2026 {{name}}. Modern Medicine, Delivered Personally.",
     resourceLinks: [
       { label: "Home", href: "/" },
       { label: "About", href: "/about" },
@@ -28,18 +28,18 @@ export const templateThreeDefaults = {
     ],
     newsletter: {
       heading: "Need an Appointment?",
-      body: "Our clinic team is happy to help you find a suitable time.",
+      body: "Message Dr. {{name}}'s office and we will find a time that suits you.",
     },
   },
   pages: {
     home: {
       hero: {
-        badge: "ADVANCED CLINICAL EXCELLENCE",
+        badge: "ADVANCED MEDICINE, PERSONALLY DELIVERED",
         heading: "Precision Care for a",
         headingHighlight: "Healthier Future.",
-        body: "Experience the gold standard in modern healthcare. Led by {{name}}, our clinic combines cutting-edge technology with compassionate, patient-centered expertise.",
+        body: "Experience the gold standard in modern healthcare. Led by {{name}}, this practice combines cutting-edge technology with unhurried, patient-first expertise.",
         primaryCta: "Start Consultation",
-        secondaryCta: "WhatsApp Us",
+        secondaryCta: "Message My Office",
         whatsappUrl: "https://wa.me/dr-medlink",
         imageUrl:
           "https://lh3.googleusercontent.com/aida-public/AB6AXuC0UvJcRRGzeMnVHVjjXtnLb4votL8IteDuxDZoMBMVpVJGOKk-h0BcL08sXfFokA-cOo1p0SsfrOwac1Nso4BV3x2gC0QrMZoHxNOy-E6Z9IfkMBdSWPmugRqreXSFb0bGdnpfIjYIqX8q9tzPLq3OAXzVJuxeYXwM679Bugo2A_j8k-awrsDAbjGSxwoiM3DzXth4E2OLtitL8Sr4rEapTONQDNSO02L51czSuadSIGI3LL-ZaASnpQ",
@@ -49,22 +49,22 @@ export const templateThreeDefaults = {
       },
       highlights: {
         items: [
-          { value: "15+", label: "Years Excellence", color: "text-primary" },
-          { value: "24/7", label: "Support Access", color: "text-secondary" },
-          { value: "50+", label: "Specializations", color: "text-tertiary" },
-          { value: "100%", label: "Data Privacy", color: "text-primary" },
+          { value: "15+", label: "Years in Practice", color: "text-primary" },
+          { value: "Same Day", label: "Urgent Appointments", color: "text-secondary" },
+          { value: "12", label: "Areas of Expertise", color: "text-tertiary" },
+          { value: "100%", label: "Confidential Care", color: "text-primary" },
         ],
       },
       aboutPreview: {
         heading: "Redefining the",
         headingHighlight: "Patient Experience",
-        body: "Our philosophy is built on the intersection of advanced clinical research and a personalized approach to care. We believe that every patient deserves a treatment plan as unique as their DNA.",
+        body: "My practice is built on the intersection of advanced medical science and genuine personal attention. Every patient deserves a plan as unique as their DNA, and a doctor who remembers it.",
         checklist: [
           "Evidence-based clinical protocols developed by experts.",
           "Integrated digital health records for seamless tracking.",
-          "Dedicated health concierge for personalized navigation.",
+          "One doctor who knows your history, not a rotating roster of staff.",
         ],
-        linkLabel: "Read Our Full Story",
+        linkLabel: "Read My Full Story",
         images: [
           {
             imageUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuAw5Hvx37mfI6KjBlz0tFx2A2CIzLDb0cCDaNRXeFvLpQ6AI3ML4ZQrDz1tUN9qiHc8BjckszTwcRa9lmiH-iFd8IkfvVS1Znz1n_rh7maxNbO1lC_CBV3yNFamTDsM57rclHT2x8LKfIe12LWjyxu6AL2xdQD1dZ35EWzsE1IzozFMaqamYRHcZUUfTAdTbQGEpu6HJnyNjazWZUq77XmHoxgYSs2jHCJWNlrk8E2eNPgytu1NV8nKgA",
@@ -76,7 +76,7 @@ export const templateThreeDefaults = {
           },
           {
             imageUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuCsC6NHOAFmTIx5EJZ3OXXBc2rZItDPjuKCLBQFwGzc8yPaj76W2ow02TVSa4MHYvOQ0_eGEiRv4NXr4lbyLL5pqBlLrmexQtjS2jSzpwVz_PUGiNuK253dgbLvYzZ0vLd4L0bXMfU_hSHNd39IPQv17ucR8b8TI-ko0VMlRnDV7F6RyUoyOo2Rydy8mi2duPgjFu7Onj-Pwbg0ovuoScjVHfsJfreXwu09zF4iv7HQBxbOhI4_s5PtsA",
-            imageAlt: "A minimalist clinical reception desk in a high-end medical facility.",
+            imageAlt: "A calm, minimal consulting room prepared for a single patient.",
           },
           {
             imageUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuDxd5RKvt3lATWFyiV95GAHmO4GUckRGj_YQP4tmd6TLuMMiRZrFQFvK76v-E1ST85aHav85xrdNjTcGmwsbuMjpoMGGICPHhKXYRY0fK8i8foPHabVqKqO-YGbighv9LOi2lnGzhhfTXtrz4_BOq0sZnSBMGNiyndc-eu_7heGSCieCODWabYbtLJf4HX3CK3aKc_xgL7TRmBv67YVtc2GPJRGs95n5l4O_YpkW63zAPyav_qN17335Q",
@@ -113,31 +113,31 @@ export const templateThreeDefaults = {
         ],
       },
       whyTrust: {
-        heading: "The MedLink Advantage",
+        heading: "Why Patients Choose {{name}}",
         items: [
           {
             number: "01",
-            title: "Modern Diagnostic Lab",
+            title: "Diagnostics in My Own Rooms",
             description:
-              "In-house laboratory equipped with the latest molecular diagnostic technology for rapid, accurate results.",
+              "Most blood work and cardiac testing is done on site, so results come back in hours rather than weeks.",
           },
           {
             number: "02",
-            title: "Expert-Led Multidisciplinary Team",
+            title: "Specialists I Personally Trust",
             description:
-              "Access a network of top-tier specialists collaborating in real-time on your comprehensive treatment plan.",
+              "When your case needs a second opinion, I bring in specialists I have worked with for years and stay involved throughout.",
           },
           {
             number: "03",
-            title: "Patient-First Digital Portal",
+            title: "Direct Access to Your Doctor",
             description:
-              "Manage your health on the go with our encrypted portal—access results, schedule visits, and message your team.",
+              "Manage your health on the go through my encrypted portal—access results, schedule visits, and message me directly.",
           },
         ],
       },
       howToStart: {
         heading: "Start Your Journey",
-        subheading: "Transparent steps to your personalized health transformation.",
+        subheading: "Four clear steps to a plan built around you.",
         steps: [
           {
             icon: "event_available",
@@ -166,23 +166,23 @@ export const templateThreeDefaults = {
         ],
       },
       mapLocation: {
-        heading: "Find Our Clinic",
+        heading: "Find the Practice",
         directionsCta: "Get Driving Directions",
-        mapUrl: "https://www.google.com/maps?q=Main+Clinical+Center,+New+York,+NY",
+        mapUrl: "https://www.google.com/maps?q=New+York,+NY",
         contact: {
-          location: "Main Clinical Center",
+          location: "The Practice, New York",
           phone: "+1 (212) 555-0147",
           hours: "Monday - Friday: 9:00 AM - 5:00 PM",
         },
         contactLabels: {
-          location: "Main Clinical Center",
-          phone: "Direct Inquiries",
-          hours: "Operational Hours",
+          location: "The Practice",
+          phone: "Direct Line",
+          hours: "Consulting Hours",
         },
       },
       finalCta: {
         heading: "Ready for a New Standard of Care?",
-        body: "Join over 10,000 patients who have trusted {{name}} for their journey toward optimal health and longevity.",
+        body: "More than 10,000 patients have trusted {{name}} with their health. Yours could be next.",
         primaryCta: "Book Your Consultation",
         secondaryCta: "Explore Services",
       },
@@ -237,34 +237,34 @@ export const templateThreeDefaults = {
           },
           {
             period: "2013 — Present",
-            title: "Founding {{name}}",
+            title: "Founding This Practice",
             description:
-              "Established a boutique clinical ecosystem dedicated to personalized medicine and AI-assisted health monitoring.",
-            mobileDescription: "Establishing a boutique clinical ecosystem for personalized care.",
+              "Opened a private practice devoted to personalized medicine and AI-assisted health monitoring.",
+            mobileDescription: "Opening a private practice built around personalized care.",
             imageUrl:
               "https://lh3.googleusercontent.com/aida-public/AB6AXuD8L2IuAX2-El3dGbXY3ODPb7fNShamX2AXULa8rDg8ThyQEmMGU21T4y2Lio-LoU9EzROsSui6HHUngR2c2kO_ZrNkTIJbN2dN_gp6DTybRbrLGfc0OnLy1RdokNucy4Lq9mVnJUqWJXG-o4nbiorCU8AnDvVW0vdWhs-dhTFlmXNH7Z0kM8WNUzOi-1oYTzd0fMH7DUcZlk8Rh4ZvYLZO6l7aE6QjIMaHtQw-QDAmkyqars6W94C9PQ",
-            imageAlt: "The elegant, high-end interior of a contemporary medical clinic reception area.",
+            imageAlt: "The elegant interior of a contemporary doctor's consulting rooms.",
             reverse: false,
           },
         ],
       },
       pillars: {
-        heading: "Our Core Pillars",
+        heading: "My Core Pillars",
         subheading:
-          "We believe that global healthcare requires a universal language of empathy and technological transparency.",
-        cta: "View Ethics Charter",
+          "Good medicine needs a universal language of empathy and technological transparency. Mine is built on it.",
+        cta: "Read My Care Promise",
         items: [
           {
             icon: "psychology",
             title: "Unwavering Integrity",
             description:
-              "Clinical honesty is the foundation of our practice. We provide clear, data-backed insights for every medical decision.",
+              "Clinical honesty is the foundation of my practice. You get clear, data-backed reasoning behind every decision I make with you.",
           },
           {
             icon: "public",
             title: "Global Communication",
             description:
-              "Breaking language barriers through intuitive digital portals that speak the patient's language—literally and metaphorically.",
+              "Breaking language barriers through intuitive digital tools that speak the patient's language—literally and metaphorically.",
           },
           {
             icon: "precision_manufacturing",
@@ -275,32 +275,32 @@ export const templateThreeDefaults = {
         ],
       },
       locations: {
-        heading: "Global Presence",
+        heading: "Where I See Patients",
         items: [
           {
             city: "New York",
-            subtitle: "Primary Clinical Hub",
+            subtitle: "Home Practice",
             imageUrl:
               "https://lh3.googleusercontent.com/aida-public/AB6AXuAAoe_QU6vHeoZOEKurGHiJ-Es8ppDRhnMjHB-h1p0seGJlWRvmjaIQB1kBZGxK8j9gmWR2KicP7OP_Wv2NCkovfvAA1KCOH4nw947TUPw1z78VXAvId7Naszq02yklFV-mRFtT08-oZZOq50OP1SwfZDz3yw5PQHVcHVaG5bqr3AkdG9A2BDMbET3KHY-nibl2mmzfMCZ7Vr4Pg1PWE6mHs-Ns6uKT6kQhmDLBlP_k75yLDLL1-R-_cQ",
             imageAlt: "New York",
           },
           {
             city: "London",
-            subtitle: "Research & Diagnostics",
+            subtitle: "Consulting Visits",
             imageUrl:
               "https://lh3.googleusercontent.com/aida-public/AB6AXuDVCuD_H29id8_ny3TW09hqw8dy1gjI-JEHg6t8uY14F3zjAA2GM2okKkDiTP8HCBk0LaCjUbz_joI96qLh2suxh3Hjz4yXebkqjxCzGpAztHUEHbfc6Ghw4b-CI1sSezZIUySe6SQ_S4bdhBhCZq8ITCFUV2-I47QjKiWXsC_tfdQd4MaqQ7bM1XeeFFmvYoI9hHTrCz35Xk_a9V_LgNN_EMgcn7rPC1OB3d7uG1eIf-pV-r3MeGM1KA",
             imageAlt: "London",
           },
           {
             city: "Dubai",
-            subtitle: "Specialist Wellness",
+            subtitle: "Visiting Consultations",
             imageUrl:
               "https://lh3.googleusercontent.com/aida-public/AB6AXuD00GB15BwSZWw414joB_zVDXuDTeeQqL4-xW-g2ue6fpv-YB2yKPWhXXLlMdPFUR4ZgsxcL7MtDY5zXv3CD3YLOREy2jsXFfq3W43DnrM7-d5KjWhdO-VZpqe66h8hB8RFUAdIto_lMdRhdYGGWCI-DOj2BEYpKwzpPdmRh7vRexWGWYpSeYEn6IUV1MPjJlme0PWuFW5wksQySwQW9X-ZKTRRvONZt1Cm7in_AGhSNX7InRcQ4X3z6A",
             imageAlt: "Dubai",
           },
           {
             city: "Tokyo",
-            subtitle: "AI Innovation Center",
+            subtitle: "Telehealth & Second Opinions",
             imageUrl:
               "https://lh3.googleusercontent.com/aida-public/AB6AXuASfDfloxcOTUWTOQMw2pprbitk-T-4_REJ6pr3kNyKNWoLwMUL2vm0i07PENvRZ0jlPVh4xSteLGlCVOa1dWTKoRiE8d7zudDoyiQw1qs99kJSvDRA_HZ8nXP2VB1ncdKlkNwg7-BcfJrs6DJwUkbqsKDe3yjW9Tc6_EAGNnqLaNaL_WQ233anzaJGtT1QwQD-FKum0pLQGbgbTe8Zh2kk1-jc1z2FuFzgAWAz843vZDoef4mmbdBlwg",
             imageAlt: "Tokyo",
@@ -318,7 +318,7 @@ export const templateThreeDefaults = {
       hero: {
         badge: "Precision Healthcare",
         heading: "Elevating Human Vitality Through Clinical Innovation",
-        body: "At {{name}}, we combine cutting-edge diagnostic technology with holistic medical expertise to provide a personalized care journey.",
+        body: "Dr. {{name}} combines cutting-edge diagnostic technology with deep clinical expertise to provide a truly personal care journey.",
       },
       treatments: {
         heading: "Specialized Treatments & Care",
@@ -357,8 +357,8 @@ export const templateThreeDefaults = {
           },
           {
             badge: "FAMILY CARE",
-            title: "Comprehensive Clinic Care",
-            body: "End-to-end medical management for individuals and families, from acute illness treatment to routine preventative screenings.",
+            title: "Comprehensive Family Care",
+            body: "Continuing care for you and your family, from acute illness through to routine preventative screening, always with the same doctor.",
             bullets: [],
             cta: "",
             stat1Value: "24/7",
@@ -367,13 +367,13 @@ export const templateThreeDefaults = {
             stat2Label: "Wait Times",
             imageUrl:
               "https://lh3.googleusercontent.com/aida-public/AB6AXuDbqI5NJ5xpQjxpTG1Aqsx-JZb6DTuiCqL_BLRL2mCwtqFdctAzFCRtUAC_3Tu0v-CSxM1VG-MNjQUAWP6p7DsWG_jpSdNtzym41WmsyhYQIQCNercTJULdTuU75FHbUbzMFzV1mIN8cmsb_tXry_eW92UcSBjf2xchY-FHSA29HPpjRrWejs6CltLzZv34wLz1P5RbxalYJiJtbTzQLm5IK2iWxA7poTAoKNxdYrFIqhaiJSreXjHxpg",
-            imageAlt: "Comprehensive clinic care",
+            imageAlt: "Comprehensive family care",
           },
         ],
       },
       benefits: {
-        heading: "Why Our Treatments Work",
-        subheading: "We don't just treat symptoms; we engineer health through a multi-dimensional clinical approach.",
+        heading: "Why My Approach Works",
+        subheading: "I don't just treat symptoms; I build health through a careful, whole-person approach.",
         items: [
           {
             icon: "biotech",
@@ -401,12 +401,12 @@ export const templateThreeDefaults = {
           {
             question: "How do I access my diagnostic results?",
             answer:
-              "All diagnostic results, lab reports, and imaging are uploaded instantly to your secure Patient Portal. You can access these anytime via our mobile app or web interface.",
+              "Your results, lab reports and imaging are uploaded straight to your secure patient portal. You can read them whenever you like, on your phone or computer.",
           },
           {
             question: "Do you accept international health insurance?",
             answer:
-              "Yes, we partner with major global insurance providers. Our administration team handles all direct billing processes for your convenience.",
+              "Yes, I work with major global insurers. My office looks after the billing paperwork so you don't have to.",
           },
           {
             question: "What is the {{name}} longevity protocol?",
@@ -416,17 +416,17 @@ export const templateThreeDefaults = {
         ],
       },
       finalCta: {
-        heading: "Ready to prioritize your performance?",
-        body: "Join the elite clinical ecosystem of {{name}} today. Schedule your initial comprehensive assessment.",
+        heading: "Ready to prioritize your health?",
+        body: "Work with a physician who has time for you. Book your initial comprehensive assessment today.",
         primaryCta: "Book Your First Visit",
-        secondaryCta: "Contact Concierge",
+        secondaryCta: "Contact My Office",
       },
     },
     appointment: {
       hero: {
         badge: "Reservations",
-        heading: "Seamless Healthcare Access",
-        body: "Experience clinical excellence with our streamlined booking process. Connect with {{name}} for personalized care tailored to your specific medical needs.",
+        heading: "Book a Visit with Dr. {{name}}",
+        body: "Experience clinical excellence through a streamlined booking process. Connect with {{name}} for personalized care tailored to your specific medical needs.",
       },
       steps: {
         items: [
@@ -435,7 +435,7 @@ export const templateThreeDefaults = {
             icon: "person_search",
             title: "Select Service",
             description:
-              "Choose from our specialized clinical consultations, diagnostic tests, or routine health checkups.",
+              "Choose from a specialist consultation, a diagnostic test, or a routine health checkup.",
           },
           {
             number: "02",
@@ -449,52 +449,52 @@ export const templateThreeDefaults = {
             icon: "verified",
             title: "Confirm Visit",
             description:
-              "Use our WhatsApp integration or the booking portal to finalize your appointment details securely.",
+              "Message the office on WhatsApp or use the booking portal to confirm your appointment securely.",
           },
         ],
       },
       schedule: {
         heading: "Visiting Schedule",
-        subheading: "Standard operational hours for clinical consultations.",
+        subheading: "Consulting hours at the practice. Urgent cases are seen the same day wherever possible.",
         legendAvailable: "Available Now",
         legendClosed: "Closed",
         statusAvailable: "Available",
         statusClosed: "Closed",
         items: [
-          { day: "Monday", hours: "09:00 - 17:00", location: "Main Clinical Center", available: true },
-          { day: "Tuesday", hours: "09:00 - 17:00", location: "Main Clinical Center", available: true },
-          { day: "Wednesday", hours: "By appointment", location: "Main Clinical Center", available: false },
-          { day: "Thursday", hours: "10:00 - 18:00", location: "City Clinic", available: true },
-          { day: "Friday", hours: "09:00 - 15:00", location: "City Clinic", available: true },
+          { day: "Monday", hours: "09:00 - 17:00", location: "The Practice", available: true },
+          { day: "Tuesday", hours: "09:00 - 17:00", location: "The Practice", available: true },
+          { day: "Wednesday", hours: "By appointment", location: "The Practice", available: false },
+          { day: "Thursday", hours: "10:00 - 18:00", location: "Second Rooms", available: true },
+          { day: "Friday", hours: "09:00 - 15:00", location: "Second Rooms", available: true },
         ],
       },
       whatsapp: {
         heading: "Quick Appointment via WhatsApp",
-        body: "Prefer a faster route? Skip the forms and chat directly with our medical concierge team to secure your slot instantly.",
+        body: "Prefer a faster route? Skip the forms and message Dr. {{name}}'s office on WhatsApp to secure your slot instantly.",
         cta: "Open WhatsApp",
         whatsappUrl: "https://wa.me/dr-medlink",
         phoneDisplay: "+1 (212) 555-0147",
       },
       chambers: {
-        heading: "World-Class Chambers",
+        heading: "My Consulting Rooms",
         items: [
           {
             label: "Main Suite",
-            title: "Diagnostic Wing",
+            title: "Consulting & Diagnostics",
             imageUrl:
               "https://lh3.googleusercontent.com/aida-public/AB6AXuDk24SNQthuLjBKAmJ1CFMXV88nS99mQydKhBIX19e-BQnvnnIolq1QRxjWynCTrgJ7vIKNkCUT9nVFtn0D9qtj1gIrCFPLQe5JATCqU1FbGxYBohr3FE-aJTJzKBxS1b1eFZ5pdscBc3BHs2riBsNhVYrjyCEIMHGbTbosyEMJ3rdxHTRdm2G-dZYkQsD3dqZ5idDBEx2ePba9rew7eBCtbTSuggQCI0dsFXnrP7y1qrG3ipbR1glbQA",
-            imageAlt: "Medical examination room",
+            imageAlt: "A doctor's examination room",
           },
           {
             label: "Comfort",
-            title: "Executive Patient Lounge",
+            title: "Private Waiting Room",
             imageUrl:
               "https://lh3.googleusercontent.com/aida-public/AB6AXuDiwPrxudWT4RfHTl82-Y_5SIOEW4BDpFAD9Ixx0szciSMvTRYqJzMiJ8tpoi7duC_r1sb1J9Iw0Wt1UlyK_vwI7WbYFcn6nNCoeSZg3qdmeor7MERuK__tbSbTQDZJm2EEKI9ejJrT7Yh4N2HDOg56H4oCKQg8WF3qC7RIpBEpzsSPVBurFv8IL1wvxw1MIaK7lIPBUgIM3FFmVUxvULavZPbXjjBQ9PR4fXVqXGtD-Y5kk2uf9W-8Hg",
             imageAlt: "Patient waiting lounge",
           },
           {
             label: "Digital",
-            title: "Tele-Health Hub",
+            title: "Video Consultations",
             imageUrl:
               "https://lh3.googleusercontent.com/aida-public/AB6AXuAcl6mLzqZjssiesaJobXZzV-IYQ9l6Epm1-lBlKvz7wTYIn7jjhUIbk6BK6emIH9kuOUiSIDDf4un4dxNmK3gKJk1KP4T8cuUR5BLHYJCKo8Er2-mdgPQmsVYCwOn0LIhe6BYGVO9KiDhpoGacHSn4CeGANC8ROw96KJnrKDkYNF17Vl-ks1AI1mJc-fa84xx22g81XCBsnsYTH5440VcfLZkxhnZxLwMrfd4ifZEvX3jZjdzF6ssd6A",
             imageAlt: "Telemedicine hub",
@@ -512,12 +512,12 @@ export const templateThreeDefaults = {
           {
             question: "Do you accept international insurance providers?",
             answer:
-              "Yes, {{name}} partners with several global health insurance networks. Please contact our administrative desk with your policy details before your visit for verification.",
+              "Yes, {{name}} works with several international health insurers. Send your policy details to my office before your visit and we will confirm your cover.",
           },
           {
             question: "Can I reschedule an appointment via WhatsApp?",
             answer:
-              "Absolutely. Simply message our concierge line with your current appointment details and your preferred new time slot at least 12 hours in advance.",
+              "Absolutely. Message my office with your appointment details and your preferred new time at least 12 hours in advance.",
           },
         ],
       },

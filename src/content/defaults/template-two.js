@@ -13,8 +13,8 @@ export const templateTwoDefaults = {
   footer: {
     brandName: "{{name}}",
     tagline:
-      "Excellence in precision medicine and executive healthcare for the global elite.",
-    copyright: "© 2026 Dr. {{name}}. Excellence in Precision Medicine.",
+      "One physician, absolute discretion, and medicine practised at the highest level.",
+    copyright: "© 2026 Dr. {{name}}. Personal Medicine, Practised Precisely.",
     phone: "",
     socialUrl: "",
     websiteUrl: "",
@@ -39,11 +39,11 @@ export const templateTwoDefaults = {
     home: {
       hero: {
         badge: "Exclusive Precision Care",
-        heading: "Dr. John",
+        heading: "Dr. {{name}}",
         credentialsLine: "MD, PhD, FRCP (Lond)",
-        body: "Pioneering executive medicine with a focus on longevity, cognitive performance, and bespoke surgical precision. Serving the world's most discerning patients with uncompromising excellence.",
+        body: "Pioneering personal medicine with a focus on longevity, cognitive performance, and surgical precision. Every patient is seen by the same physician at every visit, without exception.",
         primaryCta: "Schedule Consultation",
-        secondaryCta: "View Clinical Registry",
+        secondaryCta: "View Credentials",
         imageAlt:
           "A cinematic, high-end professional portrait of a distinguished male specialist doctor in a light, luxury medical suite.",
         imageUrl:
@@ -52,7 +52,7 @@ export const templateTwoDefaults = {
       credentials: {
         heading: "Distinguished Pedigree",
         subheading:
-          "Foundational excellence built upon the world's leading medical institutions and decades of clinical mastery.",
+          "Foundational excellence built upon the world's leading medical schools and decades of hands-on clinical mastery.",
         items: [
           {
             icon: "school",
@@ -130,7 +130,7 @@ export const templateTwoDefaults = {
             period: "2018 — Present",
             title: "Chief of Specialized Surgery",
             description:
-              "Lead consultant at the International Precision Institute, focusing on neuro-vascular innovation.",
+              "Lead consultant in neuro-vascular surgery at a major European referral centre.",
           },
           {
             period: "2012 — 2018",
@@ -147,8 +147,8 @@ export const templateTwoDefaults = {
         ],
       },
       onboarding: {
-        heading: "Patient Onboarding",
-        subheading: "A streamlined three-step journey to precision care.",
+        heading: "Becoming My Patient",
+        subheading: "A streamlined three-step journey to truly personal care.",
         steps: [
           {
             number: "01",
@@ -162,39 +162,39 @@ export const templateTwoDefaults = {
             icon: "biotech",
             title: "Clinical Workup",
             description:
-              "In-depth diagnostics at our private facility, mapped to your unique physiology.",
+              "In-depth diagnostics at my private rooms, mapped to your unique physiology.",
           },
           {
             number: "03",
             icon: "medical_services",
             title: "Intervention",
             description:
-              "Execution of your bespoke clinical protocol under white-glove supervision.",
+              "Your bespoke treatment protocol, carried out and supervised by Dr. {{name}} himself.",
           },
         ],
       },
       chamber: {
-        heading: "The Harley Street Registry",
+        heading: "My Harley Street Rooms",
         subheading:
-          "Located in the historic heart of London's medical excellence, our chambers provide a serene, private environment for executive consultation.",
+          "Set in the historic heart of London's medical district, my rooms provide a quiet, private setting for one-to-one consultation.",
         mapUrl: "https://www.google.com/maps?q=Harley+Street,+London,+UK",
         location: {
-          name: "Harley Street Registry",
+          name: "Harley Street Rooms",
           address: "London, UK",
           hours: "Monday - Friday: 9:00 AM - 5:00 PM",
         },
       },
       finalCta: {
-        heading: "The Pinnacle of Clinical Care",
-        body: "Secure your appointment with London's leading precision specialist today. Limited intake ensures individualized mastery.",
-        primaryCta: "Inquire About Registration",
+        heading: "The Pinnacle of Personal Care",
+        body: "Secure your appointment with London's leading precision specialist today. Intake is limited so that every patient gets the doctor's full attention.",
+        primaryCta: "Enquire About an Appointment",
       },
     },
 
     about: {
       hero: {
         badge: "EXCELLENCE IN PRECISION MEDICINE",
-        heading: "About Dr. John",
+        heading: "About Dr. {{name}}",
         body: "Redefining the standards of specialized care through a legacy of clinical mastery, academic rigor, and an unwavering commitment to patient longevity.",
         languages: ["English", "French", "Arabic"],
         imageAlt:
@@ -204,7 +204,7 @@ export const templateTwoDefaults = {
       },
       story: {
         heading: "A Legacy of Care",
-        body: "Dr. {{name}}'s journey began at the prestigious Johns Hopkins School of Medicine, where they graduated at the top of their class. Their early career was defined by a relentless pursuit of innovation in complex diagnostics and internal medicine. Over the last two decades, they have pioneered specialized protocols that bridge the gap between traditional clinical excellence and modern biotechnological advancements. Their philosophy centers on the 'whole-patient' paradigm—understanding that true health is the synergy of biological precision, lifestyle architecture, and preventive vigilance. Having served as a Chief Resident and later as a Lead Consultant at world-renowned clinics, Dr. {{name}} has handled over 5,000 complex cases. Their reputation for solving 'unsolvable' diagnostic puzzles has made them the preferred choice for global executives and high-profile individuals who demand absolute discretion and technical mastery. Every patient strategy is bespoke, crafted with the same meticulous attention to detail as a master watchmaker, ensuring that every variable of a patient's health is accounted for.",
+        body: "Dr. {{name}}'s journey began at the prestigious Johns Hopkins School of Medicine, where they graduated at the top of their class. Their early career was defined by a relentless pursuit of innovation in complex diagnostics and internal medicine. Over the last two decades, they have pioneered specialized protocols that bridge the gap between traditional clinical excellence and modern biotechnological advancements. Their philosophy centers on the 'whole-patient' paradigm—understanding that true health is the synergy of biological precision, lifestyle architecture, and preventive vigilance. Having served as a Chief Resident and later as a Lead Consultant at world-renowned teaching hospitals, Dr. {{name}} has handled over 5,000 complex cases. Their reputation for solving 'unsolvable' diagnostic puzzles has made them the preferred choice for global executives and high-profile individuals who demand absolute discretion and technical mastery. Every patient strategy is bespoke, crafted with the same meticulous attention to detail as a master watchmaker, ensuring that every variable of a patient's health is accounted for.",
         quote:
           "Medicine is not merely a science of diagnosis, but an art of precision, empathy, and foresight.",
         quoteAuthor: "Dr. {{name}}",
@@ -222,9 +222,9 @@ export const templateTwoDefaults = {
           },
           {
             period: "2018",
-            title: "Founder, Precision Clinic",
+            title: "Opened Private Practice",
             description:
-              "Establishing a multi-disciplinary center for executive health.",
+              "Building a deliberately small practice devoted to one-to-one executive health.",
             reverse: true,
           },
           {
@@ -254,9 +254,9 @@ export const templateTwoDefaults = {
         ],
       },
       practices: {
-        heading: "Clinical Practices",
+        heading: "Where I Practice",
         subheading:
-          "Dr. {{name}} practices at two premier locations, ensuring accessibility and the highest standards of clinical hygiene and privacy.",
+          "Dr. {{name}} consults from two locations and personally attends every patient. When you book with the doctor, you are seen by the doctor.",
         items: [
           {
             icon: "location_on",
@@ -269,7 +269,7 @@ export const templateTwoDefaults = {
           },
           {
             icon: "location_on",
-            title: "The Meridian Clinic",
+            title: "Meridian Rooms",
             description:
               "12 Greenwich Way, Westchester County, NY. Thursday: 10:00 - 18:00. Saturday: By Appointment Only.",
             imageUrl:
@@ -289,7 +289,7 @@ export const templateTwoDefaults = {
       hero: {
         badge: "Clinical Excellence",
         heading: "Specialized Treatments & Procedures",
-        body: "Advanced clinical mastery combined with white-glove executive care. We utilize the frontier of medical technology to deliver results with absolute precision.",
+        body: "Advanced medical mastery combined with unhurried, personal care. Dr. {{name}} uses the frontier of medical technology to deliver results with absolute precision.",
       },
       featured: {
         badge: "Pinnacle Technology",
@@ -337,7 +337,7 @@ export const templateTwoDefaults = {
       benefits: {
         heading: "The Standard of Executive Care",
         subheading:
-          "We understand that our patients value discretion, time, and absolute technical certainty. Our practice is built on three pillars of excellence.",
+          "My patients value discretion, time, and technical certainty. This practice is built on three pillars of excellence.",
         imageUrl:
           "https://lh3.googleusercontent.com/aida-public/AB6AXuCMnzyNVVzbtBCUayb8cPumdCi_8F0iPFr0wIttqUVZPsBSfXyB-y9RONuOLfCJCWohjlONLcOBNp3KTGS0UFwfWwOneaCxCLyFsuaW2j22MslZRdTygeeJE-5SsN7JiXYzrWnwwZTqiHjVl5Lucao9spI3sZQUFvCHNTd9yN7LwIJ8LSX_P_n2MZxRBQ5OPxaMEpZYiivcK3Eohf6c7k4zU3gZqhaeousdesI6Rx_OD3wmx5iFWXs3xg",
         imageAlt:
@@ -351,7 +351,7 @@ export const templateTwoDefaults = {
             icon: "precision_manufacturing",
             title: "Technical Superiority",
             description:
-              "Access to proprietary diagnostic tools and surgical platforms not available in general hospitals.",
+              "Access to the diagnostic tools and surgical platforms I choose to work with, rather than whatever a large hospital happens to stock.",
           },
           {
             icon: "lock",
@@ -373,26 +373,26 @@ export const templateTwoDefaults = {
           {
             question: "How do I request a specialist referral?",
             answer:
-              "While we accept direct inquiries, most patients are referred via their primary executive health physician. We also offer internal screening appointments to determine eligibility for complex procedures.",
+              "I accept direct enquiries, though most patients come through their own GP. I also offer screening appointments to establish whether a complex procedure is right for you.",
             openByDefault: true,
           },
           {
             question: "What is the typical recovery period?",
             answer:
-              "Because we utilize minimally invasive robotic techniques, recovery times are often 60% faster than traditional methods. Most executive patients return to light professional duties within 72 hours.",
+              "Because I use minimally invasive robotic techniques, recovery is often 60% faster than with traditional methods. Most patients return to light professional duties within 72 hours.",
           },
           {
             question: "Do you offer international patient services?",
             answer:
-              "Yes. We have a dedicated concierge team that manages travel logistics, private transport, and local luxury accommodations for our international clientele and their families.",
+              "Yes. My office arranges travel logistics, private transport, and local accommodation for international patients and their families.",
           },
         ],
       },
       finalCta: {
         heading: "Experience Medical Precision",
-        body: "Your health is your greatest asset. Secure an appointment with a world-recognized leader in specialized clinical medicine.",
+        body: "Your health is your greatest asset. Secure an appointment with a world-recognized leader in specialized medicine.",
         primaryCta: "Book a Consultation",
-        secondaryCta: "Contact Concierge",
+        secondaryCta: "Contact My Office",
       },
     },
 
@@ -400,20 +400,20 @@ export const templateTwoDefaults = {
       hero: {
         badge: "Excellence in Precision Medicine",
         heading: "Book Your Consultation",
-        body: "Secure your priority appointment with one of the world's leading specialists. Our concierge-style booking ensures your journey to health is handled with absolute discretion and clinical mastery.",
+        body: "Secure a priority appointment with Dr. {{name}}. Every booking is handled quietly and efficiently by the doctor's own office, with absolute discretion.",
       },
       schedules: {
         heading: "Chambers & Schedules",
         subheading:
           "Choose your preferred location for a face-to-face evaluation.",
         items: [
-          { location: "Harley Street Registry", day: "Monday - Friday", hours: "9:00 AM - 5:00 PM" },
-          { location: "Central Clinical Suite", day: "Tuesday - Thursday", hours: "10:00 AM - 6:00 PM" },
+          { location: "Harley Street Rooms", day: "Monday - Friday", hours: "9:00 AM - 5:00 PM" },
+          { location: "Central Consulting Rooms", day: "Tuesday - Thursday", hours: "10:00 AM - 6:00 PM" },
         ],
       },
       whatsapp: {
         heading: "Direct Access via WhatsApp",
-        body: "For executive patients who value time and efficiency, our WhatsApp Concierge handles all appointment details instantly. No waiting on hold—just direct, personalized communication with our administrative team.",
+        body: "For patients who value their time, my office handles every appointment detail over WhatsApp, instantly. No waiting on hold—just direct, personal communication with Dr. {{name}}'s office.",
         cta: "CHAT ON WHATSAPP",
         whatsappUrl: "https://wa.me/dr-medlink",
         features: [
@@ -422,7 +422,7 @@ export const templateTwoDefaults = {
         ],
         imageUrl:
           "https://lh3.googleusercontent.com/aida-public/AB6AXuAryKDCaQLNj7Gq2TkxFFEMZGkG_1_lVuEPfceszUbcPVGdFBJzZua9CpVpgm2HsYl6BOX7Wvw-mvQ0JTew73mYjDSarvKD4OdXzOEvXi0Qx3qeo8W7Ga_ZpgsAEMXFN5Guyhp2Z4Gt-O30XpTWqylp2zQdIXvb2rLiT-ARHz_1QqPe0XKcp_Ws645-74mWUH47ruy_WXqapYzO3ybSdGZ3p7urn1INslzEwlil1UUvRDlWtewjuZFUng",
-        imageAlt: "A private WhatsApp concierge consultation",
+        imageAlt: "A private WhatsApp consultation with the doctor's office",
         telehealthImage:
           "https://lh3.googleusercontent.com/aida-public/AB6AXuCjv5vpIPEslsLsiijC_4TQRAP9zvIE_Qhtga5G_exO0v9fd_KcH7cYb42b3PCHC64FvBpvoHxrijc88lBc_NNjIfKv-cZmBvMDrWjmyiWBUoTJdWCbf5Mg5lhs8-I0NmrQB6BYe6A4aWTWuo0BCD48ykkbM_S7M_i6X5oGbRTgAlZsmVchnxOe1Dmz1MvYKa2sLCojRHn4ostjGguTi1HkCBDRb3ATpAlSNtO_MM-5jMm9mWbyGoUt2w",
         telehealthImageAlt: "Secure telehealth consultation",
@@ -433,7 +433,7 @@ export const templateTwoDefaults = {
           {
             question: "Do you accept international medical insurance?",
             answer:
-              "Yes, we work with major international insurance providers including Bupa Global, Allianz Care, and Cigna International. Our billing department handles direct settlement for most platinum-tier plans.",
+              "Yes, I work with major international insurers including Bupa Global, Allianz Care, and Cigna International. My office handles direct settlement for most platinum-tier plans.",
           },
           {
             question: "What should I prepare for my first consultation?",
@@ -443,7 +443,7 @@ export const templateTwoDefaults = {
           {
             question: "Are emergency appointments available?",
             answer:
-              'We reserve a limited number of "Emergency Slots" daily for acute cases. Please contact our WhatsApp hotline or office directly by 8:00 AM to secure an emergency evaluation.',
+              'I keep a small number of same-day slots for acute cases. Message my office on WhatsApp or call before 8:00 AM to secure an emergency evaluation.',
           },
         ],
       },
@@ -451,7 +451,7 @@ export const templateTwoDefaults = {
         heading: "Ready to Take the Next Step?",
         body: "Experience the gold standard of specialist care, tailored to your unique biological profile and lifestyle requirements.",
         primaryCta: "Book Your Appointment",
-        secondaryCta: "Call Concierge",
+        secondaryCta: "Call My Office",
       },
     },
   },

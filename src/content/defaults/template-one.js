@@ -12,12 +12,12 @@ export const templateOneDefaults = {
   footer: {
     brandName: "{{name}}",
     tagline:
-      "Precision medicine for a life lived to its fullest potential. Clinical elegance, personal connection.",
+      "Personal medicine from a physician who knows your history. Because the best care starts with being known.",
     copyright:
-      "© 2026 Dr. {{name}}. All Rights Reserved. Clinical Elegance in Practice.",
+      "© 2026 Dr. {{name}}. All Rights Reserved. Personally Practised Medicine.",
     officeHoursLabel: "Office Hours",
     officeHours: "Monday - Friday: 9:00 AM - 5:00 PM",
-    urgentCareLabel: "Urgent Care Line:",
+    urgentCareLabel: "Same-Day Line:",
     phone: "",
     socialUrl: "",
     resourceLinks: [
@@ -33,32 +33,32 @@ export const templateOneDefaults = {
   pages: {
     home: {
       hero: {
-        badge: "PREMIUM CONCIERGE MEDICINE",
+        badge: "YOUR OWN PHYSICIAN, EVERY VISIT",
         heading: "Expert Care with a",
         headingHighlight: "Personal Touch",
-        body: "Dr. {{name}} combines thirty years of clinical excellence with a human-centric approach to modern diagnostics and holistic wellness.",
+        body: "Dr. {{name}} brings thirty years of clinical excellence to a deliberately small practice, built on one promise: you are always seen by the doctor, never handed off.",
         primaryCta: "Book Appointment",
-        secondaryCta: "View Our Clinic",
+        secondaryCta: "See the Practice",
         imageUrl:
           "https://lh3.googleusercontent.com/aida-public/AB6AXuDTyxeutP7i3bLEgOgReazJq3fL8gL_0nt-ZGg7tXDH26cuyHhAjEY_V0Ht4_Q_h-_sIcfCK5Kj2zn0tLJfkGSkLidk_x-eIwZsKtHSYGri4uoLUvsz1-T8u9X9JwdfPUma0Qi01jqaPZAT5EBM3U-Z-DmmCQKReacdwWCpkwAeBv00vHIfaxo4ylI1UmYSfO0kddOLLOBy8N0vd4ouvwUeTowUmhLHTDT3n5HEsHysG_2WybeexPH1cw",
         imageAlt:
           "A professional portrait of Dr. {{name}} in a minimalist medical office",
         statCard: {
           value: "15+ Years",
-          label: "CLINICAL EXPERIENCE",
+          label: "YEARS IN PRACTICE",
         },
       },
       trustBadges: {
         items: [
           { icon: "school", stat: "M.D., PhD", label: "Academic Excellence" },
           { icon: "language", stat: "Trilingual", label: "EN, ES, FR" },
-          { icon: "award_star", stat: "Top 1% Rank", label: "Global Specialists" },
-          { icon: "groups", stat: "5,000+", label: "Satisfied Patients" },
+          { icon: "award_star", stat: "Top 1%", label: "Peer-Rated Standing" },
+          { icon: "groups", stat: "5,000+", label: "Patients Cared For" },
         ],
       },
       aboutPreview: {
-        heading: "Redefining the Medical Experience",
-        body: "Dr. {{name}} is a double board-certified specialist dedicated to a \"Whole Patient\" philosophy. By integrating advanced genomic insights with traditional preventative care, {{name}} ensures that every treatment plan is as unique as the individual.\n\nOur practice is built on trust, discretion, and the relentless pursuit of medical innovation, providing a sanctuary for your health.",
+        heading: "Medicine That Knows Your Name",
+        body: "Dr. {{name}} is a double board-certified specialist dedicated to a \"Whole Patient\" philosophy. By integrating advanced genomic insights with traditional preventative care, {{name}} ensures that every treatment plan is as unique as the individual.\n\nThis is a deliberately small practice. Dr. {{name}} takes his own calls, reviews the results personally, and stays with you through every stage of your care, rather than passing you to a rotating roster of staff.",
         linkLabel: "Read Full Biography",
         imageUrl:
           "https://lh3.googleusercontent.com/aida-public/AB6AXuCZm0_m40P1JS40jbijH63oQwT32n-U54apRIEaWxx_jC9GOzrKujhNnSCth51iO6OgwWp9mZuS9YD3jGEjWACTak_qiBOmHrr_-EbZ4jG7vEq0ERzWX7IdOZPjfO_DAaORn2tqzSp2Zkzod5UfW0UdwcagTnbq6YmGKUUHYRznHaRH99MIrXzmsY02dYox9vBoKTfvzcSXHKAKNa3khYxme5Nd_lVtLneBQ97A-1EQAovsKUHRRzH4DA",
@@ -66,12 +66,12 @@ export const templateOneDefaults = {
           "A stethoscope resting on a marble surface next to a digital tablet in a clean consulting room",
         imageUrlSecondary:
           "https://lh3.googleusercontent.com/aida-public/AB6AXuAwbF8DBfY5iKBcJuS2gsog0qVe9-UID90sKW0LcvVD5Q8SsOdWbN4cYzg4v43dE272c0CQZwU40ZhO-TUesjG2pUg-VJfeEvAmSvRebrILkvwDnvZqShGA6MGt7oDiLSvTgbgheX089HOw-eZftVUVJiXH7dMyYVLrp0FsdkMWlnQVksKUWMgazzAdFKAWsNX0ZfoUiqwPWdQCtmmrP6nsTEmN8pom_FouTO3UCiQYRNEDq6i7vbispg",
-        imageAltSecondary: "A clinician reviewing a digital health record in a modern consulting room",
+        imageAltSecondary: "Dr. {{name}} reviewing a patient's health record in his consulting room",
       },
       services: {
         heading: "Specialized Medical Services",
         subheading:
-          "Providing a comprehensive range of clinical solutions tailored to your longevity and performance.",
+          "Focused, physician-led care for your longevity and performance, delivered personally by Dr. {{name}} in every appointment.",
         items: [
           {
             icon: "ecg",
@@ -113,8 +113,8 @@ export const templateOneDefaults = {
           },
           {
             icon: "support_agent",
-            title: "24/7 Portal Access",
-            description: "Secure messaging for immediate health concerns.",
+            title: "A Direct Line to the Doctor",
+            description: "Secure messaging answered by Dr. {{name}}, not a call centre.",
           },
         ],
         quote:
@@ -151,16 +151,16 @@ export const templateOneDefaults = {
         ],
       },
       clinicLocations: {
-        heading: "Our Clinics",
+        heading: "Where I Practice",
         locations: [
           {
-            name: "Upper East Side Clinic",
+            name: "Upper East Side Practice",
             address: "New York, NY",
             hours: "Monday - Friday: 9:00 AM - 5:00 PM",
             mapUrl: "https://www.google.com/maps?q=Upper+East+Side,+New+York,+NY",
           },
           {
-            name: "Marylebone Clinic",
+            name: "Marylebone Practice",
             address: "London, UK",
             hours: "Monday - Friday: 9:00 AM - 5:00 PM",
             mapUrl: "https://www.google.com/maps?q=Marylebone,+London,+UK",
@@ -169,7 +169,7 @@ export const templateOneDefaults = {
       },
       finalCta: {
         heading: "Take the First Step to Optimal Vitality",
-        body: "Whether you need a specialized consultation or a complete health overhaul, our doors are open for your journey.",
+        body: "Whether you need a second opinion or a physician for the long term, Dr. {{name}} will sit with you, listen properly, and build a plan that fits your life.",
         primaryCta: "Request a Consultation",
         secondaryCta: "Contact Us",
       },
@@ -192,7 +192,7 @@ export const templateOneDefaults = {
       },
       bioStats: {
         heading: "A Patient-Centric Philosophy",
-        body: "Dr. {{name}} is a double board-certified specialist dedicated to a \"Whole Patient\" philosophy. By integrating advanced genomic insights with traditional preventative care, {{name}} ensures that every treatment plan is as unique as the individual.\n\nOur practice is built on trust, discretion, and the relentless pursuit of medical innovation, providing a sanctuary for your health.",
+        body: "Dr. {{name}} is a double board-certified specialist dedicated to a \"Whole Patient\" philosophy. By integrating advanced genomic insights with traditional preventative care, {{name}} ensures that every treatment plan is as unique as the individual.\n\nThe practice is built on trust, discretion, and the relentless pursuit of medical innovation, so that you always know exactly who is looking after you.",
         languages: ["English", "Spanish", "French"],
         stats: [
           { value: "4,200+", label: "Successful Procedures" },
@@ -216,7 +216,7 @@ export const templateOneDefaults = {
             title: "Surgical Residency",
             description:
               "Focused on minimally invasive techniques and robotic-assisted surgery.",
-            mobileDescription: "Mayo Clinic Graduate School of Medical Education",
+            mobileDescription: "Mayo Medical School, Rochester",
             reverse: true,
           },
           {
@@ -232,19 +232,19 @@ export const templateOneDefaults = {
       chambers: {
         heading: "Where Excellence Resides",
         subheading:
-          "Dr. {{name}} currently chairs the Precision Medicine Department at the Vance Clinical Institute, a state-of-the-art facility designed for patient comfort and surgical precision.",
+          "Dr. {{name}} consults from his own private rooms in New York, a calm and unhurried setting designed for one-to-one conversation and a thorough examination.",
         locations: [
           {
-            name: "Vance Clinical Institute",
+            name: "Dr. {{name}}'s Private Practice",
             address: "New York, NY",
             hours: "Monday - Friday: 9:00 AM - 5:00 PM",
           },
         ],
-        mapUrl: "https://www.google.com/maps?q=Vance+Clinical+Institute,+New+York,+NY",
+        mapUrl: "https://www.google.com/maps?q=New+York,+NY",
       },
       finalCta: {
         heading: "Ready to Experience Better Care?",
-        body: "Join the thousands of patients who have entrusted their health to Dr. {{name}}'s clinical expertise.",
+        body: "Join the thousands of patients who have trusted Dr. {{name}} with their health, year after year.",
         primaryCta: "Schedule Your Consultation",
       },
     },
@@ -252,7 +252,7 @@ export const templateOneDefaults = {
       hero: {
         badge: "CLINICAL EXCELLENCE",
         heading: "Comprehensive Medical Care",
-        body: "Merging cutting-edge medical precision with a compassionate, patient-first approach. We provide specialized care tailored to your unique biological profile and lifestyle needs.",
+        body: "Merging cutting-edge medical precision with a compassionate, patient-first approach. Dr. {{name}} provides care tailored to your unique biological profile and lifestyle needs.",
         imageUrl:
           "https://lh3.googleusercontent.com/aida-public/AB6AXuDrI_-iJl8d3az-c3zTX2scS0feijBybba2fRXqjKnc2ZWzSgzq4vSt1Zf60XXveGwMrWd7uWP9SUfvzhmRC-4CfhHW6QBWVCg_XwGBITK4uQZuySo_ggYx3oyH-_pcU4Y5MrlYg-ZaY56SUfoZpn4hTGr5KGyYqnbwcnBr--V6F6gKqiTOiUiy2VXA0gaobkLSNBD59u5GlPDCqss1F6YUyPaArGTiWEqp6UHLaauteUk_E5CSagFPXg",
         imageAlt:
@@ -261,7 +261,7 @@ export const templateOneDefaults = {
       treatmentsGrid: {
         heading: "Specialized Medical Services",
         subheading:
-          "Our clinic is equipped with the latest diagnostic technology and staffed by industry-leading specialists.",
+          "Every service below is led by Dr. {{name}} personally, with trusted specialists brought in only when your case calls for them.",
         items: [
           {
             icon: "cardiology",
@@ -304,10 +304,10 @@ export const templateOneDefaults = {
       benefits: {
         heading: "The Value of Precision Care",
         subheading:
-          "Our services are not just about treating symptoms; they are about architecting a blueprint for your long-term wellness.",
+          "This is not simply about treating symptoms; it is about building a blueprint for your long-term wellness.",
         imageUrl:
           "https://lh3.googleusercontent.com/aida-public/AB6AXuDSQ4uIemD_xTtOwVnEu0nmn_APexm6QGm2BLP65hM7QcFVnbFVm0FoOOYWR9oRguBlyd9zFsbgb1grFcxr6e5D3hLv6g413aLUiAHgC9rF1UTKKMaD0-988mz7uNdfzMXFozyrqwz2-S9P7ZQjSO2x2xvvai7Rc3CAW8vy4K7g7kv9E4tau_P3KdMcYZEn_MOM_1GKx826eeLyuUjrRfKMyN06ZmItsLXLq0HGLxVW5QceCH4hpsJ78Q",
-        imageAlt: "A modern clinical diagnostic laboratory",
+        imageAlt: "A doctor's examination room with modern diagnostic equipment",
         items: [
           {
             icon: "verified_user",
@@ -325,7 +325,7 @@ export const templateOneDefaults = {
             icon: "psychology",
             title: "Holistic Continuity",
             description:
-              "Unified records and coordinated care ensure every specialist is aligned on your health journey.",
+              "One set of records, one coordinating physician, and every specialist aligned on your health journey.",
           },
         ],
       },
@@ -335,19 +335,19 @@ export const templateOneDefaults = {
           {
             question: "How do I prepare for my first consultation?",
             answer:
-              "Please bring a list of current medications and any recent medical records. We recommend arriving 15 minutes early to complete our digital onboarding process on the patient portal.",
+              "Please bring a list of current medications and any recent medical records. Plan to arrive 15 minutes early so there is time for your intake without eating into your appointment.",
             openByDefault: true,
           },
           {
             question: "Are diagnostic tests performed on-site?",
             answer:
-              "Yes, our clinic features a state-of-the-art laboratory and imaging suite, allowing us to perform most diagnostics in-house for your convenience and speed.",
+              "Most standard blood work, ECGs and ultrasound scans are done in my own rooms, so results are usually ready the same day. For advanced imaging I refer you to laboratories I have worked with for years.",
             openByDefault: false,
           },
           {
             question: "Do you accept international insurance?",
             answer:
-              "We work with a broad network of premium international providers. Please contact our administrative team prior to your visit to verify your specific coverage.",
+              "I work with a broad network of international providers. Contact my office before your visit and we will confirm your specific coverage.",
             openByDefault: false,
           },
           {
@@ -360,7 +360,7 @@ export const templateOneDefaults = {
       },
       ctaBanner: {
         heading: "Not sure which service you need?",
-        body: "Speak with our triage coordinator for a preliminary assessment and guidance on the best path forward.",
+        body: "Ask Dr. {{name}} directly. A short conversation is usually all it takes to find the right path forward.",
         primaryCta: "Get in Touch",
         secondaryCta: "More About Us",
       },
@@ -369,7 +369,7 @@ export const templateOneDefaults = {
       hero: {
         badge: "DIRECT SCHEDULING",
         heading: "Book Your Consultation Today.",
-        body: "Experience clinical elegance through our streamlined booking process. Connect directly with our team via WhatsApp for personalized scheduling and professional care.",
+        body: "Booking is deliberately simple. Message Dr. {{name}}'s office on WhatsApp and we will find a time that suits you, with no call centre in between.",
         primaryCta: "Book via WhatsApp",
         secondaryCta: "View Schedules",
         imageUrl:
@@ -378,40 +378,40 @@ export const templateOneDefaults = {
       },
       howItWorks: {
         heading: "3 Simple Steps to Your Appointment",
-        subheading: "Modern booking for a premium healthcare experience.",
+        subheading: "Simple booking, handled personally by the doctor's office.",
         steps: [
           {
             icon: "send",
             title: "Send a Message",
             description:
-              "Click our WhatsApp link to open a direct chat with our clinical concierge team.",
+              "Tap the WhatsApp link to open a direct chat with Dr. {{name}}'s office.",
           },
           {
             icon: "event_available",
             title: "Select a Slot",
             description:
-              "Our team will share the latest availability across all clinics for you to choose from.",
+              "We will share the latest openings in the appointment book for you to choose from.",
           },
           {
             icon: "task_alt",
             title: "Confirmation",
             description:
-              "Receive your digital booking confirmation and clinical instructions instantly.",
+              "You receive your booking confirmation and any preparation notes for the visit right away.",
           },
         ],
       },
       schedule: {
-        heading: "Clinic Locations & Hours",
-        subheading: "Multiple locations across the city for your convenience.",
+        heading: "Practice Hours & Location",
+        subheading: "Consultations are held at the practice below. Video visits and home visits can be arranged on request.",
         items: [
-          { location: "Upper East Side Clinic", day: "Monday - Friday", hours: "9:00 AM - 5:00 PM" },
-          { location: "Marylebone Clinic", day: "Monday - Friday", hours: "9:00 AM - 5:00 PM" },
+          { location: "Upper East Side Practice", day: "Monday - Friday", hours: "9:00 AM - 5:00 PM" },
+          { location: "Marylebone Practice", day: "Monday - Friday", hours: "9:00 AM - 5:00 PM" },
         ],
       },
       whatsappCta: {
         heading: "Ready to Schedule?",
-        body: "Our clinical team is online and ready to assist you. Average response time is under 15 minutes during clinic hours.",
-        cta: "Chat with our team",
+        body: "Dr. {{name}}'s office is online and ready to help. Average response time is under 15 minutes during office hours.",
+        cta: "Message the office",
         features: ["WhatsApp Support Online"],
       },
       faq: {
@@ -425,17 +425,17 @@ export const templateOneDefaults = {
           {
             question: "Do you accept my insurance?",
             answer:
-              "We work with most major insurance providers. Please message us on WhatsApp with a photo of your insurance card so our billing team can verify your coverage before your appointment.",
+              "I work with most major insurance providers. Send a photo of your insurance card on WhatsApp and my office will verify your coverage before the appointment.",
           },
           {
             question: "Can I cancel or reschedule?",
             answer:
-              "Yes, we request at least 24 hours notice for cancellations or rescheduling. This allows us to offer the time slot to another patient in need. You can manage this easily via WhatsApp.",
+              "Yes, please give at least 24 hours notice. That lets us offer the slot to another patient who is waiting. Rescheduling is easy over WhatsApp.",
           },
           {
             question: "Is tele-health available?",
             answer:
-              'For follow-up consultations and prescription refills, we offer secure video conferencing. Mention "Tele-health" when booking via WhatsApp for more details.',
+              'For follow-up appointments and prescription reviews, Dr. {{name}} offers secure video consultations. Mention "Video visit" when you message the office and we will set it up.',
           },
         ],
       },
