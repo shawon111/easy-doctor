@@ -23,7 +23,7 @@ export default function AboutStoryTwoDark({ content = {} , isDemo = false}) {
             </div>
           ) : null}
           <div className="space-y-12">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div className="grid grid-cols-1 gap-12">
               <div className="font-body-md text-body-md text-on-surface-variant leading-relaxed">
                 {content.heading ? (
                   <h3 className="font-headline-sm text-headline-sm text-on-surface mb-6">{content.heading}</h3>

@@ -2,14 +2,6 @@ import Link from "next/link";
 import { privacyPolicyDefaults } from "@/content/defaults/privacy-policy";
 import { replaceTemplateVariables } from "@/lib/content/resolve-template-content";
 
-/**
- * Shared privacy policy page body.
- *
- * The same markup is used by the published doctor site
- * (`/doctor/[slug]/privacy-policy`) and by the template preview
- * (`/preview/[template]/privacy-policy`) so the page always exists
- * wherever a privacy policy link points.
- */
 export default function PrivacyPolicyContent({ name, homeHref = "/" }) {
   const content = replaceTemplateVariables(privacyPolicyDefaults, {
     name: name || "this practice",

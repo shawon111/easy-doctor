@@ -362,7 +362,7 @@ export const templateOneDefaults = {
         heading: "Not sure which service you need?",
         body: "Speak with our triage coordinator for a preliminary assessment and guidance on the best path forward.",
         primaryCta: "Get in Touch",
-        secondaryCta: "View Patient Portal",
+        secondaryCta: "More About Us",
       },
     },
     appointment: {

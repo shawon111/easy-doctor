@@ -22,7 +22,7 @@ export default function ServicesCtaOneDark({ content = {}, slug , isDemo = false
             </Link>
             <Link
               className="border border-white/30 text-white px-10 py-4 rounded-full font-label-md hover:bg-white/10 transition-colors"
-              href={`${base}/appointment`}
+              href={`${base}/about`}
             >
               {content.secondaryCta}
             </Link>
