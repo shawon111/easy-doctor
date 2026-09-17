@@ -38,6 +38,10 @@ const websiteSchema = new mongoose.Schema(
             type: mongoose.Schema.Types.ObjectId,
             ref: "SEO",
             required: true
+        },
+        status: {
+            type: String,
+            enum: ["generating", "ready", "failed"]
         }
     },
     { timestamps: true }

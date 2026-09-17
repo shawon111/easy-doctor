@@ -1,7 +1,7 @@
 import { OverviewPage } from '@/components/dashboard/overview';
 import React from 'react';
 
-const DashboardPage = () => {
+const DashboardPage = async () => {
     return (
         <>
             <OverviewPage />

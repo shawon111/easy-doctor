@@ -7,6 +7,8 @@ import { NextResponse } from "next/server";
 import { withUser } from "@/lib/withUser";
 import { getWebsiteByUserId } from "@/services/website.service";
 import mongoose from "mongoose";
+import { waitUntil } from "@vercel/functions";
+import { generateWebsiteContent } from "@/lib/ai/generate-website-content";
 
 const templateTypeToVariantmap = {
     "template-one": "light",
@@ -26,6 +28,7 @@ const templateTypeToContentTypeMap = {
     "template-three-dark": "TemplateThreeContent"
 }
 
+// get website by user
 export const GET = withUser(async (request, context, currentUser) => {
     try {
         const website = await getWebsiteByUserId(currentUser._id);
@@ -80,7 +83,8 @@ export const POST = withUser(async (request, context, currentUser) => {
                 templateVariant,
                 contentType,
                 content: generateContentDoc._id,
-                subdomain
+                subdomain,
+                status: "generating"
             }, session);
 
             const updatedUser = await User.findByIdAndUpdate(
@@ -98,6 +102,9 @@ export const POST = withUser(async (request, context, currentUser) => {
             if (!updatedUser) {
                 throw new Error("Unable to update user with website information");
             }
+
+            // generate website content
+            const generateContentWithAI = waitUntil(generateWebsiteContent(currentUser?._id, templateType, website?._id))
 
             return website;
         });
