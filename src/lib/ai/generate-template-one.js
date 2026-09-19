@@ -1,6 +1,6 @@
-import { logger } from "../logger";
 import { ai } from "./gemini";
 import { generateWithRetry } from "./generate-with-retry";
+import { readGeminiJson } from "./gemini-response";
 import { buildTemplateOnePrompt } from "./prompts/template-one";
 import { templateOneResponseSchema } from "./schemas/template-one";
 
@@ -19,38 +19,14 @@ export async function generateTemplateOneContent(
     return generateWithRetry(async () => {
         const response = await ai.models.generateContent({
             model: process.env.GEMINI_MODEL,
-
-            contents: buildTemplateOnePrompt(
-                doctorData,
-                seoData
-            ),
-
+            contents: buildTemplateOnePrompt(doctorData, seoData),
             config: {
                 temperature: 0.7,
-
                 responseMimeType: "application/json",
-
                 responseSchema: templateOneResponseSchema,
             },
         });
 
-        if (!response?.text) {
-            throw new Error(
-                "Gemini returned an empty Template One response"
-            );
-        }
-
-        try {
-            return JSON.parse(response.text);
-        } catch (error) {
-            logger.error(
-                "Template One JSON parse error:",
-                error
-            );
-
-            throw new Error(
-                "Invalid JSON returned by Gemini for Template One"
-            );
-        }
-    }, 3)
+        return readGeminiJson(response, "Template One");
+    }, 3);
 }

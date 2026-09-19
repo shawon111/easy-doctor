@@ -13,6 +13,8 @@ import TemplateThreeContent from "@/models/template-three-content.model";
 import { generateTemplateOneContent } from "./generate-template-one";
 import { generateTemplateTwoContent } from "./generate-template-two";
 import { generateTemplateThreeContent } from "./generate-template-three";
+import { sanitizeGeneratedContent } from "./sanitize-generated-content";
+import { logError } from "../logger";
 
 const templateModels = {
     "template-one": TemplateOneContent,
@@ -69,9 +71,11 @@ export async function generateWebsiteContent(
         const seoData = prepareSeoData(seo);
 
         // Generate AI content
-        const generatedContent = await generateContent(
-            doctorData,
-            seoData
+        const generatedContent = sanitizeGeneratedContent(
+            await generateContent(
+                doctorData,
+                seoData
+            )
         );
 
         if (!generatedContent) {
@@ -85,9 +89,12 @@ export async function generateWebsiteContent(
             { userId },
             {
                 $set: generatedContent,
+                $unset: {
+                    header: "",
+                    footer: "",
+                },
             },
             {
-                new: true,
                 upsert: true,
                 runValidators: true,
             }
@@ -117,10 +124,11 @@ export async function generateWebsiteContent(
 
         return content;
     } catch (error) {
-        console.error(
-            "Website content generation failed:",
-            error
-        );
+        logError("Website content generation failed", error, {
+            userId,
+            templateType,
+            websiteId,
+        });
 
         // Mark website generation as failed
         await Website.findByIdAndUpdate(

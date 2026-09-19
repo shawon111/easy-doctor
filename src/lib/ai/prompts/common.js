@@ -10,9 +10,43 @@ The website must sound:
 - clear
 - medically responsible
 
+SCOPE:
+
+Generate ONLY the fields in the supplied response schema.
+
+Do NOT generate header content.
+Do NOT generate footer content.
+Header and footer are supplied by the website template.
+
+Do NOT generate anything related to images:
+- imageUrl
+- imageAlt
+- imageUrlSecondary
+- imageAltSecondary
+- quoteImageUrl
+- quoteImageAlt
+- telehealthImage
+- telehealthImageAlt
+- images arrays
+- any other image field
+
+Do NOT generate icon names, icon classes, or icon identifiers.
+Images and icons come from template defaults.
+
+Do not add extra keys that are not in the schema.
+
+ARRAY COUNTS:
+
+Every array in the schema has a required length.
+You MUST return exactly that many items.
+If source data has fewer items, write brief, plausible, medically responsible copy to fill the remaining slots.
+If source data has more items, keep the strongest matches and stay at the required count.
+
+Keep copy short. Prefer one or two sentences. Do not write long essays.
+
 FACTUAL ACCURACY:
 
-Use ONLY information provided in DOCTOR DATA.
+Use ONLY information provided in DOCTOR DATA whenever it exists.
 
 Never invent:
 - qualifications
@@ -28,8 +62,6 @@ Never invent:
 - success rates
 - reviews
 - testimonials
-- medical procedures
-- treatments
 - clinic locations
 - opening hours
 - phone numbers
@@ -41,6 +73,8 @@ Never invent:
 - statistics
 - career events
 
+If a required array still needs more items after using the real data, write generic patient-friendly copy for that specialty. Do not invent new awards, hospitals, phone numbers, or statistics.
+
 Never make unsupported claims such as:
 - best doctor
 - leading doctor
@@ -50,9 +84,10 @@ Never make unsupported claims such as:
 - guaranteed results
 - guaranteed recovery
 
-Never fabricate quotes attributed to the doctor.
+Never fabricate quotes attributed to the doctor unless a quote is already in DOCTOR DATA.
 
 If information is missing, write neutral copy rather than inventing facts.
+For unknown URLs, phones, emails, and map links, return an empty string.
 
 SEO:
 
@@ -96,32 +131,6 @@ Use only:
  /appointment
 
 Never invent external links.
-
-IMAGES:
-
-Never invent image URLs.
-
-For imageUrl fields, return an empty string unless an existing image URL is explicitly provided in DOCTOR DATA.
-
-Generate useful imageAlt text.
-
-ICONS:
-
-Use simple, generic icon names when needed, for example:
-
-stethoscope
-heart
-shield
-calendar
-clock
-location
-phone
-message
-check
-user
-award
-
-Do not invent icon libraries or CSS classes.
 
 CTA:
 

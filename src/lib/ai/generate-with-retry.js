@@ -1,3 +1,5 @@
+import { logError } from "../logger";
+
 const sleep = (ms) =>
     new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -13,9 +15,10 @@ export async function generateWithRetry(
         } catch (error) {
             lastError = error;
 
-            console.error(
-                `AI generation failed (attempt ${attempt}/${maxAttempts}):`,
-                error
+            logError(
+                `AI generation failed (attempt ${attempt}/${maxAttempts})`,
+                error,
+                { attempt, maxAttempts }
             );
 
             if (attempt < maxAttempts) {

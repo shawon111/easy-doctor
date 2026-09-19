@@ -39,7 +39,12 @@ function clone(value) {
 
 function mergeContent(source, defaults) {
   if (Array.isArray(defaults)) {
-    return !Array.isArray(source) || source.length === 0 ? clone(defaults) : clone(source);
+    if (!Array.isArray(source) || source.length === 0) return clone(defaults);
+    const defaultIsObjectList = defaults.some((item) => item && typeof item === "object" && !Array.isArray(item));
+    if (defaultIsObjectList) {
+      return source.map((item, index) => mergeContent(item, defaults[index % defaults.length] || {}));
+    }
+    return clone(source);
   }
   if (defaults && typeof defaults === "object") {
     const result = {};

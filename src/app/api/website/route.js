@@ -9,6 +9,7 @@ import { getWebsiteByUserId } from "@/services/website.service";
 import mongoose from "mongoose";
 import { waitUntil } from "@vercel/functions";
 import { generateWebsiteContent } from "@/lib/ai/generate-website-content";
+import { revalidatePath, revalidateTag } from "next/cache";
 
 const templateTypeToVariantmap = {
     "template-one": "light",
@@ -105,6 +106,11 @@ export const POST = withUser(async (request, context, currentUser) => {
 
             // generate website content
             const generateContentWithAI = waitUntil(generateWebsiteContent(currentUser?._id, templateType, website?._id))
+            if (generateContentWithAI) {
+                revalidateTag(`website-content:${website.subdomain}`, "max");
+                const pages = ["", "/about", "/services", "/appointment"];
+                pages.forEach((page) => revalidatePath(`/doctor/${website.subdomain}${page}`));
+            }
 
             return website;
         });

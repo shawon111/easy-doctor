@@ -7,6 +7,10 @@ function isEmptyValue(value) {
   );
 }
 
+function isPlainObject(value) {
+  return Boolean(value) && typeof value === "object" && !Array.isArray(value);
+}
+
 export function resolveTemplateContent(content, defaults, isDemo = false) {
   if (isDemo) return defaults;
 
@@ -15,31 +19,38 @@ export function resolveTemplateContent(content, defaults, isDemo = false) {
 
   const keys = new Set([
     ...Object.keys(source),
-    ...Object.keys(defaults),
+    ...Object.keys(defaults || {}),
   ]);
 
   for (const key of keys) {
     const sourceValue = source[key];
-    const defaultValue = defaults[key];
+    const defaultValue = defaults?.[key];
 
     if (isEmptyValue(sourceValue)) {
       result[key] = defaultValue;
       continue;
     }
 
-    if (
-      sourceValue &&
-      defaultValue &&
-      typeof sourceValue === "object" &&
-      typeof defaultValue === "object" &&
-      !Array.isArray(sourceValue) &&
-      !Array.isArray(defaultValue)
-    ) {
-      result[key] = resolveTemplateContent(
-        sourceValue,
-        defaultValue
-      );
+    if (Array.isArray(sourceValue) && Array.isArray(defaultValue)) {
+      const defaultIsObjectList = defaultValue.some(isPlainObject);
 
+      if (defaultIsObjectList) {
+        result[key] = sourceValue.map((item, index) => {
+          const fallback = defaultValue[index % defaultValue.length];
+          if (isPlainObject(item) && isPlainObject(fallback)) {
+            return resolveTemplateContent(item, fallback);
+          }
+          return isEmptyValue(item) ? fallback : item;
+        });
+        continue;
+      }
+
+      result[key] = sourceValue;
+      continue;
+    }
+
+    if (isPlainObject(sourceValue) && isPlainObject(defaultValue)) {
+      result[key] = resolveTemplateContent(sourceValue, defaultValue);
       continue;
     }
 

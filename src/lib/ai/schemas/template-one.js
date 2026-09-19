@@ -1,10 +1,9 @@
-// lib/ai/schemas/template-one.js
-
 import {
     stringField,
     numberField,
     stringArrayField,
-    linkItemResponseSchema,
+    arrayOf,
+    objectSchema,
     faqItemResponseSchema,
     ctaResponseSchema,
     statItemResponseSchema,
@@ -15,389 +14,152 @@ import {
     timelineItemResponseSchema,
 } from "./shared";
 
-const navLinkSchema = {
-    type: "object",
-    properties: {
-        label: stringField,
-        href: stringField,
-        key: stringField,
-    },
-};
+const trustBadgeSchema = objectSchema({
+    stat: stringField,
+    label: stringField,
+});
 
-const trustBadgeSchema = {
-    type: "object",
-    properties: {
-        icon: stringField,
-        stat: stringField,
-        label: stringField,
-    },
-};
+const locationSchema = objectSchema({
+    name: stringField,
+    address: stringField,
+    hours: stringField,
+    mapUrl: stringField,
+});
 
-export const templateOneResponseSchema = {
-    type: "object",
+const chamberLocationSchema = objectSchema({
+    name: stringField,
+    address: stringField,
+    hours: stringField,
+});
 
-    properties: {
-        header: {
-            type: "object",
-            properties: {
-                brandName: stringField,
-
-                navLinks: {
-                    type: "array",
-                    items: navLinkSchema,
-                },
-
-                appointmentCta: stringField,
-                appointmentCtaLink: stringField,
-            },
-        },
-
-        footer: {
-            type: "object",
-            properties: {
-                brandName: stringField,
-                tagline: stringField,
-                copyright: stringField,
-                officeHoursLabel: stringField,
-                officeHours: stringField,
-                urgentCareLabel: stringField,
-                urgentCareNote: stringField,
-                phone: stringField,
-                socialUrl: stringField,
-
-                resourceLinks: {
-                    type: "array",
-                    items: linkItemResponseSchema,
-                },
-
-                legalLinks: {
-                    type: "array",
-                    items: linkItemResponseSchema,
-                },
-            },
-        },
-
-        pages: {
-            type: "object",
-
-            properties: {
-                home: {
-                    type: "object",
-                    properties: {
-                        hero: {
-                            type: "object",
-                            properties: {
-                                badge: stringField,
-                                heading: stringField,
-                                headingHighlight: stringField,
-                                body: stringField,
-                                primaryCta: stringField,
-                                secondaryCta: stringField,
-                                imageUrl: stringField,
-                                imageAlt: stringField,
-
-                                statCard: {
-                                    type: "object",
-                                    properties: {
-                                        value: stringField,
-                                        label: stringField,
-                                    },
-                                },
-                            },
-                        },
-
-                        trustBadges: {
-                            type: "object",
-                            properties: {
-                                items: {
-                                    type: "array",
-                                    items: trustBadgeSchema,
-                                },
-                            },
-                        },
-
-                        aboutPreview: {
-                            type: "object",
-                            properties: {
-                                heading: stringField,
-                                body: stringField,
-                                linkLabel: stringField,
-                                imageUrl: stringField,
-                                imageAlt: stringField,
-                                imageUrlSecondary: stringField,
-                                imageAltSecondary: stringField,
-                            },
-                        },
-
-                        services: {
-                            type: "object",
-                            properties: {
-                                heading: stringField,
-                                subheading: stringField,
-
-                                items: {
-                                    type: "array",
-                                    items: serviceCardResponseSchema,
-                                },
-                            },
-                        },
-
-                        whyChooseUs: {
-                            type: "object",
-                            properties: {
-                                heading: stringField,
-
-                                items: {
-                                    type: "array",
-                                    items: iconTextItemResponseSchema,
-                                },
-
-                                quote: stringField,
-                                quoteAuthor: stringField,
-                                quoteHeading: stringField,
-                                quoteImageUrl: stringField,
-                                quoteImageAlt: stringField,
-                            },
-                        },
-
-                        appointmentProcess: {
-                            type: "object",
-                            properties: {
-                                heading: stringField,
-                                subheading: stringField,
-
-                                steps: {
-                                    type: "array",
-                                    items: stepItemResponseSchema,
-                                },
-                            },
-                        },
-
-                        clinicLocations: {
-                            type: "object",
-                            properties: {
-                                heading: stringField,
-                                subheading: stringField,
-
-                                locations: {
-                                    type: "array",
-                                    items: {
-                                        type: "object",
-                                        properties: {
-                                            name: stringField,
-                                            address: stringField,
-                                            hours: stringField,
-                                            mapUrl: stringField,
-                                        },
-                                    },
-                                },
-                            },
-                        },
-
-                        finalCta: ctaResponseSchema,
-                    },
-                },
-
-                about: {
-                    type: "object",
-                    properties: {
-                        hero: {
-                            type: "object",
-                            properties: {
-                                badge: stringField,
-                                heading: stringField,
-                                body: stringField,
-                                experience: numberField,
-                                imageUrl: stringField,
-                                imageAlt: stringField,
-                            },
-                        },
-
-                        philosophy: {
-                            type: "object",
-                            properties: {
-                                quote: stringField,
-                                author: stringField,
-                            },
-                        },
-
-                        bioStats: {
-                            type: "object",
-                            properties: {
-                                heading: stringField,
-                                body: stringField,
-                                languages: stringArrayField,
-
-                                stats: {
-                                    type: "array",
-                                    items: statItemResponseSchema,
-                                },
-                            },
-                        },
-
-                        timeline: {
-                            type: "object",
-                            properties: {
-                                heading: stringField,
-                                subheading: stringField,
-
-                                items: {
-                                    type: "array",
-                                    items: timelineItemResponseSchema,
-                                },
-                            },
-                        },
-
-                        chambers: {
-                            type: "object",
-                            properties: {
-                                heading: stringField,
-                                subheading: stringField,
-
-                                locations: {
-                                    type: "array",
-                                    items: {
-                                        type: "object",
-                                        properties: {
-                                            name: stringField,
-                                            address: stringField,
-                                            hours: stringField,
-                                        },
-                                    },
-                                },
-
-                                mapUrl: stringField,
-                            },
-                        },
-
-                        finalCta: ctaResponseSchema,
-                    },
-                },
-
-                services: {
-                    type: "object",
-                    properties: {
-                        hero: {
-                            type: "object",
-                            properties: {
-                                badge: stringField,
-                                heading: stringField,
-                                body: stringField,
-                                imageUrl: stringField,
-                                imageAlt: stringField,
-                            },
-                        },
-
-                        treatmentsGrid: {
-                            type: "object",
-                            properties: {
-                                heading: stringField,
-                                subheading: stringField,
-
-                                items: {
-                                    type: "array",
-                                    items: serviceCardResponseSchema,
-                                },
-                            },
-                        },
-
-                        benefits: {
-                            type: "object",
-                            properties: {
-                                heading: stringField,
-                                subheading: stringField,
-                                imageUrl: stringField,
-                                imageAlt: stringField,
-
-                                items: {
-                                    type: "array",
-                                    items: iconTextItemResponseSchema,
-                                },
-                            },
-                        },
-
-                        faq: {
-                            type: "object",
-                            properties: {
-                                heading: stringField,
-
-                                items: {
-                                    type: "array",
-                                    items: faqItemResponseSchema,
-                                },
-                            },
-                        },
-
-                        ctaBanner: ctaResponseSchema,
-                    },
-                },
-
-                appointment: {
-                    type: "object",
-                    properties: {
-                        hero: {
-                            type: "object",
-                            properties: {
-                                badge: stringField,
-                                heading: stringField,
-                                body: stringField,
-                                imageUrl: stringField,
-                                imageAlt: stringField,
-                                primaryCta: stringField,
-                                secondaryCta: stringField,
-                            },
-                        },
-
-                        howItWorks: {
-                            type: "object",
-                            properties: {
-                                heading: stringField,
-                                subheading: stringField,
-
-                                steps: {
-                                    type: "array",
-                                    items: stepItemResponseSchema,
-                                },
-                            },
-                        },
-
-                        schedule: {
-                            type: "object",
-                            properties: {
-                                heading: stringField,
-                                subheading: stringField,
-
-                                items: {
-                                    type: "array",
-                                    items: scheduleItemResponseSchema,
-                                },
-                            },
-                        },
-
-                        whatsappCta: {
-                            type: "object",
-                            properties: {
-                                heading: stringField,
-                                body: stringField,
-                                cta: stringField,
-                                features: stringArrayField,
-                            },
-                        },
-
-                        faq: {
-                            type: "object",
-                            properties: {
-                                heading: stringField,
-
-                                items: {
-                                    type: "array",
-                                    items: faqItemResponseSchema,
-                                },
-                            },
-                        },
-                    },
-                },
-            },
-        },
-    },
-};
+export const templateOneResponseSchema = objectSchema({
+    pages: objectSchema({
+        home: objectSchema({
+            hero: objectSchema({
+                badge: stringField,
+                heading: stringField,
+                headingHighlight: stringField,
+                body: stringField,
+                primaryCta: stringField,
+                secondaryCta: stringField,
+                statCard: objectSchema({
+                    value: stringField,
+                    label: stringField,
+                }),
+            }),
+            trustBadges: objectSchema({
+                items: arrayOf(trustBadgeSchema),
+            }),
+            aboutPreview: objectSchema({
+                heading: stringField,
+                body: stringField,
+                linkLabel: stringField,
+            }),
+            services: objectSchema({
+                heading: stringField,
+                subheading: stringField,
+                items: arrayOf(serviceCardResponseSchema),
+            }),
+            whyChooseUs: objectSchema({
+                heading: stringField,
+                items: arrayOf(iconTextItemResponseSchema),
+                quote: stringField,
+                quoteAuthor: stringField,
+                quoteHeading: stringField,
+            }),
+            appointmentProcess: objectSchema({
+                heading: stringField,
+                subheading: stringField,
+                steps: arrayOf(stepItemResponseSchema, 3),
+            }),
+            clinicLocations: objectSchema({
+                heading: stringField,
+                subheading: stringField,
+                locations: arrayOf(locationSchema, 2),
+            }),
+            finalCta: ctaResponseSchema,
+        }),
+        about: objectSchema({
+            hero: objectSchema({
+                badge: stringField,
+                heading: stringField,
+                body: stringField,
+                experience: numberField,
+            }),
+            philosophy: objectSchema({
+                quote: stringField,
+                author: stringField,
+            }),
+            bioStats: objectSchema({
+                heading: stringField,
+                body: stringField,
+                languages: stringArrayField,
+                stats: arrayOf(statItemResponseSchema
+                ),
+            }),
+            timeline: objectSchema({
+                heading: stringField,
+                subheading: stringField,
+                items: arrayOf(timelineItemResponseSchema),
+            }),
+            chambers: objectSchema({
+                heading: stringField,
+                subheading: stringField,
+                locations: arrayOf(chamberLocationSchema),
+                mapUrl: stringField,
+            }),
+            finalCta: ctaResponseSchema,
+        }),
+        services: objectSchema({
+            hero: objectSchema({
+                badge: stringField,
+                heading: stringField,
+                body: stringField,
+            }),
+            treatmentsGrid: objectSchema({
+                heading: stringField,
+                subheading: stringField,
+                items: arrayOf(serviceCardResponseSchema),
+            }),
+            benefits: objectSchema({
+                heading: stringField,
+                subheading: stringField,
+                items: arrayOf(iconTextItemResponseSchema),
+            }),
+            faq: objectSchema({
+                heading: stringField,
+                items: arrayOf(faqItemResponseSchema),
+            }),
+            ctaBanner: ctaResponseSchema,
+        }),
+        appointment: objectSchema({
+            hero: objectSchema({
+                badge: stringField,
+                heading: stringField,
+                body: stringField,
+                primaryCta: stringField,
+                secondaryCta: stringField,
+            }),
+            howItWorks: objectSchema({
+                heading: stringField,
+                subheading: stringField,
+                steps: arrayOf(stepItemResponseSchema),
+            }),
+            schedule: objectSchema({
+                heading: stringField,
+                subheading: stringField,
+                items: arrayOf(scheduleItemResponseSchema),
+            }),
+            whatsappCta: objectSchema({
+                heading: stringField,
+                body: stringField,
+                cta: stringField,
+                features: arrayOf(stringField),
+            }),
+            faq: objectSchema({
+                heading: stringField,
+                items: arrayOf(faqItemResponseSchema),
+            }),
+        }),
+    }),
+});

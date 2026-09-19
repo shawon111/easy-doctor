@@ -4,6 +4,8 @@ import TemplateThreeDarkPageRenderer from "@/components/templates/template-three
 import TemplateThreePageRenderer from "@/components/templates/template-three/TemplateThreePageRenderer";
 import TemplateTwoDarkPageRenderer from "@/components/templates/template-two-dark/TemplateTwoDarkPageRenderer";
 import TemplateTwoPageRenderer from "@/components/templates/template-two/TemplateTwoPageRenderer";
+import { generateWebsiteContent } from "@/lib/ai/generate-website-content";
+import { requireUser } from "@/lib/requireUser";
 import { getSeoBySubdomain } from "@/services/seo.service";
 import { getWebsiteBySubdomain } from "@/services/website.service";
 import { notFound } from "next/navigation";
@@ -70,6 +72,8 @@ const DoctorHomePage = async ({ params }) => {
   if (!website) notFound();
   const TemplatePageRenderer = templateMapping[website.templateType]
   if (!TemplatePageRenderer) notFound();
+  const generateContent = await generateWebsiteContent(website?.userId?._id, website?.templateType, website?._id)
+  console.log("info generated for the website", generateContent)
   return <TemplatePageRenderer page={pageName} content={website?.content ?? {}} slug={slug} />;
 };
 
