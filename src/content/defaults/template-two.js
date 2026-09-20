@@ -15,7 +15,7 @@ export const templateTwoDefaults = {
     tagline:
       "One physician, absolute discretion, and medicine practised at the highest level.",
     copyright: "© 2026 Dr. {{name}}. Personal Medicine, Practised Precisely.",
-    phone: "",
+    phone: "{{phone}}",
     socialUrl: "",
     websiteUrl: "",
     email: "",
@@ -415,7 +415,8 @@ export const templateTwoDefaults = {
         heading: "Direct Access via WhatsApp",
         body: "For patients who value their time, my office handles every appointment detail over WhatsApp, instantly. No waiting on hold—just direct, personal communication with Dr. {{name}}'s office.",
         cta: "CHAT ON WHATSAPP",
-        whatsappUrl: "https://wa.me/dr-medlink",
+        whatsappUrl: "{{whatsappUrl}}",
+        phoneDisplay: "{{phone}}",
         features: [
           "Priority Scheduling — Skip the queue for urgent consultations.",
           "End-to-End Privacy — All communications are encrypted and confidential.",

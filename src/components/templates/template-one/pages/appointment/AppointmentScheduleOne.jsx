@@ -51,14 +51,26 @@ export default function AppointmentScheduleOne({ content = {} , isDemo = false})
                 </div>
               </div>
 
-              <Link
-                className="mt-stack-md w-full py-4 rounded-xl border border-primary text-primary font-button hover:bg-primary/5 transition-colors block text-center"
-                href={`https://www.google.com/maps?q=${encodeURIComponent(item.location || "")}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Get Directions
-              </Link>
+              <div className="mt-stack-md flex gap-3">
+                <Link
+                  className="flex-1 py-3 rounded-xl border border-primary text-primary font-button hover:bg-primary/5 transition-colors block text-center"
+                  href={`https://www.google.com/maps?q=${encodeURIComponent(item.address || item.location || "")}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Directions
+                </Link>
+                {item.whatsappUrl && item.whatsappUrl !== "#" && (
+                  <Link
+                    className="flex-1 py-3 rounded-xl bg-primary text-on-primary font-button hover:bg-primary/90 transition-colors block text-center"
+                    href={item.whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    WhatsApp
+                  </Link>
+                )}
+              </div>
             </div>
           ))}
         </div>

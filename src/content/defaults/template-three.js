@@ -40,7 +40,7 @@ export const templateThreeDefaults = {
         body: "Experience the gold standard in modern healthcare. Led by {{name}}, this practice combines cutting-edge technology with unhurried, patient-first expertise.",
         primaryCta: "Start Consultation",
         secondaryCta: "Message My Office",
-        whatsappUrl: "https://wa.me/dr-medlink",
+        whatsappUrl: "{{whatsappUrl}}",
         imageUrl:
           "https://lh3.googleusercontent.com/aida-public/AB6AXuC0UvJcRRGzeMnVHVjjXtnLb4votL8IteDuxDZoMBMVpVJGOKk-h0BcL08sXfFokA-cOo1p0SsfrOwac1Nso4BV3x2gC0QrMZoHxNOy-E6Z9IfkMBdSWPmugRqreXSFb0bGdnpfIjYIqX8q9tzPLq3OAXzVJuxeYXwM679Bugo2A_j8k-awrsDAbjGSxwoiM3DzXth4E2OLtitL8Sr4rEapTONQDNSO02L51czSuadSIGI3LL-ZaASnpQ",
         imageAlt:
@@ -171,7 +171,7 @@ export const templateThreeDefaults = {
         mapUrl: "https://www.google.com/maps?q=New+York,+NY",
         contact: {
           location: "The Practice, New York",
-          phone: "+1 (212) 555-0147",
+          phone: "{{phone}}",
           hours: "Monday - Friday: 9:00 AM - 5:00 PM",
         },
         contactLabels: {
@@ -472,8 +472,8 @@ export const templateThreeDefaults = {
         heading: "Quick Appointment via WhatsApp",
         body: "Prefer a faster route? Skip the forms and message Dr. {{name}}'s office on WhatsApp to secure your slot instantly.",
         cta: "Open WhatsApp",
-        whatsappUrl: "https://wa.me/dr-medlink",
-        phoneDisplay: "+1 (212) 555-0147",
+        whatsappUrl: "{{whatsappUrl}}",
+        phoneDisplay: "{{phone}}",
       },
       chambers: {
         heading: "My Consulting Rooms",

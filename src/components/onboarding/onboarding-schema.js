@@ -18,6 +18,7 @@ const clinicAddressSchema = z.object({
     .string()
     .regex(/^\d{2}:\d{2} - \d{2}:\d{2}$/, "Select opening and closing times"),
   visitingDays: z.string().trim().min(1, "Visiting days are required"),
+  whatsapp: z.string().trim().min(1, "WhatsApp number is required"),
 });
 
 const socialLinkSchema = z.object({
@@ -29,7 +30,7 @@ export const onboardingSchema = z.object({
   name: z.string().trim().min(1, "Name is required"),
   email: z.string().trim().email("Enter a valid email address"),
   password: z.string().min(8, "Password must be at least 8 characters"),
-  phone: z.string().optional(),
+  phone: z.string().trim().min(1, "Phone number is required"),
   profilePicture: z
     .union([z.literal(""), z.string().url("Enter a valid URL")])
     .optional(),
@@ -107,6 +108,7 @@ export const defaultValues = {
       country: "",
       visitingHours: "",
       visitingDays: "",
+      whatsapp: "",
     },
   ],
   bookingPreferences: "whatsapp",

@@ -18,7 +18,7 @@ export const templateOneDefaults = {
     officeHoursLabel: "Office Hours",
     officeHours: "Monday - Friday: 9:00 AM - 5:00 PM",
     urgentCareLabel: "Same-Day Line:",
-    phone: "",
+    phone: "{{phone}}",
     socialUrl: "",
     resourceLinks: [
       { label: "Appointment", href: "/appointment" },
@@ -413,6 +413,7 @@ export const templateOneDefaults = {
         body: "Dr. {{name}}'s office is online and ready to help. Average response time is under 15 minutes during office hours.",
         cta: "Message the office",
         features: ["WhatsApp Support Online"],
+        whatsappUrl: "{{whatsappUrl}}"
       },
       faq: {
         heading: "Frequently Asked Questions",

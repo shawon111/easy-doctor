@@ -94,6 +94,10 @@ const UserSchema = new mongoose.Schema(
                 visitingDays: {
                     type: String,
                     required: true,
+                },
+                whatsapp: {
+                    type: String,
+                    required: true,
                 }
             }
         ],

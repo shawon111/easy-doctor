@@ -89,9 +89,9 @@ export function StepAccount({ register, errors, setIsUploading }) {
       </Field>
 
       <Field
-        label="Phone"
+        label="Phone Number"
         htmlFor="phone"
-        optional
+        required
         error={errors.phone?.message}
       >
         <TextField

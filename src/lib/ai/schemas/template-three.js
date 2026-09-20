@@ -158,8 +158,6 @@ export const templateThreeResponseSchema = objectSchema({
                 heading: stringField,
                 body: stringField,
                 cta: stringField,
-                whatsappUrl: stringField,
-                phoneDisplay: stringField,
             }),
             chambers: objectSchema({
                 heading: stringField,

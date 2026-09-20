@@ -144,7 +144,6 @@ export const templateTwoResponseSchema = objectSchema({
                 heading: stringField,
                 body: stringField,
                 cta: stringField,
-                whatsappUrl: stringField,
                 features: arrayOf(stringField, 2),
             }),
             faq: objectSchema({

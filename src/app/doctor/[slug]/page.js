@@ -72,8 +72,6 @@ const DoctorHomePage = async ({ params }) => {
   if (!website) notFound();
   const TemplatePageRenderer = templateMapping[website.templateType]
   if (!TemplatePageRenderer) notFound();
-  const generateContent = await generateWebsiteContent(website?.userId?._id, website?.templateType, website?._id)
-  console.log("info generated for the website", generateContent)
   return <TemplatePageRenderer page={pageName} content={website?.content ?? {}} slug={slug} />;
 };
 

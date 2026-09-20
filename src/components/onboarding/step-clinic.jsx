@@ -46,6 +46,7 @@ export function StepClinic({ register, control, errors }) {
                 country: "",
                 visitingHours: "",
                 visitingDays: "",
+                whatsapp: "",
               })
             }
           >
@@ -201,6 +202,22 @@ export function StepClinic({ register, control, errors }) {
                     );
                   }}
                 />
+
+                <Field
+                  label="WhatsApp Number for this location"
+                  htmlFor={`clinicAddress.${index}.whatsapp`}
+                  required
+                  className="sm:col-span-2"
+                  error={getFieldError(errors, `clinicAddress.${index}.whatsapp`)}
+                >
+                  <TextField
+                    id={`clinicAddress.${index}.whatsapp`}
+                    type="tel"
+                    placeholder="+1 555 000 0000"
+                    error={getFieldError(errors, `clinicAddress.${index}.whatsapp`)}
+                    {...register(`clinicAddress.${index}.whatsapp`)}
+                  />
+                </Field>
               </CardContent>
             </Card>
           ))}

@@ -97,7 +97,7 @@ export const getWebsiteBySubdomain = async (subdomain, pageName) => {
                     path: "content",
                     select: `pages.${pageName} header footer`
                 })
-                .populate("userId", "name")
+                .populate("userId", "name phone clinicAddress")
                 .lean();
 
             if (!website) {
@@ -108,20 +108,43 @@ export const getWebsiteBySubdomain = async (subdomain, pageName) => {
                             path: "content",
                             select: `pages.${pageName} header footer`
                         })
-                        .populate("userId", "name")
+                        .populate("userId", "name phone clinicAddress")
                         .lean();
                 }
             }
 
             if (website?.content) {
+                const clinics = website.userId?.clinicAddress || [];
+                const clinicItems = clinics.map(clinic => ({
+                    location: clinic.chamberName,
+                    address: clinic.address,
+                    city: clinic.city,
+                    country: clinic.country,
+                    day: clinic.visitingDays,
+                    hours: clinic.visitingHours,
+                    whatsappUrl: clinic.whatsapp ? `https://wa.me/${clinic.whatsapp.replace(/[^0-9]/g, "")}` : "#"
+                }));
+
+                const firstClinicWhatsapp = clinicItems[0]?.whatsappUrl || "#";
+
                 website.content = replaceTemplateVariables(website.content, {
                     name: website.userId?.name || "Doctor",
+                    phone: website.userId?.phone || "",
+                    whatsappUrl: firstClinicWhatsapp,
                 });
+
+                // Dynamically overwrite AI hallucinated schedules with the real clinic data
+                if (website.content?.pages?.appointment?.schedule) {
+                    website.content.pages.appointment.schedule.items = clinicItems;
+                }
+                if (website.content?.pages?.appointment?.schedules) { // template-two
+                    website.content.pages.appointment.schedules.items = clinicItems;
+                }
             }
 
             return website;
         },
-        ["website-by-subdomain", subdomain],
+        ["website-by-subdomain", subdomain, pageName],
         { tags: [`website-content:${subdomain}`] }
     );
 

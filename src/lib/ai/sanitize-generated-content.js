@@ -1,8 +1,5 @@
-const VISUAL_KEY_PATTERN = /image/i;
-const VISUAL_KEYS = new Set(["icon", "iconClass"]);
-
 function shouldStripKey(key) {
-    return key === "header" || key === "footer" || VISUAL_KEYS.has(key) || VISUAL_KEY_PATTERN.test(key);
+    return key === "header" || key === "footer";
 }
 
 export function sanitizeGeneratedContent(value) {
