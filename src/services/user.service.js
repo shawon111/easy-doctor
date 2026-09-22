@@ -177,16 +177,3 @@ export const logoutuser = async () => {
         throw new Error("failed to logout user")
     }
 }
-
-// get clinic and whatsapp numbers of user
-export const getClinics = async (userId) =>{
-    await connectDB();
-    try{
-        const clinics = await User.findById(userId).select({
-            clinicAddress: 1
-        }).lean();
-        return clinics
-    }catch(error){
-        throw new Error("failed to get clinics")
-    }
-}

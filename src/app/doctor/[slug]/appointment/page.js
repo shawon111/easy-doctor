@@ -5,7 +5,6 @@ import TemplateThreePageRenderer from "@/components/templates/template-three/Tem
 import TemplateTwoDarkPageRenderer from "@/components/templates/template-two-dark/TemplateTwoDarkPageRenderer";
 import TemplateTwoPageRenderer from "@/components/templates/template-two/TemplateTwoPageRenderer";
 import { getSeoBySubdomain } from "@/services/seo.service";
-import { getClinics } from "@/services/user.service";
 import { getWebsiteBySubdomain } from "@/services/website.service";
 import { notFound } from "next/navigation";
 
