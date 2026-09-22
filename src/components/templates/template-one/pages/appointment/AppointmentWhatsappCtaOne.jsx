@@ -1,9 +1,10 @@
 import Link from "next/link";
 import Reveal from "@/components/templates/ui/Reveal";
 
-export default function AppointmentWhatsappCtaOne({ content = {} , isDemo = false}) {
+export default function AppointmentWhatsappCtaOne({ content = {}, clinics = [], isDemo = false }) {
   const features = content.features || [];
-  const whatsappUrl = content.whatsappUrl || "#";
+  const whatsappNumber = clinics[0]?.whatsapp ? clinics[0]?.whatsapp : isDemo === true ? "8801777878543" : "";
+  const whatsappUrl = `https://wa.me/${whatsappNumber}`
 
   return (
     <Reveal

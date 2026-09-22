@@ -6,8 +6,11 @@ const BADGE_CLASSES = [
   "bg-outline-variant/30 text-on-surface-variant",
 ];
 
-export default function AppointmentScheduleOne({ content = {} , isDemo = false}) {
+export default function AppointmentScheduleOne({ content = {} , clinics =[], isDemo = false}) {
   const items = content.items || [];
+  const getClinicWhatsapp = (index) =>{
+    return clinics[index].whatsapp ?? ""
+  }
 
   return (
     <Reveal
@@ -54,11 +57,11 @@ export default function AppointmentScheduleOne({ content = {} , isDemo = false})
               <div className="mt-stack-md flex gap-3">
                 <Link
                   className="flex-1 py-3 rounded-xl border border-primary text-primary font-button hover:bg-primary/5 transition-colors block text-center"
-                  href={`https://www.google.com/maps?q=${encodeURIComponent(item.address || item.location || "")}`}
+                  href={`https://wa.me/${getClinicWhatsapp(index)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Directions
+                  Whatsapp: {getClinicWhatsapp(index)}
                 </Link>
                 {item.whatsappUrl && item.whatsappUrl !== "#" && (
                   <Link

@@ -10,7 +10,7 @@ const TemplateOne = ({ children, content, page, slug, isDemo = false }) => {
             <main className="pt-20">
                 {children}
             </main>
-            <FooterOne content={resolveTemplateContent(content?.footer, templateOneDefaults.footer, isDemo)} slug={slug} isDemo={isDemo} />
+            <FooterOne phone={content?.phone ? content?.phone : isDemo===true ? "8801888876512" : ""} content={resolveTemplateContent(content?.footer, templateOneDefaults.footer, isDemo)} slug={slug} isDemo={isDemo} />
         </div>
     );
 };

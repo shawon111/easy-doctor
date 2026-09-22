@@ -11,6 +11,7 @@ export const createUser = async (userData, withPro) => {
     await connectDB();
     const { name, email, password, phone, specialization, qualifications, experience, clinicAddress, bio, bookingPreferences, treatments, languages, socialLinks, profilePicture, } = userData;
     const session = await mongoose.startSession();
+    console.log("clinic from service", clinicAddress)
     try {
         const result = await session.withTransaction(async () => {
             const checkUserExists = await User.findOne({ email: email.toLowerCase() });
@@ -174,5 +175,18 @@ export const logoutuser = async () => {
         return true;
     }catch(error){
         throw new Error("failed to logout user")
+    }
+}
+
+// get clinic and whatsapp numbers of user
+export const getClinics = async (userId) =>{
+    await connectDB();
+    try{
+        const clinics = await User.findById(userId).select({
+            clinicAddress: 1
+        }).lean();
+        return clinics
+    }catch(error){
+        throw new Error("failed to get clinics")
     }
 }

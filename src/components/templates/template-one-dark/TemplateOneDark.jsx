@@ -10,7 +10,7 @@ const TemplateOneDark = ({ children, page = "home", slug, content, isDemo = fals
       <BackgroundBlobsOneDark page={page} isDemo={isDemo} />
       <HeaderOneDark content={resolveTemplateContent(content?.header, templateOneDefaults.header, isDemo)} page={page} slug={slug} isDemo={isDemo} />
       <main className="relative z-[1] pt-20">{children}</main>
-      <FooterOneDark content={resolveTemplateContent(content?.footer, templateOneDefaults.footer, isDemo)} slug={slug} isDemo={isDemo} />
+      <FooterOneDark phone={content?.phone ? content?.phone : isDemo===true ? "8801888876512" : ""} content={resolveTemplateContent(content?.footer, templateOneDefaults.footer, isDemo)} slug={slug} isDemo={isDemo} />
     </div>
   );
 };

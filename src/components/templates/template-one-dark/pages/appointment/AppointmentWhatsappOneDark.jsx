@@ -1,9 +1,10 @@
 import Link from "next/link";
 import SectionFadeOneDark from "../../ui/SectionFadeOneDark";
 
-export default function AppointmentWhatsappOneDark({ content = {}, isDemo = false }) {
+export default function AppointmentWhatsappOneDark({ content = {}, clinics=[], isDemo = false }) {
   const features = content.features || [];
-  const whatsappUrl = content.whatsappUrl || "#";
+  const whatsappNumber = clinics[0]?.whatsapp ? clinics[0]?.whatsapp : isDemo===true ? "8801777878543" : "";
+  const whatsappUrl = `https://wa.me/${whatsappNumber}`
 
   return (
     <SectionFadeOneDark id="whatsapp-section" className="py-[120px] px-5 md:px-16" isDemo={isDemo}>

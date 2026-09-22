@@ -7,16 +7,15 @@ import AppointmentScheduleOne from './AppointmentScheduleOne';
 import AppointmentWhatsappCtaOne from './AppointmentWhatsappCtaOne';
 import AppointmentFaqOne from './AppointmentFaqOne';
 
-const AppointmentPageOne = ({ content, isDemo = false }) => {
+const AppointmentPageOne = async({ content, isDemo = false }) => {
     const appointment = resolveTemplateContent(content?.pages?.appointment, templateOneDefaults.pages.appointment, isDemo);
-
     return (
         <>
-            <AppointmentHeroOne content={appointment.hero}  isDemo={isDemo}/>
-            <AppointmentHowItWorksOne content={appointment.howItWorks}  isDemo={isDemo}/>
-            <AppointmentScheduleOne content={appointment.schedule}  isDemo={isDemo}/>
-            <AppointmentWhatsappCtaOne content={appointment.whatsappCta}  isDemo={isDemo}/>
-            <AppointmentFaqOne content={appointment.faq}  isDemo={isDemo}/>
+            <AppointmentHeroOne content={appointment.hero} isDemo={isDemo}/>
+            <AppointmentHowItWorksOne content={appointment.howItWorks} isDemo={isDemo}/>
+            <AppointmentScheduleOne content={appointment.schedule} clinics={content?.clinics ?? []}  isDemo={isDemo}/>
+            <AppointmentWhatsappCtaOne content={appointment.whatsappCta} clinics={content?.clinics ?? []} isDemo={isDemo}/>
+            <AppointmentFaqOne content={appointment.faq} isDemo={isDemo}/>
         </>
     );
 };

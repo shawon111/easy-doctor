@@ -2,12 +2,11 @@ import Link from "next/link";
 import { templateOneDefaults } from "@/content/defaults/template-one";
 import { pickLinks } from "@/lib/content/normalize-links";
 
-export default function FooterOne({ content = {}, slug , isDemo = false}) {
+export default function FooterOne({ content = {}, slug , isDemo = false, phone}) {
   const base = isDemo ? `/preview/${slug}` : "";
   const brandName = content.brandName || "Doctor";
   const tagline = content.tagline || "";
   const copyright = content.copyright || "";
-  const phone = content.phone || "";
   const officeHours = content.officeHours;
   const officeHoursLabel = content.officeHoursLabel || "Office Hours";
   const urgentCareLabel = content.urgentCareLabel || "Urgent Care Line:";

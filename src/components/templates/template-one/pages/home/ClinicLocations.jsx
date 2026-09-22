@@ -25,7 +25,7 @@ export default function ClinicLocationsOne({ content = {} , isDemo = false}) {
                 {clinic.mapUrl ? (
                   <iframe
                     title={`${clinic.name} location map`}
-                    src={toGoogleMapsEmbedUrl(clinic.mapUrl)}
+                    src={toGoogleMapsEmbedUrl(clinic.address + " " + clinic.city)}
                     className="absolute inset-0 w-full h-full border-0"
                     loading="lazy"
                     allowFullScreen

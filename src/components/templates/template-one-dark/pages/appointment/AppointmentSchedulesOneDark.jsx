@@ -18,14 +18,16 @@ const CARD_STYLES = [
   },
 ];
 
-export default function AppointmentSchedulesOneDark({ content = {}, isDemo = false }) {
+export default function AppointmentSchedulesOneDark({ content = {}, clinics = [], isDemo = false }) {
   const items = content.items || [];
-
+  const getClinicWhatsapp = (index) => {
+    return clinics[index]?.whatsapp ? clinics[index]?.whatsapp : isDemo===true ? "8801777878543": ""
+  }
   return (
     <SectionFadeOneDark
       id="schedule"
       className="py-[120px] px-5 md:px-16 bg-surface-container-lowest"
-     isDemo={isDemo}>
+      isDemo={isDemo}>
       <div className="max-w-[1440px] mx-auto">
         <div className="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div>
@@ -49,9 +51,6 @@ export default function AppointmentSchedulesOneDark({ content = {}, isDemo = fal
                 key={item.location || item.day}
                 className={`bg-surface-container-low p-10 rounded-xl border ${style.borderClass} flex flex-col h-full transition-all hover:bg-surface-container relative overflow-hidden group`}
               >
-                <div className={`absolute top-0 right-0 p-4 font-label-sm ${style.nodeClass} transition-colors`}>
-                  {style.nodeLabel}
-                </div>
                 <div className="mb-10">
                   <h3 className={`font-headline-md text-headline-md ${style.titleClass} mb-2`}>{item.location}</h3>
                 </div>
@@ -63,11 +62,11 @@ export default function AppointmentSchedulesOneDark({ content = {}, isDemo = fal
                 </div>
                 <Link
                   className={`mt-10 w-full py-5 rounded-full border font-label-md transition-all uppercase tracking-widest text-center block ${style.buttonClass}`}
-                  href={`https://www.google.com/maps?q=${encodeURIComponent(item.location || "")}`}
+                  href={`https://wa.me/${getClinicWhatsapp(index)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Get Directions
+                  Whatsapp: {getClinicWhatsapp(index)}
                 </Link>
               </div>
             );

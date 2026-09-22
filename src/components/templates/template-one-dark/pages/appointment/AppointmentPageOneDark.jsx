@@ -11,11 +11,11 @@ export default function AppointmentPageOneDark({ content, isDemo = false }) {
 
   return (
     <>
-      <AppointmentHeroOneDark content={appointment.hero}  isDemo={isDemo}/>
-      <AppointmentProcessOneDark content={appointment.howItWorks}  isDemo={isDemo}/>
-      <AppointmentSchedulesOneDark content={appointment.schedule}  isDemo={isDemo}/>
-      <AppointmentWhatsappOneDark content={appointment.whatsappCta}  isDemo={isDemo}/>
-      <AppointmentFaqOneDark content={appointment.faq}  isDemo={isDemo}/>
+      <AppointmentHeroOneDark content={appointment.hero} isDemo={isDemo} />
+      <AppointmentProcessOneDark content={appointment.howItWorks} isDemo={isDemo} />
+      <AppointmentSchedulesOneDark content={appointment.schedule} clinics={content?.clinics ?? []} isDemo={isDemo} />
+      <AppointmentWhatsappOneDark content={appointment.whatsappCta} clinics={content?.clinics ?? []} isDemo={isDemo} />
+      <AppointmentFaqOneDark content={appointment.faq} isDemo={isDemo} />
     </>
   );
 }

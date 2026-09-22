@@ -107,7 +107,7 @@ export const POST = withUser(async (request, context, currentUser) => {
             // generate website content
             waitUntil(
                 generateWebsiteContent(currentUser?._id, templateType, website?._id).then(() => {
-                    revalidateTag(`website-content:${website.subdomain}`);
+                    revalidateTag(`website-content:${website.subdomain}`, max);
                     const pages = ["", "/about", "/services", "/appointment"];
                     pages.forEach((page) => revalidatePath(`/doctor/${website.subdomain}${page}`));
                 }).catch((error) => console.error("Error generating website content:", error))

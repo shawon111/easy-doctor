@@ -9,7 +9,6 @@ import ServicesCtaBannerOne from './ServicesCtaBannerOne';
 
 const ServicesPageOne = ({ slug, content, isDemo = false }) => {
     const services = resolveTemplateContent(content?.pages?.services, templateOneDefaults.pages.services, isDemo);
-
     return (
         <>
             <ServicesHeroOne content={services.hero}  isDemo={isDemo}/>

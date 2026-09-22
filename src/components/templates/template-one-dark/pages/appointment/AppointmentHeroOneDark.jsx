@@ -3,6 +3,7 @@ import Link from "next/link";
 import SectionFadeOneDark from "../../ui/SectionFadeOneDark";
 
 export default function AppointmentHeroOneDark({ content = {}, isDemo = false }) {
+
   return (
     <SectionFadeOneDark className="relative py-[120px] px-5 md:px-16 overflow-hidden" isDemo={isDemo}>
       <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">

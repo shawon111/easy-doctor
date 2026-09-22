@@ -13,12 +13,12 @@ import { notFound } from "next/navigation";
 
 // renderer and template mapping
 const templateMapping = {
-  "template-one": TemplateOnePageRenderer,
-  "template-two": TemplateTwoPageRenderer,
-  "template-three": TemplateThreePageRenderer,
-  "template-one-dark": TemplateOneDarkPageRenderer,
-  "template-two-dark": TemplateTwoDarkPageRenderer,
-  "template-three-dark": TemplateThreeDarkPageRenderer,
+    "template-one": TemplateOnePageRenderer,
+    "template-two": TemplateTwoPageRenderer,
+    "template-three": TemplateThreePageRenderer,
+    "template-one-dark": TemplateOneDarkPageRenderer,
+    "template-two-dark": TemplateTwoDarkPageRenderer,
+    "template-three-dark": TemplateThreeDarkPageRenderer,
 }
 
 const pageName = "home";
@@ -67,12 +67,15 @@ export async function generateMetadata({ params }) {
 
 
 const DoctorHomePage = async ({ params }) => {
-  const { slug } = await params;
-  const website = await getWebsiteBySubdomain(slug, pageName);
-  if (!website) notFound();
-  const TemplatePageRenderer = templateMapping[website.templateType]
-  if (!TemplatePageRenderer) notFound();
-  return <TemplatePageRenderer page={pageName} content={website?.content ?? {}} slug={slug} />;
+    const { slug } = await params;
+    const website = await getWebsiteBySubdomain(slug, pageName);
+    if (!website) notFound();
+    const TemplatePageRenderer = templateMapping[website.templateType]
+    if (!TemplatePageRenderer) notFound();
+    let siteContent = website?.content ?? {}
+    siteContent.userId = website?.userId?._id;
+    siteContent.phone = website?.userId?.phone;
+    return <TemplatePageRenderer page={pageName} content={siteContent} slug={slug} />;
 };
 
 export default DoctorHomePage;

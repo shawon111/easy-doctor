@@ -98,6 +98,9 @@ const UserSchema = new mongoose.Schema(
                 whatsapp: {
                     type: String,
                     required: true,
+                },
+                mapUrl: {
+                    type: String
                 }
             }
         ],

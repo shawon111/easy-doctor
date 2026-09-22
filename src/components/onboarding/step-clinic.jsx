@@ -47,6 +47,7 @@ export function StepClinic({ register, control, errors }) {
                 visitingHours: "",
                 visitingDays: "",
                 whatsapp: "",
+                mapUrl: "",
               })
             }
           >
@@ -216,6 +217,22 @@ export function StepClinic({ register, control, errors }) {
                     placeholder="+1 555 000 0000"
                     error={getFieldError(errors, `clinicAddress.${index}.whatsapp`)}
                     {...register(`clinicAddress.${index}.whatsapp`)}
+                  />
+                </Field>
+
+                <Field
+                  label="Google Map URL for this location"
+                  htmlFor={`clinicAddress.${index}.mapUrl`}
+                  required
+                  className="sm:col-span-2"
+                  error={getFieldError(errors, `clinicAddress.${index}.mapUrl`)}
+                >
+                  <TextField
+                    id={`clinicAddress.${index}.mapurl`}
+                    type="text"
+                    placeholder="https://maps.app.goo.gl/..."
+                    error={getFieldError(errors, `clinicAddress.${index}.mapUrl`)}
+                    {...register(`clinicAddress.${index}.mapUrl`)}
                   />
                 </Field>
               </CardContent>

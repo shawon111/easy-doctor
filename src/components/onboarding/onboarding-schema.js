@@ -109,6 +109,7 @@ export const defaultValues = {
       visitingHours: "",
       visitingDays: "",
       whatsapp: "",
+      mapUrl: ""
     },
   ],
   bookingPreferences: "whatsapp",
