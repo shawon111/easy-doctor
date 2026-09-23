@@ -12,12 +12,12 @@ export default function AppointmentPageThree({ content, isDemo = false }) {
 
   return (
     <div className="pt-12 pb-20 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
-      <AppointmentHeroThree content={appointment.hero}  isDemo={isDemo}/>
-      <AppointmentStepsThree content={appointment.steps}  isDemo={isDemo}/>
-      <AppointmentScheduleThree content={appointment.schedule}  isDemo={isDemo}/>
-      <AppointmentWhatsappThree content={appointment.whatsapp}  isDemo={isDemo}/>
-      <AppointmentChambersThree content={appointment.chambers}  isDemo={isDemo}/>
-      <AppointmentFaqThree content={appointment.faq}  isDemo={isDemo}/>
+      <AppointmentHeroThree content={appointment.hero} isDemo={isDemo} />
+      <AppointmentStepsThree content={appointment.steps} isDemo={isDemo} />
+      <AppointmentScheduleThree content={appointment.schedule} isDemo={isDemo} />
+      <AppointmentWhatsappThree clinics={content?.clinics} phone={content?.phone ? content?.phone : isDemo === true ? "+8890652365711" : ""} content={appointment.whatsapp} isDemo={isDemo} />
+      <AppointmentChambersThree content={appointment.chambers} isDemo={isDemo} />
+      <AppointmentFaqThree content={appointment.faq} isDemo={isDemo} />
     </div>
   );
 }

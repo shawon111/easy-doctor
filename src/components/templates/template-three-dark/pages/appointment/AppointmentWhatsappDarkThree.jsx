@@ -1,5 +1,5 @@
 import Link from "next/link";
-export default function AppointmentWhatsappDarkThree({ content = {} , isDemo = false}) {
+export default function AppointmentWhatsappDarkThree({ content = {} , isDemo = false, phone, clinics=[]}) {
   return (
     <section className="mb-24 relative overflow-hidden rounded-3xl group">
       <div className="relative z-10 t3d-whatsapp-card p-12 md:p-20 border border-outline-variant/30 flex flex-col md:flex-row items-center gap-12">
@@ -19,7 +19,7 @@ export default function AppointmentWhatsappDarkThree({ content = {} , isDemo = f
             {content.whatsappUrl && (
               <Link
                 className="bg-secondary text-on-secondary px-10 py-5 rounded-xl font-bold flex items-center justify-center gap-3 shadow-lg shadow-secondary/10 hover:shadow-secondary/20 transition-all active:scale-95"
-                href={content.whatsappUrl}
+                href={`https://wa.me/${clinics[0]?.whatsapp ?? ""}`}
               >
                 <span className="material-symbols-outlined t3d-icon-filled text-[18px]">chat</span>
                 {content.cta}
@@ -28,7 +28,7 @@ export default function AppointmentWhatsappDarkThree({ content = {} , isDemo = f
             {content.phoneDisplay && (
               <div className="flex items-center gap-3 px-6 py-4 rounded-xl border border-outline-variant/40 bg-surface-container-lowest/50 backdrop-blur-sm">
                 <span className="material-symbols-outlined text-primary">call</span>
-                <span className="font-label-sm text-label-sm">{content.phoneDisplay}</span>
+                <span className="font-label-sm text-label-sm">{phone}</span>
               </div>
             )}
           </div>
