@@ -2,7 +2,7 @@ export const privacyPolicyDefaults = {
   badge: "LEGAL",
   heading: "Privacy Policy",
   intro:
-    "This Privacy Policy explains how Dr. {{name}} collects, uses, stores and protects the personal information you share through this website and during your care.",
+    "This Privacy Policy explains how Dr. John collects, uses, stores and protects the personal information you share through this website and during your care.",
   updatedLabel: "Last updated",
   updated: "January 2026",
   sections: [
@@ -19,7 +19,7 @@ export const privacyPolicyDefaults = {
     {
       title: "Confidentiality and Security",
       body:
-        "Medical confidentiality is a core professional duty. All patient information is stored securely and is only accessible to Dr. {{name}} and authorised staff who need it to provide your care. We use reasonable technical and organisational measures to protect your data.",
+        "Medical confidentiality is a core professional duty. All patient information is stored securely and is only accessible to Dr. John and authorised staff who need it to provide your care. We use reasonable technical and organisational measures to protect your data.",
     },
     {
       title: "Sharing With Third Parties",
@@ -39,7 +39,7 @@ export const privacyPolicyDefaults = {
     {
       title: "Contact Us",
       body:
-        "If you have any questions about this Privacy Policy or about how your information is handled, please contact Dr. {{name}} using the phone number, email address or WhatsApp link shown on this website.",
+        "If you have any questions about this Privacy Policy or about how your information is handled, please contact Dr. John using the phone number, email address or WhatsApp link shown on this website.",
     },
   ],
 };

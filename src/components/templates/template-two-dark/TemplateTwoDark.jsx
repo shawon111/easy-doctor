@@ -10,7 +10,7 @@ const TemplateTwoDark = ({ children, page = "home", slug, content, isDemo = fals
       <main className={page === "appointment" ? "max-w-[1200px] mx-auto overflow-hidden w-full" : undefined}>
         {children}
       </main>
-      <FooterTwoDark slug={slug} content={resolveTemplateContent(content?.footer, templateTwoDefaults.footer, isDemo)} isDemo={isDemo} />
+      <FooterTwoDark phone={content?.phone ? content?.phone : isDemo===true ? "8801888876512" : ""} slug={slug} content={resolveTemplateContent(content?.footer, templateTwoDefaults.footer, isDemo)} isDemo={isDemo} />
     </div>
   );
 };

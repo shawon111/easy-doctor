@@ -1,6 +1,6 @@
 export const templateTwoDefaults = {
   header: {
-    brandName: "{{name}}",
+    brandName: "John",
     navLinks: [
       { label: "Home", href: "", key: "home" },
       { label: "About", href: "/about", key: "about" },
@@ -11,10 +11,10 @@ export const templateTwoDefaults = {
   },
 
   footer: {
-    brandName: "{{name}}",
+    brandName: "John",
     tagline:
       "One physician, absolute discretion, and medicine practised at the highest level.",
-    copyright: "© 2026 Dr. {{name}}. Personal Medicine, Practised Precisely.",
+    copyright: "© 2026 Dr. John. Personal Medicine, Practised Precisely.",
     phone: "{{phone}}",
     socialUrl: "",
     websiteUrl: "",
@@ -39,7 +39,7 @@ export const templateTwoDefaults = {
     home: {
       hero: {
         badge: "Exclusive Precision Care",
-        heading: "Dr. {{name}}",
+        heading: "Dr. John",
         credentialsLine: "MD, PhD, FRCP (Lond)",
         body: "Pioneering personal medicine with a focus on longevity, cognitive performance, and surgical precision. Every patient is seen by the same physician at every visit, without exception.",
         primaryCta: "Schedule Consultation",
@@ -169,7 +169,7 @@ export const templateTwoDefaults = {
             icon: "medical_services",
             title: "Intervention",
             description:
-              "Your bespoke treatment protocol, carried out and supervised by Dr. {{name}} himself.",
+              "Your bespoke treatment protocol, carried out and supervised by Dr. John himself.",
           },
         ],
       },
@@ -194,7 +194,7 @@ export const templateTwoDefaults = {
     about: {
       hero: {
         badge: "EXCELLENCE IN PRECISION MEDICINE",
-        heading: "About Dr. {{name}}",
+        heading: "About Dr. John",
         body: "Redefining the standards of specialized care through a legacy of clinical mastery, academic rigor, and an unwavering commitment to patient longevity.",
         languages: ["English", "French", "Arabic"],
         imageAlt:
@@ -204,10 +204,10 @@ export const templateTwoDefaults = {
       },
       story: {
         heading: "A Legacy of Care",
-        body: "Dr. {{name}}'s journey began at the prestigious Johns Hopkins School of Medicine, where they graduated at the top of their class. Their early career was defined by a relentless pursuit of innovation in complex diagnostics and internal medicine. Over the last two decades, they have pioneered specialized protocols that bridge the gap between traditional clinical excellence and modern biotechnological advancements. Their philosophy centers on the 'whole-patient' paradigm—understanding that true health is the synergy of biological precision, lifestyle architecture, and preventive vigilance. Having served as a Chief Resident and later as a Lead Consultant at world-renowned teaching hospitals, Dr. {{name}} has handled over 5,000 complex cases. Their reputation for solving 'unsolvable' diagnostic puzzles has made them the preferred choice for global executives and high-profile individuals who demand absolute discretion and technical mastery. Every patient strategy is bespoke, crafted with the same meticulous attention to detail as a master watchmaker, ensuring that every variable of a patient's health is accounted for.",
+        body: "Dr. John's journey began at the prestigious Johns Hopkins School of Medicine, where they graduated at the top of their class. Their early career was defined by a relentless pursuit of innovation in complex diagnostics and internal medicine. Over the last two decades, they have pioneered specialized protocols that bridge the gap between traditional clinical excellence and modern biotechnological advancements. Their philosophy centers on the 'whole-patient' paradigm—understanding that true health is the synergy of biological precision, lifestyle architecture, and preventive vigilance. Having served as a Chief Resident and later as a Lead Consultant at world-renowned teaching hospitals, Dr. John has handled over 5,000 complex cases. Their reputation for solving 'unsolvable' diagnostic puzzles has made them the preferred choice for global executives and high-profile individuals who demand absolute discretion and technical mastery. Every patient strategy is bespoke, crafted with the same meticulous attention to detail as a master watchmaker, ensuring that every variable of a patient's health is accounted for.",
         quote:
           "Medicine is not merely a science of diagnosis, but an art of precision, empathy, and foresight.",
-        quoteAuthor: "Dr. {{name}}",
+        quoteAuthor: "Dr. John",
       },
       timeline: {
         heading: "Professional Milestone",
@@ -256,7 +256,7 @@ export const templateTwoDefaults = {
       practices: {
         heading: "Where I Practice",
         subheading:
-          "Dr. {{name}} consults from two locations and personally attends every patient. When you book with the doctor, you are seen by the doctor.",
+          "Dr. John consults from two locations and personally attends every patient. When you book with the doctor, you are seen by the doctor.",
         items: [
           {
             icon: "location_on",
@@ -289,7 +289,7 @@ export const templateTwoDefaults = {
       hero: {
         badge: "Clinical Excellence",
         heading: "Specialized Treatments & Procedures",
-        body: "Advanced medical mastery combined with unhurried, personal care. Dr. {{name}} uses the frontier of medical technology to deliver results with absolute precision.",
+        body: "Advanced medical mastery combined with unhurried, personal care. Dr. John uses the frontier of medical technology to deliver results with absolute precision.",
       },
       featured: {
         badge: "Pinnacle Technology",
@@ -400,7 +400,7 @@ export const templateTwoDefaults = {
       hero: {
         badge: "Excellence in Precision Medicine",
         heading: "Book Your Consultation",
-        body: "Secure a priority appointment with Dr. {{name}}. Every booking is handled quietly and efficiently by the doctor's own office, with absolute discretion.",
+        body: "Secure a priority appointment with Dr. John. Every booking is handled quietly and efficiently by the doctor's own office, with absolute discretion.",
       },
       schedules: {
         heading: "Chambers & Schedules",
@@ -413,7 +413,7 @@ export const templateTwoDefaults = {
       },
       whatsapp: {
         heading: "Direct Access via WhatsApp",
-        body: "For patients who value their time, my office handles every appointment detail over WhatsApp, instantly. No waiting on hold—just direct, personal communication with Dr. {{name}}'s office.",
+        body: "For patients who value their time, my office handles every appointment detail over WhatsApp, instantly. No waiting on hold—just direct, personal communication with Dr. John's office.",
         cta: "CHAT ON WHATSAPP",
         whatsappUrl: "{{whatsappUrl}}",
         phoneDisplay: "{{phone}}",

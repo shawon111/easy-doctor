@@ -13,7 +13,7 @@ export default function CtaTwo({ content = {} , slug, isDemo = false}) {
             {content.body}
           </p>
           <Link
-            className="px-12 py-5 bg-surface-container-lowest text-primary font-label-caps text-label-caps rounded-lg luxury-button-hover shadow-xl transition-all flex items-center gap-4 mx-auto"
+            className="px-12 py-5 bg-surface-container-lowest text-primary font-label-caps rounded-lg luxury-button-hover shadow-xl transition-all items-center gap-4 mx-auto text-base"
             href={`${base}/appointment`}
           >
             {content.primaryCta}

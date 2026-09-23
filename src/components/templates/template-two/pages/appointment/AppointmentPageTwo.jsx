@@ -11,15 +11,16 @@ const AppointmentPageTwo = ({ slug, content, isDemo = false }) => {
 
   return (
     <div className="max-w-container-max mx-auto overflow-hidden">
-      <AppointmentHeroTwo content={appointment.hero}  isDemo={isDemo}/>
+      <AppointmentHeroTwo content={appointment.hero} isDemo={isDemo} />
       <AppointmentSchedulesTwo
         content={appointment.schedules}
         telehealthImage={appointment.whatsapp?.telehealthImage}
         telehealthImageAlt={appointment.whatsapp?.telehealthImageAlt}
-       isDemo={isDemo}/>
-      <AppointmentWhatsappTwo content={appointment.whatsapp}  isDemo={isDemo}/>
-      <AppointmentFaqTwo content={appointment.faq}  isDemo={isDemo}/>
-      <AppointmentCtaTwo content={appointment.finalCta} slug={slug}  isDemo={isDemo}/>
+        clinics={content?.clinics}
+        isDemo={isDemo} />
+      <AppointmentWhatsappTwo clinics={content?.clinics} content={appointment.whatsapp} isDemo={isDemo} />
+      <AppointmentFaqTwo content={appointment.faq} isDemo={isDemo} />
+      <AppointmentCtaTwo content={appointment.finalCta} slug={slug} isDemo={isDemo} />
     </div>
   );
 };

@@ -1,6 +1,6 @@
 export const templateOneDefaults = {
   header: {
-    brandName: "{{name}}",
+    brandName: "John",
     navLinks: [
       { label: "Home", href: "/", key: "home" },
       { label: "About", href: "/about", key: "about" },
@@ -10,11 +10,11 @@ export const templateOneDefaults = {
     appointmentCtaLink: "/appointment",
   },
   footer: {
-    brandName: "{{name}}",
+    brandName: "John",
     tagline:
       "Personal medicine from a physician who knows your history. Because the best care starts with being known.",
     copyright:
-      "© 2026 Dr. {{name}}. All Rights Reserved. Personally Practised Medicine.",
+      "© 2026 Dr. John. All Rights Reserved. Personally Practised Medicine.",
     officeHoursLabel: "Office Hours",
     officeHours: "Monday - Friday: 9:00 AM - 5:00 PM",
     urgentCareLabel: "Same-Day Line:",
@@ -36,13 +36,13 @@ export const templateOneDefaults = {
         badge: "YOUR OWN PHYSICIAN, EVERY VISIT",
         heading: "Expert Care with a",
         headingHighlight: "Personal Touch",
-        body: "Dr. {{name}} brings thirty years of clinical excellence to a deliberately small practice, built on one promise: you are always seen by the doctor, never handed off.",
+        body: "Dr. John brings thirty years of clinical excellence to a deliberately small practice, built on one promise: you are always seen by the doctor, never handed off.",
         primaryCta: "Book Appointment",
         secondaryCta: "See the Practice",
         imageUrl:
           "https://lh3.googleusercontent.com/aida-public/AB6AXuDTyxeutP7i3bLEgOgReazJq3fL8gL_0nt-ZGg7tXDH26cuyHhAjEY_V0Ht4_Q_h-_sIcfCK5Kj2zn0tLJfkGSkLidk_x-eIwZsKtHSYGri4uoLUvsz1-T8u9X9JwdfPUma0Qi01jqaPZAT5EBM3U-Z-DmmCQKReacdwWCpkwAeBv00vHIfaxo4ylI1UmYSfO0kddOLLOBy8N0vd4ouvwUeTowUmhLHTDT3n5HEsHysG_2WybeexPH1cw",
         imageAlt:
-          "A professional portrait of Dr. {{name}} in a minimalist medical office",
+          "A professional portrait of Dr. John in a minimalist medical office",
         statCard: {
           value: "15+ Years",
           label: "YEARS IN PRACTICE",
@@ -58,7 +58,7 @@ export const templateOneDefaults = {
       },
       aboutPreview: {
         heading: "Medicine That Knows Your Name",
-        body: "Dr. {{name}} is a double board-certified specialist dedicated to a \"Whole Patient\" philosophy. By integrating advanced genomic insights with traditional preventative care, {{name}} ensures that every treatment plan is as unique as the individual.\n\nThis is a deliberately small practice. Dr. {{name}} takes his own calls, reviews the results personally, and stays with you through every stage of your care, rather than passing you to a rotating roster of staff.",
+        body: "Dr. John is a double board-certified specialist dedicated to a \"Whole Patient\" philosophy. By integrating advanced genomic insights with traditional preventative care, John ensures that every treatment plan is as unique as the individual.\n\nThis is a deliberately small practice. Dr. John takes his own calls, reviews the results personally, and stays with you through every stage of your care, rather than passing you to a rotating roster of staff.",
         linkLabel: "Read Full Biography",
         imageUrl:
           "https://lh3.googleusercontent.com/aida-public/AB6AXuCZm0_m40P1JS40jbijH63oQwT32n-U54apRIEaWxx_jC9GOzrKujhNnSCth51iO6OgwWp9mZuS9YD3jGEjWACTak_qiBOmHrr_-EbZ4jG7vEq0ERzWX7IdOZPjfO_DAaORn2tqzSp2Zkzod5UfW0UdwcagTnbq6YmGKUUHYRznHaRH99MIrXzmsY02dYox9vBoKTfvzcSXHKAKNa3khYxme5Nd_lVtLneBQ97A-1EQAovsKUHRRzH4DA",
@@ -66,12 +66,12 @@ export const templateOneDefaults = {
           "A stethoscope resting on a marble surface next to a digital tablet in a clean consulting room",
         imageUrlSecondary:
           "https://lh3.googleusercontent.com/aida-public/AB6AXuAwbF8DBfY5iKBcJuS2gsog0qVe9-UID90sKW0LcvVD5Q8SsOdWbN4cYzg4v43dE272c0CQZwU40ZhO-TUesjG2pUg-VJfeEvAmSvRebrILkvwDnvZqShGA6MGt7oDiLSvTgbgheX089HOw-eZftVUVJiXH7dMyYVLrp0FsdkMWlnQVksKUWMgazzAdFKAWsNX0ZfoUiqwPWdQCtmmrP6nsTEmN8pom_FouTO3UCiQYRNEDq6i7vbispg",
-        imageAltSecondary: "Dr. {{name}} reviewing a patient's health record in his consulting room",
+        imageAltSecondary: "Dr. John reviewing a patient's health record in his consulting room",
       },
       services: {
         heading: "Specialized Medical Services",
         subheading:
-          "Focused, physician-led care for your longevity and performance, delivered personally by Dr. {{name}} in every appointment.",
+          "Focused, physician-led care for your longevity and performance, delivered personally by Dr. John in every appointment.",
         items: [
           {
             icon: "ecg",
@@ -94,7 +94,7 @@ export const templateOneDefaults = {
         ],
       },
       whyChooseUs: {
-        heading: "The {{name}} Standard",
+        heading: "The John Standard",
         items: [
           {
             icon: "schedule",
@@ -114,12 +114,12 @@ export const templateOneDefaults = {
           {
             icon: "support_agent",
             title: "A Direct Line to the Doctor",
-            description: "Secure messaging answered by Dr. {{name}}, not a call centre.",
+            description: "Secure messaging answered by Dr. John, not a call centre.",
           },
         ],
         quote:
           "In three decades of practice, I've learned that the most effective tool in medicine isn't a laser or a drug—it's the ability to listen.",
-        quoteAuthor: "DR. {{name}}",
+        quoteAuthor: "DR. John",
         quoteHeading: "Clinical Excellence Meets Personal Care",
         quoteImageUrl:
           "https://lh3.googleusercontent.com/aida-public/AB6AXuBcwDvF6ipEsG6rPGUBILKJXbJjzyOhIcdWSJu4QpL1J7CvTwFEk1ZPUjS803dWZf_ES7Sfl6Svye2Vr7_a4isSrTmfQwVCoq455xpIyZVpPzlUU36D7Q6r9CY1iPJGHBthUCwmMYaWh6ZB-ljDReIaKOOPsN4wRjWTHO-N8K_QP3Tz9K3xZygB7sH1guNSWnVIMUGAFEqyo2Q24LcJw3yjuMEIGkiLMO6OHyMZVUIIJsWl5HyWOAHi7w",
@@ -169,7 +169,7 @@ export const templateOneDefaults = {
       },
       finalCta: {
         heading: "Take the First Step to Optimal Vitality",
-        body: "Whether you need a second opinion or a physician for the long term, Dr. {{name}} will sit with you, listen properly, and build a plan that fits your life.",
+        body: "Whether you need a second opinion or a physician for the long term, Dr. John will sit with you, listen properly, and build a plan that fits your life.",
         primaryCta: "Request a Consultation",
         secondaryCta: "Contact Us",
       },
@@ -177,22 +177,22 @@ export const templateOneDefaults = {
     about: {
       hero: {
         badge: "About the Physician",
-        heading: "Meet Dr. {{name}}.",
+        heading: "Meet Dr. John.",
         body: "A pioneer in modern clinical practice, blending world-class medical expertise with a deeply personal commitment to patient well-being and clinical elegance.",
         experience: 25,
         imageUrl:
           "https://lh3.googleusercontent.com/aida-public/AB6AXuDrI_-iJl8d3az-c3zTX2scS0feijBybba2fRXqjKnc2ZWzSgzq4vSt1Zf60XXveGwMrWd7uWP9SUfvzhmRC-4CfhHW6QBWVCg_XwGBITK4uQZuySo_ggYx3oyH-_pcU4Y5MrlYg-ZaY56SUfoZpn4hTGr5KGyYqnbwcnBr--V6F6gKqiTOiUiy2VXA0gaobkLSNBD59u5GlPDCqss1F6YUyPaArGTiWEqp6UHLaauteUk_E5CSagFPXg",
         imageAlt:
-          "Dr. {{name}}, a physician in a white medical coat, in a bright minimalist medical office",
+          "Dr. John, a physician in a white medical coat, in a bright minimalist medical office",
       },
       philosophy: {
         quote:
           "Medicine is not just the science of treating symptoms; it is the art of restoring the dignity and vitality of the human spirit through precise, compassionate care.",
-        author: "— Dr. {{name}}, MD, FACS",
+        author: "— Dr. John, MD, FACS",
       },
       bioStats: {
         heading: "A Patient-Centric Philosophy",
-        body: "Dr. {{name}} is a double board-certified specialist dedicated to a \"Whole Patient\" philosophy. By integrating advanced genomic insights with traditional preventative care, {{name}} ensures that every treatment plan is as unique as the individual.\n\nThe practice is built on trust, discretion, and the relentless pursuit of medical innovation, so that you always know exactly who is looking after you.",
+        body: "Dr. John is a double board-certified specialist dedicated to a \"Whole Patient\" philosophy. By integrating advanced genomic insights with traditional preventative care, John ensures that every treatment plan is as unique as the individual.\n\nThe practice is built on trust, discretion, and the relentless pursuit of medical innovation, so that you always know exactly who is looking after you.",
         languages: ["English", "Spanish", "French"],
         stats: [
           { value: "4,200+", label: "Successful Procedures" },
@@ -232,10 +232,10 @@ export const templateOneDefaults = {
       chambers: {
         heading: "Where Excellence Resides",
         subheading:
-          "Dr. {{name}} consults from his own private rooms in New York, a calm and unhurried setting designed for one-to-one conversation and a thorough examination.",
+          "Dr. John consults from his own private rooms in New York, a calm and unhurried setting designed for one-to-one conversation and a thorough examination.",
         locations: [
           {
-            name: "Dr. {{name}}'s Private Practice",
+            name: "Dr. John's Private Practice",
             address: "New York, NY",
             hours: "Monday - Friday: 9:00 AM - 5:00 PM",
           },
@@ -244,7 +244,7 @@ export const templateOneDefaults = {
       },
       finalCta: {
         heading: "Ready to Experience Better Care?",
-        body: "Join the thousands of patients who have trusted Dr. {{name}} with their health, year after year.",
+        body: "Join the thousands of patients who have trusted Dr. John with their health, year after year.",
         primaryCta: "Schedule Your Consultation",
       },
     },
@@ -252,7 +252,7 @@ export const templateOneDefaults = {
       hero: {
         badge: "CLINICAL EXCELLENCE",
         heading: "Comprehensive Medical Care",
-        body: "Merging cutting-edge medical precision with a compassionate, patient-first approach. Dr. {{name}} provides care tailored to your unique biological profile and lifestyle needs.",
+        body: "Merging cutting-edge medical precision with a compassionate, patient-first approach. Dr. John provides care tailored to your unique biological profile and lifestyle needs.",
         imageUrl:
           "https://lh3.googleusercontent.com/aida-public/AB6AXuDrI_-iJl8d3az-c3zTX2scS0feijBybba2fRXqjKnc2ZWzSgzq4vSt1Zf60XXveGwMrWd7uWP9SUfvzhmRC-4CfhHW6QBWVCg_XwGBITK4uQZuySo_ggYx3oyH-_pcU4Y5MrlYg-ZaY56SUfoZpn4hTGr5KGyYqnbwcnBr--V6F6gKqiTOiUiy2VXA0gaobkLSNBD59u5GlPDCqss1F6YUyPaArGTiWEqp6UHLaauteUk_E5CSagFPXg",
         imageAlt:
@@ -261,7 +261,7 @@ export const templateOneDefaults = {
       treatmentsGrid: {
         heading: "Specialized Medical Services",
         subheading:
-          "Every service below is led by Dr. {{name}} personally, with trusted specialists brought in only when your case calls for them.",
+          "Every service below is led by Dr. John personally, with trusted specialists brought in only when your case calls for them.",
         items: [
           {
             icon: "cardiology",
@@ -353,14 +353,14 @@ export const templateOneDefaults = {
           {
             question: "How long does a typical evaluation take?",
             answer:
-              "Initial consultations typically last 45-60 minutes to ensure Dr. {{name}} has sufficient time to understand your history and concerns thoroughly.",
+              "Initial consultations typically last 45-60 minutes to ensure Dr. John has sufficient time to understand your history and concerns thoroughly.",
             openByDefault: false,
           },
         ],
       },
       ctaBanner: {
         heading: "Not sure which service you need?",
-        body: "Ask Dr. {{name}} directly. A short conversation is usually all it takes to find the right path forward.",
+        body: "Ask Dr. John directly. A short conversation is usually all it takes to find the right path forward.",
         primaryCta: "Get in Touch",
         secondaryCta: "More About Us",
       },
@@ -369,7 +369,7 @@ export const templateOneDefaults = {
       hero: {
         badge: "DIRECT SCHEDULING",
         heading: "Book Your Consultation Today.",
-        body: "Booking is deliberately simple. Message Dr. {{name}}'s office on WhatsApp and we will find a time that suits you, with no call centre in between.",
+        body: "Booking is deliberately simple. Message Dr. John's office on WhatsApp and we will find a time that suits you, with no call centre in between.",
         primaryCta: "Book via WhatsApp",
         secondaryCta: "View Schedules",
         imageUrl:
@@ -384,7 +384,7 @@ export const templateOneDefaults = {
             icon: "send",
             title: "Send a Message",
             description:
-              "Tap the WhatsApp link to open a direct chat with Dr. {{name}}'s office.",
+              "Tap the WhatsApp link to open a direct chat with Dr. John's office.",
           },
           {
             icon: "event_available",
@@ -410,7 +410,7 @@ export const templateOneDefaults = {
       },
       whatsappCta: {
         heading: "Ready to Schedule?",
-        body: "Dr. {{name}}'s office is online and ready to help. Average response time is under 15 minutes during office hours.",
+        body: "Dr. John's office is online and ready to help. Average response time is under 15 minutes during office hours.",
         cta: "Message the office",
         features: ["WhatsApp Support Online"],
         whatsappUrl: "{{whatsappUrl}}"
@@ -436,7 +436,7 @@ export const templateOneDefaults = {
           {
             question: "Is tele-health available?",
             answer:
-              'For follow-up appointments and prescription reviews, Dr. {{name}} offers secure video consultations. Mention "Video visit" when you message the office and we will set it up.',
+              'For follow-up appointments and prescription reviews, Dr. John offers secure video consultations. Mention "Video visit" when you message the office and we will set it up.',
           },
         ],
       },

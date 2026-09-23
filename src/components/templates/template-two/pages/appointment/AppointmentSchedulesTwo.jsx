@@ -21,9 +21,13 @@ function groupScheduleByLocation(items = []) {
   return Array.from(groups.values());
 }
 
-export default function AppointmentSchedulesTwo({ content = {}, telehealthImage, telehealthImageAlt, isDemo = false}) {
+export default function AppointmentSchedulesTwo({ content = {}, telehealthImage, telehealthImageAlt, isDemo = false, clinics=[] }) {
   const chambers = groupScheduleByLocation(content.items);
   const telehealthSrc = content.imageUrl || telehealthImage || TELEHEALTH_IMAGE_FALLBACK;
+  // get whatsapp number from chamber
+  const getClinicWhatsapp = (index) => {
+    return clinics[index]?.whatsapp ? clinics[index]?.whatsapp : isDemo===true ? "8801777878543": ""
+  }
 
   return (
     <section className="py-[120px] px-[20px] md:px-[64px]" id="schedules">
@@ -36,7 +40,7 @@ export default function AppointmentSchedulesTwo({ content = {}, telehealthImage,
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[24px]">
-        {chambers.map((chamber) => (
+        {chambers.map((chamber, index) => (
           <div
             key={chamber.name}
             className="apttwo-glass-card p-8 rounded-[12px] flex flex-col h-full hover:border-[#2563eb]/40 transition-colors duration-500"
@@ -70,9 +74,9 @@ export default function AppointmentSchedulesTwo({ content = {}, telehealthImage,
             </div>
             <Link
               className="block text-center mt-8 w-full border border-[#2563eb] text-[#2563eb] hover:bg-[#2563eb] hover:text-white py-3 rounded-[8px] apttwo-label-caps transition-all"
-              href="#whatsapp"
+              href={`https://wa.me/${getClinicWhatsapp(index)}`}
             >
-              Select This Clinic
+              Call For Booking: {getClinicWhatsapp(index)}
             </Link>
           </div>
         ))}
@@ -105,7 +109,7 @@ export default function AppointmentSchedulesTwo({ content = {}, telehealthImage,
           </div>
           <Link
             className="block text-center relative z-10 mt-8 w-full bg-[#2563eb] text-white py-3 rounded-[8px] apttwo-label-caps hover:bg-[#2563eb]/90 transition-all"
-            href="#whatsapp"
+            href={`https://wa.me/${clinics[0]?.whatsapp ?? ""}`}
           >
             Book Online Session
           </Link>

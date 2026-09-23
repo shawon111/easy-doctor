@@ -10,7 +10,7 @@ const TemplateTwo = ({ children, content, page, slug, isDemo = false }) => {
             <main>
                 {children}
             </main>
-            <FooterTwo content={resolveTemplateContent(content?.footer, templateTwoDefaults.footer, isDemo)} slug={slug} isDemo={isDemo} />
+            <FooterTwo phone={content?.phone ? content?.phone : isDemo===true ? "8801888876512" : ""} content={resolveTemplateContent(content?.footer, templateTwoDefaults.footer, isDemo)} slug={slug} isDemo={isDemo} />
         </div>
     );
 };

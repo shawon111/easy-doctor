@@ -2,12 +2,11 @@ import Link from "next/link";
 import { templateTwoDefaults } from "@/content/defaults/template-two";
 import { pickLinks } from "@/lib/content/normalize-links";
 
-export default function FooterTwoDark({ slug, content = {} , isDemo = false}) {
+export default function FooterTwoDark({ slug, content = {} , isDemo = false, phone}) {
   const base = isDemo ? `/preview/${slug}` : "";
   const toHref = (href) => (href?.startsWith("/") ? `${base}${href}` : href || base || "/");
   const brandName = content.brandName || "Doctor";
   const tagline = content.tagline || "";
-  const phone = content.phone || "";
   const resourceLinks = pickLinks(content.resourceLinks, templateTwoDefaults.footer.resourceLinks);
   const copyright = content.copyright || "";
   const legalLinks = pickLinks(content.legalLinks, templateTwoDefaults.footer.legalLinks);

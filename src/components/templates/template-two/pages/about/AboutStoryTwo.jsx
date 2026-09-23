@@ -26,7 +26,7 @@ export default function AboutStoryTwo({ content = {} , isDemo = false}) {
           ) : null}
 
           <div className="space-y-12">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div className="grid grid-cols-1">
               <div className="abtwo-body-md text-[#45464d] leading-relaxed">
                 {content.heading ? (
                   <h3 className="abtwo-headline-sm text-[#1a2026] mb-6">{content.heading}</h3>

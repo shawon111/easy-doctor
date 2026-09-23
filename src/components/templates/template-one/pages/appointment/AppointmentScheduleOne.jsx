@@ -9,7 +9,7 @@ const BADGE_CLASSES = [
 export default function AppointmentScheduleOne({ content = {} , clinics =[], isDemo = false}) {
   const items = content.items || [];
   const getClinicWhatsapp = (index) =>{
-    return clinics[index].whatsapp ?? ""
+    return clinics[index]?.whatsapp ? clinics[index]?.whatsapp : isDemo===true ? "8801777878543": ""
   }
 
   return (

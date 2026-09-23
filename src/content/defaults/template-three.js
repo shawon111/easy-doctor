@@ -1,6 +1,6 @@
 export const templateThreeDefaults = {
   header: {
-    brandName: "{{name}}",
+    brandName: "John",
     navLinks: [
       { label: "Home", href: "", key: "home" },
       { label: "About", href: "/about", key: "about" },
@@ -10,9 +10,9 @@ export const templateThreeDefaults = {
     appointmentCtaLink: "/appointment",
   },
   footer: {
-    brandName: "{{name}}",
+    brandName: "John",
     tagline: "One doctor, fully invested in your health. Modern medicine, delivered personally.",
-    copyright: "© 2026 {{name}}. Modern Medicine, Delivered Personally.",
+    copyright: "© 2026 John. Modern Medicine, Delivered Personally.",
     resourceLinks: [
       { label: "Home", href: "/" },
       { label: "About", href: "/about" },
@@ -28,7 +28,7 @@ export const templateThreeDefaults = {
     ],
     newsletter: {
       heading: "Need an Appointment?",
-      body: "Message Dr. {{name}}'s office and we will find a time that suits you.",
+      body: "Message Dr. John's office and we will find a time that suits you.",
     },
   },
   pages: {
@@ -37,7 +37,7 @@ export const templateThreeDefaults = {
         badge: "ADVANCED MEDICINE, PERSONALLY DELIVERED",
         heading: "Precision Care for a",
         headingHighlight: "Healthier Future.",
-        body: "Experience the gold standard in modern healthcare. Led by {{name}}, this practice combines cutting-edge technology with unhurried, patient-first expertise.",
+        body: "Experience the gold standard in modern healthcare. Led by John, this practice combines cutting-edge technology with unhurried, patient-first expertise.",
         primaryCta: "Start Consultation",
         secondaryCta: "Message My Office",
         whatsappUrl: "{{whatsappUrl}}",
@@ -113,7 +113,7 @@ export const templateThreeDefaults = {
         ],
       },
       whyTrust: {
-        heading: "Why Patients Choose {{name}}",
+        heading: "Why Patients Choose John",
         items: [
           {
             number: "01",
@@ -148,7 +148,7 @@ export const templateThreeDefaults = {
           {
             icon: "clinical_notes",
             title: "Consultation",
-            description: "A deep-dive 60-minute initial assessment with {{name}}.",
+            description: "A deep-dive 60-minute initial assessment with John.",
             active: false,
           },
           {
@@ -182,7 +182,7 @@ export const templateThreeDefaults = {
       },
       finalCta: {
         heading: "Ready for a New Standard of Care?",
-        body: "More than 10,000 patients have trusted {{name}} with their health. Yours could be next.",
+        body: "More than 10,000 patients have trusted John with their health. Yours could be next.",
         primaryCta: "Book Your Consultation",
         secondaryCta: "Explore Services",
       },
@@ -191,7 +191,7 @@ export const templateThreeDefaults = {
       hero: {
         badge: "The Physician",
         heading: "Precision in Practice, Humanity in Heart.",
-        body: "{{name}} combines three decades of clinical expertise with a passion for pioneering medical technologies, ensuring every patient receives world-class diagnostic accuracy and empathetic care.",
+        body: "John combines three decades of clinical expertise with a passion for pioneering medical technologies, ensuring every patient receives world-class diagnostic accuracy and empathetic care.",
         imageUrl:
           "https://lh3.googleusercontent.com/aida-public/AB6AXuC0UvJcRRGzeMnVHVjjXtnLb4votL8IteDuxDZoMBMVpVJGOKk-h0BcL08sXfFokA-cOo1p0SsfrOwac1Nso4BV3x2gC0QrMZoHxNOy-E6Z9IfkMBdSWPmugRqreXSFb0bGdnpfIjYIqX8q9tzPLq3OAXzVJuxeYXwM679Bugo2A_j8k-awrsDAbjGSxwoiM3DzXth4E2OLtitL8Sr4rEapTONQDNSO02L51czSuadSIGI3LL-ZaASnpQ",
         imageAlt:
@@ -202,7 +202,7 @@ export const templateThreeDefaults = {
       },
       journey: {
         heading: "A Journey Fueled by Curiosity.",
-        body: "It began in a small research lab where the interplay between technology and biology first sparked a lifelong obsession. {{name}} didn't just want to treat symptoms; he wanted to decode the human condition using the most advanced tools available to modern science.\n\nThrough years of intensive study across Europe and North America, he developed a unique methodology that merges data-driven diagnostics with the art of patient-first consultation.",
+        body: "It began in a small research lab where the interplay between technology and biology first sparked a lifelong obsession. John didn't just want to treat symptoms; he wanted to decode the human condition using the most advanced tools available to modern science.\n\nThrough years of intensive study across Europe and North America, he developed a unique methodology that merges data-driven diagnostics with the art of patient-first consultation.",
         quote: "",
         quoteAuthor: "",
         imageUrl:
@@ -309,7 +309,7 @@ export const templateThreeDefaults = {
       },
       finalCta: {
         heading: "Ready to experience the future of care?",
-        body: "{{name}} is currently accepting a limited number of new private patients for the upcoming quarter. Secure your diagnostic consultation today.",
+        body: "John is currently accepting a limited number of new private patients for the upcoming quarter. Secure your diagnostic consultation today.",
         primaryCta: "Schedule Consultation",
         secondaryCta: "Contact Us",
       },
@@ -318,7 +318,7 @@ export const templateThreeDefaults = {
       hero: {
         badge: "Precision Healthcare",
         heading: "Elevating Human Vitality Through Clinical Innovation",
-        body: "Dr. {{name}} combines cutting-edge diagnostic technology with deep clinical expertise to provide a truly personal care journey.",
+        body: "Dr. John combines cutting-edge diagnostic technology with deep clinical expertise to provide a truly personal care journey.",
       },
       treatments: {
         heading: "Specialized Treatments & Care",
@@ -409,7 +409,7 @@ export const templateThreeDefaults = {
               "Yes, I work with major global insurers. My office looks after the billing paperwork so you don't have to.",
           },
           {
-            question: "What is the {{name}} longevity protocol?",
+            question: "What is the John longevity protocol?",
             answer:
               "Our longevity protocol is a science-backed program that combines genetic testing, metabolic assessment, and personalized supplementation to slow biological aging.",
           },
@@ -425,8 +425,8 @@ export const templateThreeDefaults = {
     appointment: {
       hero: {
         badge: "Reservations",
-        heading: "Book a Visit with Dr. {{name}}",
-        body: "Experience clinical excellence through a streamlined booking process. Connect with {{name}} for personalized care tailored to your specific medical needs.",
+        heading: "Book a Visit with Dr. John",
+        body: "Experience clinical excellence through a streamlined booking process. Connect with John for personalized care tailored to your specific medical needs.",
       },
       steps: {
         items: [
@@ -470,7 +470,7 @@ export const templateThreeDefaults = {
       },
       whatsapp: {
         heading: "Quick Appointment via WhatsApp",
-        body: "Prefer a faster route? Skip the forms and message Dr. {{name}}'s office on WhatsApp to secure your slot instantly.",
+        body: "Prefer a faster route? Skip the forms and message Dr. John's office on WhatsApp to secure your slot instantly.",
         cta: "Open WhatsApp",
         whatsappUrl: "{{whatsappUrl}}",
         phoneDisplay: "{{phone}}",
@@ -512,7 +512,7 @@ export const templateThreeDefaults = {
           {
             question: "Do you accept international insurance providers?",
             answer:
-              "Yes, {{name}} works with several international health insurers. Send your policy details to my office before your visit and we will confirm your cover.",
+              "Yes, John works with several international health insurers. Send your policy details to my office before your visit and we will confirm your cover.",
           },
           {
             question: "Can I reschedule an appointment via WhatsApp?",

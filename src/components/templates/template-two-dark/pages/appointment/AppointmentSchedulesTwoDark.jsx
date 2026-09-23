@@ -20,9 +20,13 @@ function groupScheduleByLocation(items = []) {
   return Array.from(groups.values());
 }
 
-export default function AppointmentSchedulesTwoDark({ content = {}, telehealthImage, telehealthImageAlt, isDemo = false}) {
+export default function AppointmentSchedulesTwoDark({ content = {}, telehealthImage, telehealthImageAlt, isDemo = false, clinics=[]}) {
   const chambers = groupScheduleByLocation(content.items);
   const telehealthSrc = content.imageUrl || telehealthImage || TELEHEALTH_IMAGE_FALLBACK;
+  // get whatsapp number from chamber
+  const getClinicWhatsapp = (index) => {
+    return clinics[index]?.whatsapp ? clinics[index]?.whatsapp : isDemo===true ? "8801777878543": ""
+  }
 
   return (
     <section className="py-[120px] px-5 md:px-16" id="schedules">
@@ -35,7 +39,7 @@ export default function AppointmentSchedulesTwoDark({ content = {}, telehealthIm
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {chambers.map((chamber) => (
+        {chambers.map((chamber, index) => (
           <div
             key={chamber.name}
             className="glass-card p-8 rounded-xl flex flex-col h-full border-white/10 hover:border-tertiary/40 transition-colors duration-500"
@@ -57,9 +61,9 @@ export default function AppointmentSchedulesTwoDark({ content = {}, telehealthIm
             </div>
             <Link
               className="block text-center mt-8 w-full border border-primary text-primary hover:bg-primary hover:text-on-primary py-3 font-label-caps text-label-caps transition-all"
-              href="#whatsapp"
+              href={`https://wa.me/${getClinicWhatsapp(index)}`}
             >
-              Select This Clinic
+              Call For Booking: {getClinicWhatsapp(index)}
             </Link>
           </div>
         ))}
@@ -88,7 +92,7 @@ export default function AppointmentSchedulesTwoDark({ content = {}, telehealthIm
           </div>
           <Link
             className="block text-center relative z-10 mt-8 w-full bg-tertiary text-on-tertiary py-3 font-label-caps text-label-caps hover:bg-tertiary/90 transition-all"
-            href="#whatsapp"
+            href={`https://wa.me/${clinics[0]?.whatsapp ?? ""}`}
           >
             Book Online Session
           </Link>

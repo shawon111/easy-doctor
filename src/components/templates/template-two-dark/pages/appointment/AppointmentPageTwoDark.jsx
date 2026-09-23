@@ -11,15 +11,16 @@ export default function AppointmentPageTwoDark({ slug, content, isDemo = false }
 
   return (
     <>
-      <AppointmentHeroTwoDark content={appointment.hero}  isDemo={isDemo}/>
+      <AppointmentHeroTwoDark content={appointment.hero} isDemo={isDemo} />
       <AppointmentSchedulesTwoDark
         content={appointment.schedules}
         telehealthImage={appointment.whatsapp?.telehealthImage}
         telehealthImageAlt={appointment.whatsapp?.telehealthImageAlt}
-       isDemo={isDemo}/>
-      <AppointmentWhatsappTwoDark content={appointment.whatsapp}  isDemo={isDemo}/>
-      <AppointmentFaqTwoDark content={appointment.faq}  isDemo={isDemo}/>
-      <AppointmentCtaTwoDark content={appointment.finalCta} slug={slug}  isDemo={isDemo}/>
+        clinics={content?.clinics}
+        isDemo={isDemo} />
+      <AppointmentWhatsappTwoDark clinics={content?.clinics} content={appointment.whatsapp} isDemo={isDemo} />
+      <AppointmentFaqTwoDark content={appointment.faq} isDemo={isDemo} />
+      <AppointmentCtaTwoDark content={appointment.finalCta} slug={slug} isDemo={isDemo} />
     </>
   );
 }
