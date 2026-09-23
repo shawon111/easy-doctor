@@ -5,6 +5,7 @@ import AppointmentHeroOneDark from "./AppointmentHeroOneDark";
 import AppointmentProcessOneDark from "./AppointmentProcessOneDark";
 import AppointmentSchedulesOneDark from "./AppointmentSchedulesOneDark";
 import AppointmentWhatsappOneDark from "./AppointmentWhatsappOneDark";
+import DoctorBookingPage from "@/components/appointment-booking/DoctorBookingPage";
 
 export default function AppointmentPageOneDark({ content, isDemo = false }) {
   const appointment = resolveTemplateContent(content?.pages?.appointment, templateOneDefaults.pages.appointment, isDemo);
@@ -14,6 +15,7 @@ export default function AppointmentPageOneDark({ content, isDemo = false }) {
       <AppointmentHeroOneDark content={appointment.hero} isDemo={isDemo} />
       <AppointmentProcessOneDark content={appointment.howItWorks} isDemo={isDemo} />
       <AppointmentSchedulesOneDark content={appointment.schedule} clinics={content?.clinics ?? []} isDemo={isDemo} />
+      <DoctorBookingPage />
       <AppointmentWhatsappOneDark content={appointment.whatsappCta} clinics={content?.clinics ?? []} isDemo={isDemo} />
       <AppointmentFaqOneDark content={appointment.faq} isDemo={isDemo} />
     </>

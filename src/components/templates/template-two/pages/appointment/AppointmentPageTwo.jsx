@@ -5,6 +5,7 @@ import AppointmentSchedulesTwo from "./AppointmentSchedulesTwo";
 import AppointmentWhatsappTwo from "./AppointmentWhatsappTwo";
 import AppointmentFaqTwo from "./AppointmentFaqTwo";
 import AppointmentCtaTwo from "./AppointmentCtaTwo";
+import DoctorBookingPage from "@/components/appointment-booking/DoctorBookingPage";
 
 const AppointmentPageTwo = ({ slug, content, isDemo = false }) => {
   const appointment = resolveTemplateContent(content?.pages?.appointment, templateTwoDefaults.pages.appointment, isDemo);
@@ -18,6 +19,7 @@ const AppointmentPageTwo = ({ slug, content, isDemo = false }) => {
         telehealthImageAlt={appointment.whatsapp?.telehealthImageAlt}
         clinics={content?.clinics}
         isDemo={isDemo} />
+      <DoctorBookingPage />
       <AppointmentWhatsappTwo clinics={content?.clinics} content={appointment.whatsapp} isDemo={isDemo} />
       <AppointmentFaqTwo content={appointment.faq} isDemo={isDemo} />
       <AppointmentCtaTwo content={appointment.finalCta} slug={slug} isDemo={isDemo} />

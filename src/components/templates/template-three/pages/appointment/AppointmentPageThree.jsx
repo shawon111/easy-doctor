@@ -6,6 +6,7 @@ import AppointmentHeroThree from "./AppointmentHeroThree";
 import AppointmentScheduleThree from "./AppointmentScheduleThree";
 import AppointmentStepsThree from "./AppointmentStepsThree";
 import AppointmentWhatsappThree from "./AppointmentWhatsappThree";
+import DoctorBookingPage from "@/components/appointment-booking/DoctorBookingPage";
 
 export default function AppointmentPageThree({ content, isDemo = false }) {
   const appointment = resolveTemplateContent(content?.pages?.appointment, templateThreeDefaults.pages.appointment, isDemo);
@@ -15,6 +16,7 @@ export default function AppointmentPageThree({ content, isDemo = false }) {
       <AppointmentHeroThree content={appointment.hero} isDemo={isDemo} />
       <AppointmentStepsThree content={appointment.steps} isDemo={isDemo} />
       <AppointmentScheduleThree content={appointment.schedule} isDemo={isDemo} />
+      <DoctorBookingPage />
       <AppointmentWhatsappThree clinics={content?.clinics} phone={content?.phone ? content?.phone : isDemo === true ? "+8890652365711" : ""} content={appointment.whatsapp} isDemo={isDemo} />
       <AppointmentChambersThree content={appointment.chambers} isDemo={isDemo} />
       <AppointmentFaqThree content={appointment.faq} isDemo={isDemo} />

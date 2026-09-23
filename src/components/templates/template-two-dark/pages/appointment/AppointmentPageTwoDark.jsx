@@ -5,6 +5,7 @@ import AppointmentFaqTwoDark from "./AppointmentFaqTwoDark";
 import AppointmentHeroTwoDark from "./AppointmentHeroTwoDark";
 import AppointmentSchedulesTwoDark from "./AppointmentSchedulesTwoDark";
 import AppointmentWhatsappTwoDark from "./AppointmentWhatsappTwoDark";
+import DoctorBookingPage from "@/components/appointment-booking/DoctorBookingPage";
 
 export default function AppointmentPageTwoDark({ slug, content, isDemo = false }) {
   const appointment = resolveTemplateContent(content?.pages?.appointment, templateTwoDefaults.pages.appointment, isDemo);
@@ -18,6 +19,7 @@ export default function AppointmentPageTwoDark({ slug, content, isDemo = false }
         telehealthImageAlt={appointment.whatsapp?.telehealthImageAlt}
         clinics={content?.clinics}
         isDemo={isDemo} />
+      <DoctorBookingPage />
       <AppointmentWhatsappTwoDark clinics={content?.clinics} content={appointment.whatsapp} isDemo={isDemo} />
       <AppointmentFaqTwoDark content={appointment.faq} isDemo={isDemo} />
       <AppointmentCtaTwoDark content={appointment.finalCta} slug={slug} isDemo={isDemo} />
