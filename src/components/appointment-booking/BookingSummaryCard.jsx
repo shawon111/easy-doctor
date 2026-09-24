@@ -24,7 +24,7 @@ export default function BookingSummaryCard({
   isComplete,
 }) {
   return (
-    <Card className="border-slate-200 p-5">
+    <Card className="border-slate-200 p-5 bg-[#1A2026]">
       <div className="flex items-center justify-between">
         <h3 className="text-sm font-semibold text-white">Booking summary</h3>
         <Badge

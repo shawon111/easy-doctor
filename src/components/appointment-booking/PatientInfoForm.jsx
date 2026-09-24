@@ -12,7 +12,7 @@ export default function PatientInfoForm({ patient, onChange, disabled }) {
 
       <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div className="space-y-1.5">
-          <Label htmlFor="patient-name">Full name</Label>
+          <Label className="text-slate-200" htmlFor="patient-name">Full name</Label>
           <Input
             id="patient-name"
             placeholder="e.g. Kamal Hossain"
@@ -22,7 +22,7 @@ export default function PatientInfoForm({ patient, onChange, disabled }) {
         </div>
 
         <div className="space-y-1.5">
-          <Label htmlFor="patient-phone">Phone number</Label>
+          <Label className="text-slate-200" htmlFor="patient-phone">Phone number</Label>
           <Input
             id="patient-phone"
             type="tel"
@@ -33,7 +33,7 @@ export default function PatientInfoForm({ patient, onChange, disabled }) {
         </div>
 
         <div className="space-y-1.5">
-          <Label htmlFor="patient-age">Age</Label>
+          <Label className="text-slate-200" htmlFor="patient-age">Age</Label>
           <Input
             id="patient-age"
             type="number"
@@ -44,7 +44,7 @@ export default function PatientInfoForm({ patient, onChange, disabled }) {
         </div>
 
         <div className="space-y-1.5">
-          <Label>Gender</Label>
+          <Label className="text-slate-200">Gender</Label>
           <RadioGroup
             value={patient.gender}
             onValueChange={(value) => onChange({ ...patient, gender: value })}
@@ -52,21 +52,21 @@ export default function PatientInfoForm({ patient, onChange, disabled }) {
           >
             <div className="flex items-center gap-2">
               <RadioGroupItem value="male" id="gender-male" />
-              <Label htmlFor="gender-male" className="font-normal">Male</Label>
+              <Label htmlFor="gender-male" className="font-normal text-slate-200">Male</Label>
             </div>
             <div className="flex items-center gap-2">
               <RadioGroupItem value="female" id="gender-female" />
-              <Label htmlFor="gender-female" className="font-normal">Female</Label>
+              <Label htmlFor="gender-female" className="font-normal text-slate-200">Female</Label>
             </div>
             <div className="flex items-center gap-2">
               <RadioGroupItem value="other" id="gender-other" />
-              <Label htmlFor="gender-other" className="font-normal">Other</Label>
+              <Label htmlFor="gender-other" className="font-normal text-slate-200">Other</Label>
             </div>
           </RadioGroup>
         </div>
 
         <div className="space-y-1.5 sm:col-span-2">
-          <Label htmlFor="patient-notes">Reason for visit (optional)</Label>
+          <Label className="text-slate-200" htmlFor="patient-notes">Reason for visit (optional)</Label>
           <Textarea
             id="patient-notes"
             placeholder="Briefly describe your concern, e.g. follow-up on blood pressure"

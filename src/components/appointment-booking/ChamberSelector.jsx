@@ -22,7 +22,7 @@ export default function ChamberSelector({ chambers, selectedChamberId, onSelect 
                 "cursor-pointer p-4 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-600",
                 isSelected
                   ? "border-teal-600 bg-[#1E2939] ring-1 ring-teal-600"
-                  : "border-slate-200 hover:border-teal-300",
+                  : "border-slate-200 hover:border-teal-300 bg-gray-600",
               ].join(" ")}
             >
               <p className="text-sm font-medium text-white">{chamber.name}</p>
