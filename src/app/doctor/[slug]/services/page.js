@@ -71,6 +71,12 @@ const ServicesPage = async ({ params }) => {
     let siteContent = website?.content ?? {}
     siteContent.userId = website?.userId?._id
     siteContent.phone = website?.userId?.phone;
+    // generate and use brand name
+    const brandName = website?.userId?.name.split(" ")[0] + " " + website?.userId?.name.split(" ")[1]
+    siteContent.header = siteContent?.header ?? {}
+    siteContent.footer = siteContent?.footer ?? {}
+    siteContent.header.brandName = brandName;
+    siteContent.footer.brandName = brandName;
     return <TemplatePageRenderer page={pageName} content={siteContent} slug={slug} />;
 };
 
