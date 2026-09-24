@@ -219,6 +219,9 @@ const SEOSchema = new mongoose.Schema(
             },
         }
     },
+    {
+        timestamps: true
+    }
 )
 
 const SEO = mongoose.models.SEO || mongoose.model("SEO", SEOSchema);

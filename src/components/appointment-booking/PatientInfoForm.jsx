@@ -18,6 +18,7 @@ export default function PatientInfoForm({ patient, onChange, disabled }) {
             placeholder="e.g. Kamal Hossain"
             value={patient.name}
             onChange={update("name")}
+            className="text-white"
           />
         </div>
 
@@ -29,6 +30,7 @@ export default function PatientInfoForm({ patient, onChange, disabled }) {
             placeholder="e.g. 01712-345678"
             value={patient.phone}
             onChange={update("phone")}
+            className="text-white"
           />
         </div>
 
@@ -40,6 +42,7 @@ export default function PatientInfoForm({ patient, onChange, disabled }) {
             placeholder="e.g. 42"
             value={patient.age}
             onChange={update("age")}
+            className="text-white"
           />
         </div>
 
@@ -73,6 +76,7 @@ export default function PatientInfoForm({ patient, onChange, disabled }) {
             value={patient.notes}
             onChange={update("notes")}
             rows={3}
+            className="text-white"
           />
         </div>
       </div>
