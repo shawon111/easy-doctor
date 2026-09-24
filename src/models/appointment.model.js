@@ -47,7 +47,9 @@ const appointmentSchema = new mongoose.Schema({
     }
 },
     { timestamps: true }
-)
+);
+
+appointmentSchema.index({ userId: 1, createdAt: -1 });
 
 const Appointment = mongoose.models.Appointment || mongoose.model("Appointment", appointmentSchema);
 
