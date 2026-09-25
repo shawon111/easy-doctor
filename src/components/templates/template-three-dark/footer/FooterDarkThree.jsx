@@ -15,7 +15,7 @@ export default function FooterDarkThree({ slug, content, isDemo = false }) {
     <footer className="bg-surface-container-lowest w-full py-12 border-t border-outline-variant">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-gutter max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
         <div className="space-y-4">
-          <div className="font-headline-md text-headline-md font-bold text-primary">{brandName}</div>
+          <div className="font-headline-md text-headline-md font-bold text-primary capitalize">{brandName}</div>
           <p className="font-label-sm text-label-sm text-on-surface-variant">{copyright}</p>
         </div>
 

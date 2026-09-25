@@ -19,7 +19,7 @@ export default function Navbar({ content = {}, slug, page , isDemo = false}) {
   return (
     <nav className="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl shadow-sm">
       <div className="flex justify-between items-center h-20 px-margin-desktop max-w-container-max mx-auto">
-        <Link href={basePath || "/"} className="text-headline-md font-headline-md font-bold text-on-surface">
+        <Link href={basePath || "/"} className="text-headline-md font-headline-md font-bold text-on-surface capitalize">
           {brandName}
         </Link>
 

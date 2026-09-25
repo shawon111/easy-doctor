@@ -17,7 +17,7 @@ export default function NavbarDarkThree({ page = "home", slug, content, isDemo =
   return (
     <nav className="t3d-nav fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-outline-variant/30 h-20">
       <div className="flex justify-between items-center max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop h-full">
-        <Link href={base || "/"} className="font-headline-md text-headline-md font-bold text-primary">
+        <Link href={base || "/"} className="font-headline-md text-headline-md font-bold text-primary capitalize">
           {brandName}
         </Link>
 

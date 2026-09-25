@@ -19,7 +19,7 @@ export default function AppointmentPageTwoDark({ slug, content, isDemo = false }
         telehealthImageAlt={appointment.whatsapp?.telehealthImageAlt}
         clinics={content?.clinics}
         isDemo={isDemo} />
-      <DoctorBookingPage />
+      <DoctorBookingPage userId={content?.userId} />
       <AppointmentWhatsappTwoDark clinics={content?.clinics} content={appointment.whatsapp} isDemo={isDemo} />
       <AppointmentFaqTwoDark content={appointment.faq} isDemo={isDemo} />
       <AppointmentCtaTwoDark content={appointment.finalCta} slug={slug} isDemo={isDemo} />

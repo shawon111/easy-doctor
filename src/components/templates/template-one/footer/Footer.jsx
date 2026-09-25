@@ -17,7 +17,7 @@ export default function FooterOne({ content = {}, slug , isDemo = false, phone})
     <footer className="bg-surface-container-low w-full rounded-t-xl pt-section-padding pb-12">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop py-stack-lg max-w-container-max mx-auto">
         <div className="col-span-1 md:col-span-1">
-          <div className="text-headline-md font-headline-md font-bold text-primary mb-6">
+          <div className="text-headline-md font-headline-md font-bold text-primary mb-6 capitalize">
             {brandName}
           </div>
           {tagline ? (

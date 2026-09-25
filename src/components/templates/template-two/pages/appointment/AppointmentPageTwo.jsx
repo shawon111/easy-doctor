@@ -19,7 +19,7 @@ const AppointmentPageTwo = ({ slug, content, isDemo = false }) => {
         telehealthImageAlt={appointment.whatsapp?.telehealthImageAlt}
         clinics={content?.clinics}
         isDemo={isDemo} />
-      <DoctorBookingPage />
+      <DoctorBookingPage userId={content?.userId} />
       <AppointmentWhatsappTwo clinics={content?.clinics} content={appointment.whatsapp} isDemo={isDemo} />
       <AppointmentFaqTwo content={appointment.faq} isDemo={isDemo} />
       <AppointmentCtaTwo content={appointment.finalCta} slug={slug} isDemo={isDemo} />

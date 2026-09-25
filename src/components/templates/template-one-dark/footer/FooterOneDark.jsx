@@ -17,7 +17,7 @@ export default function FooterOneDark({ content = {}, slug , isDemo = false, pho
     <footer className="bg-surface-container-lowest w-full pt-[120px] pb-12 border-t border-white/5">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-8 px-10 py-12 max-w-[1440px] mx-auto">
         <div className="col-span-1 md:col-span-1">
-          <div className="text-2xl font-bold tracking-tighter text-secondary mb-8">{brandName}</div>
+          <div className="text-2xl font-bold tracking-tighter text-secondary mb-8 capitalize">{brandName}</div>
           {tagline ? (
             <p className="text-on-surface-variant text-base mb-10 leading-relaxed max-w-xs">
               {tagline}

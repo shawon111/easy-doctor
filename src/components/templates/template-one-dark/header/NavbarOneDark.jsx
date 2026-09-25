@@ -17,7 +17,7 @@ export default function NavbarOneDark({ content = {}, page = "home", slug , isDe
   return (
     <nav className="fixed top-0 w-full z-50 glass-nav">
       <div className="flex justify-between items-center h-20 px-10 max-w-[1440px] mx-auto">
-        <Link href={base || "/"} className="text-headline-md font-bold tracking-tighter text-secondary">
+        <Link href={base || "/"} className="text-headline-md font-bold tracking-tighter text-secondary capitalize">
           {brandName}
         </Link>
 

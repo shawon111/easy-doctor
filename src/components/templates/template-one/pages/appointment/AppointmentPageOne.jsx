@@ -15,7 +15,7 @@ const AppointmentPageOne = async({ content, isDemo = false }) => {
             <AppointmentHeroOne content={appointment.hero} isDemo={isDemo}/>
             <AppointmentHowItWorksOne content={appointment.howItWorks} isDemo={isDemo}/>
             <AppointmentScheduleOne content={appointment.schedule} clinics={content?.clinics ?? []}  isDemo={isDemo}/>
-            <DoctorBookingPage />
+            <DoctorBookingPage userId={content?.userId} />
             <AppointmentWhatsappCtaOne content={appointment.whatsappCta} clinics={content?.clinics ?? []} isDemo={isDemo}/>
             <AppointmentFaqOne content={appointment.faq} isDemo={isDemo}/>
         </>

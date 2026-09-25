@@ -18,7 +18,7 @@ export default function FooterTwo({ content = {} , slug, isDemo = false, phone})
     <footer className="bg-surface-container-lowest border-t border-outline-variant/30">
       <div className="grid grid-cols-1 md:grid-cols-12 gap-gutter px-margin-mobile md:px-margin-desktop py-section-gap max-w-container-max mx-auto">
         <div className="md:col-span-4 space-y-6">
-          <div className="font-headline-md text-headline-md text-primary">{brandName}</div>
+          <div className="font-headline-md text-headline-md text-primary capitalize">{brandName}</div>
           {tagline ? (
             <p className="font-body-md text-body-md text-on-surface-variant max-w-xs">
               {tagline}

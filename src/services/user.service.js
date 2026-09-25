@@ -122,6 +122,20 @@ export const getUserById = async (id) => {
     return user;
 }
 
+// get user by id public
+export const getUserByIdPublic = async (id) => {
+    await connectDB();
+    const user = await User.findById(id).select({
+        clinicAddress: 1,
+        name: 1,
+        phone: 1
+    }).lean();
+    if (!user) {
+        throw new Error("User not found");
+    }
+    return user;
+}
+
 // get user by slug
 export const getUserBySlug = async (slug) => {
     await connectDB();
@@ -169,11 +183,11 @@ export const getDoctorsList = async () => {
 // logout
 export const logoutuser = async () => {
     const cookieStore = await cookies();
-    try{
+    try {
         cookieStore.delete("accessToken")
         cookieStore.delete("refreshToken")
         return true;
-    }catch(error){
+    } catch (error) {
         throw new Error("failed to logout user")
     }
 }

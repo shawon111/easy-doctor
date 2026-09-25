@@ -56,7 +56,7 @@ export default function NavbarTwo({ content = {}, slug, page , isDemo = false}) 
       ref={navRef}
       className="bg-surface-container-lowest/80 backdrop-blur-xl border-b border-outline-variant shadow-sm flex justify-between items-center px-margin-mobile md:px-margin-desktop h-20 w-full z-50 top-0 sticky transition-transform duration-300"
     >
-      <Link href={basePath || "/"} className="font-headline-sm text-headline-sm text-on-surface tracking-tight">
+      <Link href={basePath || "/"} className="font-headline-sm text-headline-sm text-on-surface tracking-tight capitalize">
         {brandName}
       </Link>
 

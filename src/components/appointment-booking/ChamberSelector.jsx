@@ -10,14 +10,14 @@ export default function ChamberSelector({ chambers, selectedChamberId, onSelect 
 
       <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-3">
         {chambers.map((chamber) => {
-          const isSelected = chamber.id === selectedChamberId;
+          const isSelected = chamber._id === selectedChamberId;
           return (
             <Card
-              key={chamber.id}
+              key={chamber._id}
               role="button"
               tabIndex={0}
-              onClick={() => onSelect(chamber.id)}
-              onKeyDown={(e) => e.key === "Enter" && onSelect(chamber.id)}
+              onClick={() => onSelect(chamber._id)}
+              onKeyDown={(e) => e.key === "Enter" && onSelect(chamber._id)}
               className={[
                 "cursor-pointer p-4 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-600",
                 isSelected
@@ -25,8 +25,8 @@ export default function ChamberSelector({ chambers, selectedChamberId, onSelect 
                   : "border-slate-200 hover:border-teal-300 bg-gray-600",
               ].join(" ")}
             >
-              <p className="text-sm font-medium text-white">{chamber.name}</p>
-              <p className="mt-0.5 text-xs text-slate-200">{chamber.area}</p>
+              <p className="text-sm font-medium text-white">{chamber.chamberName}</p>
+              <p className="mt-0.5 text-xs text-slate-200">{chamber.address}, {chamber.city}, {chamber.country}</p>
 
               <div className="mt-3 space-y-1 text-xs text-slate-400">
                 <p>{chamber.visitingDays}</p>

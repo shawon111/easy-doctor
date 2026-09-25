@@ -18,7 +18,7 @@ export default function FooterTwoDark({ slug, content = {} , isDemo = false, pho
     <footer className="t2d-footer border-t border-outline-variant/30">
       <div className="grid grid-cols-1 md:grid-cols-12 gap-6 px-5 md:px-16 py-[120px] max-w-[1200px] mx-auto">
         <div className="md:col-span-4 space-y-6">
-          <div className="font-headline-md text-headline-md text-tertiary">{brandName}</div>
+          <div className="font-headline-md text-headline-md text-tertiary capitalize">{brandName}</div>
           {tagline ? (
             <p className="font-body-md text-body-md text-on-surface-variant max-w-xs">
               {tagline}

@@ -1,57 +1,129 @@
 "use client"
-import { useMemo, useState } from "react";
+import { useState } from "react";
 
-import {
-  chambers,
-  availableDates,
-  generateSerials,
-  nextAvailableSerial,
-} from "./mockData";
 import BookingStepper from "./BookingStepper";
 import ChamberSelector from "./ChamberSelector";
 import DateSelector from "./DateSelector";
-import SerialGrid from "./SerialGrid";
 import PatientInfoForm from "./PatientInfoForm";
 import BookingSummaryCard from "./BookingSummaryCard";
+import { useQuery } from "@tanstack/react-query";
+import { Card, CardContent, CardHeader } from "../ui/card";
+import { Skeleton } from "../ui/skeleton";
+
+// generate avaialble dates
+const generateAvailableDates = (openings, totalDays = 7) => {
+  if (!openings) return [];
+
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  const today = new Date();
+  const createdDates = [];
+
+  for (let day = 0; day < totalDays; day++) {
+    const newDay = new Date(today);
+
+    newDay.setDate(newDay.getDate() + day);
+
+    createdDates.push({
+      id: day + 1,
+      weekday: newDay.toLocaleDateString("en-US", {
+        weekday: "long",
+      }),
+      day: newDay.getDate(),
+      month: months[newDay.getMonth()],
+      date: newDay,
+    });
+  }
+
+  const availableDays = openings
+    .split(",")
+    .map((item) => item.trim());
+
+  return createdDates.filter((item) =>
+    availableDays.includes(item.weekday)
+  );
+};
 
 const EMPTY_PATIENT = { name: "", phone: "", age: "", gender: "male", notes: "" };
 
-export default function DoctorBookingPage() {
+export default function DoctorBookingPage({ userId }) {
+  // get userInfo
+  const getUserInfo = async () => {
+    const res = await fetch(`/api/user/${userId}`);
+    if (!res.ok) {
+      throw new Error("failed to get the user")
+    }
+    const data = await res.json();
+    return data.data
+  }
+
+  const { data: user, isFetching, isError } = useQuery({
+    queryKey: ["user", userId],
+    queryFn: getUserInfo,
+  })
+
+  // states
   const [selectedChamberId, setSelectedChamberId] = useState(null);
   const [selectedDateId, setSelectedDateId] = useState(null);
-  const [selectedSerial, setSelectedSerial] = useState(null);
   const [patient, setPatient] = useState(EMPTY_PATIENT);
 
-  // Mock serials — in a real app these would be fetched per chamber + date.
-  const serials = useMemo(() => generateSerials(30, 12), [selectedChamberId, selectedDateId]);
-  const nextAvailable = useMemo(() => nextAvailableSerial(serials), [serials]);
+  // return component conditionally
+  if (isFetching) {
+    return <div className="w-full flex items-center justify-center">
+      <Card className="w-full max-w-xs">
+        <CardHeader>
+          <Skeleton className="h-4 w-2/3" />
+          <Skeleton className="h-4 w-1/2" />
+        </CardHeader>
+        <CardContent>
+          <Skeleton className="aspect-video w-full" />
+        </CardContent>
+      </Card>;
+    </div>
+  }
 
-  const selectedChamber = chambers.find((c) => c.id === selectedChamberId) || null;
-  const selectedDate = availableDates.find((d) => d.id === selectedDateId) || null;
+  if (isError || !user) {
+    return <div>Failed to load appointment booking</div>;
+  }
+
+  const { clinicAddress } = user;
+
+  // steps setup
+  const selectedChamber = clinicAddress.find((c) => c._id === selectedChamberId) || null;
+  const selectedDate = generateAvailableDates(selectedChamber?.visitingDays, 7).find((d) => d.id === selectedDateId) || null;
 
   const currentStep = !selectedChamberId
     ? 1
     : !selectedDateId
-    ? 2
-    : !selectedSerial
-    ? 3
-    : !patient.name || !patient.phone
-    ? 4
-    : 5;
+      ? 2
+      : !patient.name || !patient.phone
+        ? 3
+        : 4;
 
   const isComplete = Boolean(
-    selectedChamber && selectedDate && selectedSerial && patient.name && patient.phone
+    selectedChamber && selectedDate && patient.name && patient.phone
   );
 
   const handleSelectChamber = (id) => {
     setSelectedChamberId(id);
     setSelectedDateId(null);
-    setSelectedSerial(null);
   };
 
   const handleSelectDate = (id) => {
     setSelectedDateId(id);
-    setSelectedSerial(null);
   };
 
   const handleConfirm = () => {
@@ -59,7 +131,6 @@ export default function DoctorBookingPage() {
     console.log("Confirm booking (UI only):", {
       chamber: selectedChamber,
       date: selectedDate,
-      serial: selectedSerial,
       patient,
     });
   };
@@ -74,36 +145,27 @@ export default function DoctorBookingPage() {
           {/* Left: step flow */}
           <div className="space-y-10">
             <ChamberSelector
-              chambers={chambers}
+              chambers={clinicAddress}
               selectedChamberId={selectedChamberId}
               onSelect={handleSelectChamber}
             />
 
             <DateSelector
-              dates={availableDates}
+              dates={generateAvailableDates(selectedChamber?.visitingDays, 7)}
               selectedDateId={selectedDateId}
               onSelect={handleSelectDate}
               disabled={!selectedChamberId}
             />
 
-            <SerialGrid
-              serials={serials}
-              selectedSerial={selectedSerial}
-              onSelect={setSelectedSerial}
-              nextAvailable={nextAvailable}
-              disabled={!selectedDateId}
-            />
-
             <PatientInfoForm
               patient={patient}
               onChange={setPatient}
-              disabled={!selectedSerial}
+              disabled={!selectedDate}
             />
 
             <BookingSummaryCard
               chamber={selectedChamber}
               date={selectedDate}
-              serial={selectedSerial}
               patientName={patient.name}
               fee={selectedChamber?.fee}
               onConfirm={handleConfirm}

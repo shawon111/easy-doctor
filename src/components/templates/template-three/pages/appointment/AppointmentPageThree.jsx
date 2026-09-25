@@ -16,7 +16,7 @@ export default function AppointmentPageThree({ content, isDemo = false }) {
       <AppointmentHeroThree content={appointment.hero} isDemo={isDemo} />
       <AppointmentStepsThree content={appointment.steps} isDemo={isDemo} />
       <AppointmentScheduleThree content={appointment.schedule} isDemo={isDemo} />
-      <DoctorBookingPage />
+      <DoctorBookingPage userId={content?.userId} />
       <AppointmentWhatsappThree clinics={content?.clinics} phone={content?.phone ? content?.phone : isDemo === true ? "+8890652365711" : ""} content={appointment.whatsapp} isDemo={isDemo} />
       <AppointmentChambersThree content={appointment.chambers} isDemo={isDemo} />
       <AppointmentFaqThree content={appointment.faq} isDemo={isDemo} />

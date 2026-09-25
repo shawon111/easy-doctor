@@ -43,7 +43,7 @@ export default function NavbarTwoDark({ page = "home", slug, content = {} , isDe
       ref={navRef}
       className="t2d-nav backdrop-blur-xl border-b shadow-sm flex justify-between items-center px-5 md:px-16 h-20 w-full z-50 top-0 sticky transition-transform duration-300"
     >
-      <Link href={base || "/"} className="font-headline-sm text-headline-sm text-on-surface tracking-tight">
+      <Link href={base || "/"} className="font-headline-sm text-headline-sm text-on-surface tracking-tight capitalize">
         {brandName}
       </Link>
 
