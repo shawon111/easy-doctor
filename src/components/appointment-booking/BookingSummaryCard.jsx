@@ -22,6 +22,7 @@ export default function BookingSummaryCard({
   fee,
   onConfirm,
   isComplete,
+  isCreating
 }) {
   return (
     <Card className="border-slate-200 p-5 bg-[#1A2026]">
@@ -59,7 +60,7 @@ export default function BookingSummaryCard({
 
       <Button
         className="mt-5 w-full bg-teal-700 hover:bg-teal-800 text-white w-fit px-8 py-6 cursor-pointer"
-        disabled={!isComplete}
+        disabled={!isComplete || isCreating}
         onClick={onConfirm}
       >
         Confirm booking

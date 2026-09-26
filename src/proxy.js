@@ -96,14 +96,21 @@ export function proxy(request) {
     }
 
     // dashboard and api protected routes
+    const isPublicAppointmentPost =
+        pathname === "/api/appointment" &&
+        request.method === "POST";
+
     const isDashboard =
         request.nextUrl.pathname.startsWith("/dashboard");
 
-    const isProtectedApiRoute = PROTECTED_API_PATHS.some(
-        (protectedPath) =>
-            pathname === protectedPath ||
-            pathname.startsWith(`${protectedPath}/`)
-    ) || (
+    const isProtectedApiRoute =
+        !isPublicAppointmentPost &&
+        PROTECTED_API_PATHS.some(
+            (protectedPath) =>
+                pathname === protectedPath ||
+                pathname.startsWith(`${protectedPath}/`)
+        ) ||
+        (
             pathname === "/api/content" &&
             request.method !== "GET"
         );

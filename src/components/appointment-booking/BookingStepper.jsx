@@ -1,9 +1,8 @@
 const STEPS = [
   { id: 1, label: "Chamber" },
   { id: 2, label: "Date" },
-  { id: 3, label: "Serial" },
-  { id: 4, label: "Your info" },
-  { id: 5, label: "Confirm" },
+  { id: 3, label: "Your info" },
+  { id: 4, label: "Confirm" },
 ];
 
 export default function BookingStepper({ currentStep }) {

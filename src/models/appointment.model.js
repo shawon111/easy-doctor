@@ -1,56 +1,99 @@
 import mongoose from "mongoose";
 
-const appointmentSchema = new mongoose.Schema({
-    userId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-        required: true,
-    },
-    chamber: {
-        id: {
+const appointmentSchema = new mongoose.Schema(
+    {
+        userId: {
             type: mongoose.Schema.Types.ObjectId,
-            required: true
+            ref: "User",
+            required: true,
         },
-        name: {
-            type: String,
-            required: true
+
+        sessionId: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Session",
+            required: true,
         },
-    },
-    date: {
-        type: Date,
-        required: true
-    },
-    serial: {
-        type: Number,
-        required: true
-    },
-    patient: {
-        name: {
-            type: String,
-            required: true
+
+        chamber: {
+            address: {
+                type: String,
+                required: true,
+            },
+
+            name: {
+                type: String,
+                required: true,
+            },
         },
-        phone:{
-            type: String,
-            required: true
+
+        chamberId: {
+            type: mongoose.Schema.Types.ObjectId,
+            required: true,
         },
-        age: {
+
+        date: {
+            type: Date,
+            required: true,
+        },
+
+        serial: {
             type: Number,
-            required: true
+            required: true,
         },
-        gender: {
-            type: String,
-            enum: ["male", "female", "other"]
+
+        patient: {
+            name: {
+                type: String,
+                required: true,
+            },
+
+            phone: {
+                type: String,
+                required: true,
+            },
+
+            age: {
+                type: Number,
+                required: true,
+            },
+
+            gender: {
+                type: String,
+                enum: ["male", "female", "other"],
+            },
+
+            notes: {
+                type: String,
+            },
         },
-        notes: {
-            type: String
-        }
+    },
+    {
+        timestamps: true,
     }
-},
-    { timestamps: true }
 );
 
-appointmentSchema.index({ userId: 1, createdAt: -1 });
+appointmentSchema.index({
+    userId: 1,
+    createdAt: -1,
+});
 
-const Appointment = mongoose.models.Appointment || mongoose.model("Appointment", appointmentSchema);
+appointmentSchema.index({
+    userId: 1,
+    chamberId: 1,
+});
+
+appointmentSchema.index(
+    {
+        sessionId: 1,
+        serial: 1,
+    },
+    {
+        unique: true,
+    }
+);
+
+const Appointment =
+    mongoose.models.Appointment ||
+    mongoose.model("Appointment", appointmentSchema);
 
 export default Appointment;

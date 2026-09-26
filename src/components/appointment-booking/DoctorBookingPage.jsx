@@ -6,9 +6,11 @@ import ChamberSelector from "./ChamberSelector";
 import DateSelector from "./DateSelector";
 import PatientInfoForm from "./PatientInfoForm";
 import BookingSummaryCard from "./BookingSummaryCard";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { Card, CardContent, CardHeader } from "../ui/card";
 import { Skeleton } from "../ui/skeleton";
+import toast from "react-hot-toast";
+import BookingConfirmationDialog from "./BookingConfirmationDialog";
 
 // generate avaialble dates
 const generateAvailableDates = (openings, totalDays = 7) => {
@@ -74,12 +76,43 @@ export default function DoctorBookingPage({ userId }) {
     queryKey: ["user", userId],
     queryFn: getUserInfo,
   })
+  // create a appointment
+  const createAppointment = async () => {
+    const res = await fetch(`/api/appointment`, {
+      method: "POST",
+      headers: {
+        'Content-Type': "application/json"
+      },
+      body: JSON.stringify({
+        chamber: selectedChamber,
+        date: selectedDate?.date,
+        patient,
+        userId
+      })
+    });
+    if (!res.ok) {
+      throw new Error("failed to book an appointment")
+    }
+
+    const data = await res.json()
+    return data
+  };
 
   // states
   const [selectedChamberId, setSelectedChamberId] = useState(null);
   const [selectedDateId, setSelectedDateId] = useState(null);
   const [patient, setPatient] = useState(EMPTY_PATIENT);
+  const [bookedAppointment, setBookedAppointment] = useState({});
+  const [confirmationModal, setConfirmationModal] = useState(false)
 
+  const mutation = useMutation({
+    mutationFn: createAppointment,
+    onSuccess: (data) => {
+      setConfirmationModal(true)
+      setBookedAppointment(data.data)
+      toast.success("Appointment Booked Successfully!")
+    }
+  })
   // return component conditionally
   if (isFetching) {
     return <div className="w-full flex items-center justify-center">
@@ -98,7 +131,6 @@ export default function DoctorBookingPage({ userId }) {
   if (isError || !user) {
     return <div>Failed to load appointment booking</div>;
   }
-
   const { clinicAddress } = user;
 
   // steps setup
@@ -126,14 +158,10 @@ export default function DoctorBookingPage({ userId }) {
     setSelectedDateId(id);
   };
 
-  const handleConfirm = () => {
-    // UI only — no booking logic implemented.
-    console.log("Confirm booking (UI only):", {
-      chamber: selectedChamber,
-      date: selectedDate,
-      patient,
-    });
-  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    mutation.mutate()
+  }
 
   return (
     <div className="min-h-screen bg-gray-800 rounded-3xl mb-20 py-12 mx-auto">
@@ -168,11 +196,13 @@ export default function DoctorBookingPage({ userId }) {
               date={selectedDate}
               patientName={patient.name}
               fee={selectedChamber?.fee}
-              onConfirm={handleConfirm}
+              onConfirm={handleSubmit}
               isComplete={isComplete}
+              isCreating={mutation.isPending}
             />
           </div>
         </div>
+        <BookingConfirmationDialog open={confirmationModal} onOpenChange={setConfirmationModal} chamberName={bookedAppointment?.chamber?.name} date={bookedAppointment?.date} serial={bookedAppointment?.serial} patientName={bookedAppointment?.patient?.name} doctorName={user?.name} />
       </main>
     </div>
   );

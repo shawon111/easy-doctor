@@ -40,3 +40,6 @@
 {"level":50,"time":"2026-09-25T18:25:46.601Z","env":"development","msg":"Cannot do inclusion on field clinicAddress in exclusion projection"}
 {"level":50,"time":"2026-09-25T18:26:59.812Z","env":"development","msg":"Cannot do inclusion on field clinicAddress in exclusion projection"}
 {"level":50,"time":"2026-09-25T18:27:01.353Z","env":"development","msg":"Cannot do inclusion on field clinicAddress in exclusion projection"}
+{"level":50,"time":"2026-09-26T19:04:05.870Z","env":"development","msg":"Invalid time value"}
+{"level":50,"time":"2026-09-26T19:05:38.276Z","env":"development","msg":"Invalid time value"}
+{"level":50,"time":"2026-09-26T19:06:25.846Z","env":"development","msg":"Invalid time value"}
