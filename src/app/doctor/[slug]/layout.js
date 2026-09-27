@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import { connectDB } from "@/config/database";
 import { generateStructuredData } from "@/lib/seo/generateStructureddata";
 import { getSeoBySubdomain } from "@/services/seo.service";
@@ -11,6 +12,11 @@ export const generateStaticParams = async () => {
     slug: website?.subdomain,
   }));
 };
+
+// check website activeness
+const isWebsiteActive = (expireDate) => {
+  return expireDate && new Date(expireDate) > new Date()
+}
 
 // generate metadata
 export async function generateMetadata({ params }) {
@@ -89,6 +95,30 @@ const DoctorLayout = async ({ children, params }) => {
     user,
     baseUrl,
   });
+
+  // check if subscription expired
+  const isActive = isWebsiteActive(user?.expiresAt)
+  if (!isActive) {
+    return <>
+      <section className="mb-6 rounded-lg border border-red-200 bg-red-50 p-4">
+        <div className="flex items-center justify-between gap-4">
+          <div>
+            <h3 className="font-semibold text-red-900">
+              Your trial has expired
+            </h3>
+            <p className="mt-1 text-sm text-red-700">
+              Your Docxio trial has ended. Upgrade your plan to continue
+              using your website and dashboard features.
+            </p>
+          </div>
+
+          <Button>
+            Upgrade Plan
+          </Button>
+        </div>
+      </section>
+    </>
+  }
 
   return <>
     <script

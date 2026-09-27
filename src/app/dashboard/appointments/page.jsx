@@ -1,7 +1,19 @@
 import { AppointmentsPage } from '@/components/dashboard/appointments';
+import UpgradeNotice from '@/components/dashboard/UpgradeNotice';
+import { requireUser } from '@/lib/requireUser';
 import React from 'react';
 
-const Appointments = () => {
+// check website activeness
+const isWebsiteActive = (expireDate) => {
+    return expireDate && new Date(expireDate) > new Date()
+}
+
+const Appointments = async () => {
+    const user = await requireUser();
+    const isActivePlan = isWebsiteActive(user?.expiresAt)
+    if (!isActivePlan) {
+        return <UpgradeNotice />
+    }
     return (
         <>
             <AppointmentsPage />

@@ -76,7 +76,7 @@ export function AppSidebar({
         <TeamSwitcher />
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.navMain} />
+        <NavMain user={user} items={data.navMain} />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={user} />

@@ -83,7 +83,8 @@ export const getCurrentUser = async () => {
             profileCompleted: 1,
             userLevel: 1,
             profilePicture: 1,
-            _id: 1
+            _id: 1,
+            expiresAt: 1
         };
         const user = await User.findById(payload.sub).select(userInfoToReturn).lean();
         return {
@@ -160,7 +161,8 @@ export const getUserBySubdomain = async (subdomain) => {
             bio: 1,
             clinicAddress: 1,
             socialLinks: 1,
-            subdomain: 1
+            subdomain: 1,
+            expiresAt: 1
         }).lean();
         return result
     } catch (error) {
