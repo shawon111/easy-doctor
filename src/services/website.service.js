@@ -97,7 +97,7 @@ export const getWebsiteBySubdomain = async (subdomain, pageName) => {
                     path: "content",
                     select: `pages.${pageName} header footer`
                 })
-                .populate("userId", "name phone clinicAddress")
+                .populate("userId", "name phone clinicAddress bookingPreferences")
                 .lean();
 
             if (!website) {
@@ -108,7 +108,7 @@ export const getWebsiteBySubdomain = async (subdomain, pageName) => {
                             path: "content",
                             select: `pages.${pageName} header footer`
                         })
-                        .populate("userId", "name phone clinicAddress")
+                        .populate("userId", "name phone clinicAddress bookingPreferences")
                         .lean();
                 }
             }
@@ -133,7 +133,6 @@ export const getWebsiteBySubdomain = async (subdomain, pageName) => {
                     whatsappUrl: firstClinicWhatsapp,
                 });
 
-                // Dynamically overwrite AI hallucinated schedules with the real clinic data
                 if (website.content?.pages?.appointment?.schedule) {
                     website.content.pages.appointment.schedule.items = clinicItems;
                 }

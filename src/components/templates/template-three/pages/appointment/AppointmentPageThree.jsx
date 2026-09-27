@@ -10,14 +10,20 @@ import DoctorBookingPage from "@/components/appointment-booking/DoctorBookingPag
 
 export default function AppointmentPageThree({ content, isDemo = false }) {
   const appointment = resolveTemplateContent(content?.pages?.appointment, templateThreeDefaults.pages.appointment, isDemo);
-
+  const { bookingPreference } = content;
   return (
     <div className="pt-12 pb-20 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
       <AppointmentHeroThree content={appointment.hero} isDemo={isDemo} />
       <AppointmentStepsThree content={appointment.steps} isDemo={isDemo} />
       <AppointmentScheduleThree content={appointment.schedule} isDemo={isDemo} />
-      <DoctorBookingPage userId={content?.userId} />
-      <AppointmentWhatsappThree clinics={content?.clinics} phone={content?.phone ? content?.phone : isDemo === true ? "+8890652365711" : ""} content={appointment.whatsapp} isDemo={isDemo} />
+      {
+        (bookingPreference === "bookingForm" || bookingPreference === "both") && <DoctorBookingPage userId={content?.userId} />
+      }
+
+      {
+        (bookingPreference === "whatsapp" || bookingPreference === "both") && <AppointmentWhatsappThree clinics={content?.clinics} phone={content?.phone ? content?.phone : isDemo === true ? "+8890652365711" : ""} content={appointment.whatsapp} isDemo={isDemo} />
+      }
+
       <AppointmentChambersThree content={appointment.chambers} isDemo={isDemo} />
       <AppointmentFaqThree content={appointment.faq} isDemo={isDemo} />
     </div>

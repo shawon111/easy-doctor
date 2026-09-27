@@ -164,7 +164,7 @@ export default function DoctorBookingPage({ userId }) {
   }
 
   return (
-    <div className="min-h-screen bg-gray-800 rounded-3xl mb-20 py-12 mx-auto">
+    <div className="min-h-screen bg-gray-800 rounded-3xl mb-20 py-12 mx-auto max-w-[1200px]">
       <h2 className="font-headline-lg text-headline-lg mb-2 text-center text-white">Book Appointment</h2>
       <main className="mx-auto max-w-6xl px-4 py-8 sm:px-6">
         <BookingStepper currentStep={currentStep} />

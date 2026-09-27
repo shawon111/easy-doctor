@@ -9,7 +9,7 @@ import DoctorBookingPage from "@/components/appointment-booking/DoctorBookingPag
 
 const AppointmentPageTwo = ({ slug, content, isDemo = false }) => {
   const appointment = resolveTemplateContent(content?.pages?.appointment, templateTwoDefaults.pages.appointment, isDemo);
-
+  const { bookingPreference } = content;
   return (
     <div className="max-w-container-max mx-auto overflow-hidden">
       <AppointmentHeroTwo content={appointment.hero} isDemo={isDemo} />
@@ -19,8 +19,13 @@ const AppointmentPageTwo = ({ slug, content, isDemo = false }) => {
         telehealthImageAlt={appointment.whatsapp?.telehealthImageAlt}
         clinics={content?.clinics}
         isDemo={isDemo} />
-      <DoctorBookingPage userId={content?.userId} />
-      <AppointmentWhatsappTwo clinics={content?.clinics} content={appointment.whatsapp} isDemo={isDemo} />
+
+      {
+        (bookingPreference === "bookingForm" || bookingPreference === "both") && <DoctorBookingPage userId={content?.userId} />
+      }
+      {
+         (bookingPreference === "whatsapp" || bookingPreference === "both") && <AppointmentWhatsappTwo clinics={content?.clinics} content={appointment.whatsapp} isDemo={isDemo} />
+      }
       <AppointmentFaqTwo content={appointment.faq} isDemo={isDemo} />
       <AppointmentCtaTwo content={appointment.finalCta} slug={slug} isDemo={isDemo} />
     </div>
