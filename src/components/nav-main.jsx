@@ -48,7 +48,6 @@ export function NavMain({
     icon: planAndBillingIcon,
   }
   const isActivePlan = isWebsiteActive(user?.expiresAt)
-  console.log("check from nav", isActivePlan)
   return (
     <SidebarGroup>
       <SidebarMenu className="gap-y-4">

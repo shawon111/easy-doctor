@@ -1,8 +1,9 @@
 import { connectDB } from "@/config/database";
+import { withUser } from "@/lib/withUser";
 import { subdomainAvailability } from "@/services/info.service";
 import { NextResponse } from "next/server";
 
-export const GET = async (request) => {
+export const GET = withUser(async (request) => {
     const { searchParams } = new URL(request.url);
     const subdomainName = searchParams.get("subdomain");
 
@@ -28,4 +29,4 @@ export const GET = async (request) => {
         );
     }
 
-}
+})
