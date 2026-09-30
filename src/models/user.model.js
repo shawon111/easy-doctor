@@ -200,6 +200,10 @@ const UserSchema = new mongoose.Schema(
             type: String,
             trim: true,
             default: undefined
+        },
+        googleBusinessSetup: {
+            type: Boolean,
+            default: false
         }
     },
     {

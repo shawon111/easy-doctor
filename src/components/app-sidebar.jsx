@@ -10,6 +10,7 @@ import googlePresenceIcon from "@/assets/icons/google-presence-icon.png"
 import appointmentsIcon from "@/assets/icons/appointments-icon.png"
 import planAndBillingIcon from "@/assets/icons/plan-and-billing-icon.png"
 import settingsIcon from "@/assets/icons/settings-icon.png"
+import googleBusinessIcon from "@/assets/icons/google.png"
 
 import { NavMain } from "@/components/nav-main"
 import { NavUser } from "@/components/nav-user"
@@ -49,6 +50,11 @@ const data = {
       title: "Appointments",
       url: "/dashboard/appointments",
       icon: appointmentsIcon,
+    },
+    {
+      title: "Google Business",
+      url: "/dashboard/google-business",
+      icon: googleBusinessIcon
     },
     {
       title: "Plan & Billing",

@@ -84,7 +84,8 @@ export const getCurrentUser = async () => {
             userLevel: 1,
             profilePicture: 1,
             _id: 1,
-            expiresAt: 1
+            expiresAt: 1,
+            googleBusinessSetup: 1
         };
         const user = await User.findById(payload.sub).select(userInfoToReturn).lean();
         return {
