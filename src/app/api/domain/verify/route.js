@@ -2,13 +2,13 @@
 
 import { connectDB } from "@/config/database";
 import { requireUser } from "@/lib/requireUser";
-import SEO from "@/models/seo.model";
-import User from "@/models/user.model";
+import { withTransaction } from "@/lib/withTransaction";
 import Website from "@/models/website.model";
 import { toDnsRecords, toVerificationRecords } from "@/lib/domain-config";
 import {
     getDomain,
     getDomainConfig,
+    persistCustomDomainState,
     verifyDomain,
 } from "@/services/website.service";
 import { NextResponse } from "next/server";
@@ -59,40 +59,22 @@ export async function POST() {
                 : website.vercelVerification || [];
         const dnsRecords = toDnsRecords(config);
 
-        await Website.findByIdAndUpdate(website._id, {
-            $set: {
-                domainVerified: isVerified,
-                domainStatus: isConnected ? "connected" : "pending",
-                vercelVerification: verification,
-                dnsRecords,
-                dnsConfigCheckedAt: new Date(),
-            },
-        });
-
-        await Promise.all([
-            User.findByIdAndUpdate(
-                user._id,
-                isConnected
-                    ? { $set: { domain: website.domain } }
-                    : { $unset: { domain: 1 } }
-            ),
-            SEO.findByIdAndUpdate(
-                website.seo,
-                isConnected
-                    ? {
-                          $set: {
-                              domain: website.domain,
-                              canonicalUrl: `https://${website.domain}`,
-                          },
-                      }
-                    : {
-                          $unset: { domain: 1 },
-                          $set: {
-                              canonicalUrl: `https://${website.subdomain}.${process.env.NEXT_PUBLIC_BASE_DOMAIN}`,
-                          },
-                      }
-            ),
-        ]);
+        await withTransaction((session) =>
+            persistCustomDomainState(
+                {
+                    userId: user._id,
+                    websiteId: website._id,
+                    seoId: website.seo,
+                    domain: website.domain,
+                    subdomain: website.subdomain,
+                    verified: isVerified,
+                    connected: isConnected,
+                    dnsRecords,
+                    verification,
+                },
+                session
+            )
+        );
 
         return NextResponse.json({
             success: true,

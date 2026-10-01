@@ -2,6 +2,7 @@ import Appointment from "@/models/appointment.model";
 import Session from "@/models/session.model";
 import User from "@/models/user.model";
 import { connectDB } from "@/config/database";
+import mongoose from "mongoose";
 
 
 export const getDayBoundaries = (date) => {
@@ -37,6 +38,9 @@ export const createAppointment = async (data) => {
         date,
     } = data;
 
+    await connectDB();
+
+    let bookingSession;
     try {
         const user = await User.findOne({
             _id: userId,
@@ -58,90 +62,83 @@ export const createAppointment = async (data) => {
         }
 
         const dateKey = getDateKey(date);
+        bookingSession = await mongoose.startSession();
 
-        let session = await Session.findOne({
-            userId,
-            chamberId: chamber?._id,
-            date: dateKey,
-        });
-
-        // Session doesn't exist yet
-        if (!session) {
+        for (let attempt = 0; attempt < 2; attempt += 1) {
             try {
-                session = await Session.create({
-                    userId,
-                    chamberId: chamber?._id,
-                    date: dateKey,
-                    nextSerial: 1,
-                    status: "open",
-                });
-            } catch (error) {
-                // Another request may have created the session
-                // at exactly the same time.
-                if (error.code === 11000) {
-                    session = await Session.findOne({
+                return await bookingSession.withTransaction(async () => {
+                    let booking = await Session.findOne({
                         userId,
                         chamberId: chamber?._id,
                         date: dateKey,
+                    }).session(bookingSession);
+
+                    if (!booking) {
+                        [booking] = await Session.create(
+                            [{
+                                userId,
+                                chamberId: chamber?._id,
+                                date: dateKey,
+                                nextSerial: 1,
+                                status: "open",
+                            }],
+                            { session: bookingSession }
+                        );
+                    }
+
+                    if (booking.status !== "open") {
+                        throw new Error("Booking is closed for this date");
+                    }
+
+                    const updatedSession = await Session.findOneAndUpdate(
+                        {
+                            _id: booking._id,
+                            status: "open",
+                        },
+                        { $inc: { nextSerial: 1 } },
+                        {
+                            new: true,
+                            session: bookingSession,
+                        }
+                    );
+
+                    if (!updatedSession) {
+                        throw new Error("Failed to generate serial");
+                    }
+
+                    const appointment = new Appointment({
+                        userId,
+                        sessionId: updatedSession._id,
+                        chamber: {
+                            name: chamberData.chamberName,
+                            address: chamberData.address,
+                        },
+                        chamberId: chamber?._id,
+                        date: new Date(date),
+                        serial: updatedSession.nextSerial - 1,
+                        patient,
                     });
-                } else {
-                    throw error;
+
+                    await appointment.save({ session: bookingSession });
+                    return appointment;
+                });
+            } catch (error) {
+                if (error.code === 11000 && attempt === 0) {
+                    continue;
                 }
+                throw error;
             }
         }
 
-        if (!session) {
-            throw new Error("Failed to create booking session");
-        }
-        if (session.status !== "open") {
-            throw new Error("Booking is closed for this date");
-        }
-        const updatedSession = await Session.findOneAndUpdate(
-            {
-                _id: session._id,
-                status: "open",
-            },
-            {
-                $inc: {
-                    nextSerial: 1,
-                },
-            },
-            {
-                new: true,
-            }
-        );
-
-        if (!updatedSession) {
-            throw new Error("Failed to generate serial");
-        }
-
-        const serial = updatedSession.nextSerial - 1;
-
-        const appointment = await Appointment.create({
-            userId,
-
-            sessionId: updatedSession._id,
-
-            chamber: {
-                name: chamber.chamberName,
-                address: chamber.address,
-            },
-
-            chamberId: chamber?._id,
-
-            date: new Date(date),
-
-            serial,
-
-            patient,
-        });
-
-        return appointment;
+        throw new Error("Failed to create appointment after retrying booking session");
     } catch (error) {
-        console.log(error)
         throw new Error(
             error.message || "Failed to create appointment"
         );
+    } finally {
+        if (bookingSession) {
+            await bookingSession.endSession();
+        }
     }
 };
 

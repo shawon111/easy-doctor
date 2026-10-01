@@ -1,10 +1,13 @@
 import { connectDB } from "@/config/database";
 import { requireUser } from "@/lib/requireUser";
+import { withTransaction } from "@/lib/withTransaction";
 import { toDnsRecords, toVerificationRecords } from "@/lib/domain-config";
 import Website from "@/models/website.model";
-import User from "@/models/user.model";
-import SEO from "@/models/seo.model";
-import { getDomain, getDomainConfig } from "@/services/website.service";
+import {
+    getDomain,
+    getDomainConfig,
+    persistCustomDomainState,
+} from "@/services/website.service";
 import { NextResponse } from "next/server";
 
 // get domain status
@@ -64,43 +67,22 @@ export async function GET() {
               ? currentVerification
               : website.vercelVerification || [];
 
-        await Website.findByIdAndUpdate(
-            website._id,
-            {
-                $set: {
-                    domainStatus: status,
-                    domainVerified: verified,
+        await withTransaction((session) =>
+            persistCustomDomainState(
+                {
+                    userId: user._id,
+                    websiteId: website._id,
+                    seoId: website.seo,
+                    domain: website.domain,
+                    subdomain: website.subdomain,
+                    verified,
+                    connected,
                     dnsRecords,
-                    dnsConfigCheckedAt: new Date(),
-                    vercelVerification: verification,
+                    verification,
                 },
-            }
+                session
+            )
         );
-
-        await Promise.all([
-            User.findByIdAndUpdate(
-                user._id,
-                connected
-                    ? { $set: { domain: website.domain } }
-                    : { $unset: { domain: 1 } }
-            ),
-            SEO.findByIdAndUpdate(
-                website.seo,
-                connected
-                    ? {
-                          $set: {
-                              domain: website.domain,
-                              canonicalUrl: `https://${website.domain}`,
-                          },
-                      }
-                    : {
-                          $unset: { domain: 1 },
-                          $set: {
-                              canonicalUrl: `https://${website.subdomain}.${process.env.NEXT_PUBLIC_BASE_DOMAIN}`,
-                          },
-                      }
-            ),
-        ]);
 
         return NextResponse.json({
             success: true,

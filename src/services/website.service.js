@@ -145,6 +145,82 @@ export const getMyWebsiteDetails = async (userId) => {
     };
 };
 
+export const persistCustomDomainState = async (
+    {
+        userId,
+        websiteId,
+        seoId,
+        domain,
+        subdomain,
+        verified = false,
+        connected = false,
+        dnsRecords = [],
+        verification = [],
+    },
+    session
+) => {
+    const canonicalSubdomain = `https://${subdomain}.${process.env.NEXT_PUBLIC_BASE_DOMAIN}`;
+    const websiteUpdate = domain
+        ? {
+              $set: {
+                  domain,
+                  domainStatus: connected ? "connected" : "pending",
+                  domainVerified: verified,
+                  dnsRecords,
+                  vercelVerification: verification,
+                  dnsConfigCheckedAt: new Date(),
+              },
+          }
+        : {
+              $unset: {
+                  domain: 1,
+                  domainStatus: 1,
+                  dnsConfigCheckedAt: 1,
+              },
+              $set: {
+                  domainVerified: false,
+                  dnsRecords: [],
+                  vercelVerification: [],
+              },
+          };
+
+    const updatedWebsite = await Website.findOneAndUpdate(
+        { _id: websiteId, userId },
+        websiteUpdate,
+        { session, new: true }
+    );
+
+    if (!updatedWebsite) {
+        throw new Error("Website not found while saving custom domain state");
+    }
+
+    await User.findByIdAndUpdate(
+        userId,
+        connected && domain
+            ? { $set: { domain } }
+            : { $unset: { domain: 1 } },
+        { session }
+    );
+
+    await SEO.findByIdAndUpdate(
+        seoId,
+        connected && domain
+            ? {
+                  $set: {
+                      domain,
+                      canonicalUrl: `https://${domain}`,
+                  },
+              }
+            : {
+                  $unset: { domain: 1 },
+                  $set: { canonicalUrl: canonicalSubdomain },
+              },
+        { session }
+    );
+
+    return updatedWebsite.toObject();
+};
+
 // get website lists
 export const getWebsiteLists = async () => {
     await connectDB();

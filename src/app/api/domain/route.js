@@ -1,13 +1,13 @@
 import { connectDB } from "@/config/database";
 import { requireUser } from "@/lib/requireUser";
-import User from "@/models/user.model";
+import { withTransaction } from "@/lib/withTransaction";
 import Website from "@/models/website.model";
-import SEO from "@/models/seo.model";
 import { toDnsRecords, toVerificationRecords } from "@/lib/domain-config";
 import {
     addDomain,
     getDomainConfig,
     getDomain,
+    persistCustomDomainState,
     removeDomain,
 } from "@/services/website.service";
 import { NextResponse } from "next/server";
@@ -52,7 +52,8 @@ export async function GET() {
                 domainVerified: 1,
                 dnsRecords: 1,
                 dnsConfigCheckedAt: 1,
-                vercelVerification: 1
+                vercelVerification: 1,
+                seo: 1,
             })
             .lean();
 
@@ -101,31 +102,22 @@ export async function GET() {
                 })),
             };
 
-            const updatedWebsite = await Website.findByIdAndUpdate(
-                website._id,
-                {
-                    $set: {
-                        domainVerified: verified,
-                        domainStatus: connected ? "connected" : "pending",
+            website = await withTransaction((session) =>
+                persistCustomDomainState(
+                    {
+                        userId: user._id,
+                        websiteId: website._id,
+                        seoId: website.seo,
+                        domain: website.domain,
+                        subdomain: website.subdomain,
+                        verified,
+                        connected,
                         dnsRecords,
-                        vercelVerification: verification,
-                        dnsConfigCheckedAt: new Date(),
+                        verification,
                     },
-                },
-                { new: true }
-            )
-                .select({
-                    subdomain: 1,
-                    subdomain: 1,
-                    domain: 1,
-                    domainStatus: 1,
-                    domainVerified: 1,
-                    dnsRecords: 1,
-                    dnsConfigCheckedAt: 1,
-                    vercelVerification: 1,
-                })
-                .lean();
-            website = updatedWebsite;
+                    session
+                )
+            );
         }
 
         return NextResponse.json({
@@ -147,10 +139,11 @@ export async function GET() {
         return NextResponse.json(
             {
                 success: false,
-                message: "Failed to get domain information",
+                message:
+                    error.message || "Failed to get domain information",
             },
             {
-                status: 500,
+                status: error.status || 500,
             }
         );
     }
@@ -189,6 +182,7 @@ export async function POST(request) {
             dnsRecords: 1,
             vercelVerification: 1,
             seo: 1,
+            subdomain: 1,
         }).lean();
 
         if (!website) {
@@ -230,54 +224,40 @@ export async function POST(request) {
         const verification = toVerificationRecords(vercelDomain);
         const isVerified = vercelDomain.verified === true;
 
-        await Website.findByIdAndUpdate(website._id, {
-            $set: {
-                domain,
-                domainStatus: "pending",
-                domainVerified: isVerified,
-                vercelVerification: isVerified ? [] : verification,
-                dnsRecords: [],
-            },
-        });
+        await withTransaction((session) =>
+            persistCustomDomainState(
+                {
+                    userId: user._id,
+                    websiteId: website._id,
+                    seoId: website.seo,
+                    domain,
+                    subdomain: website.subdomain,
+                    verified: isVerified,
+                    dnsRecords: [],
+                    verification: isVerified ? [] : verification,
+                },
+                session
+            )
+        );
         const config = await getDomainConfig(domain);
         const dnsRecords = toDnsRecords(config);
         const isConnected = isVerified && !config.misconfigured;
-        const updatedWebsite = await Website.findByIdAndUpdate(
-            website._id,
-            {
-                $set: {
-                    domainStatus: isConnected ? "connected" : "pending",
+        const updatedWebsite = await withTransaction((session) =>
+            persistCustomDomainState(
+                {
+                    userId: user._id,
+                    websiteId: website._id,
+                    seoId: website.seo,
+                    domain,
+                    subdomain: website.subdomain,
+                    verified: isVerified,
+                    connected: isConnected,
                     dnsRecords,
-                    dnsConfigCheckedAt: new Date(),
+                    verification: isVerified ? [] : verification,
                 },
-            },
-            { new: true }
-        ).lean();
-
-        await Promise.all([
-            User.findByIdAndUpdate(
-                user._id,
-                isConnected
-                    ? { $set: { domain } }
-                    : { $unset: { domain: 1 } }
-            ),
-            SEO.findByIdAndUpdate(
-                website.seo,
-                isConnected
-                    ? {
-                          $set: {
-                              domain,
-                              canonicalUrl: `https://${domain}`,
-                          },
-                      }
-                    : {
-                          $unset: { domain: 1 },
-                          $set: {
-                              canonicalUrl: `https://${website.subdomain}.${process.env.NEXT_PUBLIC_BASE_DOMAIN}`,
-                          },
-                      }
-            ),
-        ]);
+                session
+            )
+        );
 
         return NextResponse.json({
             success: true,
@@ -324,27 +304,18 @@ export async function DELETE() {
         }
 
         await removeDomain(website.domain);
-        await Website.findByIdAndUpdate(website._id, {
-            $unset: {
-                domain: 1,
-                domainStatus: 1,
-                dnsConfigCheckedAt: 1,
-            },
-            $set: {
-                domainVerified: false,
-                dnsRecords: [],
-                vercelVerification: [],
-            },
-        });
-        await Promise.all([
-            User.findByIdAndUpdate(user._id, { $unset: { domain: 1 } }),
-            SEO.findByIdAndUpdate(website.seo, {
-                $unset: { domain: 1 },
-                $set: {
-                    canonicalUrl: `https://${website.subdomain}.${process.env.NEXT_PUBLIC_BASE_DOMAIN}`,
+        await withTransaction((session) =>
+            persistCustomDomainState(
+                {
+                    userId: user._id,
+                    websiteId: website._id,
+                    seoId: website.seo,
+                    domain: null,
+                    subdomain: website.subdomain,
                 },
-            }),
-        ]);
+                session
+            )
+        );
 
         return NextResponse.json({
             success: true,
