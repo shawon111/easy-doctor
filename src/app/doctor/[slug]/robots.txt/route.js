@@ -1,9 +1,7 @@
-export async function GET(request, { params }) {
-    const { slug } = await params;
+export async function GET(request) {
     const host = request.headers.get("host") || "";
-    const rootDomain = process.env.NEXT_PUBLIC_BASE_DOMAIN || host;
-    const protocol = rootDomain.startsWith("localhost") ? "http" : "https";
-    const sitemapUrl = `${protocol}://${slug}.${rootDomain}/sitemap.xml`;
+    const protocol = host.includes("localhost") ? "http" : "https";
+    const sitemapUrl = `${protocol}://${host}/sitemap.xml`;
 
     const body = [
         "User-agent: *",

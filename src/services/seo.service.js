@@ -665,10 +665,16 @@ export const getSeoByUserId = async (userId) => {
 
 };
 
-export const getSeoBySubdomain = async (subdomain) => {
+export const getSeoBySubdomain = async (subdomainOrDomain) => {
     await connectDB();
     try {
-        const result = await SEO.findOne({ subdomain }).lean();
+        const identifier = subdomainOrDomain?.trim().toLowerCase().replace(/\.$/, "");
+        const result = await SEO.findOne({
+            $or: [
+                { subdomain: identifier },
+                { domain: identifier },
+            ],
+        }).lean();
         return result;
     } catch (error) {
         throw new Error("failed to get seo data")

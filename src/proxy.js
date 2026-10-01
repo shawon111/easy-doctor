@@ -4,7 +4,9 @@ import { redirectToLogin, tryRefreshTokens } from "@/lib/auth-core";
 import { connectDB } from "@/config/database";
 import Website from "@/models/website.model";
 
-const ROOT_DOMAIN = process.env.NEXT_PUBLIC_BASE_DOMAIN?.toLowerCase();
+const ROOT_DOMAIN = process.env.NEXT_PUBLIC_BASE_DOMAIN
+    ?.toLowerCase()
+    .replace(/\.$/, "");
 
 const SYSTEM_SUBDOMAINS = [
     "www",
@@ -48,26 +50,21 @@ export async function proxy(request) {
     }
 
     let subdomain = null;
-    // Local:
+    const isPlatformRoot = host === ROOT_DOMAIN || host === "localhost";
+
     if (host.endsWith(".localhost")) {
-        subdomain = host.replace(".localhost", "");
+        subdomain = host.slice(0, -".localhost".length);
+    } else if (ROOT_DOMAIN && host.endsWith(`.${ROOT_DOMAIN}`)) {
+        subdomain = host.slice(0, -(ROOT_DOMAIN.length + 1));
     }
 
-    // Production:
-    else if (
-        ROOT_DOMAIN &&
-        host.endsWith(`.${ROOT_DOMAIN}`)
-    ) {
-        subdomain = host.replace(`.${ROOT_DOMAIN}`, "");
-    }
-
-    if (
+    const isCustomDomainHost =
         !subdomain &&
-        !pathname.startsWith("/api/") &&
+        !isPlatformRoot &&
         host.includes(".") &&
-        host !== ROOT_DOMAIN &&
-        !host.endsWith(".vercel.app")
-    ) {
+        !host.endsWith(".vercel.app");
+
+    if (isCustomDomainHost) {
         try {
             await connectDB();
             const website = await Website.findOne({
@@ -79,12 +76,20 @@ export async function proxy(request) {
             subdomain = website?.subdomain || null;
         } catch (error) {
             console.error("Failed to resolve custom domain", error);
-            return NextResponse.next();
+            return new NextResponse("Unable to resolve this website right now.", {
+                status: 503,
+                headers: {
+                    "Cache-Control": "no-store",
+                },
+            });
         }
     }
 
+    const isPlatformSubdomain =
+        Boolean(subdomain) && SYSTEM_SUBDOMAINS.includes(subdomain);
+
     // Rewrite each hosted site's favicon to its dynamic route.
-    if (subdomain && pathname === "/favicon.svg") {
+    if (subdomain && !isPlatformSubdomain && pathname === "/favicon.svg") {
         const url = request.nextUrl.clone();
         url.pathname = `/doctor/${subdomain}/favicon.svg`;
 
@@ -93,7 +98,7 @@ export async function proxy(request) {
 
 
     // robots.txt
-    if (subdomain && pathname === "/robots.txt") {
+    if (subdomain && !isPlatformSubdomain && pathname === "/robots.txt") {
         const url = request.nextUrl.clone();
         url.pathname = `/doctor/${subdomain}/robots.txt`;
 
@@ -102,7 +107,7 @@ export async function proxy(request) {
 
 
     // sitemap.xml
-    if (subdomain && pathname === "/sitemap.xml") {
+    if (subdomain && !isPlatformSubdomain && pathname === "/sitemap.xml") {
         const url = request.nextUrl.clone();
         url.pathname = `/doctor/${subdomain}/sitemap.xml`;
 
@@ -111,7 +116,7 @@ export async function proxy(request) {
 
     if (
         subdomain &&
-        !SYSTEM_SUBDOMAINS.includes(subdomain) &&
+        !isPlatformSubdomain &&
         !pathname.startsWith("/api/")
     ) {
         const url = request.nextUrl.clone();

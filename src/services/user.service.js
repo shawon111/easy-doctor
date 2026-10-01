@@ -150,11 +150,17 @@ export const getUserBySlug = async (slug) => {
     return user;
 }
 
-// get user by subdomain
-export const getUserBySubdomain = async (subdomain) => {
+// get user by platform subdomain or connected custom domain
+export const getUserBySubdomain = async (subdomainOrDomain) => {
     await connectDB()
     try {
-        const result = await User.findOne({ subdomain }).select({
+        const identifier = subdomainOrDomain?.trim().toLowerCase().replace(/\.$/, "");
+        const result = await User.findOne({
+            $or: [
+                { subdomain: identifier },
+                { domain: identifier },
+            ],
+        }).select({
             name: 1,
             phone: 1,
             email: 1,
@@ -163,6 +169,7 @@ export const getUserBySubdomain = async (subdomain) => {
             clinicAddress: 1,
             socialLinks: 1,
             subdomain: 1,
+            domain: 1,
             expiresAt: 1
         }).lean();
         return result

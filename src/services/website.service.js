@@ -158,31 +158,54 @@ export const getWebsiteLists = async () => {
     }
 }
 
-// get website by subdomain
-export const getWebsiteBySubdomain = async (subdomain, pageName) => {
+// Resolve either the platform subdomain or a connected custom domain to its website.
+export const getWebsiteBySubdomain = async (subdomainOrDomain, pageName) => {
+    await connectDB();
+    const identifier = subdomainOrDomain?.trim().toLowerCase().replace(/\.$/, "");
+
+    if (!identifier) {
+        return null;
+    }
+
+    let websiteLookup = await Website.findOne({
+        $or: [
+            { subdomain: identifier },
+            {
+                domain: identifier,
+                domainStatus: { $in: ["connected", "verified"] },
+            },
+        ],
+    })
+        .select({ subdomain: 1 })
+        .lean();
+
+    if (!websiteLookup && !identifier.includes(".")) {
+        const user = await User.findOne({ slug: identifier })
+            .select("_id")
+            .lean();
+        if (user) {
+            websiteLookup = await Website.findOne({ userId: user._id })
+                .select({ subdomain: 1 })
+                .lean();
+        }
+    }
+
+    if (!websiteLookup) {
+        return null;
+    }
+
+    const canonicalSubdomain = websiteLookup.subdomain;
     const getCachedWebsite = unstable_cache(
         async () => {
-            await connectDB();
-            let website = await Website.findOne({ subdomain })
+            const website = await Website.findOne({
+                subdomain: canonicalSubdomain,
+            })
                 .populate({
                     path: "content",
                     select: `pages.${pageName} header footer`
                 })
                 .populate("userId", "name phone clinicAddress bookingPreferences")
                 .lean();
-
-            if (!website) {
-                const user = await User.findOne({ slug: subdomain }).select("_id").lean();
-                if (user) {
-                    website = await Website.findOne({ userId: user._id })
-                        .populate({
-                            path: "content",
-                            select: `pages.${pageName} header footer`
-                        })
-                        .populate("userId", "name phone clinicAddress bookingPreferences")
-                        .lean();
-                }
-            }
 
             if (website?.content) {
                 const clinics = website.userId?.clinicAddress || [];
@@ -214,8 +237,8 @@ export const getWebsiteBySubdomain = async (subdomain, pageName) => {
 
             return website;
         },
-        ["website-by-subdomain", subdomain, pageName],
-        { tags: [`website-content:${subdomain}`] }
+        ["website-by-subdomain", canonicalSubdomain, pageName],
+        { tags: [`website-content:${canonicalSubdomain}`] }
     );
 
     return getCachedWebsite();
