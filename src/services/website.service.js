@@ -149,3 +149,113 @@ export const getWebsiteBySubdomain = async (subdomain, pageName) => {
 
     return getCachedWebsite();
 }
+
+// domain connect with website hosted in vercel
+const VERCEL_API = "https://api.vercel.com";
+
+const getHeaders = () => ({
+    Authorization: `Bearer ${process.env.VERCEL_TOKEN}`,
+    "Content-Type": "application/json",
+});
+
+const getTeamQuery = () => {
+    const teamId = process.env.VERCEL_TEAM_ID;
+
+    return teamId
+        ? `?teamId=${encodeURIComponent(teamId)}`
+        : "";
+};
+
+const handleResponse = async (response) => {
+    const data = await response.json().catch(() => null);
+
+    if (!response.ok) {
+        const message =
+            data?.error?.message ||
+            data?.message ||
+            `Vercel API request failed with status ${response.status}`;
+
+        const error = new Error(message);
+        error.status = response.status;
+        error.data = data;
+
+        throw error;
+    }
+
+    return data;
+};
+
+export const addDomain = async (domain) => {
+    const projectId = process.env.VERCEL_PROJECT_ID;
+
+    const response = await fetch(
+        `${VERCEL_API}/v10/projects/${projectId}/domains${getTeamQuery()}`,
+        {
+            method: "POST",
+            headers: getHeaders(),
+            body: JSON.stringify({
+                name: domain,
+            }),
+        }
+    );
+
+    return handleResponse(response);
+};
+
+export const getDomain = async (domain) => {
+    const projectId = process.env.VERCEL_PROJECT_ID;
+
+    const response = await fetch(
+        `${VERCEL_API}/v9/projects/${projectId}/domains/${encodeURIComponent(domain)}${getTeamQuery()}`,
+        {
+            method: "GET",
+            headers: getHeaders(),
+            cache: "no-store",
+        }
+    );
+
+    return handleResponse(response);
+};
+
+export const getDomainConfig = async (domain) => {
+    const teamQuery = getTeamQuery();
+
+    const response = await fetch(
+        `${VERCEL_API}/v6/domains/${encodeURIComponent(domain)}/config${teamQuery}`,
+        {
+            method: "GET",
+            headers: getHeaders(),
+            cache: "no-store",
+        }
+    );
+
+    return handleResponse(response);
+};
+
+export const verifyDomain = async (domain) => {
+    const projectId = process.env.VERCEL_PROJECT_ID;
+
+    const response = await fetch(
+        `${VERCEL_API}/v9/projects/${projectId}/domains/${encodeURIComponent(domain)}/verify${getTeamQuery()}`,
+        {
+            method: "POST",
+            headers: getHeaders(),
+        }
+    );
+
+    return handleResponse(response);
+};
+
+export const removeDomain = async (domain) => {
+    const projectId = process.env.VERCEL_PROJECT_ID;
+
+    const response = await fetch(
+        `${VERCEL_API}/v9/projects/${projectId}/domains/${encodeURIComponent(domain)}${getTeamQuery()}`,
+        {
+            method: "DELETE",
+            headers: getHeaders(),
+        }
+    );
+
+    return handleResponse(response);
+};

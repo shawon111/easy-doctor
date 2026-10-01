@@ -1,8 +1,10 @@
 import { NextResponse } from "next/server";
 import { verifyAccessToken } from "@/lib/jwt";
 import { redirectToLogin, tryRefreshTokens } from "@/lib/auth-core";
+import { connectDB } from "@/config/database";
+import Website from "@/models/website.model";
 
-const ROOT_DOMAIN = process.env.NEXT_PUBLIC_BASE_DOMAIN;
+const ROOT_DOMAIN = process.env.NEXT_PUBLIC_BASE_DOMAIN?.toLowerCase();
 
 const SYSTEM_SUBDOMAINS = [
     "www",
@@ -16,9 +18,11 @@ const PROTECTED_API_PATHS = [
     "/api/me",
     "/api/appointment",
     "/api/website",
+    "/api/domain",
+    "/api/info"
 ];
 
-export function proxy(request) {
+export async function proxy(request) {
     // rewrite url and handle subdomain routing
     const { pathname } = request.nextUrl;
 
@@ -27,7 +31,7 @@ export function proxy(request) {
     if (!hostname) {
         return NextResponse.next();
     }
-    const host = hostname.split(":")[0];
+    const host = hostname.split(":")[0].toLowerCase().replace(/\.$/, "");
 
     // Keep Next.js bundles and public files at their original paths.
     if (
@@ -55,6 +59,28 @@ export function proxy(request) {
         host.endsWith(`.${ROOT_DOMAIN}`)
     ) {
         subdomain = host.replace(`.${ROOT_DOMAIN}`, "");
+    }
+
+    if (
+        !subdomain &&
+        !pathname.startsWith("/api/") &&
+        host.includes(".") &&
+        host !== ROOT_DOMAIN &&
+        !host.endsWith(".vercel.app")
+    ) {
+        try {
+            await connectDB();
+            const website = await Website.findOne({
+                domain: host,
+                domainStatus: { $in: ["connected", "verified"] },
+            })
+                .select({ subdomain: 1 })
+                .lean();
+            subdomain = website?.subdomain || null;
+        } catch (error) {
+            console.error("Failed to resolve custom domain", error);
+            return NextResponse.next();
+        }
     }
 
     // Rewrite each hosted site's favicon to its dynamic route.

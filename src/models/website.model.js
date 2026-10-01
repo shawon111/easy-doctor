@@ -1,5 +1,20 @@
 import mongoose from "mongoose";
 
+const dnsSchema = new mongoose.Schema({
+    dnsType: {
+        type: String
+    },
+    name: {
+        type: String
+    },
+    value: {
+        type: String
+    },
+    reason: {
+        type: String
+    }
+})
+
 const websiteSchema = new mongoose.Schema(
     {
         userId: {
@@ -33,7 +48,38 @@ const websiteSchema = new mongoose.Schema(
         },
         domain: {
             type: String,
+            trim: true,
+            lowercase: true,
+            unique: true,
+            sparse: true,
         },
+        domainStatus: {
+            type: String,
+            enum: ["pending", "connected", "verified"],
+            default: undefined,
+        },
+        domainVerified: {
+            type: Boolean,
+            default: false,
+        },
+        dnsRecords: [dnsSchema],
+        dnsConfigCheckedAt: {
+            type: Date,
+            default: undefined,
+        },
+        vercelVerification: [
+            {
+                recordType: {
+                    type: String
+                },
+                name: {
+                    type: String
+                },
+                value: {
+                    type: String
+                }
+            }
+        ],
         seo: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "SEO",

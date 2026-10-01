@@ -60,6 +60,9 @@ const data = {
       title: "Plan & Billing",
       url: "/dashboard/billing",
       icon: planAndBillingIcon,
+    },{
+      title: "Custom Domain",
+      url: "/dashboard/domain"
     },
     {
       title: "Settings",
