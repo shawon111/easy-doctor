@@ -74,6 +74,77 @@ export const getWebsiteByUserId = async (userId) => {
     }
 }
 
+export const getMyWebsiteDetails = async (userId) => {
+    await connectDB();
+
+    const [user, website] = await Promise.all([
+        User.findById(userId)
+            .select({
+                name: 1,
+                phone: 1,
+                email: 1,
+                specialization: 1,
+                qualifications: 1,
+                experience: 1,
+                bio: 1,
+                profilePicture: 1,
+                expiresAt: 1,
+            })
+            .lean(),
+        Website.findOne({ userId })
+            .select({
+                subdomain: 1,
+                domain: 1,
+                domainStatus: 1,
+                templateType: 1,
+                variant: 1,
+                status: 1,
+            })
+            .lean(),
+    ]);
+
+    if (!user) {
+        throw new Error("User not found");
+    }
+
+    const customDomainConnected =
+        website?.domain &&
+        website.domainStatus === "connected";
+    const baseDomain = process.env.NEXT_PUBLIC_BASE_DOMAIN;
+    const websiteHost = customDomainConnected
+        ? website.domain
+        : website?.subdomain && baseDomain
+          ? `${website.subdomain}.${baseDomain}`
+          : null;
+
+    return {
+        doctor: {
+            name: user.name,
+            phone: user.phone || null,
+            email: user.email,
+            specialization: user.specialization,
+            qualifications: user.qualifications || [],
+            experience: user.experience ?? null,
+            bio: user.bio || "",
+            profilePicture: user.profilePicture || null,
+            expiresAt: user.expiresAt,
+        },
+        website: website
+            ? {
+                  url: websiteHost ? `https://${websiteHost}` : null,
+                  subdomainUrl: website.subdomain && baseDomain
+                      ? `https://${website.subdomain}.${baseDomain}`
+                      : null,
+                  customDomain: website.domain || null,
+                  customDomainStatus: website.domainStatus || null,
+                  templateType: website.templateType,
+                  variant: website.variant,
+                  status: website.status || null,
+              }
+            : null,
+    };
+};
+
 // get website lists
 export const getWebsiteLists = async () => {
     await connectDB();

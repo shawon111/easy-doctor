@@ -12,6 +12,7 @@ import planAndBillingIcon from "@/assets/icons/plan-and-billing-icon.png"
 import settingsIcon from "@/assets/icons/settings-icon.png"
 import googleBusinessIcon from "@/assets/icons/google.png"
 import customDomainIcon from "@/assets/icons/domain.png"
+import myWebsiteIcon from "@/assets/icons/website.png"
 
 import { NavMain } from "@/components/nav-main"
 import { NavUser } from "@/components/nav-user"
@@ -31,6 +32,11 @@ const data = {
       title: "Overview",
       url: "/dashboard",
       icon: overviewIcon,
+    },
+    {
+      title: "My Website",
+      url: "/dashboard/my-website",
+      icon: myWebsiteIcon,
     },
     {
       title: "Create Website",
