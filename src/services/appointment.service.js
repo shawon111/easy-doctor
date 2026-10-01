@@ -1,6 +1,7 @@
 import Appointment from "@/models/appointment.model";
 import Session from "@/models/session.model";
 import User from "@/models/user.model";
+import { connectDB } from "@/config/database";
 
 
 export const getDayBoundaries = (date) => {
@@ -165,6 +166,52 @@ export const getAppointments = async (
     } catch (error) {
         throw new Error("Failed to get appointments");
     }
+};
+
+const getDhakaMonthRange = (date = new Date()) => {
+    const parts = new Intl.DateTimeFormat("en-US", {
+        timeZone: "Asia/Dhaka",
+        year: "numeric",
+        month: "numeric",
+    }).formatToParts(date);
+    const year = Number(parts.find((part) => part.type === "year")?.value);
+    const month = Number(parts.find((part) => part.type === "month")?.value);
+    const dhakaOffset = 6 * 60 * 60 * 1000;
+
+    return {
+        start: new Date(Date.UTC(year, month - 1, 1) - dhakaOffset),
+        end: new Date(Date.UTC(year, month, 1) - dhakaOffset),
+    };
+};
+
+export const getAppointmentDashboardData = async (userId, recentLimit = 8) => {
+    await connectDB();
+    const { start, end } = getDhakaMonthRange();
+
+    const [totalAppointments, thisMonthAppointments, recentAppointments] =
+        await Promise.all([
+            Appointment.countDocuments({ userId }),
+            Appointment.countDocuments({
+                userId,
+                date: { $gte: start, $lt: end },
+            }),
+            Appointment.find({ userId })
+                .sort({ createdAt: -1 })
+                .limit(recentLimit)
+                .lean(),
+        ]);
+
+    return {
+        totalAppointments,
+        thisMonthAppointments,
+        recentAppointments: recentAppointments.map((appointment) => ({
+            ...appointment,
+            _id: appointment._id.toString(),
+            userId: appointment.userId.toString(),
+            sessionId: appointment.sessionId.toString(),
+            chamberId: appointment.chamberId.toString(),
+        })),
+    };
 };
 
 // Get appointments by day

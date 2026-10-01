@@ -1,5 +1,6 @@
 export { AppointmentStatCard } from "./AppointmentStatCard";
 export { AppointmentStatsGrid } from "./AppointmentStatsGrid";
-export { ActivityItem } from "./ActivityItem";
-export { RecentActivityList } from "./RecentActivityList";
+export { RecentAppointmentsList } from "./RecentAppointmentsList";
+export { AppointmentRecordCard } from "./AppointmentRecordCard";
 export { AppointmentsPage } from "./AppointmentsPage";
+export { useAppointmentDashboard } from "./useAppointmentDashboard";

@@ -2,18 +2,19 @@ import { WebsiteBanner } from "./WebsiteBanner";
 import { GreetingHeader } from "./GreetingHeader";
 import { StatsGrid } from "./StatsGrid";
 import { GooglePresenceCard } from "./GooglePresenceCard";
-import { WhatsAppActivityCard } from "./WhatsAppActivityCard";
+import { RecentAppointments } from "./RecentAppointments";
 
-export function OverviewPage() {
+export async function OverviewPage() {
   return (
     <div className="flex flex-1 flex-col min-h-screen">
       <WebsiteBanner />
       <div className="mx-auto w-full max-w-[1440px] flex-1 p-4 pb-12 sm:p-6 sm:pb-16 md:p-8 md:pb-20">
         <GreetingHeader />
-        <StatsGrid />
+        <StatsGrid
+        />
         <div className="grid grid-cols-1 gap-4 sm:gap-6 xl:grid-cols-3">
           <GooglePresenceCard />
-          <WhatsAppActivityCard />
+          <RecentAppointments />
         </div>
       </div>
     </div>

@@ -1,5 +1,6 @@
 import { requireUser } from "@/lib/requireUser";
 import { StatCard } from "./StatCard";
+import { AppointmentStatsCard } from "./AppointmentStatsCard";
 
 export async function StatsGrid() {
   const user = await requireUser();
@@ -45,17 +46,7 @@ export async function StatsGrid() {
         }
       />
 
-      <StatCard
-        icon="event_available"
-        label="Appointments"
-        value="32"
-        accentColor="destructive"
-        badge={
-          <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-            This Month
-          </span>
-        }
-      />
+      <AppointmentStatsCard />
     </div>
   );
 }

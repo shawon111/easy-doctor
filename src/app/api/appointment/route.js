@@ -4,6 +4,7 @@ import { withUser } from "@/lib/withUser";
 import {
     createAppointment,
     getAppointments,
+    getAppointmentDashboardData,
 } from "@/services/appointment.service";
 import { NextResponse } from "next/server";
 
@@ -53,31 +54,46 @@ export const POST = async (request) => {
 };
 
 export const GET = withUser(
-    async (request, { params }, currentuser) => {
+    async (request, context, currentuser) => {
         await connectDB();
 
         const searchParams = request.nextUrl.searchParams;
+        const view = searchParams.get("view");
+        const page = Number(searchParams.get("page") || 1);
+        const limit = Number(searchParams.get("limit") || 10);
 
-        const userId = searchParams.get("userId");
-
-        const page = searchParams.get("page") || 1;
-
-        const limit = searchParams.get("limit") || 10;
+        if (
+            !Number.isInteger(page) ||
+            page < 1 ||
+            !Number.isInteger(limit) ||
+            limit < 1 ||
+            limit > 100
+        ) {
+            return NextResponse.json(
+                {
+                    success: false,
+                    message: "Page and limit must be positive integers; limit cannot exceed 100",
+                },
+                { status: 400 }
+            );
+        }
 
         try {
-            const appointments = await getAppointments(
-                userId,
-                Number(page),
-                Number(limit)
-            );
+            const data =
+                view === "dashboard"
+                    ? await getAppointmentDashboardData(currentuser._id, limit)
+                    : await getAppointments(currentuser._id, page, limit);
 
             return NextResponse.json(
                 {
                     success: true,
-                    data: appointments,
+                    data,
                 },
                 {
                     status: 200,
+                    headers: {
+                        "Cache-Control": "private, no-store, max-age=0",
+                    },
                 }
             );
         } catch (error) {
