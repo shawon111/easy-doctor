@@ -11,6 +11,7 @@ import appointmentsIcon from "@/assets/icons/appointments-icon.png"
 import planAndBillingIcon from "@/assets/icons/plan-and-billing-icon.png"
 import settingsIcon from "@/assets/icons/settings-icon.png"
 import googleBusinessIcon from "@/assets/icons/google.png"
+import customDomainIcon from "@/assets/icons/domain.png"
 
 import { NavMain } from "@/components/nav-main"
 import { NavUser } from "@/components/nav-user"
@@ -62,7 +63,8 @@ const data = {
       icon: planAndBillingIcon,
     },{
       title: "Custom Domain",
-      url: "/dashboard/domain"
+      url: "/dashboard/domain",
+      icon: customDomainIcon,
     },
     {
       title: "Settings",
