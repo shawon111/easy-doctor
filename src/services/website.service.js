@@ -74,6 +74,34 @@ export const getWebsiteByUserId = async (userId) => {
     }
 }
 
+const getPublicWebsiteUrl = (website) => {
+    const customDomainConnected =
+        website?.domain &&
+        website.domainStatus === "connected";
+    const baseDomain = process.env.NEXT_PUBLIC_BASE_DOMAIN;
+    const websiteHost = customDomainConnected
+        ? website.domain
+        : website?.subdomain && baseDomain
+          ? `${website.subdomain}.${baseDomain}`
+          : null;
+
+    return websiteHost ? `https://${websiteHost}` : null;
+};
+
+export const getWebsiteUrlForUser = async (userId) => {
+    await connectDB();
+
+    const website = await Website.findOne({ userId })
+        .select({
+            subdomain: 1,
+            domain: 1,
+            domainStatus: 1,
+        })
+        .lean();
+
+    return getPublicWebsiteUrl(website);
+};
+
 export const getMyWebsiteDetails = async (userId) => {
     await connectDB();
 
@@ -107,15 +135,7 @@ export const getMyWebsiteDetails = async (userId) => {
         throw new Error("User not found");
     }
 
-    const customDomainConnected =
-        website?.domain &&
-        website.domainStatus === "connected";
     const baseDomain = process.env.NEXT_PUBLIC_BASE_DOMAIN;
-    const websiteHost = customDomainConnected
-        ? website.domain
-        : website?.subdomain && baseDomain
-          ? `${website.subdomain}.${baseDomain}`
-          : null;
 
     return {
         doctor: {
@@ -131,7 +151,7 @@ export const getMyWebsiteDetails = async (userId) => {
         },
         website: website
             ? {
-                  url: websiteHost ? `https://${websiteHost}` : null,
+                  url: getPublicWebsiteUrl(website),
                   subdomainUrl: website.subdomain && baseDomain
                       ? `https://${website.subdomain}.${baseDomain}`
                       : null,

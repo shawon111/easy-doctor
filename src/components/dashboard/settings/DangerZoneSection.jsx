@@ -1,8 +1,32 @@
 "use client";
 
+import { useState } from "react";
+import { useMutation } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { deleteAccount } from "./settings-api";
 
-export function DangerZoneSection() {
+export function DangerZoneSection({ email }) {
+  const router = useRouter();
+  const [isConfirming, setIsConfirming] = useState(false);
+  const [confirmation, setConfirmation] = useState("");
+  const [currentPassword, setCurrentPassword] = useState("");
+  const deleteMutation = useMutation({
+    mutationFn: deleteAccount,
+    onSuccess: () => {
+      toast.success("Your account has been deleted.");
+      router.replace("/login");
+    },
+    onError: (error) => toast.error(error.message || "Unable to delete account."),
+  });
+
+  function handleDeleteAccount(event) {
+    event.preventDefault();
+    deleteMutation.mutate({ confirmation, currentPassword });
+  }
+
   return (
     <section
       id="danger"
@@ -13,13 +37,78 @@ export function DangerZoneSection() {
         <div>
           <p className="text-sm font-medium text-[#0F172A]">Delete Account</p>
           <p className="mt-1 text-sm text-[#64748B]">
-            Permanently remove your account and all associated data. This action cannot be undone.
+            Permanently remove your account, website, appointments, and associated database data. This action cannot be undone.
           </p>
         </div>
-        <Button className="w-full bg-[#DC2626] text-white hover:bg-[#B91C1C] sm:w-auto">
-          Delete Account
-        </Button>
+        {!isConfirming ? (
+          <Button
+            type="button"
+            onClick={() => setIsConfirming(true)}
+            className="w-full bg-[#DC2626] text-white hover:bg-[#B91C1C] sm:w-auto"
+          >
+            Delete Account
+          </Button>
+        ) : null}
       </div>
+
+      {isConfirming ? (
+        <form
+          onSubmit={handleDeleteAccount}
+          className="mt-4 space-y-4 rounded-lg border border-[#FED7D7] bg-white p-4"
+        >
+          <p className="text-sm text-[#64748B]">
+            To confirm deletion of <strong className="text-[#0F172A]">{email}</strong>, type DELETE and enter your current password.
+          </p>
+          <div className="grid gap-4 sm:grid-cols-2">
+            <div className="flex flex-col gap-2">
+              <label htmlFor="delete-confirmation" className="text-sm font-semibold text-[#0F172A]">
+                Type DELETE to confirm
+              </label>
+              <Input
+                id="delete-confirmation"
+                required
+                autoComplete="off"
+                value={confirmation}
+                onChange={(event) => setConfirmation(event.target.value)}
+              />
+            </div>
+            <div className="flex flex-col gap-2">
+              <label htmlFor="delete-current-password" className="text-sm font-semibold text-[#0F172A]">
+                Current Password
+              </label>
+              <Input
+                id="delete-current-password"
+                type="password"
+                autoComplete="current-password"
+                required
+                value={currentPassword}
+                onChange={(event) => setCurrentPassword(event.target.value)}
+              />
+            </div>
+          </div>
+          <div className="flex flex-col-reverse justify-end gap-2 sm:flex-row">
+            <Button
+              type="button"
+              variant="outline"
+              disabled={deleteMutation.isPending}
+              onClick={() => {
+                setIsConfirming(false);
+                setConfirmation("");
+                setCurrentPassword("");
+              }}
+            >
+              Cancel
+            </Button>
+            <Button
+              type="submit"
+              disabled={deleteMutation.isPending || confirmation !== "DELETE"}
+              className="bg-[#DC2626] text-white hover:bg-[#B91C1C]"
+            >
+              {deleteMutation.isPending ? "Deleting..." : "Permanently Delete Account"}
+            </Button>
+          </div>
+        </form>
+      ) : null}
     </section>
   );
 }

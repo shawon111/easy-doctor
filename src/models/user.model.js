@@ -150,6 +150,17 @@ const UserSchema = new mongoose.Schema(
             required: false,
         },
 
+        notificationPreferences: {
+            emailNotifications: {
+                type: Boolean,
+                default: true,
+            },
+            appointmentReminders: {
+                type: Boolean,
+                default: true,
+            },
+        },
+
         emailVerified: {
             type: Boolean,
             default: false,

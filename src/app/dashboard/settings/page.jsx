@@ -9,9 +9,10 @@ const isWebsiteActive = (expireDate) => {
 
 export default async function Settings() {
   const user = await requireUser();
-      const isActivePlan = isWebsiteActive(user?.expiresAt)
-      if (!isActivePlan) {
-          return <UpgradeNotice />
-      }
+  const isActivePlan = isWebsiteActive(user?.expiresAt);
+  if (!isActivePlan) {
+    return <UpgradeNotice />;
+  }
+
   return <SettingsPage />;
 }

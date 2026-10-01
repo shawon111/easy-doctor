@@ -9,6 +9,16 @@ export const withUser = (handler) => {
     return async (request, context) => {
         try {
             const currentUser = await requireUser();
+            if (!currentUser?._id) {
+                return NextResponse.json(
+                    {
+                        success: false,
+                        message: "Unauthorized",
+                    },
+                    { status: 401 }
+                );
+            }
+
             // response if subscription expired
             const isActivePlan = isWebsiteActive(currentUser?.expiresAt)
             if (isActivePlan === false) {

@@ -1,21 +1,54 @@
 "use client";
 
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import toast from "react-hot-toast";
 import { Switch } from "@/components/ui/switch";
+import { saveNotificationPreference } from "./settings-api";
 
 const NOTIFICATIONS = [
   {
-    id: "email-notifications",
+    id: "emailNotifications",
     title: "Email Notifications",
-    description: "Receive daily summaries and critical alerts via email.",
+    description: "Choose your preference for account and service notices sent by email.",
   },
   {
-    id: "appointment-reminders",
+    id: "appointmentReminders",
     title: "Appointment Reminders",
-    description: "Get notified 15 minutes before an upcoming consultation.",
+    description: "Choose your preference for appointment reminder notifications.",
   },
 ];
 
-export function NotificationsSection() {
+export function NotificationsSection({ preferences }) {
+  const queryClient = useQueryClient();
+  const preferenceMutation = useMutation({
+    mutationFn: saveNotificationPreference,
+    onMutate: async (preference) => {
+      await queryClient.cancelQueries({ queryKey: ["account-settings"] });
+      const previousSettings = queryClient.getQueryData(["account-settings"]);
+      queryClient.setQueryData(["account-settings"], (current) => ({
+        ...current,
+        notificationPreferences: {
+          ...current.notificationPreferences,
+          ...preference,
+        },
+      }));
+      return { previousSettings };
+    },
+    onSuccess: (updatedSettings) => {
+      queryClient.setQueryData(["account-settings"], updatedSettings);
+    },
+    onError: (error, _preference, context) => {
+      if (context?.previousSettings) {
+        queryClient.setQueryData(["account-settings"], context.previousSettings);
+      }
+      toast.error(error.message || "Unable to save notification preference.");
+    },
+  });
+
+  function handlePreferenceChange(id, checked) {
+    preferenceMutation.mutate({ [id]: checked });
+  }
+
   return (
     <section
       id="notifications"
@@ -33,7 +66,9 @@ export function NotificationsSection() {
             </div>
             <Switch
               id={id}
-              defaultChecked
+              checked={Boolean(preferences[id])}
+              disabled={preferenceMutation.isPending}
+              onCheckedChange={(checked) => handlePreferenceChange(id, checked)}
               aria-label={title}
               className="mt-0.5 data-checked:bg-[#0066FF] data-unchecked:bg-[#C2C6D8]"
             />

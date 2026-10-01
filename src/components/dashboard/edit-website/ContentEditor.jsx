@@ -468,44 +468,48 @@ export default function ContentEditor() {
   }
 
   return (
-    <div className="flex h-full min-h-0 w-full flex-col overflow-hidden bg-muted/30n">
-      <div className="border-b bg-card px-4 py-4 md:px-6">
-        <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
-          <div>
+    <div className="flex min-h-[calc(100dvh-4rem)] w-full flex-col bg-muted/30 xl:h-[calc(100dvh-6rem)] xl:min-h-0 xl:overflow-hidden">
+      <div className="border-b bg-card px-3 py-4 sm:px-4 md:px-6">
+        <div className="mb-4 flex flex-wrap items-start justify-between gap-3 sm:items-center">
+          <div className="min-w-0">
             <h1 className="text-xl font-semibold">Website content</h1>
-            <p className="text-sm text-muted-foreground">{website.templateType} · Save each section independently.</p>
+            <p className="break-words text-sm text-muted-foreground">{website.templateType} · Save each section independently.</p>
           </div>
           <Button
             type="button"
+            className="max-w-full"
             disabled={saveMutation.isPending}
             onClick={saveActiveSection}
           >
             {saveMutation.isPending ? "Saving..." : `Save ${labelFor(activeSection)}`}
           </Button>
         </div>
-        <div className="flex gap-2 overflow-x-auto">
+        <div className="flex gap-2 overflow-x-auto pb-1">
           {Object.entries(PAGE_LABELS).map(([pageKey, pageLabel]) => (
-            <Button key={pageKey} type="button" variant={page === pageKey ? "default" : "outline"} onClick={() => setPage(pageKey)}>
+            <Button key={pageKey} className="shrink-0" type="button" variant={page === pageKey ? "default" : "outline"} onClick={() => setPage(pageKey)}>
               {pageLabel}
             </Button>
           ))}
         </div>
       </div>
-      <div className="flex min-h-0 flex-1">
-        <aside className="w-56 shrink-0 overflow-y-auto border-r bg-card p-3">
+      <div className="flex min-h-0 flex-1 flex-col xl:flex-row">
+        <aside className="shrink-0 border-b bg-card p-3 xl:w-56 xl:overflow-y-auto xl:border-b-0 xl:border-r">
           <p className="mb-2 px-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">Sections</p>
-          {sections.map((sectionKey) => (
-            <button
-              key={sectionKey}
-              type="button"
-              onClick={() => setSection(sectionKey)}
-              className={cn("mb-1 w-full rounded-lg px-3 py-2 text-left text-sm", activeSection === sectionKey ? "bg-primary text-primary-foreground" : "hover:bg-muted")}
-            >
-              {labelFor(sectionKey)}
-            </button>
-          ))}
+          <nav aria-label="Website content sections" className="flex gap-2 overflow-x-auto pb-1 xl:block xl:overflow-visible xl:pb-0">
+            {sections.map((sectionKey) => (
+              <button
+                key={sectionKey}
+                type="button"
+                onClick={() => setSection(sectionKey)}
+                aria-current={activeSection === sectionKey ? "page" : undefined}
+                className={cn("shrink-0 rounded-lg px-3 py-2 text-left text-sm xl:mb-1 xl:block xl:w-full", activeSection === sectionKey ? "bg-primary text-primary-foreground" : "hover:bg-muted")}
+              >
+                {labelFor(sectionKey)}
+              </button>
+            ))}
+          </nav>
         </aside>
-        <main className="min-w-0 flex-1 overflow-y-auto p-4 md:p-6">
+        <main className="min-w-0 flex-1 p-3 sm:p-4 md:p-6 xl:overflow-y-auto">
           <Card className="mx-auto max-w-3xl">
             <CardHeader><CardTitle>{labelFor(activeSection)}</CardTitle></CardHeader>
             <CardContent className="space-y-5">
