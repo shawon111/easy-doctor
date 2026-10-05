@@ -1,8 +1,21 @@
-import { Hanken_Grotesk, Inter, JetBrains_Mono, Manrope, Playfair_Display, Syne } from "next/font/google";
+import { Hanken_Grotesk, Inter, JetBrains_Mono, Manrope, Newsreader, Playfair_Display, Plus_Jakarta_Sans, Syne } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import QueryProvider from "@/providers/QueryProvider";
 import ToasterProvider from "@/providers/ToasterProvider";
+
+const plusJakartaSans = Plus_Jakarta_Sans({
+  variable: "--font-plus-jakarta-sans",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+});
+
+const newsreader = Newsreader({
+  variable: "--font-newsreader",
+  subsets: ["latin"],
+  weight: ["400", "600"],
+  style: ["normal", "italic"],
+});
 
 const inter = Inter({
   variable: "--font-inter",
@@ -48,7 +61,7 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${playfairDisplay.variable} ${manrope.variable} ${syne.variable} ${hankenGrotesk.variable} ${jetbrainsMono.variable} h-full antialiased scroll-smooth`}
+      className={`${plusJakartaSans.variable} ${newsreader.variable} ${inter.variable} ${playfairDisplay.variable} ${manrope.variable} ${syne.variable} ${hankenGrotesk.variable} ${jetbrainsMono.variable} h-full antialiased scroll-smooth`}
     >
       <body className="min-h-full flex flex-col">
         <Script id="material-symbols-loader" strategy="afterInteractive">

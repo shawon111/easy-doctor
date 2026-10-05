@@ -21,7 +21,8 @@ const PROTECTED_API_PATHS = [
     "/api/appointment",
     "/api/website",
     "/api/domain",
-    "/api/info"
+    "/api/info",
+    "/api/payment"
 ];
 
 export async function proxy(request) {

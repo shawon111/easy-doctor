@@ -1,5 +1,5 @@
 export const generateStructuredData = ({ user, baseUrl }) => {
-    const primaryClinic = user.clinicAddress?.[0];
+    const clinics = user.clinicAddress || [];
 
     const data = {
         "@context": "https://schema.org",
@@ -29,22 +29,30 @@ export const generateStructuredData = ({ user, baseUrl }) => {
             description: user.bio,
         }),
 
-        ...(primaryClinic && {
-            address: {
-                "@type": "PostalAddress",
+        ...(clinics.length > 0 && {
+            worksFor: clinics.map((clinic) => ({
+                "@type": "MedicalClinic",
 
-                ...(primaryClinic.address && {
-                    streetAddress: primaryClinic.address,
+                ...(clinic.chamberName && {
+                    name: clinic.chamberName,
                 }),
 
-                ...(primaryClinic.city && {
-                    addressLocality: primaryClinic.city,
-                }),
+                ...(clinic.city && {
+                    address: {
+                        "@type": "PostalAddress",
 
-                ...(primaryClinic.country && {
-                    addressCountry: primaryClinic.country,
+                        streetAddress: clinic.address,
+
+                        ...(clinic.city && {
+                            addressLocality: clinic.city,
+                        }),
+
+                        ...(clinic.country && {
+                            addressCountry: clinic.country,
+                        }),
+                    },
                 }),
-            },
+            })),
         }),
 
         ...(user.socialLinks?.length > 0 && {

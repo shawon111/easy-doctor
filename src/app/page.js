@@ -1,25 +1,37 @@
-import { getWebsiteLists } from "@/services/website.service";
-import Link from "next/link";
+import TopNoticeStrip from "@/components/home/TopNoticeStrip";
+import Header from "@/components/home/Header";
+import HeroSection from "@/components/home/HeroSection";
+import ArchitecturalValueStrip from "@/components/home/ArchitecturalValueStrip";
+import PatientSearchExperience from "@/components/home/PatientSearchExperience";
+import HowItWorks from "@/components/home/HowItWorks";
+import TemplateShowcase from "@/components/home/TemplateShowcase";
+import DoctorPortalPreview from "@/components/home/DoctorPortalPreview";
+import SeoFoundation from "@/components/home/SeoFoundation";
+import CustomDomainSection from "@/components/home/CustomDomainSection";
+import PricingSection from "@/components/home/PricingSection";
+import FaqSection from "@/components/home/FaqSection";
+import ClosingCta from "@/components/home/ClosingCta";
+import Footer from "@/components/home/Footer";
 
-export default async function Home() {
-  const websites = await getWebsiteLists();
+export default function Home() {
   return (
-    <>
-      <div className="flex flex-col items-center justify-center h-full">
-        <h1 className="text-4xl font-bold mb-4">Welcome to the Doctor App</h1>
-        <p className="text-gray-600 mb-8">create your doctor website</p>
-        <ul>
-          {
-            websites.map((website, index) => {
-              return (
-                <li key={website._id}>
-                  <Link href={`http://${website.subdomain}.${process.env.NEXT_PUBLIC_BASE_DOMAIN}`}>Website {index + 1}</Link>
-                </li>
-              )
-            })
-          }
-        </ul>
-      </div>
-    </>
+    <div className="bg-white font-sans text-slate-body antialiased selection:bg-secondary/15 selection:text-secondary min-h-screen">
+      <TopNoticeStrip />
+      <Header />
+      <main className="w-full">
+        <HeroSection />
+        <ArchitecturalValueStrip />
+        <PatientSearchExperience />
+        <HowItWorks />
+        <TemplateShowcase />
+        <DoctorPortalPreview />
+        <SeoFoundation />
+        <CustomDomainSection />
+        <PricingSection />
+        <FaqSection />
+        <ClosingCta />
+      </main>
+      <Footer />
+    </div>
   );
 }
