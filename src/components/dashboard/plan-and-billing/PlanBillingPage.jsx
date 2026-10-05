@@ -2,6 +2,7 @@ import { PageHeader } from "./PageHeader";
 import { CurrentPlanCard } from "./CurrentPlanCard";
 import { ComparePlansTable } from "./ComparePlansTable";
 import { PaymentMethodCard } from "./PaymentMethodCard";
+import { ProPricingOptions } from "./ProPricingOptions";
 
 export function PlanBillingPage() {
   return (
@@ -10,6 +11,7 @@ export function PlanBillingPage() {
       <div className="grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-12">
         <CurrentPlanCard />
         <ComparePlansTable />
+        <ProPricingOptions />
         <PaymentMethodCard />
       </div>
     </div>

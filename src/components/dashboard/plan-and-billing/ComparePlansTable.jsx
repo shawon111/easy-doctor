@@ -1,5 +1,4 @@
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
 import { requireUser } from "@/lib/requireUser";
 
 function CheckIcon({ supported, highlight }) {
@@ -70,10 +69,10 @@ export async function ComparePlansTable({ className }) {
                     Current
                   </span>
                 }
-                Free Trial
+                Free Trial · 15 days
               </th>
 
-              <th className="relative w-[20%] border-b-2 border-primary px-4 pb-4 pt-2 text-center font-semibold text-primary">
+              <th className="relative w-[40%] border-b-2 border-primary px-4 pb-4 pt-2 text-center font-semibold text-primary">
                 {
                   userLevel === "pro" && <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-primary px-2 py-0.5 text-[10px] font-bold uppercase text-primary-foreground">
                     Current
@@ -100,23 +99,6 @@ export async function ComparePlansTable({ className }) {
               </tr>
             ))}
 
-            <tr className="group transition-colors hover:bg-muted/40">
-              <td className="px-4 py-4" />
-
-              <td className="px-4 py-4 text-center">
-                <div className="text-sm font-semibold text-foreground">Free</div>
-              </td>
-
-              <td className="bg-blue-50/50 px-4 py-4 text-center group-hover:bg-blue-50">
-                <div className="text-sm font-bold text-primary">৳5,500/yr</div>
-                <Button
-                  size="sm"
-                  className="w-full bg-orange-100 text-orange-700 hover:bg-orange-200"
-                >
-                  Upgrade
-                </Button>
-              </td>
-            </tr>
           </tbody>
         </table>
       </div>

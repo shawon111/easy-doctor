@@ -4,6 +4,14 @@ import User from "@/models/user.model";
 import { connectDB } from "@/config/database";
 import mongoose from "mongoose";
 
+export const APPOINTMENT_STATUSES = [
+    "scheduled",
+    "arrived",
+    "completed",
+    "cancelled",
+    "no_show",
+];
+
 
 export const getDayBoundaries = (date) => {
     const start = new Date(`${date}T00:00:00+06:00`);
@@ -36,6 +44,7 @@ export const createAppointment = async (data) => {
         patient,
         chamber,
         date,
+        source = "online",
     } = data;
 
     await connectDB();
@@ -117,6 +126,7 @@ export const createAppointment = async (data) => {
                         date: new Date(date),
                         serial: updatedSession.nextSerial - 1,
                         patient,
+                        source,
                     });
 
                     await appointment.save({ session: bookingSession });
@@ -142,6 +152,40 @@ export const createAppointment = async (data) => {
     }
 };
 
+export const createManualAppointment = async (userId, data) => {
+    const { chamberId, date, patient } = data;
+    await connectDB();
+
+    if (!mongoose.Types.ObjectId.isValid(chamberId)) {
+        throw new Error("Select a valid chamber");
+    }
+
+    const parsedDate = new Date(date);
+    if (!date || Number.isNaN(parsedDate.getTime())) {
+        throw new Error("Enter a valid appointment date and time");
+    }
+
+    const user = await User.findById(userId)
+        .select("clinicAddress")
+        .lean();
+
+    const chamber = user?.clinicAddress?.find(
+        (item) => item._id.toString() === chamberId
+    );
+
+    if (!chamber) {
+        throw new Error("The selected chamber does not belong to your account");
+    }
+
+    return createAppointment({
+        userId,
+        patient,
+        chamber: { _id: chamber._id },
+        date: parsedDate,
+        source: "manual",
+    });
+};
+
 // Get appointments
 export const getAppointments = async (
     userId,
@@ -165,32 +209,88 @@ export const getAppointments = async (
     }
 };
 
-const getDhakaMonthRange = (date = new Date()) => {
-    const parts = new Intl.DateTimeFormat("en-US", {
-        timeZone: "Asia/Dhaka",
-        year: "numeric",
-        month: "numeric",
-    }).formatToParts(date);
-    const year = Number(parts.find((part) => part.type === "year")?.value);
-    const month = Number(parts.find((part) => part.type === "month")?.value);
-    const dhakaOffset = 6 * 60 * 60 * 1000;
+export const getManageAppointments = async (
+    userId,
+    page = 1,
+    limit = 20,
+    status
+) => {
+    await connectDB();
+    const filter = { userId };
+    if (status) {
+        filter.status =
+            status === "scheduled"
+                ? { $in: ["scheduled", null] }
+                : status;
+    }
 
-    return {
-        start: new Date(Date.UTC(year, month - 1, 1) - dhakaOffset),
-        end: new Date(Date.UTC(year, month, 1) - dhakaOffset),
+    const [appointments, total] = await Promise.all([
+        Appointment.find(filter)
+            .sort({ date: -1, createdAt: -1 })
+            .skip((page - 1) * limit)
+            .limit(limit)
+            .lean(),
+        Appointment.countDocuments(filter),
+    ]);
+
+    return { appointments, total, page, limit };
+};
+
+export const getAppointmentsForDate = async (userId, date, page = 1, limit = 15) => {
+    await connectDB();
+    const { start, end } = getDayBoundaries(date);
+    const filter = {
+        userId,
+        date: { $gte: start, $lt: end },
     };
+
+    const [appointments, total] = await Promise.all([
+        Appointment.find(filter)
+            .sort({ serial: 1, createdAt: 1 })
+            .skip((page - 1) * limit)
+            .limit(limit)
+            .lean(),
+        Appointment.countDocuments(filter),
+    ]);
+
+    return { appointments, total, page, limit, date };
+};
+
+export const updateAppointmentStatus = async (userId, appointmentId, status) => {
+    await connectDB();
+
+    if (!APPOINTMENT_STATUSES.includes(status)) {
+        throw new Error("Select a valid appointment status");
+    }
+
+    return Appointment.findOneAndUpdate(
+        { _id: appointmentId, userId },
+        { $set: { status } },
+        { new: true, runValidators: true }
+    ).lean();
 };
 
 export const getAppointmentDashboardData = async (userId, recentLimit = 8) => {
     await connectDB();
-    const { start, end } = getDhakaMonthRange();
+    const { start: todayStart } = getDayBoundaries(getDateKey(new Date()));
+    const activeStatusFilter = {
+        status: { $in: ["scheduled", "arrived", null] },
+    };
 
-    const [totalAppointments, thisMonthAppointments, recentAppointments] =
+    const [upcomingAppointments, todayAppointments, recentAppointments] =
         await Promise.all([
-            Appointment.countDocuments({ userId }),
             Appointment.countDocuments({
                 userId,
-                date: { $gte: start, $lt: end },
+                date: { $gte: todayStart },
+                ...activeStatusFilter,
+            }),
+            Appointment.countDocuments({
+                userId,
+                date: {
+                    $gte: todayStart,
+                    $lt: new Date(todayStart.getTime() + 24 * 60 * 60 * 1000),
+                },
+                ...activeStatusFilter,
             }),
             Appointment.find({ userId })
                 .sort({ createdAt: -1 })
@@ -199,8 +299,8 @@ export const getAppointmentDashboardData = async (userId, recentLimit = 8) => {
         ]);
 
     return {
-        totalAppointments,
-        thisMonthAppointments,
+        upcomingAppointments,
+        todayAppointments,
         recentAppointments: recentAppointments.map((appointment) => ({
             ...appointment,
             _id: appointment._id.toString(),

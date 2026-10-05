@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { requireUser } from "@/lib/requireUser";
 import { cn } from "@/lib/utils";
+import { PLANS } from "@/lib/payment/plans";
 
 function PlanFeature({ label }) {
   return (
@@ -78,12 +79,31 @@ export async function CurrentPlanCard({ className }) {
 
         {/* Pricing */}
         <div className="mb-6">
-          <span className="text-[32px] font-bold tracking-tight text-foreground uppercase">{userLevel === "free" ? "Free Trial": userLevel}</span>
-          <div className="mt-2 text-2xl font-semibold text-foreground">
-            ৳500{" "}
-            <span className="text-sm font-normal text-muted-foreground">/ month</span>
-          </div>
-          <p className="mt-1 text-sm text-muted-foreground">Next billing date: Oct 15, 2026</p>
+          <span className="text-[32px] font-bold tracking-tight text-foreground">
+            {userLevel === "free" ? "Free Trial" : "Pro"}
+          </span>
+          {userLevel === "free" ? (
+            <p className="mt-2 text-sm leading-6 text-muted-foreground">
+              Your 15-day trial gives you time to build and explore your website.
+              No card is needed to get started.
+            </p>
+          ) : (
+            <>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Available Pro plans (starting at ৳{PLANS.monthly.amount.toLocaleString("en-US")} per month):
+              </p>
+              <div className="mt-4 space-y-2 rounded-xl bg-muted/40 p-3 text-sm">
+                {Object.entries(PLANS).map(([key, plan]) => (
+                  <div key={key} className="flex items-center justify-between gap-3">
+                    <span className="text-muted-foreground">{plan.name}</span>
+                    <span className="font-semibold text-foreground">
+                      ৳{plan.amount.toLocaleString("en-US")}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
         </div>
 
         {/* Feature list */}

@@ -2,6 +2,7 @@ import TopNoticeStrip from "@/components/home/TopNoticeStrip";
 import Header from "@/components/home/Header";
 import HeroSection from "@/components/home/HeroSection";
 import ArchitecturalValueStrip from "@/components/home/ArchitecturalValueStrip";
+import FreeTrialSection from "@/components/home/FreeTrialSection";
 import PatientSearchExperience from "@/components/home/PatientSearchExperience";
 import HowItWorks from "@/components/home/HowItWorks";
 import TemplateShowcase from "@/components/home/TemplateShowcase";
@@ -21,6 +22,7 @@ export default function Home() {
       <main className="w-full">
         <HeroSection />
         <ArchitecturalValueStrip />
+        <FreeTrialSection />
         <PatientSearchExperience />
         <HowItWorks />
         <TemplateShowcase />

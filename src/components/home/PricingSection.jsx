@@ -1,98 +1,183 @@
 import Link from "next/link";
+import { PLANS } from "@/lib/payment/plans";
+
+const PRICING_OPTIONS = [
+  {
+    key: "monthly",
+    description: "A flexible way to get your practice online.",
+    cadence: "/ month",
+  },
+  {
+    key: "sixMonth",
+    description: "Six months of uninterrupted access for your practice.",
+    cadence: "/ 6 months",
+    savings: "Save ৳200 vs. monthly",
+  },
+  {
+    key: "yearly",
+    description: "Best value for building a lasting online presence.",
+    cadence: "/ year",
+    savings: "Save ৳1,000 vs. monthly",
+    featured: true,
+  },
+];
+
+const FEATURE_GROUPS = [
+  {
+    icon: "language",
+    title: "Your professional website",
+    features: [
+      "A dedicated, mobile-friendly doctor website",
+      "6 physician-designed templates in light and dark styles",
+      "Doctor profile with photo, qualifications, and BMDC details",
+      "Chamber locations, visiting hours, and directions",
+      "Free Docxio subdomain or connect your own custom domain",
+      "HTTPS security for your published website",
+    ],
+  },
+  {
+    icon: "event_available",
+    title: "Patient connection & appointments",
+    features: [
+      "Online appointment requests from your website",
+      "WhatsApp and phone contact options for patients",
+      "Appointment list, recent activity, and monthly totals",
+      "Multiple chambers and appointment schedules",
+    ],
+  },
+  {
+    icon: "travel_explore",
+    title: "Visibility & control",
+    features: [
+      "Edit your website content from a self-service dashboard",
+      "Page titles, descriptions, social previews, and SEO controls",
+      "Structured medical profile data for search engines",
+      "Google Business setup guidance and Google presence tools",
+      "Account, profile, security, and notification settings",
+    ],
+  },
+];
 
 export default function PricingSection() {
   return (
-    <section className="py-24 lg:py-32 bg-surface-subtle border-b border-slate-border" id="pricing">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-[11px] uppercase font-bold tracking-[0.2em] text-secondary bg-secondary-soft px-3 py-1 rounded-full border border-secondary/20">Transparent Physician Billing</span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-heading tracking-tight mt-4 mb-4">
+    <section className="border-b border-slate-border bg-surface-subtle py-24 lg:py-32" id="pricing">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mx-auto mb-16 max-w-3xl text-center">
+          <span className="rounded-full border border-secondary/20 bg-secondary-soft px-3 py-1 text-[11px] font-bold uppercase tracking-[0.2em] text-secondary">
+            Transparent Physician Billing
+          </span>
+          <h2 className="mb-4 mt-4 text-3xl font-extrabold tracking-tight text-slate-heading sm:text-4xl lg:text-5xl">
             Simple Pricing, Built for Doctors.
           </h2>
-          <p className="text-base sm:text-lg text-slate-muted leading-relaxed">
-            Choose your billing cadence. All plans include full template access, free docxio.site subdomain, and instant dashboard updates.
+          <p className="text-base leading-relaxed text-slate-muted sm:text-lg">
+            Start with a 15-day free trial, then choose the Pro plan duration
+            that works for your practice. No card is needed to start.
           </p>
         </div>
-        {/* Pricing Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
-          {/* Tier 1: Monthly */}
-          <div className="bg-white p-8 lg:p-10 rounded-2xl border border-slate-border shadow-subtle flex flex-col justify-between hover:shadow-elevated transition-all">
-            <div>
-              <span className="text-[11px] uppercase font-bold tracking-widest text-slate-500">Monthly Access</span>
-              <div className="flex items-baseline gap-1 mt-3 mb-4">
-                <span className="text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">৳999</span>
-                <span className="text-sm font-semibold text-slate-500">/ month</span>
-              </div>
-              <p className="text-xs text-slate-600 leading-relaxed mb-6">
-                Ideal for doctors establishing their initial digital appointment presence and evaluating patient response.
-              </p>
-              <ul className="space-y-3.5 text-xs text-slate-700 font-medium mb-8">
-                <li className="flex items-center gap-2.5"><span className="material-symbols-outlined text-secondary text-[18px]">check</span> Free .docxio.site subdomain included</li>
-                <li className="flex items-center gap-2.5"><span className="material-symbols-outlined text-secondary text-[18px]">check</span> All 6 light &amp; dark doctor templates</li>
-                <li className="flex items-center gap-2.5"><span className="material-symbols-outlined text-secondary text-[18px]">check</span> Single chamber scheduling &amp; WhatsApp</li>
-                <li className="flex items-center gap-2.5"><span className="material-symbols-outlined text-secondary text-[18px]">check</span> Instant self-service dashboard updates</li>
-              </ul>
-            </div>
-            <div>
-              <Link className="w-full py-3.5 px-4 bg-slate-100 hover:bg-slate-200 text-slate-900 font-bold text-xs rounded-xl transition-colors text-center block" href="#subdomain-claimer">
-                Start Monthly Plan
-              </Link>
-              <p className="text-[10px] text-center text-slate-400 mt-2">bKash, Nagad &amp; local cards supported</p>
-            </div>
+
+        <div className="grid grid-cols-1 items-stretch gap-8 md:grid-cols-3">
+          {PRICING_OPTIONS.map((option) => {
+            const plan = PLANS[option.key];
+
+            return (
+              <article
+                key={option.key}
+                className={`relative flex flex-col justify-between rounded-2xl bg-white p-8 transition-all hover:shadow-elevated lg:p-10 ${
+                  option.featured
+                    ? "border-2 border-secondary shadow-window ring-4 ring-secondary/10"
+                    : "border border-slate-border shadow-subtle"
+                }`}
+              >
+                {option.featured ? (
+                  <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-secondary px-4 py-1 text-[10px] font-bold uppercase tracking-widest text-white shadow-md">
+                    Best Value
+                  </span>
+                ) : null}
+
+                <div>
+                  <span className="text-[11px] font-bold uppercase tracking-widest text-secondary">
+                    {plan.name} Pro
+                  </span>
+                  <div className="mb-4 mt-3 flex items-baseline gap-1">
+                    <span className="text-4xl font-extrabold tracking-tight text-slate-900 lg:text-5xl">
+                      ৳{plan.amount.toLocaleString("en-US")}
+                    </span>
+                    <span className="text-sm font-semibold text-slate-500">
+                      {option.cadence}
+                    </span>
+                  </div>
+                  <p className="mb-6 text-sm leading-relaxed text-slate-600">
+                    {option.description}
+                  </p>
+                  <p className="mb-8 rounded-xl bg-surface-subtle px-4 py-3 text-sm font-medium text-slate-700">
+                    Includes every Docxio Pro feature listed below.
+                  </p>
+                </div>
+
+                <div>
+                  <Link
+                    className={`block w-full rounded-xl px-4 py-3.5 text-center text-sm font-bold transition-colors ${
+                      option.featured
+                        ? "bg-secondary text-white shadow-md hover:bg-secondary-hover"
+                        : "bg-slate-100 text-slate-900 hover:bg-slate-200"
+                    }`}
+                    href="/register"
+                  >
+                    Start Free Trial
+                  </Link>
+                  {option.savings ? (
+                    <p className="mt-2 text-center text-xs font-medium text-emerald-700">
+                      {option.savings}
+                    </p>
+                  ) : (
+                    <p className="mt-2 text-center text-xs text-slate-500">
+                      Billed monthly
+                    </p>
+                  )}
+                </div>
+              </article>
+            );
+          })}
+        </div>
+        <div className="mt-20">
+          <div className="mx-auto mb-10 max-w-3xl text-center">
+            <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-secondary">
+              Everything your practice needs
+            </span>
+            <h3 className="mt-3 text-2xl font-extrabold tracking-tight text-slate-heading sm:text-3xl">
+              All the Docxio tools for your practice, in one place.
+            </h3>
+            <p className="mt-3 text-sm leading-relaxed text-slate-muted sm:text-base">
+              Every Pro billing duration includes the complete set of features
+              to create your website, connect with patients, and manage your
+              online presence.
+            </p>
           </div>
-          {/* Tier 2: Bi-Annual (6 Months) */}
-          <div className="bg-white p-8 lg:p-10 rounded-2xl border border-slate-border shadow-subtle flex flex-col justify-between hover:shadow-elevated transition-all">
-            <div>
-              <span className="text-[11px] uppercase font-bold tracking-widest text-secondary">6-Month Practice Pack</span>
-              <div className="flex items-baseline gap-1 mt-3 mb-4">
-                <span className="text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">৳4,999</span>
-                <span className="text-sm font-semibold text-slate-500">/ 6 months</span>
-              </div>
-              <p className="text-xs text-slate-600 leading-relaxed mb-6">
-                Cost-saving tier for consultants with regular multiple chambers requiring ongoing patient serial intake.
-              </p>
-              <ul className="space-y-3.5 text-xs text-slate-700 font-medium mb-8">
-                <li className="flex items-center gap-2.5"><span className="material-symbols-outlined text-secondary text-[18px]">check</span> Free .docxio.site subdomain included</li>
-                <li className="flex items-center gap-2.5"><span className="material-symbols-outlined text-secondary text-[18px]">check</span> Up to 3 chamber locations &amp; timing slots</li>
-                <li className="flex items-center gap-2.5"><span className="material-symbols-outlined text-secondary text-[18px]">check</span> Google Maps integration &amp; directions</li>
-                <li className="flex items-center gap-2.5"><span className="material-symbols-outlined text-secondary text-[18px]">check</span> Priority doctor onboarding assistance</li>
-              </ul>
-            </div>
-            <div>
-              <Link className="w-full py-3.5 px-4 bg-slate-100 hover:bg-slate-200 text-slate-900 font-bold text-xs rounded-xl transition-colors text-center block" href="#subdomain-claimer">
-                Start 6-Month Plan
-              </Link>
-              <p className="text-[10px] text-center text-slate-400 mt-2">Save ~৳1,000 compared to monthly</p>
-            </div>
-          </div>
-          {/* Tier 3: Annual Complete (Featured) */}
-          <div className="bg-white p-8 lg:p-10 rounded-2xl border-2 border-secondary shadow-window flex flex-col justify-between relative ring-4 ring-secondary/10">
-            <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-secondary text-white text-[10px] font-bold uppercase tracking-widest px-4 py-1 rounded-full shadow-md">
-              Most Recommended for Specialists
-            </div>
-            <div>
-              <span className="text-[11px] uppercase font-bold tracking-widest text-secondary">Annual Complete</span>
-              <div className="flex items-baseline gap-1 mt-3 mb-4">
-                <span className="text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">৳8,999</span>
-                <span className="text-sm font-semibold text-slate-500">/ year</span>
-              </div>
-              <p className="text-xs text-slate-600 leading-relaxed mb-6">
-                The definitive clinical package for distinguished professors, senior consultants, and department heads.
-              </p>
-              <ul className="space-y-3.5 text-xs text-slate-700 font-medium mb-8">
-                <li className="flex items-center gap-2.5"><span className="material-symbols-outlined text-secondary text-[18px]">check</span> Custom domain connection (.com) + Free Subdomain</li>
-                <li className="flex items-center gap-2.5"><span className="material-symbols-outlined text-secondary text-[18px]">check</span> Unlimited chambers &amp; hospital attachments</li>
-                <li className="flex items-center gap-2.5"><span className="material-symbols-outlined text-secondary text-[18px]">check</span> Full Schema.org Google metadata optimization</li>
-                <li className="flex items-center gap-2.5"><span className="material-symbols-outlined text-secondary text-[18px]">check</span> Priority WhatsApp VIP support desk</li>
-                <li className="flex items-center gap-2.5"><span className="material-symbols-outlined text-secondary text-[18px]">check</span> Automated 256-bit SSL renewal included</li>
-              </ul>
-            </div>
-            <div>
-              <Link className="w-full py-3.5 px-4 bg-secondary hover:bg-secondary-hover text-white font-bold text-xs rounded-xl transition-colors text-center block shadow-md" href="#subdomain-claimer">
-                Start Annual Plan
-              </Link>
-              <p className="text-[10px] text-center text-slate-500 mt-2 font-medium">Instant setup • bKash / Nagad / Visa / Mastercard</p>
-            </div>
+
+          <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">
+            {FEATURE_GROUPS.map((group) => (
+              <article
+                key={group.title}
+                className="rounded-2xl border border-slate-border bg-white p-6 shadow-subtle sm:p-7"
+              >
+                <div className="flex items-center gap-3">
+                  <span className="flex size-10 items-center justify-center rounded-xl bg-secondary-soft text-secondary">
+                    <span className="material-symbols-outlined text-[21px]">{group.icon}</span>
+                  </span>
+                  <h4 className="text-base font-bold text-slate-heading">{group.title}</h4>
+                </div>
+                <ul className="mt-5 space-y-3.5">
+                  {group.features.map((feature) => (
+                    <li key={feature} className="flex items-start gap-2.5 text-sm leading-6 text-slate-600">
+                      <span className="material-symbols-outlined mt-0.5 shrink-0 text-[18px] text-emerald-600">
+                        check_circle
+                      </span>
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            ))}
           </div>
         </div>
       </div>

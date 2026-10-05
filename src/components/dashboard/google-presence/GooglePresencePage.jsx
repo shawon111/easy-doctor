@@ -55,15 +55,25 @@ export function GooglePresencePage() {
   const saveSeo = (values) => saveMutation.mutate({ pageKey: activeKey, values });
 
   if (isLoading) {
-    return <div className="p-8 text-sm text-muted-foreground">Loading SEO settings...</div>;
+    return (
+      <div className="mx-auto w-full max-w-360 p-4 pb-12 text-sm text-muted-foreground sm:p-6 sm:pb-16 md:p-8 md:pb-20">
+        Loading SEO settings...
+      </div>
+    );
   }
 
   if (isError) {
-    return <div className="p-8 text-sm text-destructive">{error.message}</div>;
+    return (
+      <div className="mx-auto w-full max-w-360 p-4 pb-12 sm:p-6 sm:pb-16 md:p-8 md:pb-20">
+        <div role="alert" className="rounded-xl border border-destructive/30 bg-destructive/5 p-6 text-sm text-destructive">
+          {error.message}
+        </div>
+      </div>
+    );
   }
 
   return (
-    <div className="mx-auto flex w-full max-w-[1440px] flex-1 flex-col gap-4 p-4 pb-12 sm:gap-6 sm:p-6 sm:pb-16 md:p-8 md:pb-20">
+    <div className="mx-auto flex w-full max-w-360 flex-1 flex-col gap-4 p-4 pb-12 sm:gap-6 sm:p-6 sm:pb-16 md:p-8 md:pb-20">
       <PageHeader />
       <div className="grid grid-cols-1 items-start gap-4 sm:gap-6 lg:grid-cols-12">
         <WebsitePagesList activeKey={activeKey} onSelect={setActiveKey} />

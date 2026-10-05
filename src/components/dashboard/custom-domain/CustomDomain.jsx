@@ -37,7 +37,7 @@ export default function CustomDomain() {
 
     if (isLoading) {
         return (
-            <div className="mx-auto max-w-4xl px-4 py-8">
+            <div className="mx-auto w-full max-w-360 p-4 pb-12 sm:p-6 sm:pb-16 md:p-8 md:pb-20">
                 <div className="space-y-6">
                     <div className="h-8 w-48 animate-pulse rounded-md bg-muted" />
                     <div className="h-32 animate-pulse rounded-xl bg-muted" />
@@ -49,7 +49,7 @@ export default function CustomDomain() {
 
     if (isError) {
         return (
-            <div className="mx-auto max-w-4xl px-4 py-8">
+            <div className="mx-auto w-full max-w-360 p-4 pb-12 sm:p-6 sm:pb-16 md:p-8 md:pb-20">
                 <div className="rounded-xl border border-destructive/30 bg-destructive/5 p-6">
                     <h2 className="font-semibold text-destructive">
                         Something went wrong
@@ -67,7 +67,7 @@ export default function CustomDomain() {
     const baseDomain= process.env.NEXT_PUBLIC_BASE_DOMAIN
 
     return (
-        <div className="mx-auto max-w-360 px-4 py-8">
+        <div className="mx-auto w-full max-w-360 p-4 pb-12 sm:p-6 sm:pb-16 md:p-8 md:pb-20">
             <div className="space-y-6">
                 <DomainHeader />
 

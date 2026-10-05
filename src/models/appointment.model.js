@@ -41,6 +41,18 @@ const appointmentSchema = new mongoose.Schema(
             required: true,
         },
 
+        status: {
+            type: String,
+            enum: ["scheduled", "arrived", "completed", "cancelled", "no_show"],
+            default: "scheduled",
+        },
+
+        source: {
+            type: String,
+            enum: ["online", "manual"],
+            default: "online",
+        },
+
         patient: {
             name: {
                 type: String,
@@ -54,7 +66,7 @@ const appointmentSchema = new mongoose.Schema(
 
             age: {
                 type: Number,
-                required: true,
+                min: 0,
             },
 
             gender: {
@@ -80,6 +92,12 @@ appointmentSchema.index({
 appointmentSchema.index({
     userId: 1,
     chamberId: 1,
+});
+
+appointmentSchema.index({
+    userId: 1,
+    status: 1,
+    date: -1,
 });
 
 appointmentSchema.index(

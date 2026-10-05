@@ -31,31 +31,27 @@ export default async function GoogleBusinessPage() {
         : null;
 
     return (
-        <div className="min-h-screen bg-slate-50 px-4 py-8 sm:px-6 lg:px-8">
-            <div className="mx-auto max-w-360 space-y-8">
+        <div className="mx-auto w-full max-w-360 space-y-6 p-4 pb-12 sm:space-y-8 sm:p-6 sm:pb-16 md:p-8 md:pb-20">
+            <GoogleBusinessHeader />
 
-                <GoogleBusinessHeader />
+            <SetupStatus
+                isCompleted={isCompleted}
+            />
 
-                <SetupStatus
-                    isCompleted={isCompleted}
-                />
+            <WebsiteUrlCard
+                websiteUrl={websiteUrl}
+            />
 
-                <WebsiteUrlCard
+            <SetupSteps />
+
+            {!isCompleted && (
+                <SetupConfirmation
                     websiteUrl={websiteUrl}
+                    action={markGoogleBusinessComplete}
                 />
+            )}
 
-                <SetupSteps />
-
-                {!isCompleted && (
-                    <SetupConfirmation
-                        websiteUrl={websiteUrl}
-                        action={markGoogleBusinessComplete}
-                    />
-                )}
-
-                <GoogleBusinessNote />
-
-            </div>
+            <GoogleBusinessNote />
         </div>
     );
 }

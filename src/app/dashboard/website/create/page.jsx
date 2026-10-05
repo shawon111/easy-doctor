@@ -17,8 +17,10 @@ const CreateWebsite = async () => {
     return (
         <>
             {
-                user?.websiteCreated === true ? <div className="w-full rounded-2xl border border-emerald-500/30 bg-emerald-500/10 px-5 py-8 shadow-sm">
-                    <p>You already have a website.</p>
+                user?.websiteCreated === true ? <div className="mx-auto w-full max-w-360 p-4 pb-12 sm:p-6 md:p-8">
+                    <div className="rounded-2xl border border-emerald-200 bg-white p-6 text-sm font-medium text-emerald-800 shadow-subtle sm:p-8">
+                        You already have a website.
+                    </div>
                 </div> : <CreateWebsitePage />
             }
         </>

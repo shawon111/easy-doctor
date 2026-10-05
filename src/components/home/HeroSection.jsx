@@ -9,7 +9,7 @@ export default function HeroSection() {
           <div className="lg:col-span-7 flex flex-col items-start">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary-soft border border-secondary/20 text-secondary text-xs font-bold tracking-wide uppercase mb-6">
               <span className="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
-              Tailored Digital Architecture for Physicians
+              15-Day Free Trial · No Card Required
             </div>
             <h1 className="text-4xl sm:text-5xl lg:text-[56px] lg:leading-[1.1] font-extrabold text-slate-heading tracking-tight mb-6">
               Your Professional Doctor Website. <br className="hidden sm:inline" />

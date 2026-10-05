@@ -9,12 +9,12 @@ export function AppointmentStatsCard() {
     return (
         <StatCard
             icon="event_available"
-            label="Appointments"
-            value={data?.totalAppointments ?? "—"}
+            label="Upcoming Appointments"
+            value={data?.upcomingAppointments ?? "—"}
             accentColor="destructive"
             badge={
                 <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                    {data ? `${data.thisMonthAppointments} this month` : "Loading"}
+                    {data ? `${data.todayAppointments} today` : "Loading"}
                 </span>
             }
         />

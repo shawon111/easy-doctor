@@ -59,6 +59,11 @@ const data = {
       icon: appointmentsIcon,
     },
     {
+      title: "Manage Appointments",
+      url: "/dashboard/appointments/manage",
+      icon: appointmentsIcon,
+    },
+    {
       title: "Google Business",
       url: "/dashboard/google-business",
       icon: googleBusinessIcon
@@ -86,7 +91,7 @@ export function AppSidebar({
   return (
     <Sidebar 
       style={{ backgroundColor: "#F7FAFD" }}
-      className="border-r border-[#64748B]" 
+      className="border-r border-slate-200"
       collapsible="offcanvas" 
       {...props}>
       <SidebarHeader>
