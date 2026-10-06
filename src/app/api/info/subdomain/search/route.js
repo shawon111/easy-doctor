@@ -1,16 +1,22 @@
 import { connectDB } from "@/config/database";
-import { withUser } from "@/lib/withUser";
 import { subdomainAvailability } from "@/services/info.service";
 import { NextResponse } from "next/server";
 
-export const GET = withUser(async (request) => {
+export const GET = async (request) => {
     const { searchParams } = new URL(request.url);
     const subdomainName = searchParams.get("subdomain");
+
+    if (!subdomainName?.trim()) {
+        return NextResponse.json(
+            { success: false, message: "A subdomain is required" },
+            { status: 400 }
+        );
+    }
 
     // check if subdomain is available
     try {
         await connectDB();
-        const isAvailable = await subdomainAvailability(subdomainName);
+        const isAvailable = await subdomainAvailability(subdomainName.trim());
         return NextResponse.json(
             {
                 success: true,
@@ -28,5 +34,4 @@ export const GET = withUser(async (request) => {
             { status: 500 }
         );
     }
-
-})
+};
