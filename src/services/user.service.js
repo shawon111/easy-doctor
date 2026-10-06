@@ -143,7 +143,19 @@ export const getUserByIdPublic = async (id) => {
 export const getUserBySlug = async (slug) => {
     await connectDB();
     const user = await User.findOne({ slug }).select({
-        password: 0,
+        name: 1,
+        slug: 1,
+        phone: 1,
+        specialization: 1,
+        qualifications: 1,
+        experience: 1,
+        clinicAddress: 1,
+        bookingPreferences: 1,
+        bio: 1,
+        treatments: 1,
+        languages: 1,
+        socialLinks: 1,
+        profilePicture: 1,
     }).lean()
     if (!user) {
         throw new Error("User not found");

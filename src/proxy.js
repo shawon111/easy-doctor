@@ -132,20 +132,22 @@ export async function proxy(request) {
         pathname === "/api/appointment" &&
         request.method === "POST";
 
+    const isPublicSubdomainSearch =
+        pathname === "/api/info/subdomain/search" &&
+        request.method === "GET";
+
     const isDashboard =
         request.nextUrl.pathname.startsWith("/dashboard");
 
     const isProtectedApiRoute =
-        !isPublicAppointmentPost &&
-        PROTECTED_API_PATHS.some(
-            (protectedPath) =>
-                pathname === protectedPath ||
-                pathname.startsWith(`${protectedPath}/`)
-        ) ||
-        (
-            pathname === "/api/content" &&
-            request.method !== "GET"
-        );
+        (!isPublicAppointmentPost &&
+            !isPublicSubdomainSearch &&
+            PROTECTED_API_PATHS.some(
+                (protectedPath) =>
+                    pathname === protectedPath ||
+                    pathname.startsWith(`${protectedPath}/`)
+            )) ||
+        (pathname === "/api/content" && request.method !== "GET");
 
     if (!isDashboard && !isProtectedApiRoute) {
         return NextResponse.next();
