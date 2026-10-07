@@ -16,7 +16,7 @@ export default function ArchitecturalValueStrip() {
           <div className="border-l-2 border-secondary pl-5">
             <div className="text-2xl font-black text-slate-900 tracking-tight">100% Free</div>
             <p className="text-xs font-semibold uppercase tracking-wider text-slate-400 mt-1">Included Subdomain</p>
-            <p className="text-sm text-slate-600 mt-1">Get <span className="font-mono text-xs font-bold">yourname.docxio.site</span> on every active plan.</p>
+            <p className="text-sm text-slate-600 mt-1">Get <span className="font-mono text-xs font-bold">yourname.docxio.com</span> on every active plan.</p>
           </div>
           <div className="border-l-2 border-slate-300 pl-5">
             <div className="text-2xl font-black text-slate-900 tracking-tight">6 Themes</div>

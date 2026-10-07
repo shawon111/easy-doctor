@@ -13,7 +13,7 @@ export default function TopNoticeStrip() {
             <span className="material-symbols-outlined text-[14px] text-blue-400">verified</span> BMDC Ready Layouts
           </span>
           <span className="flex items-center gap-1">
-            <span className="material-symbols-outlined text-[14px] text-blue-400">lock</span> Free .docxio.site Subdomain Included
+            <span className="material-symbols-outlined text-[14px] text-blue-400">lock</span> Free .docxio.com Subdomain Included
           </span>
         </div>
       </div>

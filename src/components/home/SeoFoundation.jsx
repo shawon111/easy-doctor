@@ -47,7 +47,7 @@ export default function SeoFoundation() {
               <div className="p-5 bg-slate-50 rounded-xl border border-slate-200 space-y-2">
                 <div className="flex items-center gap-2">
                   <div className="w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center text-[10px] font-bold">D</div>
-                  <div className="text-xs text-slate-500 font-mono">https://dr-tariqul.docxio.site</div>
+                  <div className="text-xs text-slate-500 font-mono">https://dr-tariqul.docxio.com</div>
                 </div>
                 <Link className="text-lg font-semibold text-blue-700 hover:underline block leading-snug" href="#">
                   Prof. Dr. Tariqul Islam | Cardiologist in Dhaka | Popular Diagnostic

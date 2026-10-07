@@ -53,7 +53,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata = {
-  metadataBase: new URL(`https://${process.env.NEXT_PUBLIC_BASE_DOMAIN || "docxio.site"}`),
+  metadataBase: new URL(`https://${process.env.NEXT_PUBLIC_BASE_DOMAIN || "docxio.com"}`),
   title: {
     default: "Docxio | Professional Doctor Website Builder",
     template: "%s | Docxio",

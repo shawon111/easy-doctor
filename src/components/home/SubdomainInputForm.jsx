@@ -24,7 +24,7 @@ export default function SubdomainInputForm() {
           onChange={handleChange}
         />
         <span className="text-secondary font-mono text-xs font-bold bg-secondary-soft px-2 py-1 rounded">
-          .docxio.site
+          .docxio.com
         </span>
       </div>
       <Link

@@ -63,7 +63,7 @@ export default function SubdomainBannerForm() {
               availabilityMutation.reset();
             }}
           />
-          <span className="text-blue-400 font-bold whitespace-nowrap">.docxio.site</span>
+          <span className="text-blue-400 font-bold whitespace-nowrap">.docxio.com</span>
         </div>
         <Button
           className="px-5 py-3 bg-secondary text-white font-semibold text-sm rounded-lg hover:bg-secondary-hover transition-colors text-center whitespace-nowrap shadow-md"

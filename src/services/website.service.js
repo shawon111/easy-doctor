@@ -74,7 +74,7 @@ export const getWebsiteByUserId = async (userId) => {
     }
 }
 
-const getPublicWebsiteUrl = (website) => {
+export const getPublicWebsiteUrl = (website) => {
     const customDomainConnected =
         website?.domain &&
         website.domainStatus === "connected";

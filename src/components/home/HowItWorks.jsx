@@ -45,7 +45,7 @@ export default function HowItWorks() {
               </div>
               <h3 className="text-2xl font-bold text-slate-900 mb-3">Choose a Subdomain</h3>
               <p className="text-sm text-slate-600 leading-relaxed mb-6">
-                Instantly claim your personal web address (<span className="font-mono font-bold text-slate-900">dr-yourname.docxio.site</span>). Free subdomain included with every doctor account with automatic SSL encryption.
+                Instantly claim your personal web address (<span className="font-mono font-bold text-slate-900">dr-yourname.docxio.com</span>). Free subdomain included with every doctor account with automatic SSL encryption.
               </p>
             </div>
             <div className="pt-4 border-t border-slate-100 text-xs font-semibold text-emerald-700 bg-emerald-50 -mx-4 -mb-4 p-4 rounded-b-xl flex items-center gap-1.5">

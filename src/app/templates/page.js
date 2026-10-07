@@ -5,7 +5,7 @@ import Header from "@/components/home/Header";
 import TemplateShowcase from "@/components/home/TemplateShowcase";
 import TopNoticeStrip from "@/components/home/TopNoticeStrip";
 
-const baseDomain = process.env.NEXT_PUBLIC_BASE_DOMAIN || "docxio.site";
+const baseDomain = process.env.NEXT_PUBLIC_BASE_DOMAIN || "docxio.com";
 const siteUrl = `https://${baseDomain}`;
 const pageUrl = `${siteUrl}/templates`;
 

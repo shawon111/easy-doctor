@@ -60,7 +60,7 @@ export default function WebsiteCreationGuidePage() {
       <section>
         <h2 className="text-2xl font-bold text-slate-900">4. Choose a live web address</h2>
         <p>
-          Every doctor website can be published using a free subdomain such as <span className="font-mono text-slate-900">dr-yourname.docxio.site</span>. The system also supports custom domains and verifies DNS records before the domain becomes active. The website address and public patient access are tied to the onboarding profile and clinic setup.
+          Every doctor website can be published using a free subdomain such as <span className="font-mono text-slate-900">dr-yourname.docxio.com</span>. The system also supports custom domains and verifies DNS records before the domain becomes active. The website address and public patient access are tied to the onboarding profile and clinic setup.
         </p>
         <ul className="list-disc space-y-2 pl-6">
           <li>Use a free subdomain for immediate launch.</li>

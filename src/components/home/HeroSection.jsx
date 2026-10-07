@@ -29,7 +29,7 @@ export default function HeroSection() {
                 <span className="material-symbols-outlined text-secondary text-[18px]">schedule</span> Live in ~2 Minutes
               </span>
               <span className="inline-flex items-center gap-1.5">
-                <span className="material-symbols-outlined text-secondary text-[18px]">domain</span> Free .docxio.site Subdomain Included
+                <span className="material-symbols-outlined text-secondary text-[18px]">domain</span> Free .docxio.com Subdomain Included
               </span>
             </div>
           </div>
@@ -54,7 +54,7 @@ export default function HeroSection() {
                   </div>
                   <div className="bg-white px-3 py-1 rounded-md text-[11px] font-mono text-slate-600 border border-slate-200/80 flex items-center gap-1.5 shadow-sm">
                     <span className="material-symbols-outlined text-[13px] text-emerald-600">lock</span>
-                    dr-tariqul.docxio.site
+                    dr-tariqul.docxio.com
                   </div>
                   <span className="text-[10px] uppercase font-bold tracking-wider text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded">Active</span>
                 </div>

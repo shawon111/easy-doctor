@@ -57,7 +57,7 @@ export default function DoctorPortalPreview() {
                 <span className="w-3 h-3 rounded-full bg-emerald-500"></span>
                 <div className="ml-4 bg-slate-800 text-slate-300 px-4 py-1 rounded-md text-xs font-mono flex items-center gap-2 border border-slate-700">
                   <span className="material-symbols-outlined text-[14px] text-emerald-400">lock</span>
-                  https://app.docxio.site/dashboard
+                  https://app.docxio.com/dashboard
                 </div>
               </div>
               <div className="flex items-center gap-2 text-xs font-semibold text-slate-400">

@@ -25,7 +25,7 @@ export default function PatientSearchExperience() {
               </p>
             </div>
             <div className="p-4 bg-slate-50 rounded-xl border border-slate-200">
-              <div className="text-[11px] font-mono text-secondary font-semibold">https://dr-sarah.docxio.site</div>
+              <div className="text-[11px] font-mono text-secondary font-semibold">https://dr-sarah.docxio.com</div>
               <div className="text-xs font-bold text-slate-900 mt-1">Prof. Sarah Rahman | Pediatric Neurology</div>
               <div className="text-[11px] text-slate-500 mt-0.5">Evercare &amp; Popular Diagnostic Dhanmondi</div>
             </div>

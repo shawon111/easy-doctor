@@ -6,11 +6,11 @@ export default function FaqSection() {
     },
     {
       q: "How long does it take for my website to go live?",
-      a: "Most doctors publish their complete website in about 2 minutes. Once you pick a template and type in your name and chamber schedule, click Publish and your website is immediately live on your free docxio.site subdomain."
+      a: "Most doctors publish their complete website in about 2 minutes. Once you pick a template and type in your name and chamber schedule, click Publish and your website is immediately live on your free docxio.com subdomain."
     },
     {
-      q: "Is the docxio.site subdomain really 100% free?",
-      a: "Yes! Every active account receives their chosen subdomain (such as dr-yourname.docxio.site) at zero extra cost. You do not need to purchase a domain name separately unless you want a custom .com address."
+      q: "Is the docxio.com subdomain really 100% free?",
+      a: "Yes! Every active account receives their chosen subdomain (such as dr-yourname.docxio.com) at zero extra cost. You do not need to purchase a domain name separately unless you want to connect a custom domain."
     },
     {
       q: "Can I connect my own custom .com domain later?",

@@ -7,6 +7,7 @@ import {
     addDomain,
     getDomainConfig,
     getDomain,
+    getPublicWebsiteUrl,
     persistCustomDomainState,
     removeDomain,
 } from "@/services/website.service";
@@ -124,6 +125,7 @@ export async function GET() {
             success: true,
             data: {
                 subdomain: website.subdomain,
+                websiteUrl: getPublicWebsiteUrl(website),
                 customDomain: website.domain || null,
                 customDomainStatus: website.domainStatus || null,
                 dnsRecords: website.dnsRecords,

@@ -3,8 +3,16 @@ import { ExternalLink, Globe } from "lucide-react";
 export default function CurrentWebsiteCard({
     subdomain,
     baseDomain,
+    websiteUrl,
+    customDomainStatus,
 }) {
-    const url = `https://${subdomain}.${baseDomain}`;
+    const url = websiteUrl || (
+        subdomain && baseDomain
+            ? `https://${subdomain}.${baseDomain}`
+            : null
+    );
+    const isCustomDomainConnected =
+        customDomainStatus === "connected" && url;
 
     return (
         <div className="rounded-xl border bg-card p-5">
@@ -18,25 +26,28 @@ export default function CurrentWebsiteCard({
                         <Globe className="size-4 text-muted-foreground" />
 
                         <span className="font-medium">
-                            {subdomain}.{baseDomain}
+                            {url || "Website URL unavailable"}
                         </span>
                     </div>
                 </div>
 
-                <a
-                    href={url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline"
-                >
-                    Visit
-                    <ExternalLink className="size-3.5" />
-                </a>
+                {url && (
+                    <a
+                        href={url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline"
+                    >
+                        Visit
+                        <ExternalLink className="size-3.5" />
+                    </a>
+                )}
             </div>
 
             <p className="mt-3 text-sm text-muted-foreground">
-                Your website is already available through your Docxio
-                subdomain. You can connect a custom domain below.
+                {isCustomDomainConnected
+                    ? `Your website is live on your custom domain. The Docxio subdomain (${subdomain}.${baseDomain}) remains available as a fallback.`
+                    : "Your website is already available through your Docxio subdomain. You can connect a custom domain below."}
             </p>
         </div>
     );

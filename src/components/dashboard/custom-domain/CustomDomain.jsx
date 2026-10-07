@@ -74,6 +74,8 @@ export default function CustomDomain() {
                 <CurrentWebsiteCard
                     subdomain={data?.subdomain}
                     baseDomain={baseDomain}
+                    websiteUrl={data?.websiteUrl}
+                    customDomainStatus={data?.customDomainStatus}
                 />
 
                 <DomainForm domain={domain?.name} />

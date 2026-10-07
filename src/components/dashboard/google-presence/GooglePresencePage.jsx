@@ -79,6 +79,7 @@ export function GooglePresencePage() {
         <WebsitePagesList activeKey={activeKey} onSelect={setActiveKey} />
         <div className="flex flex-col gap-4 sm:gap-6 lg:col-span-8">
           <GoogleSearchPreview
+            url={seo?.canonicalUrl?.replace(/^https?:\/\//, "").replace(/\/$/, "")}
             title={activeData?.title || activeData?.defaultTitle}
             description={activeData?.description || activeData?.defaultDescription}
           />
