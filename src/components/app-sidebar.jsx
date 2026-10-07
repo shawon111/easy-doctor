@@ -13,6 +13,7 @@ import settingsIcon from "@/assets/icons/settings-icon.png"
 import googleBusinessIcon from "@/assets/icons/google.png"
 import customDomainIcon from "@/assets/icons/domain.png"
 import myWebsiteIcon from "@/assets/icons/website.png"
+import verificationIcon from "@/assets/icons/verification.png"
 
 import { NavMain } from "@/components/nav-main"
 import { NavUser } from "@/components/nav-user"
@@ -67,6 +68,11 @@ const data = {
       title: "Google Business",
       url: "/dashboard/google-business",
       icon: googleBusinessIcon
+    },
+    {
+      title: "Verification",
+      url: "/dashboard/verification",
+      icon: verificationIcon,
     },
     {
       title: "Plan & Billing",

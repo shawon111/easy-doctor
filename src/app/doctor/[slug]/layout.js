@@ -70,7 +70,7 @@ export async function generateMetadata({ params }) {
     verification: {
       google: seo.verification?.google || undefined,
       other: {
-        bing: seo.verification?.bing || undefined,
+        "msvalidate.01": seo.verification?.bing || undefined,
       },
     },
   };

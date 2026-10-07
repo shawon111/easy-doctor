@@ -665,6 +665,41 @@ export const getSeoByUserId = async (userId) => {
 
 };
 
+export const getVerificationSettings = async (userId) => {
+    await connectDB();
+    const seo = await SEO.findOne({ userId })
+        .select("verification")
+        .lean();
+
+    if (!seo) {
+        return null;
+    }
+
+    return {
+        google: seo.verification?.google || "",
+        bing: seo.verification?.bing || "",
+    };
+};
+
+export const updateVerificationSettings = async (userId, verification) => {
+    await connectDB();
+    return SEO.findOneAndUpdate(
+        { userId },
+        {
+            $set: {
+                "verification.google": verification.google,
+                "verification.bing": verification.bing,
+            },
+        },
+        {
+            new: true,
+            runValidators: true,
+        }
+    )
+        .select("verification")
+        .lean();
+};
+
 export const getSeoBySubdomain = async (subdomainOrDomain) => {
     await connectDB();
     try {
