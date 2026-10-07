@@ -1,6 +1,7 @@
 import { connectDB } from "@/config/database";
 import { specialtyToService } from "@/lib/content/specialtyToService";
 import SEO from "@/models/seo.model";
+import Website from "@/models/website.model";
 
 // helper functions
 const clean = (value) => {
@@ -701,16 +702,26 @@ export const updateVerificationSettings = async (userId, verification) => {
 };
 
 export const getSeoBySubdomain = async (subdomainOrDomain) => {
+    const identifier = subdomainOrDomain?.trim().toLowerCase().replace(/\.$/, "");
+
+    if (!identifier) {
+        return null;
+    }
+
     await connectDB();
     try {
-        const identifier = subdomainOrDomain?.trim().toLowerCase().replace(/\.$/, "");
-        const result = await SEO.findOne({
-            $or: [
-                { subdomain: identifier },
-                { domain: identifier },
-            ],
-        }).lean();
-        return result;
+        if (identifier.includes(".")) {
+            const website = await Website.findOne({
+                domain: identifier,
+                domainStatus: { $in: ["connected", "verified"] },
+            })
+                .select({ seo: 1 })
+                .lean();
+
+            return website ? SEO.findById(website.seo).lean() : null;
+        }
+
+        return SEO.findOne({ subdomain: identifier }).lean();
     } catch (error) {
         throw new Error("failed to get seo data")
     }

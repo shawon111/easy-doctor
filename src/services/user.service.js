@@ -1,6 +1,7 @@
 import { connectDB } from "@/config/database";
 import { verifyAccessToken } from "@/lib/jwt";
 import User from "@/models/user.model";
+import Website from "@/models/website.model";
 import bcrypt from "bcryptjs";
 import { cookies } from "next/headers";
 import { createSeo } from "./seo.service";
@@ -157,15 +158,32 @@ export const getUserBySlug = async (slug) => {
 
 // get user by platform subdomain or connected custom domain
 export const getUserBySubdomain = async (subdomainOrDomain) => {
+    const identifier = subdomainOrDomain?.trim().toLowerCase().replace(/\.$/, "");
+
+    if (!identifier) {
+        return null;
+    }
+
     await connectDB()
     try {
-        const identifier = subdomainOrDomain?.trim().toLowerCase().replace(/\.$/, "");
-        const result = await User.findOne({
-            $or: [
-                { subdomain: identifier },
-                { domain: identifier },
-            ],
-        }).select({
+        const website = identifier.includes(".")
+            ? await Website.findOne({
+                  domain: identifier,
+                  domainStatus: { $in: ["connected", "verified"] },
+              })
+                  .select({ userId: 1 })
+                  .lean()
+            : null;
+
+        if (identifier.includes(".") && !website) {
+            return null;
+        }
+
+        const userQuery = website
+            ? User.findById(website.userId)
+            : User.findOne({ subdomain: identifier });
+
+        return userQuery.select({
             name: 1,
             phone: 1,
             email: 1,
@@ -177,7 +195,6 @@ export const getUserBySubdomain = async (subdomainOrDomain) => {
             domain: 1,
             expiresAt: 1
         }).lean();
-        return result
     } catch (error) {
         console.log("the error is from layout", error)
         throw new Error("Failed to get user")

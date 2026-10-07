@@ -1,8 +1,6 @@
 import { NextResponse } from "next/server";
 import { verifyAccessToken } from "@/lib/jwt";
 import { redirectToLogin, tryRefreshTokens } from "@/lib/auth-core";
-import { connectDB } from "@/config/database";
-import Website from "@/models/website.model";
 
 const ROOT_DOMAIN = process.env.NEXT_PUBLIC_BASE_DOMAIN
     ?.toLowerCase()
@@ -50,79 +48,63 @@ export async function proxy(request) {
         return NextResponse.next();
     }
 
-    let subdomain = null;
+    let siteIdentifier = null;
     const isPlatformRoot = host === ROOT_DOMAIN || host === "localhost";
 
     if (host.endsWith(".localhost")) {
-        subdomain = host.slice(0, -".localhost".length);
+        siteIdentifier = host.slice(0, -".localhost".length);
     } else if (ROOT_DOMAIN && host.endsWith(`.${ROOT_DOMAIN}`)) {
-        subdomain = host.slice(0, -(ROOT_DOMAIN.length + 1));
+        siteIdentifier = host.slice(0, -(ROOT_DOMAIN.length + 1));
     }
 
     const isCustomDomainHost =
-        !subdomain &&
+        !siteIdentifier &&
         !isPlatformRoot &&
         host.includes(".") &&
         !host.endsWith(".vercel.app");
 
     if (isCustomDomainHost) {
-        try {
-            await connectDB();
-            const website = await Website.findOne({
-                domain: host,
-                domainStatus: { $in: ["connected", "verified"] },
-            })
-                .select({ subdomain: 1 })
-                .lean();
-            subdomain = website?.subdomain || null;
-        } catch (error) {
-            console.error("Failed to resolve custom domain", error);
-            return new NextResponse("Unable to resolve this website right now.", {
-                status: 503,
-                headers: {
-                    "Cache-Control": "no-store",
-                },
-            });
-        }
+        // The public route services validate that this custom host is connected.
+        siteIdentifier = host;
     }
 
     const isPlatformSubdomain =
-        Boolean(subdomain) && SYSTEM_SUBDOMAINS.includes(subdomain);
+        Boolean(siteIdentifier) && SYSTEM_SUBDOMAINS.includes(siteIdentifier);
 
     // Rewrite each hosted site's favicon to its dynamic route.
-    if (subdomain && !isPlatformSubdomain && pathname === "/favicon.svg") {
+    if (siteIdentifier && !isPlatformSubdomain && pathname === "/favicon.svg") {
         const url = request.nextUrl.clone();
-        url.pathname = `/doctor/${subdomain}/favicon.svg`;
+        url.pathname = `/doctor/${siteIdentifier}/favicon.svg`;
 
         return NextResponse.rewrite(url);
     }
 
 
     // robots.txt
-    if (subdomain && !isPlatformSubdomain && pathname === "/robots.txt") {
+    if (siteIdentifier && !isPlatformSubdomain && pathname === "/robots.txt") {
         const url = request.nextUrl.clone();
-        url.pathname = `/doctor/${subdomain}/robots.txt`;
+        url.pathname = `/doctor/${siteIdentifier}/robots.txt`;
 
         return NextResponse.rewrite(url);
     }
 
 
     // sitemap.xml
-    if (subdomain && !isPlatformSubdomain && pathname === "/sitemap.xml") {
+    if (siteIdentifier && !isPlatformSubdomain && pathname === "/sitemap.xml") {
         const url = request.nextUrl.clone();
-        url.pathname = `/doctor/${subdomain}/sitemap.xml`;
+        url.pathname = `/doctor/${siteIdentifier}/sitemap.xml`;
 
         return NextResponse.rewrite(url);
     }
 
     if (
-        subdomain &&
+        siteIdentifier &&
         !isPlatformSubdomain &&
         !pathname.startsWith("/api/")
     ) {
         const url = request.nextUrl.clone();
 
-        url.pathname = `/doctor/${subdomain}${pathname}`;
+        url.pathname = `/doctor/${siteIdentifier}${pathname}`;
 
         return NextResponse.rewrite(url);
     }
