@@ -26,7 +26,7 @@ export default function Footer() {
           <div>
             <h4 className="text-xs font-bold uppercase tracking-wider text-slate-900 mb-4">Platform</h4>
             <ul className="space-y-2.5 text-xs text-slate-600 font-medium">
-              <li><Link className="hover:text-slate-900 transition-colors" href="#templates">6 Clinical Templates</Link></li>
+              <li><Link className="hover:text-slate-900 transition-colors" href="/templates">6 Clinical Templates</Link></li>
               <li><Link className="hover:text-slate-900 transition-colors" href="#how-it-works">How It Works</Link></li>
               <li><Link className="hover:text-slate-900 transition-colors" href="#dashboard-preview">Doctor Portal</Link></li>
               <li><Link className="hover:text-slate-900 transition-colors" href="#pricing">Pricing &amp; Plans</Link></li>

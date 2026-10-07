@@ -1,7 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Header() {
+export default function Header({ isTemplatesPage = false }) {
+  const homeHref = (section) => (isTemplatesPage ? `/#${section}` : `#${section}`);
+
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-border/80">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 h-20 flex items-center justify-between">
@@ -20,19 +22,19 @@ export default function Header() {
           </span>
         </div>
         <nav className="hidden md:flex items-center gap-8">
-          <Link className="text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors" href="#templates">
+          <Link className="text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors" href={isTemplatesPage ? "#templates" : "/templates"}>
             Clinical Templates
           </Link>
-          <Link className="text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors" href="#how-it-works">
+          <Link className="text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors" href={homeHref("how-it-works")}>
             How It Works
           </Link>
-          <Link className="text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors" href="#dashboard-preview">
+          <Link className="text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors" href={homeHref("dashboard-preview")}>
             Doctor Portal
           </Link>
-          <Link className="text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors" href="#pricing">
+          <Link className="text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors" href={homeHref("pricing")}>
             Pricing
           </Link>
-          <Link className="text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors" href="#faq">
+          <Link className="text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors" href={homeHref("faq")}>
             FAQ
           </Link>
         </nav>

@@ -25,6 +25,7 @@ export default function SubdomainBannerForm() {
 
       return result.data;
     },
+    mutationKey: ["subdomain-availability", subdomain],
   });
 
   const availabilityStatus =
