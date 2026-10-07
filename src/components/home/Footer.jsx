@@ -36,18 +36,18 @@ export default function Footer() {
             <h4 className="text-xs font-bold uppercase tracking-wider text-slate-900 mb-4">Doctor Support</h4>
             <ul className="space-y-2.5 text-xs text-slate-600 font-medium">
               <li><Link className="hover:text-slate-900 transition-colors" href="#faq">Help &amp; FAQ</Link></li>
-              <li><Link className="hover:text-slate-900 transition-colors" href="#">Appointment Guide</Link></li>
-              <li><Link className="hover:text-slate-900 transition-colors" href="#">Website Creation Guide</Link></li>
-              <li><Link className="hover:text-slate-900 transition-colors" href="#">Domain Connection Guide</Link></li>
+              <li><Link className="hover:text-slate-900 transition-colors" href="/appointment-guide">Appointment Guide</Link></li>
+              <li><Link className="hover:text-slate-900 transition-colors" href="/website-creation-guide">Website Creation Guide</Link></li>
+              <li><Link className="hover:text-slate-900 transition-colors" href="/domain-connection-guide">Domain Connection Guide</Link></li>
             </ul>
           </div>
           <div>
             <h4 className="text-xs font-bold uppercase tracking-wider text-slate-900 mb-4">Legal &amp; Trust</h4>
             <ul className="space-y-2.5 text-xs text-slate-600 font-medium">
-              <li><Link className="hover:text-slate-900 transition-colors" href="#">Privacy Policy</Link></li>
-              <li><Link className="hover:text-slate-900 transition-colors" href="#">Terms of Service</Link></li>
-              <li><Link className="hover:text-slate-900 transition-colors" href="#">Subscription Policy</Link></li>
-              <li><Link className="hover:text-slate-900 transition-colors" href="#">Security Architecture</Link></li>
+              <li><Link className="hover:text-slate-900 transition-colors" href="/privacy-policy">Privacy Policy</Link></li>
+              <li><Link className="hover:text-slate-900 transition-colors" href="/terms-of-service">Terms of Service</Link></li>
+              <li><Link className="hover:text-slate-900 transition-colors" href="/subscription-policy">Subscription Policy</Link></li>
+              <li><Link className="hover:text-slate-900 transition-colors" href="/security-architecture">Security Architecture</Link></li>
             </ul>
           </div>
         </div>
