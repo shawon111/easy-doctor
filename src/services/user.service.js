@@ -7,7 +7,7 @@ import { createSeo } from "./seo.service";
 import mongoose from "mongoose";
 
 // create a new user
-export const createUser = async (userData, withPro) => {
+export const createUser = async (userData) => {
     await connectDB();
     const { name, email, password, phone, specialization, qualifications, experience, clinicAddress, bio, bookingPreferences, treatments, languages, socialLinks, profilePicture, } = userData;
     const session = await mongoose.startSession();
@@ -20,13 +20,6 @@ export const createUser = async (userData, withPro) => {
             }
 
             const hashedPassword = await bcrypt.hash(password, 10);
-            const expiresAt = new Date();
-            if (withPro) {
-                expiresAt.setMonth(expiresAt.getMonth() + withPro?.months)
-            } else {
-                expiresAt.setDate(expiresAt.getDate() + 15);
-            }
-
             const newUser = new User({
                 name,
                 email: email.toLowerCase(),
@@ -42,7 +35,6 @@ export const createUser = async (userData, withPro) => {
                 languages,
                 socialLinks,
                 profilePicture,
-                expiresAt
             });
 
             const savedUser = await newUser.save({ session });

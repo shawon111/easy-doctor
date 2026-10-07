@@ -1,12 +1,8 @@
 import { OverviewPage } from '@/components/dashboard/overview';
 import UpgradeNotice from '@/components/dashboard/UpgradeNotice';
 import { requireUser } from '@/lib/requireUser';
+import { isWebsiteActive } from '@/lib/subscription';
 import React from 'react';
-
-// check website activeness
-const isWebsiteActive = (expireDate) => {
-    return expireDate && new Date(expireDate) > new Date()
-}
 
 const DashboardPage = async () => {
     const user = await requireUser();

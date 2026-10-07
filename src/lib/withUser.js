@@ -1,9 +1,6 @@
 import { NextResponse } from "next/server";
 import { requireUser } from "./requireUser";
-
-const isWebsiteActive = (expireDate) => {
-    return expireDate && new Date(expireDate) > new Date();
-}
+import { isWebsiteActive } from "./subscription";
 
 export const withUser = (handler) => {
     return async (request, context) => {

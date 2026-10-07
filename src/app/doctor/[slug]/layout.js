@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { connectDB } from "@/config/database";
 import { generateStructuredData } from "@/lib/seo/generateStructureddata";
+import { isWebsiteActive } from "@/lib/subscription";
 import { getSeoBySubdomain } from "@/services/seo.service";
 import { getUserBySubdomain } from "@/services/user.service";
 import { getWebsiteLists } from "@/services/website.service";
@@ -12,11 +13,6 @@ export const generateStaticParams = async () => {
     slug: website?.subdomain,
   }));
 };
-
-// check website activeness
-const isWebsiteActive = (expireDate) => {
-  return expireDate && new Date(expireDate) > new Date()
-}
 
 // generate metadata
 export async function generateMetadata({ params }) {

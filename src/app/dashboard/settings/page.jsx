@@ -1,11 +1,7 @@
 import { SettingsPage } from "@/components/dashboard/settings";
 import UpgradeNotice from "@/components/dashboard/UpgradeNotice";
 import { requireUser } from "@/lib/requireUser";
-
-// check website activeness
-const isWebsiteActive = (expireDate) => {
-    return expireDate && new Date(expireDate) > new Date()
-}
+import { isWebsiteActive } from "@/lib/subscription";
 
 export default async function Settings() {
   const user = await requireUser();

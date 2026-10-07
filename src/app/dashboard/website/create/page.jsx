@@ -1,11 +1,7 @@
 import CreateWebsitePage from '@/components/dashboard/create-website/CreateWebsitePage';
 import UpgradeNotice from '@/components/dashboard/UpgradeNotice';
 import { requireUser } from '@/lib/requireUser';
-
-// check website activeness
-const isWebsiteActive = (expireDate) => {
-    return expireDate && new Date(expireDate) > new Date()
-}
+import { isWebsiteActive } from '@/lib/subscription';
 
 const CreateWebsite = async () => {
     // get the user info

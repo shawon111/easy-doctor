@@ -1,7 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
+import { getCurrentUser } from "@/services/user.service";
 
-export default function Header({ isTemplatesPage = false }) {
+export default async function Header({ isTemplatesPage = false }) {
+  const user = await getCurrentUser();
   const homeHref = (section) => (isTemplatesPage ? `/#${section}` : `#${section}`);
 
   return (
@@ -39,8 +41,8 @@ export default function Header({ isTemplatesPage = false }) {
           </Link>
         </nav>
         <div className="flex items-center gap-3">
-          <Link className="text-sm font-semibold text-slate-700 hover:text-slate-900 px-3 py-2 transition-colors" href="/login">
-            Log In
+          <Link className="text-sm font-semibold text-slate-700 hover:text-slate-900 px-3 py-2 transition-colors" href={user ? "/dashboard" : "/login"}>
+            {user ? "Dashboard" : "Log In"}
           </Link>
           <Link
             className="inline-flex items-center justify-center text-sm font-semibold px-5 py-2.5 bg-primary text-white rounded-lg hover:bg-slate-800 transition-all shadow-sm"

@@ -88,12 +88,20 @@ export const POST = withUser(async (request, context, currentUser) => {
                 status: "generating"
             }, session);
 
+            const expiresAt = currentUser.expiresAt
+                ? new Date(currentUser.expiresAt)
+                : new Date();
+            if (!currentUser.expiresAt) {
+                expiresAt.setDate(expiresAt.getDate() + 15);
+            }
+
             const updatedUser = await User.findByIdAndUpdate(
                 currentUser._id,
                 {
                     $set: {
                         subdomain,
                         websiteCreated: true,
+                        expiresAt,
                         "websitePreferences.website": website._id,
                     },
                 },

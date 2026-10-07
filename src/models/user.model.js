@@ -209,7 +209,7 @@ const UserSchema = new mongoose.Schema(
         },
         expiresAt: {
             type: Date,
-            required: true
+            default: undefined,
         },
         googleAnalyticsId: {
             type: String,

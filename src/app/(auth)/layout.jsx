@@ -1,8 +1,15 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
+import { getCurrentUser } from '@/services/user.service';
+import { redirect } from 'next/navigation';
 
-const AuthLayout = ({ children }) => {
+const AuthLayout = async ({ children }) => {
+    const user = await getCurrentUser();
+    if (user) {
+        redirect('/dashboard');
+    }
+
     return (
         <>
             <header className='py-3'>
@@ -21,7 +28,9 @@ const AuthLayout = ({ children }) => {
                                 <Link className='text-sm font-bolder text-black underline hover:text-[#10b981]' href="/">Home</Link>
                             </li>
                             <li>
-                                <Link className='text-sm font-bolder text-black underline hover:text-[#10b981]' href="/login">Login</Link>
+                                <Link className='text-sm font-bolder text-black underline hover:text-[#10b981]' href={user ? "/dashboard" : "/login"}>
+                                    {user ? "Dashboard" : "Login"}
+                                </Link>
                             </li>
                         </ul>
                     </div>

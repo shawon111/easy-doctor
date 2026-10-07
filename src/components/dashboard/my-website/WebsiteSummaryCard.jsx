@@ -102,7 +102,7 @@ export function WebsiteSummaryCard({ website, expiresAt }) {
                 <InfoItem
                     icon={<span className="material-symbols-outlined text-base">event</span>}
                     label="Website expiry date"
-                    value={formatDate(expiresAt)}
+                    value={expiresAt ? formatDate(expiresAt) : "Trial starts when your website is created"}
                 />
                 <InfoItem
                     icon={<span className="material-symbols-outlined text-base">monitor_heart</span>}

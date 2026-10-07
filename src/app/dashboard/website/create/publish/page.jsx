@@ -1,15 +1,11 @@
 import PublishPage from "@/components/dashboard/create-website/publish";
 import UpgradeNotice from "@/components/dashboard/UpgradeNotice";
 import { requireUser } from "@/lib/requireUser";
+import { isWebsiteActive } from "@/lib/subscription";
 import { redirect } from "next/navigation";
 import React from "react";
 
 const templates = ["template-one", "template-one-dark", "template-two", "template-two-dark", "template-three", "template-three-dark"];
-
-// check website activeness
-const isWebsiteActive = (expireDate) => {
-    return expireDate && new Date(expireDate) > new Date()
-}
 
 const PublishSitePage = async ({ searchParams }) => {
 
