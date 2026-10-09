@@ -1,14 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import { getCurrentUser } from "@/services/user.service";
+import HeaderNavigation from "@/components/home/HeaderNavigation";
 
 export default async function Header({ isTemplatesPage = false }) {
   const user = await getCurrentUser();
-  const homeHref = (section) => (isTemplatesPage ? `/#${section}` : `#${section}`);
 
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-border/80">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 h-20 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <Link className="flex items-center gap-2" href="/">
             <Image
@@ -23,35 +23,7 @@ export default async function Header({ isTemplatesPage = false }) {
             Physician CMS
           </span>
         </div>
-        <nav className="hidden md:flex items-center gap-8">
-          <Link className="text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors" href={isTemplatesPage ? "#templates" : "/templates"}>
-            Clinical Templates
-          </Link>
-          <Link className="text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors" href={homeHref("how-it-works")}>
-            How It Works
-          </Link>
-          <Link className="text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors" href={homeHref("dashboard-preview")}>
-            Doctor Portal
-          </Link>
-          <Link className="text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors" href={homeHref("pricing")}>
-            Pricing
-          </Link>
-          <Link className="text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors" href={homeHref("faq")}>
-            FAQ
-          </Link>
-        </nav>
-        <div className="flex items-center gap-3">
-          <Link className="text-sm font-semibold text-slate-700 hover:text-slate-900 px-3 py-2 transition-colors" href={user ? "/dashboard" : "/login"}>
-            {user ? "Dashboard" : "Log In"}
-          </Link>
-          <Link
-            className="inline-flex items-center justify-center text-sm font-semibold px-5 py-2.5 bg-primary text-white rounded-lg hover:bg-slate-800 transition-all shadow-sm"
-            href="/dashboard/website/create"
-          >
-            Create My Website
-            <span className="material-symbols-outlined ml-1.5 text-[16px]">arrow_forward</span>
-          </Link>
-        </div>
+        <HeaderNavigation isTemplatesPage={isTemplatesPage} isLoggedIn={Boolean(user)} />
       </div>
     </header>
   );
