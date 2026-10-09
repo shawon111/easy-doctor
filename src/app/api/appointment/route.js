@@ -54,7 +54,7 @@ export const POST = async (request) => {
 };
 
 export const GET = withUser(
-    async (request, context, currentuser) => {
+    async (request, context, currentUser) => {
         await connectDB();
 
         const searchParams = request.nextUrl.searchParams;
@@ -81,8 +81,8 @@ export const GET = withUser(
         try {
             const data =
                 view === "dashboard"
-                    ? await getAppointmentDashboardData(currentuser._id, limit)
-                    : await getAppointments(currentuser._id, page, limit);
+                    ? await getAppointmentDashboardData(currentUser._id, limit)
+                    : await getAppointments(currentUser._id, page, limit);
 
             return NextResponse.json(
                 {

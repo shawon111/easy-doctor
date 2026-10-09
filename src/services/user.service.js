@@ -75,6 +75,7 @@ export const getCurrentUser = async () => {
             websiteCreated: 1,
             profileCompleted: 1,
             userLevel: 1,
+            subscription: 1,
             profilePicture: 1,
             _id: 1,
             expiresAt: 1,

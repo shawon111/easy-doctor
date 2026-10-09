@@ -207,6 +207,11 @@ const UserSchema = new mongoose.Schema(
             enum: ["free", "pro"],
             default: "free",
         },
+        subscription: {
+            type: String,
+            enum: ["monthly", "sixMonth", "yearly"],
+            default: null,
+        },
         expiresAt: {
             type: Date,
             default: undefined,

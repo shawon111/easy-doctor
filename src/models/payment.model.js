@@ -7,7 +7,6 @@ const paymentSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
-      index: true,
     },
 
     provider: {
@@ -35,7 +34,7 @@ const paymentSchema = new mongoose.Schema(
       enum: ["BDT"],
     },
 
-    invoiceId: {
+    paymentId: {
       type: String,
       required: true,
       unique: true,
@@ -50,8 +49,14 @@ const paymentSchema = new mongoose.Schema(
 
     paymentMethod: {
       type: String,
+      enum: ["bkash"],
       default: "bkash",
       trim: true,
+    },
+
+    checkoutUrl: {
+      type: String,
+      default: null,
     },
 
     status: {
@@ -60,6 +65,7 @@ const paymentSchema = new mongoose.Schema(
         "initiated",
         "pending",
         "completed",
+        "processing",
         "failed",
         "cancelled",
         "refunded",
@@ -79,14 +85,9 @@ const paymentSchema = new mongoose.Schema(
       default: null,
     },
 
-    subscriptionStartedAt: {
-      type: Date,
-      default: null,
-    },
-
-    subscriptionExpiresAt: {
-      type: Date,
-      default: null,
+    verified: {
+      type: Boolean,
+      default: false,
     },
 
     gatewayResponse: {
@@ -101,6 +102,16 @@ const paymentSchema = new mongoose.Schema(
 
 // Index for retrieving a user's payment history.
 paymentSchema.index({ userId: 1, createdAt: -1 });
+
+paymentSchema.index(
+  { userId: 1 },
+  {
+    unique: true,
+    partialFilterExpression: {
+      status: { $in: ["initiated", "pending", "processing"] },
+    },
+  }
+);
 
 // Prevent duplicate transaction IDs when present.
 paymentSchema.index(

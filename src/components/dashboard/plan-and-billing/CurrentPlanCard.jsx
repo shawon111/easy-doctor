@@ -1,7 +1,15 @@
-import { Button } from "@/components/ui/button";
 import { requireUser } from "@/lib/requireUser";
 import { cn } from "@/lib/utils";
 import { PLANS } from "@/lib/payment/plans";
+import { isWebsiteActive } from "@/lib/subscription";
+
+function formatDate(date) {
+  return new Intl.DateTimeFormat("en", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  }).format(date);
+}
 
 function PlanFeature({ label }) {
   return (
@@ -38,16 +46,34 @@ const PRO_PLAN_FEATURES = [
 ]
 
 export async function CurrentPlanCard({ className }) {
-  // get user info
   const user = await requireUser();
-  const { userLevel } = user;
-  // select plan features
-  let planFeatures = FREE_PLAN_FEATURES;
-  if(userLevel === "pro"){
-    planFeatures = PRO_PLAN_FEATURES
-  }else{
-    planFeatures = FREE_PLAN_FEATURES
-  }
+  const userLevel = user?.userLevel;
+  const isPro = userLevel === "pro";
+  const plan = isPro ? PLANS[user?.subscription] : null;
+  const hasExpiryValue = user?.expiresAt !== null && user?.expiresAt !== undefined && user?.expiresAt !== "";
+  const planFeatures = isPro ? PRO_PLAN_FEATURES : FREE_PLAN_FEATURES;
+  const expiresAt = hasExpiryValue ? new Date(user.expiresAt) : null;
+  const hasValidExpiry = Boolean(expiresAt && Number.isFinite(expiresAt.getTime()));
+  const isExpired = hasValidExpiry && !isWebsiteActive(expiresAt);
+  const hasInvalidExpiry = hasExpiryValue && !hasValidExpiry;
+  const hasStartedFreeTrial = !isPro && Boolean(user?.websiteCreated || hasExpiryValue);
+  const statusLabel = isExpired
+    ? isPro
+      ? "Pro plan expired"
+      : "Free trial expired"
+    : isPro
+      ? "Active"
+      : hasStartedFreeTrial
+        ? hasInvalidExpiry || !hasValidExpiry
+          ? "Trial expiry unavailable"
+          : "Free trial active"
+        : "Free plan";
+  const statusClass = isExpired
+    ? "border-red-200 bg-red-50 text-red-700"
+    : statusLabel === "Trial expiry unavailable"
+      ? "border-amber-200 bg-amber-50 text-amber-800"
+      : "border-[#10B981]/20 bg-[#10B981]/10 text-[#065F46]";
+
   return (
     <div
       className={cn(
@@ -65,8 +91,8 @@ export async function CurrentPlanCard({ className }) {
           <div>
             <h3 className="text-lg font-semibold text-foreground">Your Plan</h3>
             <div className="mt-1">
-              <span className="inline-flex items-center rounded-full border border-[#10B981]/20 bg-[#10B981]/10 px-2.5 py-0.5 text-[11px] font-semibold text-[#065F46]">
-                Active
+              <span className={`inline-flex items-center rounded-full border px-2.5 py-0.5 text-[11px] font-semibold ${statusClass}`}>
+                {statusLabel}
               </span>
             </div>
           </div>
@@ -77,33 +103,48 @@ export async function CurrentPlanCard({ className }) {
           </div>
         </div>
 
-        {/* Pricing */}
         <div className="mb-6">
           <span className="text-[32px] font-bold tracking-tight text-foreground">
-            {userLevel === "free" ? "Free Trial" : "Pro"}
+            {isPro ? `Pro: ${plan?.name ?? "Plan unavailable"}` : hasStartedFreeTrial ? "Free trial" : "Free plan"}
           </span>
-          {userLevel === "free" ? (
+          {isPro && plan ? (
             <p className="mt-2 text-sm leading-6 text-muted-foreground">
-              Your 15-day trial gives you time to build and explore your website.
-              No card is needed to get started.
+              ৳{plan.amount.toLocaleString("en-US")} for {plan.durationMonths}{" "}
+              {plan.durationMonths === 1 ? "month" : "months"}.
             </p>
           ) : (
-            <>
-              <p className="mt-2 text-sm text-muted-foreground">
-                Available Pro plans (starting at ৳{PLANS.monthly.amount.toLocaleString("en-US")} per month):
-              </p>
-              <div className="mt-4 space-y-2 rounded-xl bg-muted/40 p-3 text-sm">
-                {Object.entries(PLANS).map(([key, plan]) => (
-                  <div key={key} className="flex items-center justify-between gap-3">
-                    <span className="text-muted-foreground">{plan.name}</span>
-                    <span className="font-semibold text-foreground">
-                      ৳{plan.amount.toLocaleString("en-US")}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </>
+            <p className="mt-2 text-sm leading-6 text-muted-foreground">
+              {isPro
+                ? "The subscription term could not be identified. Contact support if you recently made a payment."
+                : hasStartedFreeTrial
+                  ? "Your free 15-day trial lets you explore the website builder and publish your practice website."
+                  : "Your free plan gives you access to the core doctor profile and website features."}
+            </p>
           )}
+
+          <div className="mt-4 space-y-3 rounded-xl bg-muted/40 p-4 text-sm">
+            <div className="flex items-start justify-between gap-4">
+              <span className="text-muted-foreground">
+                {isExpired ? "Expired on" : "Expires on"}
+              </span>
+              <span className="text-right font-semibold text-foreground">
+                {hasValidExpiry ? (
+                  <time dateTime={expiresAt.toISOString()}>{formatDate(expiresAt)}</time>
+                ) : hasInvalidExpiry ? (
+                  "Unable to determine"
+                ) : isPro ? (
+                  "No expiry date recorded"
+                ) : (
+                  hasStartedFreeTrial ? "No expiry date recorded" : "Not started"
+                )}
+              </span>
+            </div>
+            {!isPro && !hasStartedFreeTrial ? (
+              <p className="border-t border-border pt-3 text-xs text-muted-foreground">
+                Your 15-day trial starts when you create your website.
+              </p>
+            ) : null}
+          </div>
         </div>
 
         {/* Feature list */}

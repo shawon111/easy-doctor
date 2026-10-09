@@ -24,6 +24,17 @@ const resultContent = {
     secondaryLabel: "Back to dashboard",
     secondaryHref: "/dashboard",
   },
+  failed: {
+    Icon: CircleX,
+    iconClassName: "bg-red-100 text-red-700",
+    title: "Payment failed",
+    description:
+      "We couldn't verify your payment. You have not been charged through this confirmation. Please check your billing page or try again.",
+    primaryLabel: "Return to billing",
+    primaryHref: "/dashboard/billing",
+    secondaryLabel: "Back to dashboard",
+    secondaryHref: "/dashboard",
+  },
 };
 
 export default function PaymentResultPage({ status }) {
