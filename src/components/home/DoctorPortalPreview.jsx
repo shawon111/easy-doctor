@@ -1,5 +1,5 @@
 import Image from "next/image";
-import dashviewImg from "@/assets/docxio -dashboard.png";
+import dashviewImg from "@/assets/docxio-dashboard.png";
 
 export default function DoctorPortalPreview() {
   return (
