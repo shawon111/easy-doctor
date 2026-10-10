@@ -54,8 +54,8 @@ export default function Footer() {
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
           <div>© 2025 Docxio. All rights reserved. Exclusively for medical professionals.</div>
           <div className="flex items-center gap-6">
-            <span className="flex items-center gap-1.5"><span className="material-symbols-outlined text-secondary text-[16px]">lock</span> 256-Bit SSL Protected</span>
-            <span className="flex items-center gap-1.5"><span className="material-symbols-outlined text-emerald-600 text-[16px]">verified</span> BMDC Standard Compliance</span>
+            <span className="flex items-center gap-1.5"><span className="material-symbols-outlined text-secondary text-[16px]">lock</span> HTTPS for published websites</span>
+            <span className="flex items-center gap-1.5"><span className="material-symbols-outlined text-emerald-600 text-[16px]">medical_services</span> Designed for doctor practices</span>
           </div>
         </div>
       </div>

@@ -1,41 +1,43 @@
 import InfoPageLayout from "@/components/legal/InfoPageLayout";
+import { createMarketingMetadata } from "@/lib/seo/marketing-metadata";
 
-export const metadata = {
-  title: "Privacy Policy | Docxio",
-  description: "How Docxio handles patient data, doctor profile information, and website content for medical practices.",
-};
+export const metadata = createMarketingMetadata({
+  title: "Docxio Privacy Policy",
+  description: "Learn what doctor profile and appointment information Docxio processes to provide websites, booking requests, and account features.",
+  path: "/privacy-policy",
+});
 
 const overviewItems = [
-  "Collects profile, contact, and appointment data",
-  "Uses information to power the doctor website and dashboard",
-  "Secures media, credentials, and patient records",
-  "Supports compliance, transparency, and data access requests",
+  "Processes doctor profile, website, account, and appointment information",
+  "Uses profile details to operate websites and appointment features",
+  "Integrates external services for hosting, payments, media, domains, and AI",
+  "Does not specify a fixed retention or deletion period on this page",
 ];
 
 export default function PrivacyPolicyPage() {
   return (
     <InfoPageLayout
       badge="Legal & Trust"
-      title="Privacy Policy"
-      intro="Docxio is designed to help medical professionals manage a public practice website and appointment experience. This policy explains how information is collected, processed, stored, and shared within the website platform and associated doctor workflows."
+      title="Docxio Privacy Policy"
+      intro="Docxio processes doctor profile, website, account, and appointment information to provide website and booking features. This page summarizes data visible in the application; it does not specify a fixed retention period or replace any legally required privacy notice."
       overviewItems={overviewItems}
     >
       <section>
         <h2 className="text-2xl font-bold text-slate-900">1. Information we collect</h2>
         <p>
-          The platform collects profile data for doctors and patients who interact with the website. This includes personal identity information, medical specializations, chamber addresses, contact details, appointment information, and digital content used to build the practice website.
+          Doctors provide profile and practice details for their websites. When patients submit an appointment request, the application stores information used to manage that request.
         </p>
         <ul className="list-disc space-y-2 pl-6">
           <li>Doctor identity details such as name, qualifications, specialization, and bio.</li>
-          <li>Website content including service descriptions, social links, FAQs, and contact infographics.</li>
-          <li>Patient appointment records such as name, phone, age, gender, visit date, and notes.</li>
+          <li>Website content such as service descriptions, social links, FAQs, and contact details.</li>
+          <li>Appointment details such as patient name, phone, age, gender, visit date, notes, chamber, serial, and status.</li>
         </ul>
       </section>
 
       <section>
         <h2 className="text-2xl font-bold text-slate-900">2. How data is used</h2>
         <p>
-          Data is used to build and operate the doctor&apos;s public website, personalize the practice profile, manage appointment flows, and improve the patient experience. The platform also uses selected information to generate and maintain SEO metadata, contact details, and service pages.
+          Data is used to provide account functions, build and display doctor websites, manage appointment requests, and maintain website and SEO settings. Profile information may also be used as input for AI-assisted website copy generation.
         </p>
         <ul className="list-disc space-y-2 pl-6">
           <li>Generate the live website and doctor profile pages.</li>
@@ -47,33 +49,33 @@ export default function PrivacyPolicyPage() {
       <section>
         <h2 className="text-2xl font-bold text-slate-900">3. Data sharing and third-party services</h2>
         <p>
-          Docxio may use external infrastructure to deliver the service securely. This includes database hosting, media storage, email delivery, and domain verification. Information is only shared with service providers that are required to support storage, delivery, verification, or website publishing.
+          Docxio integrates external services for application hosting, database storage, media, payments, domain management, and AI-assisted content generation. Information handled by those providers depends on the feature used. Review applicable provider terms before submitting sensitive or patient information.
         </p>
         <ul className="list-disc space-y-2 pl-6">
-          <li>Cloud-based media hosting for profile and website imagery.</li>
-          <li>Database and application hosting for site data and doctor records.</li>
-          <li>DNS verification and domain status checks for custom domain connection.</li>
+          <li>Media storage and delivery for profile and website imagery.</li>
+          <li>Database and application hosting for account, site, and appointment data.</li>
+          <li>Payment, DNS/domain verification, and AI content services when those features are used.</li>
         </ul>
       </section>
 
       <section>
         <h2 className="text-2xl font-bold text-slate-900">4. Data retention and deletion</h2>
         <p>
-          Information is retained for as long as it is needed to operate the doctor&apos;s website, fulfill service obligations, and comply with legal or operational requirements. If an account is canceled or a website is removed, the associated records may be deleted according to the service lifecycle and retention policy.
+          The application stores account, website, and appointment records, but this page does not define a fixed retention or deletion schedule. Doctors should avoid entering information they do not need to manage appointment requests.
         </p>
       </section>
 
       <section>
         <h2 className="text-2xl font-bold text-slate-900">5. Security measures</h2>
         <p>
-          The platform stores password hashes using bcrypt and uses JWT-based access and refresh tokens for authenticated sessions. Website content, appointment records, and practice metadata are protected by the application&apos;s access-control rules and database-layer safeguards.
+          Passwords are stored as bcrypt hashes. Authenticated sessions use signed access and refresh tokens, and application services apply account-scoped checks to protected website and appointment data. These controls do not guarantee immunity from every security incident.
         </p>
       </section>
 
       <section>
-        <h2 className="text-2xl font-bold text-slate-900">6. Your rights and contact</h2>
+        <h2 className="text-2xl font-bold text-slate-900">6. Patient information</h2>
         <p>
-          Users may request access to the personal information associated with their account or ask for corrections, updates, or deletion of specific records when permitted by the service policy. For privacy inquiries, the doctor or platform administrator should contact the designated support or operations email used by the service.
+          Doctors are responsible for deciding what patient information to request through appointment forms and for informing patients about how they use those details. Do not use appointment notes to collect information that is not needed to arrange or manage the appointment.
         </p>
       </section>
     </InfoPageLayout>

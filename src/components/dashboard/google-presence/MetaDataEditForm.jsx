@@ -63,7 +63,7 @@ export function MetaDataEditForm({ data, pageKey, onSave, onDiscard, saving }) {
             <Input id="search-title" value={form.title} onChange={updateField("title")} maxLength={TITLE_MAX} className="pr-14" required />
             <span className="absolute right-3 top-1/2 -translate-y-1/2 font-mono text-xs text-muted-foreground">{form.title.length}/{TITLE_MAX}</span>
           </div>
-          <p className="text-xs text-muted-foreground">Aim for 50–60 characters to avoid truncation in search results.</p>
+          <p className="text-xs text-muted-foreground">Keep it clear and page-specific. Around 50–60 characters is a useful editorial target, not a ranking rule.</p>
         </div>
 
         <div className="flex flex-col gap-2">
@@ -72,13 +72,13 @@ export function MetaDataEditForm({ data, pageKey, onSave, onDiscard, saving }) {
             <Textarea id="search-desc" rows={3} value={form.description} onChange={updateField("description")} maxLength={DESC_MAX} className="resize-none pb-6" required />
             <span className="absolute bottom-3 right-3 bg-card/80 px-1 font-mono text-xs text-muted-foreground">{form.description.length}/{DESC_MAX}</span>
           </div>
-          <p className="text-xs text-muted-foreground">A compelling description encourages patients to click. Keep it under 160 characters.</p>
+          <p className="text-xs text-muted-foreground">Accurately summarize this page in a concise, patient-friendly way. Search engines may show a different snippet.</p>
         </div>
 
         <div className="flex flex-col gap-2">
           <label htmlFor="keywords" className="text-sm font-bold text-foreground">Keywords</label>
           <Input id="keywords" value={form.keywords} onChange={updateField("keywords")} placeholder="cardiologist, heart care, Khulna" />
-          <p className="text-xs text-muted-foreground">Separate keywords with commas.</p>
+          <p className="text-xs text-muted-foreground">Comma-separated content guidance only; Google does not use the meta keywords tag for ranking. Avoid repetition.</p>
         </div>
 
         <div className="flex flex-col gap-2">

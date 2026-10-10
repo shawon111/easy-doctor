@@ -3,6 +3,8 @@ import Script from "next/script";
 import "./globals.css";
 import QueryProvider from "@/providers/QueryProvider";
 import ToasterProvider from "@/providers/ToasterProvider";
+import { getMarketingBaseUrl } from "@/lib/seo/urls";
+import { MARKETING_OG_IMAGE } from "@/lib/seo/marketing-metadata";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-plus-jakarta-sans",
@@ -53,13 +55,31 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata = {
-  metadataBase: new URL(`https://${process.env.NEXT_PUBLIC_BASE_DOMAIN || "docxio.com"}`),
+  metadataBase: getMarketingBaseUrl(),
   title: {
-    default: "Docxio | Professional Doctor Website Builder",
+    default: "Docxio — Doctor Website Builder in Bangladesh",
     template: "%s | Docxio",
   },
   description:
-    "Create a professional doctor website with Docxio. Choose a medical website template, add your practice details, and help patients find your clinic and booking information.",
+    "Create your professional doctor website with Docxio. Showcase your qualifications, medical services and clinic information, improve your online presence, and receive appointment requests online.",
+  openGraph: {
+    type: "website",
+    siteName: "Docxio",
+    title: "Docxio — Doctor Website Builder in Bangladesh",
+    description:
+      "Create your professional doctor website with Docxio. Showcase your qualifications, medical services and clinic information, improve your online presence, and receive appointment requests online.",
+    images: [
+      {
+        url: MARKETING_OG_IMAGE,
+        alt: "Docxio — professional websites for doctors",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: [MARKETING_OG_IMAGE],
+  },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({ children }) {

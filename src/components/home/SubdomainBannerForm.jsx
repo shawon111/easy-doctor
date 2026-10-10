@@ -92,7 +92,7 @@ export default function SubdomainBannerForm() {
       )}
       <p className="text-[11px] text-slate-400 mt-2 text-center lg:text-left flex items-center gap-1">
         <span className="material-symbols-outlined text-emerald-400 text-[14px]">check_circle</span>
-        Free forever • 256-Bit SSL certificate included • No credit card to test
+        Docxio subdomain included with website access • No credit card to register
       </p>
     </div>
   );

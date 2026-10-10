@@ -7,6 +7,11 @@ import { getWebsiteUrlForUser } from '@/services/website.service';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
 
+export const metadata = {
+    title: "Dashboard",
+    robots: { index: false, follow: false },
+};
+
 const DashboardLayout = async ({ children }) => {
     const currentUser = await requireUser();
     if (!currentUser || !currentUser._id || !currentUser.email || currentUser === null) {

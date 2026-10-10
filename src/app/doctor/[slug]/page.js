@@ -6,7 +6,7 @@ import TemplateTwoDarkPageRenderer from "@/components/templates/template-two-dar
 import TemplateTwoPageRenderer from "@/components/templates/template-two/TemplateTwoPageRenderer";
 import { generateWebsiteContent } from "@/lib/ai/generate-website-content";
 import { requireUser } from "@/lib/requireUser";
-import { getSeoBySubdomain } from "@/services/seo.service";
+import { createDoctorMetadata } from "@/lib/seo/doctor-metadata";
 import { getWebsiteBySubdomain } from "@/services/website.service";
 import { notFound } from "next/navigation";
 
@@ -26,43 +26,7 @@ const pageName = "home";
 // generate metadata
 export async function generateMetadata({ params }) {
     const { slug } = await params;
-
-    const seo = await getSeoBySubdomain(slug);
-
-    if (!seo) {
-        return {};
-    }
-
-    const canonicalUrl = seo.canonicalUrl?.replace(/\/$/, "");
-
-    return {
-        title: seo.pages.home.title,
-        description: seo.pages.home.description,
-
-        alternates: {
-            canonical: `${canonicalUrl}/`,
-        },
-
-        openGraph: {
-            type: "website",
-            title: seo.pages.home.title,
-            description: seo.pages.home.description,
-            url: `${canonicalUrl}/`,
-            siteName: seo.siteName,
-            images: seo.pages.home.ogImage
-                ? [seo.pages.home.ogImage]
-                : [],
-        },
-
-        twitter: {
-            card: seo.social?.twitterCard || "summary_large_image",
-            title: seo.pages.home.title,
-            description: seo.pages.home.description,
-            images: seo.pages.home.ogImage
-                ? [seo.pages.home.ogImage]
-                : [],
-        },
-    };
+    return createDoctorMetadata(slug, "home");
 }
 
 

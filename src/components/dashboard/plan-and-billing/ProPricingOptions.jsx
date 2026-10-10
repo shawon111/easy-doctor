@@ -6,18 +6,18 @@ import { useState } from "react";
 const OPTIONS = [
   {
     key: "monthly",
-    cadence: "Billed monthly",
+    cadence: "One payment for 1 month",
     icon: "calendar_month",
   },
   {
     key: "sixMonth",
-    cadence: "One payment every 6 months",
+    cadence: "One payment for 6 months",
     icon: "date_range",
     saving: "Save ৳200",
   },
   {
     key: "yearly",
-    cadence: "One payment per year",
+    cadence: "One payment for 12 months",
     icon: "event_available",
     saving: "Save ৳1,000",
     featured: true,

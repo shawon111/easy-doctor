@@ -6,27 +6,27 @@ export default function FaqSection() {
     },
     {
       q: "How long does it take for my website to go live?",
-      a: "Most doctors publish their complete website in about 2 minutes. Once you pick a template and type in your name and chamber schedule, click Publish and your website is immediately live on your free docxio.com subdomain."
+      a: "The time depends on how much profile and website information you need to add and review. You can publish after your website has been generated and is ready; check the dashboard for its current status."
     },
     {
-      q: "Is the docxio.com subdomain really 100% free?",
-      a: "Yes! Every active account receives their chosen subdomain (such as dr-yourname.docxio.com) at zero extra cost. You do not need to purchase a domain name separately unless you want to connect a custom domain."
+      q: "Is a Docxio subdomain included?",
+      a: "You can publish on a Docxio subdomain, such as dr-yourname.docxio.com, without separately registering that subdomain. Website access is subject to the trial or active plan. A custom domain must be registered separately."
     },
     {
       q: "Can I connect my own custom .com domain later?",
-      a: "Yes. You can start today on your free subdomain and connect your own domain (e.g. www.drtariqul.com) at any time through your dashboard with 1-click DNS propagation and free SSL."
+      a: "Yes. Add a custom domain through the dashboard and follow the DNS records shown there. You need to register and maintain the domain with a domain registrar; DNS changes can take time to propagate."
     },
     {
       q: "How do patients book appointments or contact my chamber?",
-      a: "Docxio provides direct WhatsApp serial booking buttons, phone call dialers for your assistant, and structured chamber hours for each hospital you visit. You can also accept intake inquiries directly into your portal."
+      a: "Depending on the booking preference you configure, your website can show WhatsApp contact, an appointment request form, or both. Keep the displayed clinic hours and contact details accurate."
     },
     {
       q: "Which payment methods are supported in Bangladesh?",
-      a: "We support bKash, Nagad, Rocket, Upay, as well as local Bangladeshi Visa, Mastercard, and American Express credit/debit cards with instant activation."
+      a: "Available payment methods are provided by the payment checkout. Review the methods and total displayed there before confirming a payment."
     },
     {
-      q: "Can I update my visiting hours or chamber fees later?",
-      a: "Yes, log in to your dashboard anytime from your mobile phone or computer. Updates to your visiting hours, vacation off-days, and consultation fees take effect live on your website within 5 seconds."
+      q: "Can I update my visiting hours and chamber details later?",
+      a: "You can update your practice information from the dashboard. After saving changes, review the public website to confirm the updated details are displayed correctly."
     }
   ];
 

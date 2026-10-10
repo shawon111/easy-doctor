@@ -11,7 +11,7 @@ export default function HowItWorks() {
             <span className="font-serif font-normal italic text-secondary">You Just Need Docxio.</span>
           </h2>
           <p className="text-base sm:text-lg text-slate-muted leading-relaxed">
-            Custom web design agencies take weeks and charge hefty fees. With Docxio, you select your specialty design, claim your dedicated web address, and launch in minutes.
+            Choose a doctor website template, add your practice details, and publish when your website is ready to share.
           </p>
         </div>
         {/* 3 Steps Grid */}
@@ -25,7 +25,7 @@ export default function HowItWorks() {
               </div>
               <h3 className="text-2xl font-bold text-slate-900 mb-3">Choose a Template</h3>
               <p className="text-sm text-slate-600 leading-relaxed mb-6">
-                Pick from 6 bespoke, doctor-specific templates engineered in Light and Dark editions for surgeons, consultants, and clinical specialists.
+                Choose from six website templates, each available in light and dark styles.
               </p>
             </div>
             <div className="pt-4 border-t border-slate-200 text-xs font-semibold text-secondary flex items-center gap-1.5">
@@ -36,21 +36,21 @@ export default function HowItWorks() {
           {/* Step 2 (Emphasized Subdomain Step) */}
           <div className="bg-white p-8 lg:p-10 rounded-2xl border-2 border-secondary shadow-window relative flex flex-col justify-between">
             <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-secondary text-white text-[11px] font-bold uppercase tracking-widest px-4 py-1 rounded-full shadow-md">
-              100% Free Forever
+              Included with website access
             </div>
             <div>
               <div className="flex items-center justify-between mb-8">
                 <span className="w-12 h-12 rounded-xl bg-secondary text-white font-bold text-xl flex items-center justify-center">02</span>
-                <span className="text-xs font-bold text-secondary uppercase tracking-wider">Zero Domain Fees</span>
+                <span className="text-xs font-bold text-secondary uppercase tracking-wider">                Docxio web address</span>
               </div>
               <h3 className="text-2xl font-bold text-slate-900 mb-3">Choose a Subdomain</h3>
               <p className="text-sm text-slate-600 leading-relaxed mb-6">
-                Instantly claim your personal web address (<span className="font-mono font-bold text-slate-900">dr-yourname.docxio.com</span>). Free subdomain included with every doctor account with automatic SSL encryption.
+                Choose a Docxio subdomain, such as <span className="font-mono font-bold text-slate-900">dr-yourname.docxio.com</span>, when publishing. A subdomain is included with website access.
               </p>
             </div>
             <div className="pt-4 border-t border-slate-100 text-xs font-semibold text-emerald-700 bg-emerald-50 -mx-4 -mb-4 p-4 rounded-b-xl flex items-center gap-1.5">
               <span className="material-symbols-outlined text-[18px]">lock</span>
-              Instant free HTTPS protocol included
+              HTTPS for published sites
             </div>
           </div>
           {/* Step 3 */}
@@ -58,16 +58,16 @@ export default function HowItWorks() {
             <div>
               <div className="flex items-center justify-between mb-8">
                 <span className="w-12 h-12 rounded-xl bg-primary text-white font-bold text-xl flex items-center justify-center">03</span>
-                <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">Instant Go-Live</span>
+                <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">Publish when ready</span>
               </div>
               <h3 className="text-2xl font-bold text-slate-900 mb-3">Publish Your Website</h3>
               <p className="text-sm text-slate-600 leading-relaxed mb-6">
-                Enter your chamber timings and click Publish. Your link is live immediately to print on prescription pads, visiting cards, and attach to Google Business.
+                Add your practice details, review the generated site, and publish it when the information is ready to share.
               </p>
             </div>
             <div className="pt-4 border-t border-slate-200 text-xs font-semibold text-secondary flex items-center gap-1.5">
               <span className="material-symbols-outlined text-[18px]">rocket_launch</span>
-              Ready to share with patients in 2 minutes
+              Review before sharing with patients
             </div>
           </div>
         </div>
@@ -79,7 +79,7 @@ export default function HowItWorks() {
                 <span className="material-symbols-outlined text-[16px]">link</span> Included With Every Plan
               </div>
               <h4 className="text-2xl font-extrabold text-white">Claim Your Free Doctor Subdomain Now</h4>
-              <p className="text-slate-400 text-sm mt-1">No separate domain purchases, registrar renewals, or DNS technical hurdles required.</p>
+              <p className="text-slate-400 text-sm mt-1">Start with a Docxio subdomain. Custom domains require separate registration and DNS setup.</p>
             </div>
             <SubdomainBannerForm />
           </div>

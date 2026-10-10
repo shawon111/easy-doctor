@@ -1,99 +1,24 @@
 import { Button } from "@/components/ui/button";
-import { connectDB } from "@/config/database";
 import { generateStructuredData } from "@/lib/seo/generateStructureddata";
+import { serializeJsonLd } from "@/lib/seo/urls";
+import { createDoctorMetadata, getDoctorSiteContext } from "@/lib/seo/doctor-metadata";
 import { isWebsiteActive } from "@/lib/subscription";
-import { getSeoBySubdomain } from "@/services/seo.service";
-import { getUserBySubdomain } from "@/services/user.service";
-import { getWebsiteLists } from "@/services/website.service";
+import { notFound } from "next/navigation";
 
-export const generateStaticParams = async () => {
-  await connectDB();
-  const websites = (await getWebsiteLists()) ?? [];
-  return websites.map((website) => ({
-    slug: website?.subdomain,
-  }));
-};
+export const dynamic = "force-dynamic";
 
-// generate metadata
 export async function generateMetadata({ params }) {
   const { slug } = await params;
-
-  const seo = await getSeoBySubdomain(slug);
-  if (!seo) {
-    return {};
-  }
-
-  const canonicalUrl = seo.canonicalUrl?.replace(/\/$/, "");
-  return {
-    title: seo.defaultTitle,
-    description: seo.defaultDescription,
-
-    icons: {
-      icon: "/favicon.svg",
-    },
-
-    alternates: {
-      canonical: `${canonicalUrl}/`,
-    },
-
-    robots: {
-      index: seo.robots?.index ?? true,
-      follow: seo.robots?.follow ?? true,
-    },
-
-    openGraph: {
-      type: "website",
-      siteName: seo.siteName,
-      title: seo.social?.ogTitle || seo.defaultTitle,
-      description:
-        seo.social?.ogDescription || seo.defaultDescription,
-      url: `${canonicalUrl}/`,
-      images: seo.social?.ogImage
-        ? [seo.social.ogImage]
-        : [],
-    },
-
-    twitter: {
-      card: seo.social?.twitterCard || "summary_large_image",
-      title: seo.social?.ogTitle || seo.defaultTitle,
-      description:
-        seo.social?.ogDescription || seo.defaultDescription,
-      images: seo.social?.ogImage
-        ? [seo.social.ogImage]
-        : [],
-    },
-
-    verification: {
-      google: seo.verification?.google || undefined,
-      other: {
-        "msvalidate.01": seo.verification?.bing || undefined,
-      },
-    },
-  };
+  return createDoctorMetadata(slug, "home");
 }
 
 const DoctorLayout = async ({ children, params }) => {
   const { slug } = await params;
-
-  // generate structured data
-  const user = await getUserBySubdomain(slug);
-  if (!user) {
-    return null;
-  }
-
-  const host = user.domain
-    ? user.domain
-    : `${user.subdomain}.${process.env.NEXT_PUBLIC_BASE_DOMAIN}`;
-
-  const baseUrl = `https://${host}`;
-
-  const structuredData = generateStructuredData({
-    user,
-    baseUrl,
-  });
+  const context = await getDoctorSiteContext(slug);
+  if (!context) notFound();
 
   // check if subscription expired
-  const isActive = isWebsiteActive(user?.expiresAt)
+  const isActive = isWebsiteActive(context.user?.expiresAt);
   if (!isActive) {
     return <>
       <section className="mb-6 rounded-lg border border-red-200 bg-red-50 p-4">
@@ -120,7 +45,12 @@ const DoctorLayout = async ({ children, params }) => {
     <script
       type="application/ld+json"
       dangerouslySetInnerHTML={{
-        __html: JSON.stringify(structuredData),
+        __html: serializeJsonLd(
+          generateStructuredData({
+            user: context.user,
+            baseUrl: context.canonicalUrl,
+          })
+        ),
       }}
     />
     {children}

@@ -15,8 +15,9 @@ export default function FreeTrialSection() {
               Try Docxio free for 15 days.
             </h2>
             <p className="mt-3 max-w-xl text-base leading-relaxed text-slate-muted sm:text-lg">
-              Build and explore your professional doctor website before you
-              choose a Pro plan. No credit card required to get started.
+              Your 15-day trial starts when you create your doctor website.
+              Explore Docxio before choosing a Pro plan; no credit card is
+              required.
             </p>
           </div>
           <div className="relative mt-7 flex shrink-0 flex-col items-start gap-3 sm:flex-row sm:items-center lg:mt-0 lg:flex-col lg:items-stretch">

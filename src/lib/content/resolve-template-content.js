@@ -1,15 +1,22 @@
-function isEmptyValue(value) {
-  return (
-    value === undefined ||
-    value === null ||
-    (typeof value === "string" && value.trim() === "") ||
-    (Array.isArray(value) && value.length === 0)
-  );
-}
-
 function isPlainObject(value) {
   return Boolean(value) && typeof value === "object" && !Array.isArray(value);
 }
+
+const SAFE_DEFAULT_KEYS = new Set([
+  "icon",
+  "iconClass",
+  "color",
+  "imageUrl",
+  "imageUrlSecondary",
+  "quoteImageUrl",
+  "telehealthImage",
+  "images",
+  "navLinks",
+  "resourceLinks",
+  "legalLinks",
+  "appointmentCta",
+  "appointmentCtaLink",
+]);
 
 export function resolveTemplateContent(content, defaults, isDemo = false) {
   if (isDemo) return defaults;
@@ -26,26 +33,34 @@ export function resolveTemplateContent(content, defaults, isDemo = false) {
     const sourceValue = source[key];
     const defaultValue = defaults?.[key];
 
-    if (isEmptyValue(sourceValue)) {
-      result[key] = defaultValue;
+    if (sourceValue === undefined || sourceValue === null) {
+      if (key === "imageAlt") {
+        result[key] = "";
+      } else if (SAFE_DEFAULT_KEYS.has(key)) {
+        result[key] = defaultValue;
+      } else if (Array.isArray(defaultValue)) {
+        result[key] = SAFE_DEFAULT_KEYS.has(key) ? defaultValue : [];
+      } else if (isPlainObject(defaultValue)) {
+        result[key] = resolveTemplateContent({}, defaultValue);
+      }
       continue;
     }
 
     if (Array.isArray(sourceValue) && Array.isArray(defaultValue)) {
-      const defaultIsObjectList = defaultValue.some(isPlainObject);
-
-      if (defaultIsObjectList) {
-        result[key] = sourceValue.map((item, index) => {
-          const fallback = defaultValue[index % defaultValue.length];
-          if (isPlainObject(item) && isPlainObject(fallback)) {
-            return resolveTemplateContent(item, fallback);
-          }
-          return isEmptyValue(item) ? fallback : item;
-        });
+      if (sourceValue.length === 0 && SAFE_DEFAULT_KEYS.has(key)) {
+        result[key] = defaultValue;
         continue;
       }
 
-      result[key] = sourceValue;
+      const safeDefaultList = SAFE_DEFAULT_KEYS.has(key) ? defaultValue : [];
+      result[key] = sourceValue.map((item, index) => {
+        const fallbackList = safeDefaultList.length ? safeDefaultList : defaultValue;
+        const fallback = fallbackList[index % fallbackList.length];
+        if (isPlainObject(item) && isPlainObject(fallback)) {
+          return resolveTemplateContent(item, fallback);
+        }
+        return item;
+      });
       continue;
     }
 
@@ -63,7 +78,7 @@ export function resolveTemplateContent(content, defaults, isDemo = false) {
 export function replaceTemplateVariables(value, variables = {}) {
   if (typeof value === "string") {
     return value.replace(/\{\{(\w+)\}\}/g, (match, key) =>
-      variables[key] === undefined ? match : String(variables[key])
+      variables[key] === undefined ? "" : String(variables[key])
     );
   }
 

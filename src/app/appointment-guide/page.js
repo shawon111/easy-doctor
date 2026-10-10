@@ -1,9 +1,11 @@
 import InfoPageLayout from "@/components/legal/InfoPageLayout";
+import { createMarketingMetadata } from "@/lib/seo/marketing-metadata";
 
-export const metadata = {
-  title: "Appointment Guide | Docxio",
-  description: "Learn how new doctors manage patient appointments, visit schedules, and digital booking workflows in Docxio.",
-};
+export const metadata = createMarketingMetadata({
+  title: "Doctor Appointment Guide | Docxio",
+  description: "Learn how doctors manage clinic schedules, booking options, and patient appointment requests with Docxio.",
+  path: "/appointment-guide",
+});
 
 const overviewItems = [
   "Set clinic timings and visit windows",
@@ -16,27 +18,27 @@ export default function AppointmentGuidePage() {
   return (
     <InfoPageLayout
       badge="Doctor Operations"
-      title="Appointment Guide"
-      intro="The appointment flow in Docxio helps doctors manage chamber visits, patient records, and online booking without having to maintain a separate booking system or custom CRM."
+      title="Doctor Appointment Guide"
+      intro="Learn how Docxio supports clinic schedules, WhatsApp or website booking requests, and appointment management for doctors and their staff."
       overviewItems={overviewItems}
       videoGuide
     >
       <section>
-        <h2 className="text-2xl font-bold text-slate-900">1. Onboarding captures everything needed</h2>
+        <h2 className="text-2xl font-bold text-slate-900">1. Add clinic and booking details</h2>
         <p>
-          The onboarding flow is designed to collect the core practice data required for the doctor website and appointment system. That includes physician identity, qualifications, bio, chamber locations, visiting hours, contact numbers, appointments preference, and service information. Once this information is captured, nothing extra needs to be entered again just to launch the booking page or website.
+          Add each chamber&apos;s address, visiting hours, contact number, and booking preference to the doctor profile. Keep these details current so patients see the right information when they visit the website.
         </p>
         <ul className="list-disc space-y-2 pl-6">
-          <li>Chamber details, addresses, map links, visiting days, and WhatsApp numbers are stored during onboarding.</li>
-          <li>Booking behavior such as WhatsApp only, booking form only, or both is selected upfront.</li>
-          <li>The appointment page is generated automatically from this saved information, so the doctor does not need to rebuild the profile manually.</li>
+          <li>Set chamber location, visiting days and hours, and WhatsApp contact details.</li>
+          <li>Choose WhatsApp, website booking requests, or both as the booking options.</li>
+          <li>Review the public appointment page after updating profile information.</li>
         </ul>
       </section>
 
       <section>
         <h2 className="text-2xl font-bold text-slate-900">2. How the public appointment flow works</h2>
         <p>
-          After onboarding is complete, the public appointment page is created automatically from the saved chamber and booking settings. Patients can view each chamber, choose a date, and submit a booking request based on the configured preferences.
+          Patients can use the contact and booking options enabled for the practice. Website booking requests are associated with a chamber and date; the doctor or staff can review them in the dashboard.
         </p>
         <ul className="list-disc space-y-2 pl-6">
           <li><strong>WhatsApp:</strong> patients can contact the doctor directly using the stored WhatsApp number.</li>
@@ -48,7 +50,7 @@ export default function AppointmentGuidePage() {
       <section>
         <h2 className="text-2xl font-bold text-slate-900">3. How serials and appointment records are created</h2>
         <p>
-          Each appointment is linked to a specific chamber and date. Docxio assigns a sequence number or serial automatically so the doctor can manage patient flow in a structured way. The system stores patient details, status, source, and chamber metadata in a single appointment record.
+          Each website request is linked to a chamber and date, and Docxio assigns it a serial number. Appointment records include the submitted patient contact details and can be managed from the dashboard.
         </p>
         <ul className="list-disc space-y-2 pl-6">
           <li>Daily serials are tracked automatically for each chamber.</li>
@@ -73,7 +75,7 @@ export default function AppointmentGuidePage() {
       <section>
         <h2 className="text-2xl font-bold text-slate-900">5. Review and manage the day-to-day schedule</h2>
         <p>
-          Doctors and staff can review recent bookings from the appointment dashboard, filter by status or chamber, and update patient progress in real time. This keeps both the public website and the internal clinic workflow consistent without requiring separate configuration steps.
+          Doctors and staff can review appointment records, filter by status or chamber, and update a booking&apos;s status from the dashboard.
         </p>
       </section>
     </InfoPageLayout>

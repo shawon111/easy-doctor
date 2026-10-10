@@ -1,9 +1,9 @@
 "use client";
 
 export function GoogleSearchPreview({
-  url = process.env.NEXT_PUBLIC_BASE_DOMAIN,
-  title = "Dr. Ahmed Rahman | Top Cardiologist in Khulna | Book Now",
-  description = "Comprehensive cardiac care in Khulna. Dr. Ahmed Rahman specializes in advanced heart conditions, preventative cardiology, and patient-centered treatment plans. Schedule your consultation online today.",
+  url = process.env.NEXT_PUBLIC_BASE_DOMAIN || "your-doctor-site.com",
+  title = "Doctor Name | Medical Specialty",
+  description = "A clear, patient-friendly summary of the information on this page.",
 }) {
   return (
     <div className="rounded-2xl border border-border bg-card p-4 shadow-[0px_4px_12px_rgba(0,0,0,0.03)] sm:p-6">

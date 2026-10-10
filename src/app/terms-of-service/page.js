@@ -1,14 +1,16 @@
 import InfoPageLayout from "@/components/legal/InfoPageLayout";
+import { createMarketingMetadata } from "@/lib/seo/marketing-metadata";
 
-export const metadata = {
-  title: "Terms of Service | Docxio",
-  description: "The usage terms and conditions for doctors using Docxio to build medical websites and manage appointments.",
-};
+export const metadata = createMarketingMetadata({
+  title: "Docxio Terms of Service",
+  description: "Review the terms for using Docxio doctor websites, appointment tools, and account services.",
+  path: "/terms-of-service",
+});
 
 const overviewItems = [
   "Doctor accounts must be accurate and verifiable",
   "Website content must be lawful and medically responsible",
-  "Subscriptions continue until cancellation or renewal",
+  "Pro access depends on payment verification and account expiry",
   "The platform is not a replacement for clinical emergency care",
 ];
 
@@ -16,8 +18,8 @@ export default function TermsOfServicePage() {
   return (
     <InfoPageLayout
       badge="Platform Terms"
-      title="Terms of Service"
-      intro="These terms define how doctors and teams use the Docxio platform to create websites, publish practice information, and manage patient-facing appointment workflows. By using the service, the user agrees to comply with these terms and the relevant platform policies."
+      title="Docxio Terms of Service"
+      intro="These terms describe use of Docxio doctor websites, appointment tools, and accounts. Users are responsible for accurate published information, safeguarding account credentials, and following applicable laws and policies."
       overviewItems={overviewItems}
     >
       <section>
@@ -34,8 +36,7 @@ export default function TermsOfServicePage() {
         </p>
         <ul className="list-disc space-y-2 pl-6">
           <li>Personal and professional details must be accurate and current.</li>
-          <li>Credentials must not be shared with unauthorized users.</li>
-          <li>Security settings and two-step protections should be maintained as applicable.</li>
+          <li>Use a strong password and do not share account credentials with unauthorized people.</li>
         </ul>
       </section>
 
@@ -56,14 +57,14 @@ export default function TermsOfServicePage() {
       <section>
         <h2 className="text-2xl font-bold text-slate-900">5. Subscription, access, and billing</h2>
         <p>
-          The platform provides trial and paid subscription options, with access depending on the selected plan and current billing status. Access may continue during the active billing cycle and is subject to renewal or cancellation according to the subscription policy.
+          Docxio provides a 15-day trial after website creation and paid Pro plans. Paid access is activated or extended after a payment is verified. Plans do not automatically renew; see the Subscription Policy for current prices and details.
         </p>
       </section>
 
       <section>
         <h2 className="text-2xl font-bold text-slate-900">6. Service availability and limitations</h2>
         <p>
-          Docxio provides a hosted service with best-effort uptime and monitoring. Although the platform is built for reliability, scheduled maintenance, network conditions, third-party dependencies, and domain propagation can affect availability. The platform does not guarantee uninterrupted service availability for all use cases.
+          The hosted service may be unavailable or interrupted because of maintenance, network conditions, third-party services, or domain configuration. No uptime percentage or uninterrupted-availability commitment is stated here.
         </p>
       </section>
 

@@ -1,66 +1,57 @@
-export const generateStructuredData = ({ user, baseUrl }) => {
-    const clinics = user.clinicAddress || [];
+import { resolvePublicImageUrl } from "@/lib/seo/urls";
 
-    const data = {
+const safePublicUrl = (value) => {
+    try {
+        const url = new URL(String(value || ""));
+        return ["http:", "https:"].includes(url.protocol)
+            ? url.toString()
+            : undefined;
+    } catch {
+        return undefined;
+    }
+};
+
+export const generateStructuredData = ({ user = {}, baseUrl }) => {
+    const clinics = Array.isArray(user.clinicAddress)
+        ? user.clinicAddress
+        : [];
+    const canonicalUrl = safePublicUrl(baseUrl);
+    const imageUrl = resolvePublicImageUrl(user.profilePicture, baseUrl);
+    const sameAs = Array.isArray(user.socialLinks)
+        ? user.socialLinks.map((item) => safePublicUrl(item?.url)).filter(Boolean)
+        : [];
+    const workLocations = clinics
+        .filter((clinic) => clinic?.chamberName || clinic?.address || clinic?.city)
+        .map((clinic) => ({
+            "@type": "MedicalClinic",
+            ...(clinic.chamberName && { name: clinic.chamberName }),
+            ...(clinic.address || clinic.city || clinic.country
+                ? {
+                      address: {
+                          "@type": "PostalAddress",
+                          ...(clinic.address && { streetAddress: clinic.address }),
+                          ...(clinic.city && { addressLocality: clinic.city }),
+                          ...(clinic.country && { addressCountry: clinic.country }),
+                      },
+                  }
+                : {}),
+        }));
+
+    return {
         "@context": "https://schema.org",
         "@type": "Physician",
-
-        name: user.name,
-
-        url: baseUrl,
-
-        ...(user.profilePicture && {
-            image: user.profilePicture,
+        ...(user.name && { name: user.name }),
+        ...(canonicalUrl && {
+            "@id": `${canonicalUrl.replace(/\/$/, "")}/#physician`,
+            url: canonicalUrl,
         }),
-
-        ...(user.phone && {
-            telephone: user.phone,
-        }),
-
-        ...(user.email && {
-            email: user.email,
-        }),
-
+        ...(imageUrl && { image: imageUrl }),
+        ...(user.phone && { telephone: user.phone }),
         ...(user.specialization && {
             medicalSpecialty: user.specialization,
         }),
-
-        ...(user.bio && {
-            description: user.bio,
-        }),
-
-        ...(clinics.length > 0 && {
-            worksFor: clinics.map((clinic) => ({
-                "@type": "MedicalClinic",
-
-                ...(clinic.chamberName && {
-                    name: clinic.chamberName,
-                }),
-
-                ...(clinic.city && {
-                    address: {
-                        "@type": "PostalAddress",
-
-                        streetAddress: clinic.address,
-
-                        ...(clinic.city && {
-                            addressLocality: clinic.city,
-                        }),
-
-                        ...(clinic.country && {
-                            addressCountry: clinic.country,
-                        }),
-                    },
-                }),
-            })),
-        }),
-
-        ...(user.socialLinks?.length > 0 && {
-            sameAs: user.socialLinks
-                .map((item) => item.url)
-                .filter(Boolean),
-        }),
+        ...(user.bio && { description: user.bio }),
+        ...(workLocations.length > 0 && { workLocation: workLocations }),
+        ...(sameAs.length > 0 && { sameAs }),
     };
-
-    return data;
 };

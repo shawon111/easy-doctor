@@ -1,23 +1,25 @@
 import InfoPageLayout from "@/components/legal/InfoPageLayout";
+import { createMarketingMetadata } from "@/lib/seo/marketing-metadata";
 
-export const metadata = {
-  title: "Domain Connection Guide | Docxio",
-  description: "Learn how to connect a custom domain to your doctor website and verify DNS records in Docxio.",
-};
+export const metadata = createMarketingMetadata({
+  title: "Doctor Website Domain Setup Guide | Docxio",
+  description: "Connect a custom domain to a Docxio doctor website by adding the DNS records shown in the dashboard and verifying the connection.",
+  path: "/domain-connection-guide",
+});
 
 const overviewItems = [
   "Prepare your registrar DNS settings",
-  "Add A or CNAME records for the domain",
+  "Add the DNS records shown in the dashboard",
   "Verify the domain in the dashboard",
-  "Publish the site with HTTPS and canonical URLs",
+  "Check HTTPS access and the published canonical URL",
 ];
 
 export default function DomainConnectionGuidePage() {
   return (
     <InfoPageLayout
       badge="Website Infrastructure"
-      title="Domain Connection Guide"
-      intro="Custom domain support allows a doctor website to move from a free docxio subdomain to a branded online address. The platform handles the connection flow by collecting DNS settings, validating the domain, and updating the website metadata when the record is ready."
+      title="Doctor Website Domain Setup Guide"
+      intro="Connect a custom domain to a Docxio doctor website by adding the DNS records provided in the dashboard. Docxio checks the domain configuration and reports whether the domain is connected."
       overviewItems={overviewItems}
       videoGuide
     >
@@ -31,7 +33,7 @@ export default function DomainConnectionGuidePage() {
       <section>
         <h2 className="text-2xl font-bold text-slate-900">2. Update DNS at the registrar</h2>
         <p>
-          The website connection flow produces the DNS records that should be added in the domain registrar. In many setups, the recommended configuration includes either an A record pointing to the service IP or a CNAME record mapped to the platform target. These records tell the internet where to route the domain traffic.
+          The dashboard displays the DNS records needed for the domain. Record types and values depend on the domain configuration, so use the current values shown there instead of copying example records from another setup.
         </p>
         <ul className="list-disc space-y-2 pl-6">
           <li>Use the values shown in Docxio when the domain is being configured.</li>
@@ -43,7 +45,7 @@ export default function DomainConnectionGuidePage() {
       <section>
         <h2 className="text-2xl font-bold text-slate-900">3. Verify the domain status</h2>
         <p>
-          Once DNS values are in place, Docxio verifies the domain configuration and checks whether the website is connected and configured correctly. This validation step compares the expected records with the live record state and updates the website record to a connected or pending status.
+          After you add the DNS records, Docxio checks the domain&apos;s verification and configuration status. The dashboard reports whether it is connected or still pending.
         </p>
         <ul className="list-disc space-y-2 pl-6">
           <li>Verify records are accepted and propagated properly.</li>
@@ -55,14 +57,14 @@ export default function DomainConnectionGuidePage() {
       <section>
         <h2 className="text-2xl font-bold text-slate-900">4. Publish the final live URL</h2>
         <p>
-          After verification completes successfully, the site uses the custom domain as the canonical public URL. This replaces the subdomain routing in the SEO metadata and ensures the website presents the branded address to visitors and search engines.
+          Once connected, visitors can use the custom domain to reach the website. Docxio&apos;s SEO canonical URLs currently use the website&apos;s Docxio subdomain, so connecting a custom domain does not change the canonical URL.
         </p>
       </section>
 
       <section>
         <h2 className="text-2xl font-bold text-slate-900">5. Maintain ongoing domain health</h2>
         <p>
-          Domain health is reviewed periodically through the dashboard. If records change, the connected domain can be re-verified, and the system can update the website metadata to the correct public host. In practice, this ensures that patient access remains stable even as DNS settings are refreshed or transferred.
+          If you change DNS records or the domain stops connecting, review the current DNS instructions and status in the dashboard. DNS updates may take time to propagate; the application does not guarantee uninterrupted access while records are changing.
         </p>
       </section>
     </InfoPageLayout>

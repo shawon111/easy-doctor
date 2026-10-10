@@ -8,14 +8,13 @@ export default function ClosingCta() {
       <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center relative z-10">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-bold uppercase tracking-wider mb-6">
           <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
-          Immediate Clinical Activation
+          Doctor Website Builder
         </div>
         <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6">
-          Your Dedicated Practice Website. <br />
-          <span className="font-serif font-normal italic text-blue-400">Live in 2 Minutes.</span>
+          Create a Website for Your Practice
         </h2>
         <p className="text-base sm:text-lg text-slate-400 leading-relaxed max-w-xl mx-auto mb-10">
-          Give your patients one authoritative destination for chamber locations, visiting hours, and serial booking. No technical hassle.
+          Share your professional profile, clinic details, and appointment options on a website you can manage through Docxio.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link

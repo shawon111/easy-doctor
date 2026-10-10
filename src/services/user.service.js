@@ -187,11 +187,11 @@ export const getUserBySubdomain = async (subdomainOrDomain) => {
         return userQuery.select({
             name: 1,
             phone: 1,
-            email: 1,
             specialization: 1,
             bio: 1,
             clinicAddress: 1,
             socialLinks: 1,
+            profilePicture: 1,
             subdomain: 1,
             domain: 1,
             expiresAt: 1

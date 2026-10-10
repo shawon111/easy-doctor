@@ -4,6 +4,10 @@ import React from 'react';
 import { getCurrentUser } from '@/services/user.service';
 import { redirect } from 'next/navigation';
 
+export const metadata = {
+    robots: { index: false, follow: false },
+};
+
 const AuthLayout = async ({ children }) => {
     const user = await getCurrentUser();
     if (user) {

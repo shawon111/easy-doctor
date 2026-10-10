@@ -12,24 +12,23 @@ export default function HeroSection() {
               15-Day Free Trial · No Card Required
             </div>
             <h1 className="text-4xl sm:text-5xl lg:text-[56px] lg:leading-[1.1] font-extrabold text-slate-heading tracking-tight mb-6">
-              Your Professional Doctor Website. <br className="hidden sm:inline" />
-              <span className="font-serif font-normal italic text-secondary">Ready in 2 Minutes.</span>
+              Doctor Website Builder in Bangladesh
             </h1>
             <p className="text-lg lg:text-xl text-slate-muted leading-relaxed max-w-2xl mb-8">
-              Create your own verified practice website with Docxio — no coding, no developer, and no technical friction. Choose an editorial layout, add your chamber schedules, and publish to your own free web address instantly.
+              Create a professional website for your practice with Docxio. Choose a design, add your doctor and clinic information, and publish on a Docxio subdomain or connect a custom domain.
             </p>
             {/* Fast Domain Test input pill */}
             <SubdomainInputForm />
             {/* Micro Proof Badges */}
             <div className="flex flex-wrap items-center gap-y-2 gap-x-6 text-xs font-semibold text-slate-600">
               <span className="inline-flex items-center gap-1.5">
-                <span className="material-symbols-outlined text-secondary text-[18px]">verified</span> Zero Code or Setup
+                <span className="material-symbols-outlined text-secondary text-[18px]">language</span> No coding required
               </span>
               <span className="inline-flex items-center gap-1.5">
-                <span className="material-symbols-outlined text-secondary text-[18px]">schedule</span> Live in ~2 Minutes
+                <span className="material-symbols-outlined text-secondary text-[18px]">edit</span> Edit your website details
               </span>
               <span className="inline-flex items-center gap-1.5">
-                <span className="material-symbols-outlined text-secondary text-[18px]">domain</span> Free .docxio.com Subdomain Included
+                <span className="material-symbols-outlined text-secondary text-[18px]">domain</span> Docxio subdomain included
               </span>
             </div>
           </div>
@@ -41,7 +40,7 @@ export default function HeroSection() {
               {/* Top Status Tag */}
               <div className="absolute -top-3.5 right-6 z-20 bg-primary text-white text-[11px] font-bold px-3 py-1 rounded-full shadow-lg flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
-                Verified Doctor Template 03
+                Template 03 Preview
               </div>
               {/* Main Desktop Browser Frame */}
               <div className="bg-white rounded-2xl shadow-window border border-slate-200 overflow-hidden">
@@ -63,33 +62,33 @@ export default function HeroSection() {
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center text-sm ring-2 ring-white/20">TI</div>
                     <div>
-                      <h4 className="font-bold text-sm leading-snug">Prof. Dr. Tariqul Islam</h4>
-                      <p className="text-[11px] text-slate-300">FCPS, MD (Cardiology) • Senior Consultant</p>
+                      <h4 className="font-bold text-sm leading-snug">Doctor Profile Preview</h4>
+                      <p className="text-[11px] text-slate-300">Professional and practice information</p>
                     </div>
                   </div>
-                  <span className="text-[10px] font-semibold bg-blue-500 text-white px-2.5 py-1 rounded shadow-sm">Chamber Book</span>
+                  <span className="text-[10px] font-semibold bg-blue-500 text-white px-2.5 py-1 rounded shadow-sm">Appointment Options</span>
                 </div>
                 {/* Content preview */}
                 <div className="p-4 bg-slate-50 space-y-3">
                   <div className="grid grid-cols-2 gap-2 text-xs">
                     <div className="p-3 bg-white rounded-lg border border-slate-200 shadow-sm">
                       <div className="text-[10px] font-bold uppercase tracking-wider text-secondary">Chamber 1</div>
-                      <div className="font-bold text-slate-800 mt-0.5">Popular Diagnostic</div>
-                      <div className="text-[11px] text-slate-500">Dhanmondi, Dhaka</div>
+                      <div className="font-bold text-slate-800 mt-0.5">Clinic location</div>
+                      <div className="text-[11px] text-slate-500">Address and visiting hours</div>
                       <div className="mt-2 text-[10px] font-medium text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded inline-block">5:00 PM – 9:00 PM</div>
                     </div>
                     <div className="p-3 bg-white rounded-lg border border-slate-200 shadow-sm">
                       <div className="text-[10px] font-bold uppercase tracking-wider text-secondary">Chamber 2</div>
-                      <div className="font-bold text-slate-800 mt-0.5">Square Hospital</div>
-                      <div className="text-[11px] text-slate-500">Panthapath, Dhaka</div>
+                      <div className="font-bold text-slate-800 mt-0.5">Additional chamber</div>
+                      <div className="text-[11px] text-slate-500">Practice location details</div>
                       <div className="mt-2 text-[10px] font-medium text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded inline-block">10:00 AM – 2:00 PM</div>
                     </div>
                   </div>
                   {/* Quick Trust strip inside preview */}
                   <div className="flex items-center justify-between bg-white px-3 py-2 rounded-lg border border-slate-200 text-xs">
                     <div className="flex items-center gap-1.5 text-slate-700 font-semibold">
-                      <span className="material-symbols-outlined text-secondary text-[16px]">verified</span>
-                      BMDC Reg: A-48291
+                      <span className="material-symbols-outlined text-secondary text-[16px]">person</span>
+                      Doctor profile
                     </div>
                     <span className="text-[11px] text-slate-500 font-medium">Appointment Serial Enabled</span>
                   </div>
@@ -101,8 +100,8 @@ export default function HeroSection() {
                   <span className="material-symbols-outlined text-[22px]">bolt</span>
                 </div>
                 <div>
-                  <p className="text-xs font-bold text-slate-900">2-Minute Publishing</p>
-                  <p className="text-[11px] text-slate-500">Instant SSL &amp; chamber routing</p>
+                  <p className="text-xs font-bold text-slate-900">Example Website</p>
+                  <p className="text-[11px] text-slate-500">Profile, chambers, and appointments</p>
                 </div>
               </div>
             </div>

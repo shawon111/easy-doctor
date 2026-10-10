@@ -1,62 +1,64 @@
 import InfoPageLayout from "@/components/legal/InfoPageLayout";
+import { createMarketingMetadata } from "@/lib/seo/marketing-metadata";
 
-export const metadata = {
-  title: "Subscription Policy | Docxio",
-  description: "Details on Docxio free trials, subscription tiers, billing cycles, and account access rules.",
-};
+export const metadata = createMarketingMetadata({
+  title: "Docxio Subscription Policy",
+  description: "Review the 15-day Docxio trial, current Pro plan prices and durations, and how a verified payment extends website access.",
+  path: "/subscription-policy",
+});
 
 const overviewItems = [
-  "15-day free trial included for new accounts",
-  "Paid plans available in monthly, 6-month, and yearly terms",
-  "Access is activated with the selected plan and billing date",
-  "Renewals follow the billing cycle in the dashboard",
+  "The 15-day trial starts when a doctor website is created",
+  "Pro plans: ৳500 monthly, ৳2,800 for 6 months, or ৳5,000 yearly",
+  "Paid access starts or extends after payment verification",
+  "Plans are extended by making another plan purchase",
 ];
 
 export default function SubscriptionPolicyPage() {
   return (
     <InfoPageLayout
       badge="Billing Policy"
-      title="Subscription Policy"
-      intro="The billing model for Docxio is built around a simple trial-to-subscription flow. New users can explore the platform before committing to a plan, and paying users can select the billing period that best matches their practice operations."
+      title="Docxio Subscription Policy"
+      intro="Docxio offers a 15-day trial that starts when a doctor website is created, followed by optional Pro plans. Current plan amounts and durations are shown below; confirm the checkout total before paying."
       overviewItems={overviewItems}
     >
       <section>
         <h2 className="text-2xl font-bold text-slate-900">1. Free trial</h2>
         <p>
-          New accounts are eligible for a 15-day free trial. During this period, users can explore the website builder, configure the doctor profile, generate content, and publish a practice website before they complete a paid plan. The trial is designed to let doctors assess the workflow without entering a subscription immediately.
+          The application sets the trial expiry to 15 days after website creation when the account does not already have an expiry date. Registration itself does not start that timer. A payment card is not required to register or create the website.
         </p>
       </section>
 
       <section>
         <h2 className="text-2xl font-bold text-slate-900">2. Available plan durations</h2>
         <p>
-          Docxio supports several billing schedules for clinics and individual practices. The dashboard exposes the current billing options as a monthly, 6-month, and yearly subscription. The exact values shown at checkout reflect the current plan configuration in the application.
+          The current Pro plan configuration uses the following amounts in Bangladeshi taka (BDT). Check the plan and total in checkout before confirming a payment.
         </p>
         <ul className="list-disc space-y-2 pl-6">
-          <li><strong>Monthly:</strong> 500 (standard recurring monthly plan).</li>
-          <li><strong>6 Months:</strong> 2800 (discounted mid-term plan).</li>
-          <li><strong>Yearly:</strong> 5000 (annual plan with a longer commitment).</li>
+          <li><strong>Monthly:</strong> ৳500 for one month.</li>
+          <li><strong>6 Months:</strong> ৳2,800 for six months.</li>
+          <li><strong>Yearly:</strong> ৳5,000 for twelve months.</li>
         </ul>
       </section>
 
       <section>
         <h2 className="text-2xl font-bold text-slate-900">3. Billing cycle and renewal</h2>
         <p>
-          Once the trial ends, the selected plan becomes active. Renewal follows the chosen plan cycle, and access continues until the customer cancels or the service is otherwise suspended for non-payment or policy violation. Automatic renewal is managed through the billing system associated with the account.
+          Pro access is activated or extended after the payment provider confirms the payment. The application does not automatically charge a recurring payment; to continue Pro access, choose and purchase another plan from the dashboard.
         </p>
       </section>
 
       <section>
         <h2 className="text-2xl font-bold text-slate-900">4. Plan changes</h2>
         <p>
-          Users may adjust their billing plan from the dashboard when a different duration or service level better matches their practice. If the plan changes, the application uses the current account status and the latest payment configuration to determine access and service availability.
+          A user can select a different plan duration from the dashboard. If an active expiry date is still in the future, the purchased duration is added from that date; otherwise, it starts from the verified payment time.
         </p>
       </section>
 
       <section>
-        <h2 className="text-2xl font-bold text-slate-900">5. Cancellation and account access</h2>
+        <h2 className="text-2xl font-bold text-slate-900">5. Expiry and account access</h2>
         <p>
-          Active subscriptions remain in place through the current billing period. If a user cancels, the service may continue until the end of the purchased period unless the policy or billing agreement states otherwise. The website and data remain stored according to the platform retention and privacy rules.
+          Plans do not automatically renew. Website access is controlled by the account&apos;s expiry date. This page does not specify a fixed data-retention or deletion period.
         </p>
       </section>
     </InfoPageLayout>

@@ -6,14 +6,14 @@ export default function TopNoticeStrip() {
           <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-semibold text-[10px] tracking-wide uppercase">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Available in Bangladesh
           </span>
-          <span className="text-white/70">Create and publish your dedicated clinical web presence in under 2 minutes.</span>
+          <span className="text-white/70">Create a website for your medical practice with Docxio.</span>
         </div>
         <div className="flex items-center gap-5 text-[11px] text-white/60">
           <span className="flex items-center gap-1">
-            <span className="material-symbols-outlined text-[14px] text-blue-400">verified</span> BMDC Ready Layouts
+            <span className="material-symbols-outlined text-[14px] text-blue-400">medical_services</span> Doctor Website Templates
           </span>
           <span className="flex items-center gap-1">
-            <span className="material-symbols-outlined text-[14px] text-blue-400">lock</span> Free .docxio.com Subdomain Included
+            <span className="material-symbols-outlined text-[14px] text-blue-400">language</span> Docxio Subdomain Option
           </span>
         </div>
       </div>

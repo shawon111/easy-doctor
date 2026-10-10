@@ -1,19 +1,11 @@
 import PrivacyPolicyContent from "@/components/templates/PrivacyPolicyContent";
+import { createDoctorMetadata } from "@/lib/seo/doctor-metadata";
 import { getUserBySubdomain } from "@/services/user.service";
 import { notFound } from "next/navigation";
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
-  const user = await getUserBySubdomain(slug);
-
-  if (!user) {
-    return {};
-  }
-
-  return {
-    title: `Privacy Policy | Dr. ${user.name}`,
-    description: `How Dr. ${user.name} collects, uses and protects the personal information you share through this website.`,
-  };
+  return createDoctorMetadata(slug, "privacy-policy");
 }
 
 const PrivacyPolicyPage = async ({ params }) => {

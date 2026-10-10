@@ -5,7 +5,7 @@ const PRICING_OPTIONS = [
   {
     key: "monthly",
     description: "A flexible way to get your practice online.",
-    cadence: "/ month",
+    cadence: "/ 1 month",
   },
   {
     key: "sixMonth",
@@ -28,10 +28,10 @@ const FEATURE_GROUPS = [
     title: "Your professional website",
     features: [
       "A dedicated, mobile-friendly doctor website",
-      "6 physician-designed templates in light and dark styles",
-      "Doctor profile with photo, qualifications, and BMDC details",
+      "6 doctor website templates in light and dark styles",
+      "Doctor profile with photo, qualifications, and practice details",
       "Chamber locations, visiting hours, and directions",
-      "Free Docxio subdomain or connect your own custom domain",
+      "Docxio subdomain option or connect your own custom domain",
       "HTTPS security for your published website",
     ],
   },
@@ -70,8 +70,8 @@ export default function PricingSection() {
             Simple Pricing, Built for Doctors.
           </h2>
           <p className="text-base leading-relaxed text-slate-muted sm:text-lg">
-            Start with a 15-day free trial, then choose the Pro plan duration
-            that works for your practice. No card is needed to start.
+            Your 15-day trial starts when you create a website. Then choose a
+            Pro plan duration; no card is needed to register.
           </p>
         </div>
 
@@ -131,7 +131,7 @@ export default function PricingSection() {
                     </p>
                   ) : (
                     <p className="mt-2 text-center text-xs text-slate-500">
-                      Billed monthly
+                      One-time payment for one month
                     </p>
                   )}
                 </div>

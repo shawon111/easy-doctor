@@ -35,6 +35,18 @@ const normalizeSeoUpdates = (payload) => {
         throw new Error(`OG image URL must be ${MAX_IMAGE_URL_LENGTH} characters or fewer`);
     }
 
+    if (ogImage) {
+        let imageUrl;
+        try {
+            imageUrl = new URL(ogImage);
+        } catch {
+            throw new Error("Open Graph image must be a valid HTTPS URL");
+        }
+        if (imageUrl.protocol !== "https:" || imageUrl.username || imageUrl.password) {
+            throw new Error("Open Graph image must be a valid HTTPS URL");
+        }
+    }
+
     if (payload?.scope === "site") {
         return {
             defaultTitle: title,

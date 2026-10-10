@@ -7,10 +7,12 @@ import User from "@/models/user.model";
 import { unstable_cache } from "next/cache";
 import { replaceTemplateVariables } from "@/lib/content/resolve-template-content";
 import SEO from "@/models/seo.model";
+import { isWebsiteActive } from "@/lib/subscription";
+import { getDoctorCanonicalBaseUrl } from "@/lib/seo/urls";
 
 // create website
 export const createWebsite = async (userId, websiteData, session) => {
-    const { templateType, templateVariant, contentType, content, subdomain } = websiteData;
+    const { templateType, templateVariant, contentType, content, subdomain, status } = websiteData;
     const findSeo = await SEO.findOne({ userId }).session(session).select({
         _id: 1
     })
@@ -18,7 +20,11 @@ export const createWebsite = async (userId, websiteData, session) => {
         throw new Error("SEO settings not found for user");
     }
 
-    const canonicalUrl = `https://${subdomain}.${process.env.NEXT_PUBLIC_BASE_DOMAIN}`;
+    const canonicalBaseUrl = getDoctorCanonicalBaseUrl({ subdomain });
+    if (!canonicalBaseUrl) {
+        throw new Error("A production domain is required to create the website");
+    }
+    const canonicalUrl = canonicalBaseUrl.toString().replace(/\/$/, "");
     const user = await User.findById(userId).select("profilePicture").session(session);
     if (!user) {
         throw new Error("User not found");
@@ -54,7 +60,8 @@ export const createWebsite = async (userId, websiteData, session) => {
         contentType,
         content,
         subdomain,
-        seo: findSeo._id
+        seo: findSeo._id,
+        status,
     }], { session });
 
     return newWebsite;
@@ -179,7 +186,11 @@ export const persistCustomDomainState = async (
     },
     session
 ) => {
-    const canonicalSubdomain = `https://${subdomain}.${process.env.NEXT_PUBLIC_BASE_DOMAIN}`;
+    const canonicalSubdomainUrl = getDoctorCanonicalBaseUrl({ subdomain });
+    if (!canonicalSubdomainUrl) {
+        throw new Error("A production domain is required to save website domain state");
+    }
+    const canonicalSubdomain = canonicalSubdomainUrl.toString().replace(/\/$/, "");
     const websiteUpdate = domain
         ? {
               $set: {
@@ -228,7 +239,7 @@ export const persistCustomDomainState = async (
             ? {
                   $set: {
                       domain,
-                      canonicalUrl: `https://${domain}`,
+                      canonicalUrl: canonicalSubdomain,
                   },
               }
             : {
@@ -253,6 +264,70 @@ export const getWebsiteLists = async () => {
         throw new Error('Failed to fetch website lists');
     }
 }
+
+export const getPublicWebsiteSeoByIdentifier = async (identifier) => {
+    await connectDB();
+
+    const normalizedIdentifier = identifier?.trim().toLowerCase().replace(/\.$/, "");
+    if (!normalizedIdentifier) {
+        return null;
+    }
+
+    const isDomain = normalizedIdentifier.includes(".");
+    const populatePublicFields = (query) =>
+        query
+            .populate("seo")
+            .populate({
+                path: "userId",
+                select: "name phone specialization bio clinicAddress socialLinks subdomain domain expiresAt profilePicture treatments qualifications",
+            })
+            .lean();
+    let website = await populatePublicFields(Website.findOne(
+        isDomain
+            ? {
+                  domain: normalizedIdentifier,
+                  domainStatus: { $in: ["connected", "verified"] },
+              }
+            : { subdomain: normalizedIdentifier }
+    ));
+
+    if (!website && !isDomain) {
+        const user = await User.findOne({ slug: normalizedIdentifier })
+            .select("_id")
+            .lean();
+        if (user) {
+            website = await populatePublicFields(
+                Website.findOne({ userId: user._id })
+            );
+        }
+    }
+
+    if (!website?.seo || !website?.userId) {
+        return null;
+    }
+
+    const canonicalBaseUrl = getDoctorCanonicalBaseUrl(website);
+    if (!canonicalBaseUrl) {
+        return {
+            website,
+            seo: website.seo,
+            user: website.userId,
+            canonicalUrl: null,
+            isPublished: false,
+        };
+    }
+
+    return {
+        website,
+        seo: website.seo,
+        user: website.userId,
+        canonicalUrl: canonicalBaseUrl.toString().replace(/\/$/, ""),
+        isPublished:
+            website.status === "ready" &&
+            Boolean(website.content) &&
+            isWebsiteActive(website.userId.expiresAt),
+    };
+};
 
 // Resolve either the platform subdomain or a connected custom domain to its website.
 export const getWebsiteBySubdomain = async (subdomainOrDomain, pageName) => {

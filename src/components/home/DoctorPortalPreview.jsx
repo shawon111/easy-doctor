@@ -80,8 +80,8 @@ export default function DoctorPortalPreview() {
           <div className="mt-8 bg-surface-subtle p-6 rounded-2xl border border-slate-border grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             <div>
               <p className="text-xs font-bold uppercase tracking-wider text-slate-400">Website Management</p>
-              <p className="text-sm font-bold text-slate-900 mt-1">Live in 5 Seconds</p>
-              <p className="text-xs text-slate-500 mt-0.5">Edit chamber hours anytime</p>
+              <p className="text-sm font-bold text-slate-900 mt-1">Update Practice Details</p>
+              <p className="text-xs text-slate-500 mt-0.5">Manage chamber information</p>
             </div>
             <div>
               <p className="text-xs font-bold uppercase tracking-wider text-slate-400">Appointment Inquiries</p>
@@ -90,13 +90,13 @@ export default function DoctorPortalPreview() {
             </div>
             <div>
               <p className="text-xs font-bold uppercase tracking-wider text-slate-400">Google Business</p>
-              <p className="text-sm font-bold text-slate-900 mt-1">Sync Location Maps</p>
-              <p className="text-xs text-slate-500 mt-0.5">Guide patients directly</p>
+              <p className="text-sm font-bold text-slate-900 mt-1">Google Business Guidance</p>
+              <p className="text-xs text-slate-500 mt-0.5">Set up your business presence</p>
             </div>
             <div>
-              <p className="text-xs font-bold uppercase tracking-wider text-slate-400">Security &amp; Backups</p>
-              <p className="text-sm font-bold text-slate-900 mt-1">256-Bit SSL Encryption</p>
-              <p className="text-xs text-slate-500 mt-0.5">Automatic daily backups</p>
+              <p className="text-xs font-bold uppercase tracking-wider text-slate-400">Account Settings</p>
+              <p className="text-sm font-bold text-slate-900 mt-1">Profile and Security</p>
+              <p className="text-xs text-slate-500 mt-0.5">Manage your account preferences</p>
             </div>
           </div>
         </div>

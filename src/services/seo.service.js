@@ -309,6 +309,7 @@ const generateSeoContent = (user) => {
 
     const city = location.city;
     const country = location.country;
+    const fullLocation = [city, country].filter(Boolean).join(", ");
 
     // Treatments
 
@@ -369,15 +370,15 @@ const generateSeoContent = (user) => {
 
     let defaultDescription;
 
-    if (treatmentPhrase && city) {
+    if (treatmentPhrase && fullLocation) {
 
         defaultDescription =
-            `${name} is a ${professionalTitle} in ${city}, ${country}. Services include ${treatmentPhrase}.`;
+            `${name} is a ${professionalTitle} in ${fullLocation}. Services include ${treatmentPhrase}.`;
 
-    } else if (city) {
+    } else if (fullLocation) {
 
         defaultDescription =
-            `${name} is a ${professionalTitle} in ${city}, ${country}. Explore professional services and appointment options.`;
+            `${name} is a ${professionalTitle} in ${fullLocation}. Explore professional services and appointment options.`;
 
     } else {
 
@@ -390,15 +391,15 @@ const generateSeoContent = (user) => {
 
     let homeDescription;
 
-    if (treatmentPhrase && city) {
+    if (treatmentPhrase && fullLocation) {
 
         homeDescription =
-            `Meet ${name}, a ${professionalTitle} in ${city}, ${country}. Explore ${service.toLowerCase()} services including ${treatmentPhrase}.`;
+            `Meet ${name}, a ${professionalTitle} in ${fullLocation}. Explore ${service.toLowerCase()} services including ${treatmentPhrase}.`;
 
-    } else if (city) {
+    } else if (fullLocation) {
 
         homeDescription =
-            `Meet ${name}, a ${professionalTitle} in ${city}, ${country}. Explore professional services and appointment options.`;
+            `Meet ${name}, a ${professionalTitle} in ${fullLocation}. Explore professional services and appointment options.`;
 
     } else {
 

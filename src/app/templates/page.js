@@ -4,9 +4,10 @@ import Footer from "@/components/home/Footer";
 import Header from "@/components/home/Header";
 import TemplateShowcase from "@/components/home/TemplateShowcase";
 import TopNoticeStrip from "@/components/home/TopNoticeStrip";
+import { createMarketingMetadata } from "@/lib/seo/marketing-metadata";
+import { getMarketingBaseUrl, serializeJsonLd } from "@/lib/seo/urls";
 
-const baseDomain = process.env.NEXT_PUBLIC_BASE_DOMAIN || "docxio.com";
-const siteUrl = `https://${baseDomain}`;
+const siteUrl = getMarketingBaseUrl().toString().replace(/\/$/, "");
 const pageUrl = `${siteUrl}/templates`;
 
 const templates = [
@@ -98,36 +99,12 @@ const structuredData = {
   ],
 };
 
-export const metadata = {
+export const metadata = createMarketingMetadata({
   title: "Doctor Website Templates for Physicians & Clinics",
   description:
     "Explore six professional doctor website templates in light and dark styles. Preview medical website designs for physicians, surgeons, specialists, and clinics.",
-  keywords: [
-    "doctor website templates",
-    "medical website templates",
-    "physician website design",
-    "doctor website builder",
-    "clinic website design",
-  ],
-  alternates: { canonical: pageUrl },
-  openGraph: {
-    type: "website",
-    url: pageUrl,
-    title: "Doctor Website Templates for Physicians & Clinics",
-    description:
-      "Compare six professional medical website templates for doctors, specialists, and clinics. Explore live previews and choose a style for your practice.",
-    siteName: "Docxio",
-    images: [{ url: `${siteUrl}/docxio-logo.webp`, alt: "Docxio doctor website builder" }],
-  },
-  twitter: {
-    card: "summary",
-    title: "Doctor Website Templates for Physicians & Clinics",
-    description:
-      "Explore six professional doctor website designs in light and dark styles, with live previews for every template.",
-    images: [`${siteUrl}/docxio-logo.webp`],
-  },
-  robots: { index: true, follow: true },
-};
+  path: "/templates",
+});
 
 export default function TemplatesPage() {
   return (
@@ -147,13 +124,12 @@ export default function TemplatesPage() {
                 Six designs · Light and dark editions
               </p>
               <h1 className="text-4xl font-extrabold tracking-tight text-slate-heading sm:text-5xl lg:text-6xl">
-                Doctor Website Templates for Your Practice
+                Doctor Website Templates for Physicians &amp; Clinics
               </h1>
               <p className="mt-6 text-lg leading-relaxed text-slate-muted">
-                Find a professional medical website design that fits the way you
-                practice. Explore six responsive templates for physicians,
-                surgeons, medical specialists, and clinics—with live previews
-                to help you compare each style before you choose.
+                Explore six professional doctor website templates in light and
+                dark styles. Compare live previews for physicians, surgeons,
+                specialists, and clinics, then choose a design for your practice.
               </p>
               <Link
                 className="mt-8 inline-flex items-center justify-center rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-slate-800"
@@ -226,7 +202,7 @@ export default function TemplatesPage() {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
+            __html: serializeJsonLd(structuredData),
           }}
         />
       </main>

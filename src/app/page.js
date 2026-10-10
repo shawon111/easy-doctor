@@ -13,9 +13,44 @@ import PricingSection from "@/components/home/PricingSection";
 import FaqSection from "@/components/home/FaqSection";
 import ClosingCta from "@/components/home/ClosingCta";
 import Footer from "@/components/home/Footer";
+import { createMarketingMetadata } from "@/lib/seo/marketing-metadata";
+import { getMarketingBaseUrl, serializeJsonLd } from "@/lib/seo/urls";
+
+const marketingUrl = getMarketingBaseUrl().toString().replace(/\/$/, "");
+
+export const metadata = createMarketingMetadata({
+  title: "Docxio — Doctor Website Builder in Bangladesh",
+  description:
+    "Create your professional doctor website with Docxio. Showcase your qualifications, medical services and clinic information, improve your online presence, and receive appointment requests online.",
+});
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${marketingUrl}/#organization`,
+      name: "Docxio",
+      url: marketingUrl,
+      logo: `${marketingUrl}/docxio-logo.webp`,
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${marketingUrl}/#website`,
+      name: "Docxio",
+      url: marketingUrl,
+      publisher: { "@id": `${marketingUrl}/#organization` },
+    },
+  ],
+};
 
 export default function Home() {
   return (
+    <>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: serializeJsonLd(structuredData) }}
+    />
     <div className="bg-white font-sans text-slate-body antialiased selection:bg-secondary/15 selection:text-secondary min-h-screen">
       <TopNoticeStrip />
       <Header />
@@ -35,5 +70,6 @@ export default function Home() {
       </main>
       <Footer />
     </div>
+    </>
   );
 }
