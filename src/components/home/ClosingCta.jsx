@@ -11,7 +11,9 @@ export default function ClosingCta() {
           Doctor Website Builder
         </div>
         <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6">
-          Create a Website for Your Practice
+          Your Doctor Website Can Start
+          <br />
+          <span className="font-serif font-normal italic text-blue-400">in About 2 Minutes.</span>
         </h2>
         <p className="text-base sm:text-lg text-slate-400 leading-relaxed max-w-xl mx-auto mb-10">
           Share your professional profile, clinic details, and appointment options on a website you can manage through Docxio.

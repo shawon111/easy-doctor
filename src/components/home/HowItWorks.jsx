@@ -11,7 +11,7 @@ export default function HowItWorks() {
             <span className="font-serif font-normal italic text-secondary">You Just Need Docxio.</span>
           </h2>
           <p className="text-base sm:text-lg text-slate-muted leading-relaxed">
-            Choose a doctor website template, add your practice details, and publish when your website is ready to share.
+            Choose a doctor website template, add your practice details, and get your website started in about two minutes.
           </p>
         </div>
         {/* 3 Steps Grid */}
@@ -58,16 +58,16 @@ export default function HowItWorks() {
             <div>
               <div className="flex items-center justify-between mb-8">
                 <span className="w-12 h-12 rounded-xl bg-primary text-white font-bold text-xl flex items-center justify-center">03</span>
-                <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">Publish when ready</span>
+                <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">About 2 minutes to get started</span>
               </div>
               <h3 className="text-2xl font-bold text-slate-900 mb-3">Publish Your Website</h3>
               <p className="text-sm text-slate-600 leading-relaxed mb-6">
-                Add your practice details, review the generated site, and publish it when the information is ready to share.
+                Add your practice details, review the generated site, and publish it when the information is ready to share. Many doctors can get through the initial setup in about two minutes.
               </p>
             </div>
             <div className="pt-4 border-t border-slate-200 text-xs font-semibold text-secondary flex items-center gap-1.5">
               <span className="material-symbols-outlined text-[18px]">rocket_launch</span>
-              Review before sharing with patients
+              Start in about two minutes
             </div>
           </div>
         </div>

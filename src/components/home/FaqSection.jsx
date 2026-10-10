@@ -6,7 +6,7 @@ export default function FaqSection() {
     },
     {
       q: "How long does it take for my website to go live?",
-      a: "The time depends on how much profile and website information you need to add and review. You can publish after your website has been generated and is ready; check the dashboard for its current status."
+      a: "Many doctors can complete the initial setup in about 2 minutes. The time to review your details and finish publishing can vary depending on your profile and website content; check the dashboard for the current status."
     },
     {
       q: "Is a Docxio subdomain included?",
