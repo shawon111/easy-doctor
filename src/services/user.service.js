@@ -1,5 +1,5 @@
 import { connectDB } from "@/config/database";
-import { verifyAccessToken } from "@/lib/jwt";
+import { verifyAccessToken, verifyRefreshToken } from "@/lib/jwt";
 import User from "@/models/user.model";
 import Website from "@/models/website.model";
 import bcrypt from "bcryptjs";
@@ -59,16 +59,28 @@ export const getCurrentUser = async () => {
     await connectDB();
     const cookieStore = await cookies();
     const accessToken = cookieStore.get("accessToken")?.value;
-    if (!accessToken) {
+    const refreshToken = cookieStore.get("refreshToken")?.value;
+    if (!accessToken && !refreshToken) {
         return null;
     }
 
     try {
-        const payload = verifyAccessToken(accessToken);
-        // if token is invalid or token type is not access, return null
-        if (!payload || payload.type !== "access") {
-            return null;
+        let payload;
+        if (accessToken) {
+            try {
+                payload = verifyAccessToken(accessToken);
+            } catch {
+                if (!refreshToken) {
+                    return null;
+                }
+            }
         }
+
+        if (!payload && refreshToken) {
+            payload = verifyRefreshToken(refreshToken);
+        }
+        if (!payload) return null;
+
         let userInfoToReturn = {
             name: 1,
             email: 1,
@@ -83,6 +95,7 @@ export const getCurrentUser = async () => {
             clinicAddress: 1,
         };
         const user = await User.findById(payload.sub).select(userInfoToReturn).lean();
+        if (!user) return null;
         return {
             ...user,
             _id: user._id.toString(),

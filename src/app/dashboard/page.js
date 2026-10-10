@@ -12,7 +12,7 @@ const DashboardPage = async () => {
     }
     return (
         <>
-            <OverviewPage />
+            <OverviewPage user={user} />
         </>
     );
 };
