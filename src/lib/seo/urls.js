@@ -15,11 +15,13 @@ const normalizeHost = (value) => {
 };
 
 export const getMarketingBaseUrl = () => {
-    const host = normalizeHost(
-        process.env.NEXT_PUBLIC_BASE_DOMAIN || "docxio.com"
+    const configuredHost = normalizeHost(
+        process.env.NEXT_PUBLIC_BASE_DOMAIN || "www.docxio.com"
     );
+    const host =
+        configuredHost === "docxio.com" ? "www.docxio.com" : configuredHost;
 
-    return new URL(`https://${host || "docxio.com"}`);
+    return new URL(`https://${host || "www.docxio.com"}`);
 };
 
 export const getDoctorCanonicalBaseUrl = (website) => {
