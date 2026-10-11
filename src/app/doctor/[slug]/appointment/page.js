@@ -33,7 +33,13 @@ const AppointmentPage = async ({ params }) => {
     let siteContent = website?.content ?? {}
     siteContent.userId = website?.userId?._id
     siteContent.phone = website?.userId?.phone;
-    siteContent.clinics =website?.userId?.clinicAddress
+    const clinics = website?.userId?.clinicAddress || [];
+    const doctorPhone = String(siteContent.phone || "").replace(/\D/g, "");
+    siteContent.clinics = clinics.length
+        ? clinics
+        : doctorPhone
+          ? [{ whatsapp: doctorPhone }]
+          : [];
     siteContent.bookingPreference = website?.userId?.bookingPreferences
     // generate and use brand name
     const brandName = website?.userId?.name.split(" ")[0] + " " + website?.userId?.name.split(" ")[1]

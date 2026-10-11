@@ -379,7 +379,16 @@ export const getWebsiteBySubdomain = async (subdomainOrDomain, pageName) => {
                 .lean();
 
             if (website?.content) {
-                const clinics = website.userId?.clinicAddress || [];
+                const doctorPhone = String(website.userId?.phone || "").replace(/\D/g, "");
+                const clinics = (website.userId?.clinicAddress || []).map((clinic) => ({
+                    ...clinic,
+                    whatsapp:
+                        String(clinic.whatsapp || "").replace(/\D/g, "") ||
+                        doctorPhone,
+                }));
+                if (website.userId) {
+                    website.userId.clinicAddress = clinics;
+                }
                 const clinicItems = clinics.map(clinic => ({
                     location: clinic.chamberName,
                     address: clinic.address,
@@ -387,10 +396,13 @@ export const getWebsiteBySubdomain = async (subdomainOrDomain, pageName) => {
                     country: clinic.country,
                     day: clinic.visitingDays,
                     hours: clinic.visitingHours,
-                    whatsappUrl: clinic.whatsapp ? `https://wa.me/${clinic.whatsapp.replace(/[^0-9]/g, "")}` : "#"
+                    whatsappUrl: clinic.whatsapp ? `https://wa.me/${clinic.whatsapp}` : "#"
                 }));
 
-                const firstClinicWhatsapp = clinicItems[0]?.whatsappUrl || "#";
+                const primaryWhatsappNumber = clinics[0]?.whatsapp || doctorPhone;
+                const firstClinicWhatsapp = primaryWhatsappNumber
+                    ? `https://wa.me/${primaryWhatsappNumber}`
+                    : "#";
 
                 website.content = replaceTemplateVariables(website.content, {
                     name: website.userId?.name || "Doctor",
