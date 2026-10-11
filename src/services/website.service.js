@@ -86,14 +86,19 @@ export const getPublicWebsiteUrl = (website) => {
     const customDomainConnected =
         website?.domain &&
         website.domainStatus === "connected";
-    const baseDomain = process.env.NEXT_PUBLIC_BASE_DOMAIN;
-    const websiteHost = customDomainConnected
-        ? website.domain
-        : website?.subdomain && baseDomain
-          ? `${website.subdomain}.${baseDomain}`
-          : null;
 
-    return websiteHost ? `https://${websiteHost}` : null;
+    if (customDomainConnected) {
+        return `https://${website.domain}`;
+    }
+
+    if (!website?.subdomain || !process.env.NEXT_PUBLIC_BASE_DOMAIN) {
+        return null;
+    }
+
+    return (
+        getDoctorCanonicalBaseUrl(website)?.toString().replace(/\/$/, "") ||
+        null
+    );
 };
 
 export const getWebsiteUrlForUser = async (userId) => {

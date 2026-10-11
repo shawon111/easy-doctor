@@ -2,9 +2,27 @@ import { NextResponse } from "next/server";
 import { verifyAccessToken } from "@/lib/jwt";
 import { redirectToLogin, tryRefreshTokens } from "@/lib/auth-core";
 
-const ROOT_DOMAIN = process.env.NEXT_PUBLIC_BASE_DOMAIN
-    ?.toLowerCase()
-    .replace(/\.$/, "");
+const normalizeHostname = (value) => {
+    const candidate = String(value || "").trim();
+
+    if (!candidate) {
+        return "";
+    }
+
+    try {
+        return new URL(
+            candidate.includes("://") ? candidate : `https://${candidate}`
+        )
+            .hostname.toLowerCase()
+            .replace(/\.$/, "");
+    } catch {
+        return "";
+    }
+};
+
+const ROOT_DOMAIN = normalizeHostname(
+    process.env.NEXT_PUBLIC_BASE_DOMAIN || "www.docxio.com"
+).replace(/^www\./, "");
 
 const SYSTEM_SUBDOMAINS = [
     "www",
@@ -28,11 +46,11 @@ export async function proxy(request) {
     const { pathname } = request.nextUrl;
 
     const hostname = request.headers.get("host");
+    const host = normalizeHostname(hostname);
 
-    if (!hostname) {
+    if (!host) {
         return NextResponse.next();
     }
-    const host = hostname.split(":")[0].toLowerCase().replace(/\.$/, "");
 
     // Keep Next.js bundles and public files at their original paths.
     if (
@@ -49,17 +67,24 @@ export async function proxy(request) {
     }
 
     let siteIdentifier = null;
-    const isPlatformRoot = host === ROOT_DOMAIN || host === "localhost";
+    const isPlatformRoot =
+        host === ROOT_DOMAIN ||
+        host === `www.${ROOT_DOMAIN}` ||
+        host === "localhost";
+    const isPlatformDomainSubdomain =
+        Boolean(ROOT_DOMAIN) && host.endsWith(`.${ROOT_DOMAIN}`);
 
     if (host.endsWith(".localhost")) {
         siteIdentifier = host.slice(0, -".localhost".length);
-    } else if (ROOT_DOMAIN && host.endsWith(`.${ROOT_DOMAIN}`)) {
+    } else if (isPlatformDomainSubdomain) {
         siteIdentifier = host.slice(0, -(ROOT_DOMAIN.length + 1));
     }
 
     const isCustomDomainHost =
         !siteIdentifier &&
         !isPlatformRoot &&
+        !isPlatformDomainSubdomain &&
+        !host.endsWith(".localhost") &&
         host.includes(".") &&
         !host.endsWith(".vercel.app");
 
@@ -161,10 +186,7 @@ export async function proxy(request) {
 
 export const config = {
     matcher: [
-        "/:path*",
-        "/dashboard/:path*",
-        "/api/me/:path*",
-        "/api/auth/logout",
-        "/api/appointment/:path*",
+        "/((?!_next/static|_next/image|favicon\\.ico|.*\\.(?:avif|bmp|css|eot|gif|ico|jpe?g|js|map|pdf|png|svg|webp|woff2?|ttf)$).*)",
+        "/favicon.svg",
     ],
 };

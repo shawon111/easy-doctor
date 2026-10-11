@@ -27,7 +27,7 @@ export const getMarketingBaseUrl = () => {
 export const getDoctorCanonicalBaseUrl = (website) => {
     const baseDomain = normalizeHost(
         process.env.NEXT_PUBLIC_BASE_DOMAIN || "docxio.com"
-    );
+    ).replace(/^www\./, "");
     const subdomain = String(website?.subdomain || "")
         .trim()
         .toLowerCase();
