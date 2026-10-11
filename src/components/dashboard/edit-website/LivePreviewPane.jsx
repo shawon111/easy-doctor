@@ -56,7 +56,7 @@ const LivePreviewPane = () => {
             className={cn(
               "flex h-10 w-10 items-center justify-center rounded-full transition-colors",
               device.key === "desktop"
-                ? "bg-secondary-container text-primary"
+                ? "bg-[#17345d] text-white"
                 : "text-muted-foreground hover:bg-muted"
             )}
           >

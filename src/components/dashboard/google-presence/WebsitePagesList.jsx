@@ -11,19 +11,22 @@ const PAGES = [
 ];
 export function WebsitePagesList({ activeKey = "site", onSelect }) {
   return (
-    <div className="lg:col-span-4 overflow-hidden rounded-2xl border border-border bg-card shadow-[0px_4px_12px_rgba(0,0,0,0.03)]">
+    <div className="dashboard-panel lg:col-span-4 overflow-hidden rounded-2xl border border-border bg-card shadow-[0px_4px_12px_rgba(0,0,0,0.03)]">
       <div className="border-b border-border bg-muted/30 p-4">
         <h2 className="text-lg font-semibold text-foreground">Website Pages</h2>
       </div>
       <div className="flex flex-col divide-y divide-border/50">
-        {PAGES.map((page) => (
-          <WebsitePageItem
-            key={page.slug}
-            {...page}
-            active={page.key === activeKey}
-            onClick={() => onSelect?.(page.key)}
-          />
-        ))}
+        {PAGES.map((page) => {
+          const { key: pageKey, ...pageProps } = page;
+          return (
+            <WebsitePageItem
+              key={page.slug}
+              {...pageProps}
+              active={pageKey === activeKey}
+              onClick={() => onSelect?.(pageKey)}
+            />
+          );
+        })}
       </div>
     </div>
   );

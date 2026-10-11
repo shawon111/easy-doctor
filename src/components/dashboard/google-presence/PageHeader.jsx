@@ -1,6 +1,7 @@
 export function PageHeader() {
   return (
-    <div className="flex flex-col gap-2">
+    <header className="dashboard-heading">
+      <p className="dashboard-eyebrow">Search visibility</p>
       <h1 className="text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
         Google Presence
       </h1>
@@ -8,6 +9,6 @@ export function PageHeader() {
         Manage how your practice appears in Google search results. Edit page titles and
         descriptions to attract more patients.
       </p>
-    </div>
+    </header>
   );
 }

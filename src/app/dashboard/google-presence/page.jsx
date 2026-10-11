@@ -4,6 +4,8 @@ import { requireUser } from '@/lib/requireUser';
 import { isWebsiteActive } from '@/lib/subscription';
 import React from 'react';
 
+export const metadata = { title: "Google Presence & SEO" };
+
 const GooglePresence = async() => {
     const user = await requireUser();
         const isActivePlan = isWebsiteActive(user?.expiresAt)

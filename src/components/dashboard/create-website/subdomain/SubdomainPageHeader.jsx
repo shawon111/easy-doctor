@@ -2,7 +2,8 @@ import React from "react";
 
 const SubdomainPageHeader = () => {
     return (
-        <div className="flex flex-col gap-2">
+        <header className="dashboard-heading">
+            <p className="dashboard-eyebrow">Your free doctor subdomain</p>
             <h1 className="text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
                 Choose your website address
             </h1>
@@ -10,7 +11,7 @@ const SubdomainPageHeader = () => {
                 This is the URL where patients will find your practice online. You can change
                 this later, or connect a custom domain.
             </p>
-        </div>
+        </header>
     );
 };
 

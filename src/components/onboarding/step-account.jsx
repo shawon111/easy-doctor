@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { useFormContext } from "react-hook-form";
 import toast from "react-hot-toast";
-import { Upload } from "lucide-react";
+import { Camera, Check, Upload } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { uploadToCloudinary } from "@/lib/uploadToCloudinary";
 import { Field, TextField } from "./form-field";
@@ -42,7 +42,8 @@ export function StepAccount({ register, errors, setIsUploading }) {
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-6">
+      <div className="grid gap-5 sm:grid-cols-2">
       <Field
         label="Full name"
         htmlFor="name"
@@ -66,7 +67,8 @@ export function StepAccount({ register, errors, setIsUploading }) {
         <TextField
           id="email"
           type="email"
-          placeholder="you@clinic.com"
+          autoComplete="email"
+          placeholder="you@example.com"
           error={errors.email?.message}
           {...register("email")}
         />
@@ -82,6 +84,7 @@ export function StepAccount({ register, errors, setIsUploading }) {
         <TextField
           id="password"
           type="password"
+          autoComplete="new-password"
           placeholder="••••••••"
           error={errors.password?.message}
           {...register("password")}
@@ -97,35 +100,47 @@ export function StepAccount({ register, errors, setIsUploading }) {
         <TextField
           id="phone"
           type="tel"
-          placeholder="+1 555 000 0000"
+          autoComplete="tel"
+          placeholder="Include country code"
           error={errors.phone?.message}
           {...register("phone")}
         />
       </Field>
+      </div>
 
       <Field
-        label="Profile picture"
+        label="Professional photo"
         htmlFor="profilePicture"
         optional
         error={errors.profilePicture?.message}
       >
-        <div className="flex items-center gap-3">
-          {profilePicture ? (
-            <Image
-              src={profilePicture}
-              alt="Profile preview"
-              width={56}
-              height={56}
-              className="size-14 rounded-full object-cover"
-            />
-          ) : null}
-          <Button type="button" variant="outline" disabled={uploading} asChild>
+        <div className="flex flex-col gap-4 rounded-2xl border border-dashed border-slate-300 bg-slate-50/70 p-4 sm:flex-row sm:items-center">
+          <div className="flex size-16 shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-white text-slate-400 shadow-sm">
+            {profilePicture ? (
+              <Image src={profilePicture} alt="Profile preview" width={64} height={64} className="size-16 object-cover" />
+            ) : (
+              <Camera className="size-6" />
+            )}
+          </div>
+          <div className="min-w-0 flex-1">
+            <p className="text-sm font-medium text-slate-800">
+              {profilePicture ? "Your photo is ready" : "Add a friendly, professional photo"}
+            </p>
+            <p className="mt-1 text-xs text-slate-500">JPG or PNG, up to 5 MB. You can add this later too.</p>
+          </div>
+          <Button type="button" variant="outline" disabled={uploading} asChild className="h-10 rounded-xl bg-white">
             <label htmlFor="profilePicture" className="cursor-pointer">
-              <Upload className="size-4" />
-              {uploading ? "Uploading..." : profilePicture ? "Change picture" : "Upload picture"}
+              {profilePicture ? <Check className="size-4" /> : <Upload className="size-4" />}
+              {uploading ? "Uploading..." : profilePicture ? "Change photo" : "Choose photo"}
             </label>
           </Button>
-          <input id="profilePicture" type="file" accept="image/*" className="sr-only" onChange={handleImageChange} />
+          <input
+            id="profilePicture"
+            type="file"
+            accept="image/*"
+            className="sr-only"
+            onChange={handleImageChange}
+          />
         </div>
       </Field>
     </div>

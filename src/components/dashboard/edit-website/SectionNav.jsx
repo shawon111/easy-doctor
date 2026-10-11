@@ -26,7 +26,7 @@ const SectionNav = ({ active, onChange }) => {
               className={cn(
                 "shrink-0 snap-start rounded-full px-4 py-2 text-sm whitespace-nowrap transition-colors",
                 isActive
-                  ? "bg-secondary-container font-bold text-primary"
+                  ? "bg-[#17345d] font-bold text-white shadow-sm"
                   : "border border-border text-muted-foreground hover:bg-muted"
               )}
             >

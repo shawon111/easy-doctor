@@ -6,7 +6,7 @@ export function GoogleSearchPreview({
   description = "A clear, patient-friendly summary of the information on this page.",
 }) {
   return (
-    <div className="rounded-2xl border border-border bg-card p-4 shadow-[0px_4px_12px_rgba(0,0,0,0.03)] sm:p-6">
+    <div className="dashboard-panel rounded-2xl border border-border bg-card p-4 shadow-[0px_4px_12px_rgba(0,0,0,0.03)] sm:p-6">
       {/* Section header */}
       <div className="mb-4 flex items-center justify-between">
         <h2 className="text-lg font-semibold text-foreground">Google Search Preview</h2>

@@ -28,9 +28,9 @@ export function Field({
   children,
 }) {
   return (
-    <div className={cn("space-y-2", className)}>
+    <div className={cn("space-y-2.5", className)}>
       {label && (
-        <Label htmlFor={htmlFor} className={cn(error && "text-destructive")}>
+        <Label htmlFor={htmlFor} className={cn("text-sm font-medium text-slate-700", error && "text-destructive")}>
           {label}
           {required && <span className="ml-0.5 text-destructive">*</span>}
           {optional && (
@@ -56,7 +56,10 @@ export function Field({
 export function TextField({ error, className, ...props }) {
   return (
     <Input
-      className={className}
+      className={cn(
+        "h-12 rounded-xl border-slate-200 bg-white px-3.5 shadow-sm shadow-slate-950/[0.02] placeholder:text-slate-400 focus-visible:border-blue-400 focus-visible:ring-blue-500/15",
+        className
+      )}
       aria-invalid={error ? true : undefined}
       {...props}
     />
@@ -66,7 +69,7 @@ export function TextField({ error, className, ...props }) {
 export function TextAreaField({ error, className, ...props }) {
   return (
     <Textarea
-      className={cn("min-h-28 resize-y", className)}
+      className={cn("min-h-40 resize-y rounded-xl border-slate-200 bg-white px-3.5 py-3 shadow-sm shadow-slate-950/[0.02] placeholder:text-slate-400 focus-visible:border-blue-400 focus-visible:ring-blue-500/15", className)}
       aria-invalid={error ? true : undefined}
       {...props}
     />

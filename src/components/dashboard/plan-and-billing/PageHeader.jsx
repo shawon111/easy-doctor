@@ -16,8 +16,9 @@ export function PageHeader({ isPro, hasExpiryDate }) {
   const isExtendingPlan = isPro && hasExpiryDate;
 
   return (
-    <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-      <div>
+    <header className="dashboard-heading flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+      <div className="relative z-10">
+        <p className="dashboard-eyebrow">Subscription</p>
         <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
           Plan &amp; Billing
         </h2>
@@ -29,7 +30,7 @@ export function PageHeader({ isPro, hasExpiryDate }) {
       <Button
         type="button"
         onClick={() => setIsUpgradeDialogOpen(true)}
-        className="flex w-full items-center gap-2 bg-primary text-primary-foreground shadow-sm hover:bg-primary/90 sm:w-fit"
+        className="relative z-10 flex w-full items-center gap-2 rounded-xl bg-slate-950 text-white shadow-lg shadow-slate-950/10 hover:bg-blue-950 sm:w-fit"
       >
         <span className="material-symbols-outlined text-[20px]">
           {isExtendingPlan ? "autorenew" : "rocket_launch"}
@@ -56,6 +57,6 @@ export function PageHeader({ isPro, hasExpiryDate }) {
           />
         </DialogContent>
       </Dialog>
-    </div>
+    </header>
   );
 }

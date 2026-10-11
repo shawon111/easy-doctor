@@ -1,6 +1,7 @@
 export const STEP_FIELDS = [
   ["name", "email", "password", "phone", "profilePicture"],
-  ["specialization", "qualifications", "experience"],
+  ["specialization", "experience"],
+  ["qualifications"],
   ["clinicAddress", "bookingPreferences"],
   ["bio", "treatments", "languages"],
   ["socialLinks"],

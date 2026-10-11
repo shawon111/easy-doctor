@@ -37,7 +37,7 @@ export default function CustomDomain() {
 
     if (isLoading) {
         return (
-            <div className="mx-auto w-full max-w-360 p-4 pb-12 sm:p-6 sm:pb-16 md:p-8 md:pb-20">
+            <div className="dashboard-page mx-auto w-full max-w-360 p-4 pb-12 sm:p-6 sm:pb-16 md:p-8 md:pb-20">
                 <div className="space-y-6">
                     <div className="h-8 w-48 animate-pulse rounded-md bg-muted" />
                     <div className="h-32 animate-pulse rounded-xl bg-muted" />

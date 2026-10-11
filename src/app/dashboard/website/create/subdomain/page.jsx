@@ -7,6 +7,8 @@ import React from 'react';
 
 const templates = ["template-one", "template-one-dark", "template-two", "template-two-dark", "template-three", "template-three-dark"];
 
+export const metadata = { title: "Choose Website Address" };
+
 const SubdomainSelectPage = async ({ searchParams }) => {
 
     // check the user and act

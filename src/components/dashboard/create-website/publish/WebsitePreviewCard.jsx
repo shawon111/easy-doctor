@@ -68,7 +68,7 @@ const WebsitePreviewCard = () => {
                 <CardTitle className="text-lg">Website Preview</CardTitle>
                 <Badge
                     variant="secondary"
-                    className="bg-secondary-container text-on-secondary-container hover:bg-secondary-container">
+                    className="border border-blue-100 bg-blue-50 text-blue-800 hover:bg-blue-50">
                     Selected Template
                 </Badge>
             </CardHeader>

@@ -1,8 +1,7 @@
-import Link from "next/link";
-
 export default function GoogleBusinessHeader() {
     return (
-        <div>
+        <header className="dashboard-heading">
+            <p className="dashboard-eyebrow">Local discovery</p>
             <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
                 <div>
                     <h1 className="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
@@ -15,6 +14,6 @@ export default function GoogleBusinessHeader() {
                     </p>
                 </div>
             </div>
-        </div>
+        </header>
     );
 }

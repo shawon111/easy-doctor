@@ -9,6 +9,7 @@ import { replaceTemplateVariables } from "@/lib/content/resolve-template-content
 import SEO from "@/models/seo.model";
 import { isWebsiteActive } from "@/lib/subscription";
 import { getDoctorCanonicalBaseUrl } from "@/lib/seo/urls";
+import { applyDoctorLocations } from "@/lib/content/apply-doctor-locations";
 
 // create website
 export const createWebsite = async (userId, websiteData, session) => {
@@ -416,6 +417,11 @@ export const getWebsiteBySubdomain = async (subdomainOrDomain, pageName) => {
                 if (website.content?.pages?.appointment?.schedules) { // template-two
                     website.content.pages.appointment.schedules.items = clinicItems;
                 }
+                applyDoctorLocations(
+                    website.content,
+                    website.templateType,
+                    website.userId?.clinicAddress || []
+                );
             }
 
             return website;

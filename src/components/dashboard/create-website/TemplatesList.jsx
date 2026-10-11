@@ -10,42 +10,42 @@ const templates = [
     {
         title: "Template One",
         identifier: "template-one",
-        description: "lorem ipsum dolor sit amet. lorem ipsum dolor sit amet",
+        description: "A bright, clean layout with clear sections for your profile, expertise, and practice.",
         badge: "Standard",
         image: templateOneImg
     },
     {
         title: "Template One Dark",
         identifier: "template-one-dark",
-        description: "lorem ipsum dolor sit amet. lorem ipsum dolor sit amet",
+        description: "A refined dark palette that gives your professional profile a distinctive presence.",
         badge: "Popular",
         image: templateOnedarkImg
     },
     {
         title: "Template Two",
         identifier: "template-two",
-        description: "lorem ipsum dolor sit amet. lorem ipsum dolor sit amet",
+        description: "A balanced, modern design built to make key doctor and contact details easy to find.",
         badge: "Premium",
         image: templateTwoImg
     },
     {
         title: "Template Two Dark",
         identifier: "template-two-dark",
-        description: "lorem ipsum dolor sit amet. lorem ipsum dolor sit amet",
+        description: "A confident dark design with a premium feel and strong visual hierarchy.",
         badge: "Luxury",
         image: templateTwodarkImg
     },
     {
         title: "Template Three",
         identifier: "template-three",
-        description: "lorem ipsum dolor sit amet. lorem ipsum dolor sit amet",
+        description: "A warm, approachable design that brings your biography and services forward.",
         badge: "Best",
         image: templateThreeImg
     },
     {
         title: "Template Three Dark",
         identifier: "template-three-dark",
-        description: "lorem ipsum dolor sit amet. lorem ipsum dolor sit amet",
+        description: "A sleek dark variation with crisp contrast and a contemporary look.",
         badge: "Modern",
         image: templateThreeDarkImg
     },

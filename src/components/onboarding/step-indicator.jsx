@@ -1,59 +1,86 @@
 "use client";
 
+import {
+  Check,
+  FileText,
+  GraduationCap,
+  MapPin,
+  Share2,
+  Stethoscope,
+  UserRound,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Progress } from "@/components/ui/progress";
 import { STEPS } from "./onboarding-schema";
 
-export function StepIndicator({ currentStep }) {
-  const progress = ((currentStep + 1) / STEPS.length) * 100;
+const STEP_ICONS = [UserRound, Stethoscope, GraduationCap, MapPin, FileText, Share2];
+
+export function StepIndicator({ currentStep, onStepClick, compact = false }) {
   const step = STEPS[currentStep];
+  const progress = ((currentStep + 1) / STEPS.length) * 100;
 
   return (
-    <div className="mb-6 space-y-4">
-      <div className="flex items-center justify-between gap-4">
+    <>
+      <div className="mb-5 flex items-center justify-between lg:hidden">
         <div>
-          <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-blue-600">
             Step {currentStep + 1} of {STEPS.length}
           </p>
-          <h2 className="text-lg font-semibold sm:text-xl">{step.title}</h2>
-          <p className="text-sm text-muted-foreground">{step.description}</p>
+          <p className="mt-1 text-sm font-semibold text-slate-900">{step.title}</p>
         </div>
+        <p className="text-xs text-slate-500">{Math.round(progress)}% complete</p>
+      </div>
+      <div className="mb-5 h-1.5 overflow-hidden rounded-full bg-slate-100 lg:hidden">
+        <div
+          className="h-full rounded-full bg-gradient-to-r from-blue-600 to-indigo-500 transition-all duration-500"
+          style={{ width: `${progress}%` }}
+        />
       </div>
 
-      <Progress value={progress} className="h-1.5" />
-
       <nav
-        aria-label="Onboarding progress"
-        className="hidden gap-2 sm:grid sm:grid-cols-5"
+        aria-label="Registration steps"
+        className={cn("space-y-1.5", compact && "hidden")}
       >
-        {STEPS.map((s, index) => {
-          const isActive = index === currentStep;
+        {STEPS.map((item, index) => {
+          const Icon = STEP_ICONS[index];
+          const isCurrent = index === currentStep;
           const isComplete = index < currentStep;
+          const isClickable = isComplete && Boolean(onStepClick);
 
           return (
-            <div
-              key={s.id}
+            <button
+              key={item.id}
+              type="button"
+              onClick={() => isClickable && onStepClick(index)}
+              disabled={!isClickable}
+              aria-current={isCurrent ? "step" : undefined}
               className={cn(
-                "rounded-lg border px-2 py-2 text-center transition-colors",
-                isActive && "border-primary bg-primary/5",
-                isComplete && "border-primary/40 bg-muted/50",
-                !isActive && !isComplete && "border-border bg-card"
+                "group flex w-full items-center gap-3 rounded-2xl p-3 text-left transition-all",
+                isCurrent && "bg-white/[0.12] ring-1 ring-white/[0.14]",
+                isComplete && "hover:bg-white/[0.08]",
+                !isCurrent && !isComplete && "opacity-65"
               )}
             >
-              <p
+              <span
                 className={cn(
-                  "text-xs font-medium",
-                  isActive && "text-primary",
-                  isComplete && "text-foreground",
-                  !isActive && !isComplete && "text-muted-foreground"
+                  "flex size-9 shrink-0 items-center justify-center rounded-xl border transition-colors",
+                  isCurrent && "border-white bg-white text-blue-700 shadow-lg shadow-black/10",
+                  isComplete && "border-emerald-300/30 bg-emerald-300/15 text-emerald-200",
+                  !isCurrent && !isComplete && "border-white/15 bg-white/5 text-white/65"
                 )}
               >
-                {s.title}
-              </p>
-            </div>
+                {isComplete ? <Check className="size-4" /> : <Icon className="size-4" />}
+              </span>
+              <span className="min-w-0 flex-1">
+                <span className={cn("block text-sm font-semibold", isCurrent ? "text-white" : "text-white/85")}>
+                  {item.title}
+                </span>
+                <span className="mt-0.5 block truncate text-xs text-white/55">{item.description}</span>
+              </span>
+              {isCurrent ? <span className="size-1.5 rounded-full bg-cyan-200" /> : null}
+            </button>
           );
         })}
       </nav>
-    </div>
+    </>
   );
 }

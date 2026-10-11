@@ -1,27 +1,28 @@
 "use client";
 
 import { useState } from "react";
-import { useFieldArray, Controller } from "react-hook-form";
-import { Plus, Trash2 } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import { Field, TextField, getFieldError } from "./form-field";
+import { Controller } from "react-hook-form";
+import { Award, Search, Sparkles } from "lucide-react";
+import { Field, TextField } from "./form-field";
 import { MEDICAL_SPECIALTIES } from "./onboarding-utils";
 
 export function StepProfessional({ register, control, errors }) {
-  const { fields, append, remove } = useFieldArray({
-    control,
-    name: "qualifications",
-  });
-
   return (
     <div className="space-y-6">
+      <div className="rounded-2xl border border-blue-100 bg-gradient-to-br from-blue-50 via-white to-indigo-50 p-5 sm:p-6">
+        <div className="flex items-start gap-3">
+          <span className="flex size-10 shrink-0 items-center justify-center rounded-2xl bg-white text-blue-600 shadow-sm">
+            <Sparkles className="size-5" />
+          </span>
+          <div>
+            <h3 className="text-base font-semibold text-slate-900">What do you specialize in?</h3>
+            <p className="mt-1 text-sm leading-relaxed text-slate-600">
+              This helps patients understand your expertise and helps shape your website.
+            </p>
+          </div>
+        </div>
+      </div>
+
       <Field
         label="Medical specialty"
         htmlFor="specialization"
@@ -32,134 +33,40 @@ export function StepProfessional({ register, control, errors }) {
           control={control}
           name="specialization"
           render={({ field }) => (
-            <SpecialtyPicker value={field.value} onChange={field.onChange} error={errors.specialization?.message} />
+            <SpecialtyPicker
+              value={field.value}
+              onChange={field.onChange}
+              error={errors.specialization?.message}
+            />
           )}
         />
       </Field>
 
       <Field
-        label="Years of experience"
+        label="Years in practice"
         htmlFor="experience"
         optional
+        hint="You can leave this blank if you prefer."
         error={errors.experience?.message}
       >
         <TextField
           id="experience"
           type="number"
+          inputMode="numeric"
           min={0}
-          placeholder="e.g. 10"
+          placeholder="e.g. 8"
+          className="max-w-40"
           error={errors.experience?.message}
           {...register("experience")}
         />
       </Field>
 
-      <div className="space-y-3">
-        <div className="flex items-center justify-between gap-3">
-          <div>
-            <p className="text-sm font-medium">
-              Qualifications<span className="ml-0.5 text-destructive">*</span>
-            </p>
-            <p className="text-xs text-muted-foreground">
-              Add at least one degree or certification
-            </p>
-          </div>
-          <Button
-            type="button"
-            variant="outline"
-            size="sm"
-            onClick={() =>
-              append({ degree: "", institution: "", year: "" })
-            }
-
-          >
-            <Plus className="size-4" />
-            Add
-          </Button>
-        </div>
-
-        {errors.qualifications?.message && (
-          <p className="text-xs text-destructive" role="alert">
-            {errors.qualifications.message}
-          </p>
-        )}
-
-        <div className="space-y-3">
-          {fields.map((field, index) => (
-            <Card key={field.id} size="sm">
-              <CardHeader className="flex flex-row items-center justify-between gap-2 pb-0">
-                <CardTitle className="text-sm">
-                  Qualification {index + 1}
-                </CardTitle>
-                {fields.length > 1 && (
-                  <Button
-                    type="button"
-                    variant="ghost"
-                    size="icon-sm"
-                    onClick={() => remove(index)}
-                    aria-label={`Remove qualification ${index + 1}`}
-                  >
-                    <Trash2 className="size-4 text-destructive" />
-                  </Button>
-                )}
-              </CardHeader>
-              <CardContent className="space-y-3 pt-3">
-                <Field
-                  label="Degree"
-                  htmlFor={`qualifications.${index}.degree`}
-                  required
-                  error={getFieldError(errors, `qualifications.${index}.degree`)}
-                >
-                  <TextField
-                    id={`qualifications.${index}.degree`}
-                    placeholder="MBBS, MD, PhD"
-                    error={getFieldError(errors, `qualifications.${index}.degree`)}
-                    {...register(`qualifications.${index}.degree`)}
-                  />
-                </Field>
-
-                <Field
-                  label="Institution"
-                  htmlFor={`qualifications.${index}.institution`}
-                  required
-                  error={getFieldError(
-                    errors,
-                    `qualifications.${index}.institution`
-                  )}
-                >
-                  <TextField
-                    id={`qualifications.${index}.institution`}
-                    placeholder="University or medical college"
-                    error={getFieldError(
-                      errors,
-                      `qualifications.${index}.institution`
-                    )}
-                    {...register(`qualifications.${index}.institution`)}
-                  />
-                </Field>
-
-                <Field
-                  label="Year"
-                  htmlFor={`qualifications.${index}.year`}
-                  required
-                  error={getFieldError(errors, `qualifications.${index}.year`)}
-                >
-                  <TextField
-                    id={`qualifications.${index}.year`}
-                    type="number"
-                    min={1950}
-                    max={new Date().getFullYear()}
-                    placeholder="2015"
-                    error={getFieldError(errors, `qualifications.${index}.year`)}
-                    {...register(`qualifications.${index}.year`)}
-                  />
-                </Field>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+      <div className="flex items-start gap-3 rounded-xl bg-slate-50 px-4 py-3.5">
+        <Award className="mt-0.5 size-4 shrink-0 text-slate-500" />
+        <p className="text-sm leading-relaxed text-slate-600">
+          Next, you can add your degrees and certifications one at a time.
+        </p>
       </div>
-
-      <Separator />
     </div>
   );
 }
@@ -172,23 +79,28 @@ function SpecialtyPicker({ value, onChange, error }) {
 
   return (
     <div className="space-y-2">
-      <TextField
-        id="specialization"
-        value={query || value || ""}
-        placeholder="Search and select a specialty"
-        error={error}
-        onChange={(event) => {
-          setQuery(event.target.value);
-          onChange("");
-        }}
-      />
-      {(!value || query) && (
-        <div className="max-h-48 overflow-y-auto rounded-lg border bg-background p-1">
+      <div className="relative">
+        <Search className="pointer-events-none absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-slate-400" />
+        <TextField
+          id="specialization"
+          value={query || value || ""}
+          placeholder="Type to search specialties"
+          autoComplete="off"
+          className="pl-10"
+          error={error}
+          onChange={(event) => {
+            setQuery(event.target.value);
+            onChange("");
+          }}
+        />
+      </div>
+      {(!value || query) ? (
+        <div className="max-h-56 overflow-y-auto rounded-xl border border-slate-200 bg-white p-1.5 shadow-lg shadow-slate-950/5">
           {matches.length ? matches.map((specialty) => (
             <button
               key={specialty}
               type="button"
-              className="block w-full rounded-md px-3 py-2 text-left text-sm hover:bg-muted"
+              className="block w-full rounded-lg px-3 py-2.5 text-left text-sm text-slate-700 transition-colors hover:bg-blue-50 hover:text-blue-800 focus-visible:bg-blue-50 focus-visible:outline-none"
               onClick={() => {
                 onChange(specialty);
                 setQuery("");
@@ -196,9 +108,13 @@ function SpecialtyPicker({ value, onChange, error }) {
             >
               {specialty}
             </button>
-          )) : <p className="px-3 py-2 text-sm text-muted-foreground">No specialties found.</p>}
+          )) : (
+            <p className="px-3 py-3 text-sm text-slate-500">
+              No matching specialty. Try a different search.
+            </p>
+          )}
         </div>
-      )}
+      ) : null}
     </div>
   );
 }

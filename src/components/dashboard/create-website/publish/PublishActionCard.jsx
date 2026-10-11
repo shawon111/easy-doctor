@@ -70,7 +70,7 @@ const PublishActionCard = () => {
                             href={websiteUrl}
                             target="_blank"
                             rel="noreferrer"
-                            className="mt-4 flex items-center justify-center gap-2 rounded-xl bg-emerald-600 px-4 py-3 text-sm font-bold text-black shadow-md transition-all hover:-translate-y-0.5 hover:bg-emerald-700 hover:shadow-lg"
+                            className="mt-4 flex items-center justify-center gap-2 rounded-xl bg-emerald-700 px-4 py-3 text-sm font-bold text-white shadow-md transition-all hover:-translate-y-0.5 hover:bg-emerald-800 hover:shadow-lg"
                         >
                             <span className="truncate">{websiteUrl}</span>
                             <span className="material-symbols-outlined shrink-0 text-[18px]">
@@ -81,7 +81,7 @@ const PublishActionCard = () => {
                 ) : (
                     <Button
                         size="lg"
-                        className="h-11 w-full cursor-pointer gap-3 rounded-xl bg-primary-container px-8 text-base font-bold text-on-primary-container shadow-md transition-all hover:-translate-y-0.5 hover:bg-primary-container/85 hover:shadow-lg active:scale-95"
+                        className="h-11 w-full cursor-pointer gap-3 rounded-xl border border-[#17345d] bg-[#17345d] px-8 text-base font-bold text-white shadow-md transition-all hover:-translate-y-0.5 hover:border-[#234b7e] hover:bg-[#234b7e] hover:shadow-lg active:scale-95"
                         onClick={() => mutate()}
                         disabled={isPending}
                     >

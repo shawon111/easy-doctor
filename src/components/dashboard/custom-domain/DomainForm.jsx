@@ -53,7 +53,7 @@ export default function DomainForm({ domain: savedDomain }) {
     };
 
     return (
-        <section className="rounded-xl border bg-card p-6">
+        <section className="dashboard-panel rounded-2xl border bg-card p-5 sm:p-6">
             <div className="mb-6">
                 <h2 className="text-lg font-semibold">
                     {savedDomain ? "Your custom domain" : "Connect your domain"}

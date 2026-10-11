@@ -21,8 +21,8 @@ const TemplateListItem = ({ template, hideChoose }) => {
                 <p className="font-body-md text-body-md text-on-surface-variant mb-6">{description}</p>
                 {!hideChoose && (
                     <div className="mt-auto flex items-center gap-3">
-                        <Link href={`/preview/${template.identifier}`} target="_blank" className="flex-1 bg-surface-container-low text-primary border border-outline-variant hover:bg-surface-container px-4 py-2.5 rounded-lg font-body-md text-body-md font-medium transition-colors cursor-pointer text-center">Preview</Link>
-                        <Link href={`create/subdomain?template=${template.identifier}`} className="flex-1 bg-primary-container text-on-primary-container hover:bg-primary px-4 py-2.5 rounded-lg font-body-md text-body-md font-medium transition-colors shadow-sm cursor-pointer text-center">Choose</Link>
+                        <Link href={`/preview/${template.identifier}`} target="_blank" className="inline-flex min-h-11 flex-1 items-center justify-center rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-center text-sm font-semibold text-slate-700 transition-colors hover:border-blue-200 hover:bg-blue-50 hover:text-blue-900">Preview</Link>
+                        <Link href={`create/subdomain?template=${template.identifier}`} className="inline-flex min-h-11 flex-1 items-center justify-center rounded-xl border border-[#17345d] bg-[#17345d] px-4 py-2.5 text-center text-sm font-semibold text-white shadow-sm transition-colors hover:border-[#234b7e] hover:bg-[#234b7e]">Choose</Link>
                     </div>
                 )}
             </div>

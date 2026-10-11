@@ -3,6 +3,8 @@ import UpgradeNotice from '@/components/dashboard/UpgradeNotice';
 import { requireUser } from '@/lib/requireUser';
 import { isWebsiteActive } from '@/lib/subscription';
 
+export const metadata = { title: "Create Website" };
+
 const CreateWebsite = async () => {
     // get the user info
     const user = await requireUser();

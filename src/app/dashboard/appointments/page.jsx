@@ -5,6 +5,8 @@ import { isWebsiteActive } from '@/lib/subscription';
 import React from 'react';
 import { redirect } from 'next/navigation';
 
+export const metadata = { title: "Appointments" };
+
 const Appointments = async () => {
     const user = await requireUser();
     if (!user) redirect('/login');

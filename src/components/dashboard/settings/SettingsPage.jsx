@@ -24,7 +24,7 @@ export function SettingsPage() {
   });
 
   return (
-    <main className="mx-auto min-h-full w-full max-w-360 p-4 pb-12 text-[#0F172A] sm:p-6 sm:pb-16 md:p-8 md:pb-20">
+    <main className="dashboard-page mx-auto min-h-full w-full max-w-360 p-4 pb-12 text-[#0F172A] sm:p-6 sm:pb-16 md:p-8 md:pb-20">
       <SettingsHeader />
       {isLoading ? (
         <p className="mt-6 text-sm text-[#64748B]" role="status">

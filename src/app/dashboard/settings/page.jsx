@@ -3,6 +3,8 @@ import UpgradeNotice from "@/components/dashboard/UpgradeNotice";
 import { requireUser } from "@/lib/requireUser";
 import { isWebsiteActive } from "@/lib/subscription";
 
+export const metadata = { title: "Settings" };
+
 export default async function Settings() {
   const user = await requireUser();
   const isActivePlan = isWebsiteActive(user?.expiresAt);

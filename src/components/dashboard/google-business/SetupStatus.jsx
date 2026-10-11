@@ -1,7 +1,7 @@
 export default function SetupStatus({ isCompleted }) {
     if (isCompleted) {
         return (
-            <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-6 sm:p-8">
+            <div className="dashboard-panel rounded-2xl border border-emerald-200 bg-emerald-50 p-6 sm:p-8">
                 <div className="flex items-start gap-4">
 
                     <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-emerald-100">
@@ -53,7 +53,7 @@ export default function SetupStatus({ isCompleted }) {
     }
 
     return (
-        <div className="rounded-2xl border border-blue-100 bg-white p-6 shadow-sm sm:p-8">
+        <div className="dashboard-panel rounded-2xl border border-blue-100 bg-white p-6 shadow-sm sm:p-8">
             <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
 
                 <div>

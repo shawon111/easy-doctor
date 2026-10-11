@@ -3,7 +3,7 @@ import { UserRound } from "lucide-react";
 
 export function DoctorProfileCard({ doctor }) {
     return (
-        <section className="rounded-2xl border bg-card p-5 shadow-sm sm:p-6">
+        <section className="dashboard-panel rounded-2xl border bg-card p-5 shadow-sm sm:p-6">
             <div className="flex items-center gap-3 border-b pb-5">
                 <div className="flex size-11 shrink-0 items-center justify-center overflow-hidden rounded-full bg-primary/10 text-primary">
                     {doctor.profilePicture ? (

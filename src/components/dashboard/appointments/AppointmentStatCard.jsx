@@ -18,7 +18,7 @@ export function AppointmentStatCard({ label, value, icon, badge, badgeCaption, c
           <p className="mb-1 text-sm text-muted-foreground">{label}</p>
           <h3 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">{value}</h3>
         </div>
-        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-secondary text-primary">
+        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#eaf2fc] text-[#1d4f91]">
           <span className="material-symbols-outlined text-[24px]">{icon}</span>
         </div>
       </div>

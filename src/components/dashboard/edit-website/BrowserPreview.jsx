@@ -11,7 +11,7 @@ const HeroPreview = () => (
 
     <div className="relative z-10 mx-auto flex w-full max-w-4xl flex-col items-center gap-12 md:flex-row">
       <div className="flex flex-1 flex-col gap-4">
-        <div className="inline-flex w-fit items-center gap-2 rounded-full bg-secondary-container/50 px-3 py-1 text-primary">
+        <div className="inline-flex w-fit items-center gap-2 rounded-full bg-[#eaf2fc] px-3 py-1 text-[#234b7e]">
           <span className="material-symbols-outlined text-[14px]">verified</span>
           <span className="text-xs font-semibold">Accepting New Patients</span>
         </div>

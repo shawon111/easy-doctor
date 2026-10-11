@@ -15,7 +15,7 @@ export async function PlanBillingPage() {
     Number.isFinite(new Date(user.expiresAt).getTime());
 
   return (
-    <div className="mx-auto w-full max-w-[1440px] space-y-6 p-4 pb-12 sm:space-y-8 sm:p-6 sm:pb-16 md:p-8 md:pb-20">
+    <div className="dashboard-page mx-auto w-full max-w-[1440px] space-y-6 p-4 pb-12 sm:space-y-8 sm:p-6 sm:pb-16 md:p-8 md:pb-20">
       <PageHeader isPro={isPro} hasExpiryDate={hasExpiryDate} />
       <div className="grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-12">
         <CurrentPlanCard />

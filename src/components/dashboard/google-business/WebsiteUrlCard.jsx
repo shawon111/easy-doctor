@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function WebsiteUrlCard({ websiteUrl }) {
     return (
-        <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+        <section className="dashboard-panel rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
 
             <div className="flex items-start gap-4">
 

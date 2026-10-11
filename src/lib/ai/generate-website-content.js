@@ -15,6 +15,7 @@ import { generateTemplateTwoContent } from "./generate-template-two";
 import { generateTemplateThreeContent } from "./generate-template-three";
 import { sanitizeGeneratedContent } from "./sanitize-generated-content";
 import { logError } from "../logger";
+import { applyDoctorLocations } from "@/lib/content/apply-doctor-locations";
 
 const templateModels = {
     "template-one": TemplateOneContent,
@@ -83,6 +84,12 @@ export async function generateWebsiteContent(
                 "Generated website content is empty"
             );
         }
+
+        applyDoctorLocations(
+            generatedContent,
+            templateType,
+            user.clinicAddress || []
+        );
 
         // Save content in the appropriate content model
         const content = await Template.findOneAndUpdate(

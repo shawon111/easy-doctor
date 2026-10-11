@@ -12,7 +12,6 @@ export const createUser = async (userData) => {
     await connectDB();
     const { name, email, password, phone, specialization, qualifications, experience, clinicAddress, bio, bookingPreferences, treatments, languages, socialLinks, profilePicture, } = userData;
     const session = await mongoose.startSession();
-    console.log("clinic from service", clinicAddress)
     try {
         const result = await session.withTransaction(async () => {
             const checkUserExists = await User.findOne({ email: email.toLowerCase() });
@@ -21,6 +20,10 @@ export const createUser = async (userData) => {
             }
 
             const hashedPassword = await bcrypt.hash(password, 10);
+            const clinicAddressWithWhatsapp = (clinicAddress || []).map((clinic) => ({
+                ...clinic,
+                whatsapp: String(clinic.whatsapp || "").trim() || phone,
+            }));
             const newUser = new User({
                 name,
                 email: email.toLowerCase(),
@@ -29,7 +32,7 @@ export const createUser = async (userData) => {
                 specialization,
                 qualifications,
                 experience,
-                clinicAddress,
+                clinicAddress: clinicAddressWithWhatsapp,
                 bio,
                 bookingPreferences,
                 treatments,

@@ -18,7 +18,8 @@ const clinicAddressSchema = z.object({
     .string()
     .regex(/^\d{2}:\d{2} - \d{2}:\d{2}$/, "Select opening and closing times"),
   visitingDays: z.string().trim().min(1, "Visiting days are required"),
-  whatsapp: z.string().trim().min(1, "WhatsApp number is required"),
+  whatsapp: z.string().trim().optional().default(""),
+  mapUrl: z.union([z.literal(""), z.string().trim().url("Enter a valid map URL")]).optional(),
 });
 
 const socialLinkSchema = z.object({
@@ -76,9 +77,9 @@ export const stepSchemas = [
   }),
   onboardingSchema.pick({
     specialization: true,
-    qualifications: true,
     experience: true,
   }),
+  onboardingSchema.pick({ qualifications: true }),
   onboardingSchema.pick({
     clinicAddress: true,
     bookingPreferences: true,
@@ -120,13 +121,14 @@ export const defaultValues = {
 };
 
 export const STEPS = [
-  { id: "account", title: "Account", description: "Your login details" },
+  { id: "account", title: "Your account", description: "The essentials to get started" },
   {
-    id: "professional",
-    title: "Professional",
-    description: "Qualifications & specialty",
+    id: "expertise",
+    title: "Your expertise",
+    description: "Specialty and experience",
   },
-  { id: "clinic", title: "Clinic", description: "Chambers & booking" },
-  { id: "profile", title: "Profile", description: "Bio & services" },
-  { id: "social", title: "Social", description: "Optional links" },
+  { id: "education", title: "Education", description: "Degrees and credentials" },
+  { id: "practice", title: "Practice locations", description: "Where patients can find you" },
+  { id: "website", title: "Your website", description: "A little about your care" },
+  { id: "social", title: "Online profiles", description: "Optional social links" },
 ];

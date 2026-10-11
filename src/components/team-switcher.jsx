@@ -1,23 +1,21 @@
-import {
-  SidebarMenu,
-  SidebarMenuItem,
-} from "@/components/ui/sidebar"
 import Image from "next/image"
 
 export function TeamSwitcher() {
   return (
-    <SidebarMenu>
-      <SidebarMenuItem>
-        <div
-          className="flex items-start justify-start rounded-lg">
+    <div className="flex items-center gap-3">
+        <div className="flex size-10 items-center justify-center rounded-xl bg-white shadow-lg shadow-black/10">
           <Image
             src="/docxio-logo.png"
-            width={120}
-            height={32}
+            width={30}
+            height={30}
             alt="Docxio Logo"
+            className="size-7 object-contain"
           />
         </div>
-      </SidebarMenuItem>
-    </SidebarMenu>
+        <div className="group-data-[collapsible=icon]:hidden">
+          <p className="text-base font-bold tracking-tight text-white">Docxio</p>
+          <p className="text-[10px] font-medium uppercase tracking-[0.17em] text-slate-400">Doctor workspace</p>
+        </div>
+    </div>
   );
 }

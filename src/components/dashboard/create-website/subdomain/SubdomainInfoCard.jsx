@@ -5,8 +5,8 @@ const SubdomainInfoCard = () => {
     return (
         <Card className="p-0">
             <CardContent className="flex items-start gap-3 p-6">
-                <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-secondary-container">
-                    <span className="material-symbols-outlined text-[18px] text-primary">
+                <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#eaf2fc]">
+                    <span className="material-symbols-outlined text-[18px] text-[#1d4f91]">
                         help
                     </span>
                 </div>

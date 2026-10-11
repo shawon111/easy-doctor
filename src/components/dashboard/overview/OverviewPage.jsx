@@ -204,7 +204,7 @@ export async function OverviewPage({ user }) {
   const accessDate = formatAccessDate(user.expiresAt);
 
   return (
-    <main className="min-h-screen">
+    <main className="dashboard-page min-h-screen">
       <div className="mx-auto w-full max-w-[1440px] space-y-6 p-4 pb-12 sm:space-y-8 sm:p-6 sm:pb-16 md:p-8 md:pb-20">
         <section className="relative isolate overflow-hidden rounded-3xl bg-gradient-to-br from-slate-950 via-slate-900 to-blue-950 px-5 py-6 text-white shadow-lg sm:px-8 sm:py-8 lg:px-10">
           <div className="pointer-events-none absolute -right-16 -top-28 -z-10 size-80 rounded-full bg-blue-500/20 blur-3xl" />

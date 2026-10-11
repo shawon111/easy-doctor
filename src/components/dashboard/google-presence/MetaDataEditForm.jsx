@@ -47,13 +47,13 @@ export function MetaDataEditForm({ data, pageKey, onSave, onDiscard, saving }) {
   const slug = pageKey === "site" ? "All pages" : pageKey === "home" ? "/index" : `/${pageKey}`;
 
   return (
-    <div className="rounded-2xl border border-border bg-card p-4 shadow-[0px_4px_12px_rgba(0,0,0,0.03)] sm:p-6">
+    <div className="dashboard-panel rounded-2xl border border-border bg-card p-4 shadow-[0px_4px_12px_rgba(0,0,0,0.03)] sm:p-6">
       <div className="mb-5 flex flex-col gap-3 border-b border-border pb-4 sm:mb-6 sm:flex-row sm:items-start sm:justify-between">
         <div>
           <h2 className="text-lg font-semibold text-foreground">Edit {pageLabel} Meta Data</h2>
           <p className="mt-1 text-sm text-muted-foreground">Updates may take up to 48 hours to appear on Google.</p>
         </div>
-        <span className="w-fit rounded-md bg-secondary px-3 py-1 font-mono text-xs text-foreground">{slug}</span>
+        <span className="w-fit rounded-md bg-[#eaf2fc] px-3 py-1 font-mono text-xs font-medium text-[#234b7e]">{slug}</span>
       </div>
 
       <form className="flex flex-col gap-5 sm:gap-6" onSubmit={submit}>

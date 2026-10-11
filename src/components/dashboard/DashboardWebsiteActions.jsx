@@ -23,7 +23,7 @@ export function DashboardWebsiteActions({ websiteUrl }) {
             <Button
                 type="button"
                 variant="outline"
-                className="min-w-0 max-w-[45vw] shrink cursor-pointer justify-start font-normal sm:max-w-sm"
+                className="h-10 min-w-0 max-w-[45vw] shrink cursor-pointer justify-start rounded-xl border-slate-200 bg-white/70 font-normal shadow-sm sm:max-w-sm"
                 onClick={copyWebsiteUrl}
                 aria-label={`Copy website URL: ${websiteUrl}`}
                 title="Copy website URL"
@@ -31,7 +31,7 @@ export function DashboardWebsiteActions({ websiteUrl }) {
                 <span className="truncate">{websiteUrl}</span>
                 <Copy aria-hidden="true" />
             </Button>
-            <Button asChild>
+            <Button asChild className="h-10 rounded-xl bg-slate-950 px-4 text-white shadow-lg shadow-slate-950/10 hover:bg-blue-950">
                 <a
                     href={websiteUrl}
                     target="_blank"

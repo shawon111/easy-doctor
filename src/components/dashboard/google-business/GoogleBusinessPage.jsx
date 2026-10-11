@@ -16,7 +16,7 @@ export default async function GoogleBusinessPage() {
     const websiteUrl = await getWebsiteUrlForUser(user._id);
 
     return (
-        <div className="mx-auto w-full max-w-360 space-y-6 p-4 pb-12 sm:space-y-8 sm:p-6 sm:pb-16 md:p-8 md:pb-20">
+        <div className="dashboard-page mx-auto w-full max-w-360 space-y-6 p-4 pb-12 sm:space-y-8 sm:p-6 sm:pb-16 md:p-8 md:pb-20">
             <GoogleBusinessHeader />
 
             <SetupStatus

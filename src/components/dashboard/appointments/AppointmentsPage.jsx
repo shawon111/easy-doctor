@@ -65,10 +65,10 @@ export function AppointmentsPage({ chambers = [] }) {
   }
 
   return (
-    <div className="mx-auto w-full max-w-360 flex-1 p-4 pb-12 sm:p-6 sm:pb-16 md:p-8 md:pb-20">
-      <header className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-        <div>
-          <p className="text-sm font-medium text-primary">Practice management</p>
+    <div className="dashboard-page mx-auto w-full max-w-360 flex-1 p-4 pb-12 sm:p-6 sm:pb-16 md:p-8 md:pb-20">
+      <header className="dashboard-heading mb-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+        <div className="relative z-10">
+          <p className="dashboard-eyebrow">Practice management</p>
           <h1 className="mt-1 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
             Appointments
           </h1>
@@ -76,7 +76,7 @@ export function AppointmentsPage({ chambers = [] }) {
             Review patient bookings and add appointments received by phone or in person.
           </p>
         </div>
-        <Button variant="outline" asChild>
+        <Button className="relative z-10 rounded-xl border-slate-200 bg-white hover:bg-slate-50" variant="outline" asChild>
           <Link href="/dashboard/appointments/manage">Manage appointment status</Link>
         </Button>
       </header>
@@ -87,7 +87,7 @@ export function AppointmentsPage({ chambers = [] }) {
       <div className="mb-6">
         <ManualAppointmentForm chambers={chambers} />
       </div>
-      <section className="overflow-hidden rounded-2xl border border-border bg-card shadow-[0px_4px_12px_rgba(0,0,0,0.03)]">
+      <section className="dashboard-panel overflow-hidden rounded-2xl border border-border bg-card shadow-[0px_4px_12px_rgba(0,0,0,0.03)]">
         <div className="flex flex-col gap-4 border-b border-border p-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
           <div>
             <h2 className="text-lg font-semibold text-foreground">Appointments for {formatDay(selectedDate)}</h2>

@@ -67,8 +67,9 @@ export function VerificationPage() {
     };
 
     return (
-        <main className="mx-auto w-full max-w-360 p-4 pb-12 sm:p-6 sm:pb-16 md:p-8 md:pb-20">
-            <header className="mb-6">
+        <main className="dashboard-page mx-auto w-full max-w-360 p-4 pb-12 sm:p-6 sm:pb-16 md:p-8 md:pb-20">
+            <header className="dashboard-heading mb-6">
+                <p className="dashboard-eyebrow">Technical SEO</p>
                 <h1 className="text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
                     Site Verification
                 </h1>
@@ -92,7 +93,7 @@ export function VerificationPage() {
 
             {data ? (
                 <form onSubmit={handleSubmit} className="space-y-6">
-                    <section className="space-y-5 rounded-2xl border border-border bg-card p-4 sm:p-6">
+                    <section className="dashboard-panel space-y-5 rounded-2xl border border-border bg-card p-4 sm:p-6">
                         <div>
                             <h2 className="text-lg font-semibold">Google Search Console</h2>
                             <p className="mt-1 text-sm text-muted-foreground">
@@ -118,7 +119,7 @@ export function VerificationPage() {
                         </div>
                     </section>
 
-                    <section className="space-y-5 rounded-2xl border border-border bg-card p-4 sm:p-6">
+                    <section className="dashboard-panel space-y-5 rounded-2xl border border-border bg-card p-4 sm:p-6">
                         <div>
                             <h2 className="text-lg font-semibold">Bing Webmaster Tools</h2>
                             <p className="mt-1 text-sm text-muted-foreground">

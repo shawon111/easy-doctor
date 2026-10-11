@@ -468,12 +468,13 @@ export default function ContentEditor() {
   }
 
   return (
-    <div className="flex min-h-[calc(100dvh-4rem)] w-full flex-col bg-muted/30 xl:h-[calc(100dvh-6rem)] xl:min-h-0 xl:overflow-hidden">
-      <div className="border-b bg-card px-3 py-4 sm:px-4 md:px-6">
+    <div className="dashboard-page flex min-h-[calc(100dvh-4rem)] w-full flex-col bg-muted/30 xl:h-[calc(100dvh-6rem)] xl:min-h-0 xl:overflow-hidden">
+      <div className="dashboard-editor-header border-b bg-card px-3 py-4 sm:px-4 md:px-6">
         <div className="mb-4 flex flex-wrap items-start justify-between gap-3 sm:items-center">
           <div className="min-w-0">
+            <p className="dashboard-eyebrow">Personalize your website</p>
             <h1 className="text-xl font-semibold">Website content</h1>
-            <p className="break-words text-sm text-muted-foreground">{website.templateType} · Save each section independently.</p>
+            <p className="break-words text-sm text-muted-foreground">{website.templateType} · Changes are saved section by section.</p>
           </div>
           <Button
             type="button"
@@ -502,15 +503,15 @@ export default function ContentEditor() {
                 type="button"
                 onClick={() => setSection(sectionKey)}
                 aria-current={activeSection === sectionKey ? "page" : undefined}
-                className={cn("shrink-0 rounded-lg px-3 py-2 text-left text-sm xl:mb-1 xl:block xl:w-full", activeSection === sectionKey ? "bg-primary text-primary-foreground" : "hover:bg-muted")}
+                className={cn("shrink-0 rounded-lg px-3 py-2 text-left text-sm xl:mb-1 xl:block xl:w-full", activeSection === sectionKey ? "bg-[#17345d] font-semibold text-white" : "text-slate-600 hover:bg-slate-100 hover:text-slate-900")}
               >
                 {labelFor(sectionKey)}
               </button>
             ))}
           </nav>
         </aside>
-        <main className="min-w-0 flex-1 p-3 sm:p-4 md:p-6 xl:overflow-y-auto">
-          <Card className="mx-auto max-w-3xl">
+        <main className="dashboard-page min-w-0 flex-1 p-3 sm:p-4 md:p-6 xl:overflow-y-auto">
+          <Card className="dashboard-panel mx-auto max-w-3xl rounded-2xl">
             <CardHeader><CardTitle>{labelFor(activeSection)}</CardTitle></CardHeader>
             <CardContent className="space-y-5">
               <FieldEditor value={sectionValue} template={sectionTemplate} path={activeSection} onChange={updateSection} />

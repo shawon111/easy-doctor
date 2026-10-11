@@ -47,7 +47,7 @@ export default function AboutChambersOneDark({ content = {}, isDemo = false }) {
               />
             ) : (
               <div className="w-full h-full bg-surface-container-high flex items-center justify-center p-6 text-center text-sm text-on-surface-variant">
-                Add a Google Maps link to show the chamber location.
+                Chamber map not available!
               </div>
             )}
           </div>

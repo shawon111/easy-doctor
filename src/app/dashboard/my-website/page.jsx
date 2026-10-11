@@ -6,12 +6,14 @@ import { WebsiteSummaryCard } from "@/components/dashboard/my-website/WebsiteSum
 import { requireUser } from "@/lib/requireUser";
 import { getMyWebsiteDetails } from "@/services/website.service";
 
+export const metadata = { title: "My Website" };
+
 export default async function MyWebsitePage() {
     const user = await requireUser();
     const { doctor, website } = await getMyWebsiteDetails(user._id);
 
     return (
-        <main className="mx-auto w-full max-w-360 space-y-5 p-4 pb-12 sm:p-6 sm:pb-16 md:p-8 md:pb-20">
+        <main className="dashboard-page mx-auto w-full max-w-360 space-y-5 p-4 pb-12 sm:p-6 sm:pb-16 md:p-8 md:pb-20">
             <MyWebsiteHeader />
             <WebsiteSummaryCard website={website} expiresAt={doctor.expiresAt} />
             <DoctorProfileCard doctor={doctor} />

@@ -63,7 +63,7 @@ export function NavUser({
           <DropdownMenuTrigger asChild>
             <SidebarMenuButton
               size="lg"
-              className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground">
+              className="rounded-xl text-slate-200 hover:bg-white/[0.07] hover:text-white data-[state=open]:bg-white/[0.08] data-[state=open]:text-white">
               <Avatar className="h-8 w-8 rounded-lg">
                 {
                   user.profilePicture ? <Image
@@ -79,7 +79,7 @@ export function NavUser({
                 <span className="truncate font-medium">{user.name}</span>
                 <span className="truncate text-xs">{user.email}</span>
               </div>
-              <ChevronsUpDownIcon className="ml-auto size-4" />
+              <ChevronsUpDownIcon className="ml-auto size-4 text-slate-400" />
             </SidebarMenuButton>
           </DropdownMenuTrigger>
           <DropdownMenuContent

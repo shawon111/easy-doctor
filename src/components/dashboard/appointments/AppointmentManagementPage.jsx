@@ -68,10 +68,10 @@ export function AppointmentManagementPage() {
   const totalPages = Math.max(1, Math.ceil((data?.total || 0) / PAGE_SIZE));
 
   return (
-    <main className="mx-auto w-full max-w-360 space-y-6 p-4 pb-12 sm:p-6 sm:pb-16 md:p-8 md:pb-20">
-      <header className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-        <div>
-          <p className="text-sm font-medium text-primary">Appointments</p>
+    <main className="dashboard-page mx-auto w-full max-w-360 space-y-6 p-4 pb-12 sm:p-6 sm:pb-16 md:p-8 md:pb-20">
+      <header className="dashboard-heading flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+        <div className="relative z-10">
+          <p className="dashboard-eyebrow">Appointments</p>
           <h1 className="mt-1 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
             Manage appointments
           </h1>
@@ -79,12 +79,12 @@ export function AppointmentManagementPage() {
             Track attendance and keep appointment statuses up to date.
           </p>
         </div>
-        <Button asChild>
+        <Button className="relative z-10 rounded-xl" asChild>
           <Link href="/dashboard/appointments">Back to appointments</Link>
         </Button>
       </header>
 
-      <section className="overflow-hidden rounded-2xl border border-border bg-card shadow-[0px_4px_12px_rgba(0,0,0,0.03)]">
+      <section className="dashboard-panel overflow-hidden rounded-2xl border border-border bg-card shadow-[0px_4px_12px_rgba(0,0,0,0.03)]">
         <div className="flex flex-col gap-3 border-b border-border p-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
           <div>
             <h2 className="font-semibold text-foreground">Appointment list</h2>

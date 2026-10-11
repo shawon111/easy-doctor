@@ -1,15 +1,8 @@
 "use client";
 
 import { Controller, useFieldArray } from "react-hook-form";
-import { Info, Plus, Trash2 } from "lucide-react";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Link2, Plus, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import {
   Select,
   SelectContent,
@@ -27,50 +20,50 @@ export function StepSocial({ register, control, errors }) {
   });
 
   return (
-    <div className="space-y-4">
-      <Alert>
-        <Info />
-        <AlertTitle>Social links are optional</AlertTitle>
-        <AlertDescription>
-          Add your professional profiles so patients can find you online. You
-          can skip this step if you prefer.
-        </AlertDescription>
-      </Alert>
-
-      <div className="flex items-center justify-between gap-3">
-        <p className="text-sm font-medium">Social profiles</p>
-        <Button
-          type="button"
-          variant="outline"
-          size="sm"
-          onClick={() => append({ platform: "", url: "" })}
-        >
-          <Plus className="size-4" />
-          Add link
-        </Button>
+    <div className="space-y-5">
+      <div className="rounded-2xl border border-slate-200 bg-gradient-to-br from-slate-50 to-white p-5 sm:p-6">
+        <div className="flex items-start gap-3">
+          <span className="flex size-10 shrink-0 items-center justify-center rounded-2xl bg-white text-blue-600 shadow-sm">
+            <Link2 className="size-5" />
+          </span>
+          <div>
+            <h3 className="text-sm font-semibold text-slate-900">Connect your professional profiles</h3>
+            <p className="mt-1 text-sm leading-relaxed text-slate-600">
+              Optional. Add social or professional profile links to help patients learn more about you.
+              You can skip this step and add them later.
+            </p>
+          </div>
+        </div>
       </div>
 
       {fields.length === 0 ? (
-        <p className="rounded-lg border border-dashed px-4 py-8 text-center text-sm text-muted-foreground">
-          No social links added yet.
-        </p>
+        <div className="rounded-2xl border border-dashed border-slate-300 bg-white px-5 py-8 text-center">
+          <span className="mx-auto flex size-11 items-center justify-center rounded-2xl bg-slate-100 text-slate-500">
+            <Link2 className="size-5" />
+          </span>
+          <p className="mt-3 text-sm font-medium text-slate-800">No links added</p>
+          <p className="mt-1 text-xs text-slate-500">That’s completely fine—you can continue without them.</p>
+        </div>
       ) : (
         <div className="space-y-3">
           {fields.map((field, index) => (
-            <Card key={field.id} size="sm">
-              <CardHeader className="flex flex-row items-center justify-between gap-2 pb-0">
-                <CardTitle className="text-sm">Link {index + 1}</CardTitle>
+            <div key={field.id} className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm shadow-slate-950/[0.025]">
+              <div className="mb-4 flex items-center justify-between">
+                <p className="text-sm font-semibold text-slate-900">Profile link {index + 1}</p>
                 <Button
                   type="button"
                   variant="ghost"
-                  size="icon-sm"
+                  size="sm"
                   onClick={() => remove(index)}
                   aria-label={`Remove social link ${index + 1}`}
+                  className="text-slate-500 hover:bg-rose-50 hover:text-rose-600"
                 >
-                  <Trash2 className="size-4 text-destructive" />
+                  <Trash2 className="size-4" />
+                  <span className="sr-only sm:not-sr-only">Remove</span>
                 </Button>
-              </CardHeader>
-              <CardContent className="grid gap-3 pt-3 sm:grid-cols-2">
+              </div>
+
+              <div className="grid gap-4 sm:grid-cols-2">
                 <Controller
                   control={control}
                   name={`socialLinks.${index}.platform`}
@@ -78,27 +71,17 @@ export function StepSocial({ register, control, errors }) {
                     <Field
                       label="Platform"
                       required
-                      error={getFieldError(
-                        errors,
-                        `socialLinks.${index}.platform`
-                      )}
+                      error={getFieldError(errors, `socialLinks.${index}.platform`)}
                     >
                       <Select
                         value={platformField.value}
                         onValueChange={platformField.onChange}
                       >
                         <SelectTrigger
-                          className="w-full"
-                          aria-invalid={
-                            getFieldError(
-                              errors,
-                              `socialLinks.${index}.platform`
-                            )
-                              ? true
-                              : undefined
-                          }
+                          className="h-12 w-full rounded-xl border-slate-200 bg-white shadow-sm shadow-slate-950/[0.02]"
+                          aria-invalid={getFieldError(errors, `socialLinks.${index}.platform`) ? true : undefined}
                         >
-                          <SelectValue placeholder="Select platform" />
+                          <SelectValue placeholder="Choose a platform" />
                         </SelectTrigger>
                         <SelectContent>
                           {SOCIAL_PLATFORMS.map((platform) => (
@@ -113,7 +96,7 @@ export function StepSocial({ register, control, errors }) {
                 />
 
                 <Field
-                  label="Profile URL"
+                  label="Profile link"
                   htmlFor={`socialLinks.${index}.url`}
                   required
                   error={getFieldError(errors, `socialLinks.${index}.url`)}
@@ -126,11 +109,21 @@ export function StepSocial({ register, control, errors }) {
                     {...register(`socialLinks.${index}.url`)}
                   />
                 </Field>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           ))}
         </div>
       )}
+
+      <Button
+        type="button"
+        variant="outline"
+        onClick={() => append({ platform: "", url: "" })}
+        className="h-11 w-full rounded-xl border-dashed border-blue-300 bg-blue-50/50 text-blue-700 hover:border-blue-400 hover:bg-blue-50"
+      >
+        <Plus className="size-4" />
+        Add a profile link
+      </Button>
     </div>
   );
 }

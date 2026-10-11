@@ -30,7 +30,7 @@ const formatDate = (value) => {
 export function WebsiteSummaryCard({ website, expiresAt }) {
     if (!website) {
         return (
-            <section className="rounded-2xl border bg-card p-6">
+            <section className="dashboard-panel rounded-2xl border bg-card p-6">
                 <h2 className="font-semibold">Website not created yet</h2>
                 <p className="mt-2 text-sm text-muted-foreground">
                     Choose a template and create your website to see its
@@ -46,7 +46,7 @@ export function WebsiteSummaryCard({ website, expiresAt }) {
     const templateName = formatTemplateName(website.templateType);
 
     return (
-        <section className="rounded-2xl border bg-card p-5 shadow-sm sm:p-6">
+        <section className="dashboard-panel rounded-2xl border bg-card p-5 shadow-sm sm:p-6">
             <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
                 <div className="flex min-w-0 gap-3">
                     <div className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
