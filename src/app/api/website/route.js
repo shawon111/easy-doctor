@@ -1,8 +1,11 @@
 import { connectDB } from "@/config/database";
+import { logError } from "@/lib/logger";
+import { websiteCreatedEmail } from "@/lib/emailTemplates";
 import User from "@/models/user.model";
 import Website from "@/models/website.model";
+import { sendEmail } from "@/services/email.service";
 import { createOrUpdateContent } from "@/services/content.service";
-import { createWebsite } from "@/services/website.service";
+import { createWebsite, getPublicWebsiteUrl } from "@/services/website.service";
 import { NextResponse } from "next/server";
 import { withUser } from "@/lib/withUser";
 import { getWebsiteByUserId } from "@/services/website.service";
@@ -123,6 +126,22 @@ export const POST = withUser(async (request, context, currentUser) => {
 
             return website;
         });
+
+        try {
+            await sendEmail(
+                currentUser.email,
+                "Your Docxio website has been created",
+                websiteCreatedEmail(
+                    currentUser.name,
+                    getPublicWebsiteUrl(newWebsite)
+                )
+            );
+        } catch (error) {
+            logError("Failed to send website creation email.", error, {
+                userId: currentUser._id.toString(),
+                websiteId: newWebsite._id.toString(),
+            });
+        }
 
         return NextResponse.json({ success: true, data: newWebsite }, { status: 201 });
 

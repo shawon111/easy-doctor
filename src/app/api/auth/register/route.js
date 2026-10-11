@@ -2,6 +2,9 @@ import { connectDB } from "@/config/database";
 import { signAccessToken, signRefreshToken } from "@/lib/jwt";
 import { setAccessCookie } from "@/lib/setAccessCookie";
 import { setRefreshCookie } from "@/lib/setRefreshCookie";
+import { logError } from "@/lib/logger";
+import { profileCreatedEmail } from "@/lib/emailTemplates";
+import { sendEmail } from "@/services/email.service";
 import { createUser } from "@/services/user.service";
 import { NextResponse } from "next/server";
 
@@ -11,6 +14,18 @@ export const POST = async (request) => {
         const userData = await request.json();
         // save user
         const user = await createUser(userData);
+        try {
+            await sendEmail(
+                user.email,
+                "Your Docxio profile is ready",
+                profileCreatedEmail(user.name)
+            );
+        } catch (error) {
+            logError("Failed to send profile creation email.", error, {
+                userId: user._id.toString(),
+            });
+        }
+
         // sign tokens and set cookies
         const newAccessToken = signAccessToken({
             _id: user._id,

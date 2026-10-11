@@ -216,6 +216,14 @@ const UserSchema = new mongoose.Schema(
             type: Date,
             default: undefined,
         },
+        subscriptionEndedEmailSentAt : {
+            type: Date,
+            default: null
+        },
+        trialEndedEmailSentAt : {
+            type: Date,
+            default: null
+        },
         googleAnalyticsId: {
             type: String,
             trim: true,
