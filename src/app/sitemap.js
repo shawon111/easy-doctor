@@ -3,6 +3,7 @@ import { getMarketingBaseUrl } from "@/lib/seo/urls";
 const publicPages = [
   { path: "/", changeFrequency: "weekly", priority: 1 },
   { path: "/templates", changeFrequency: "monthly", priority: 0.9 },
+  { path: "/doctors", changeFrequency: "daily", priority: 0.8 },
   { path: "/appointment-guide", changeFrequency: "monthly", priority: 0.6 },
   { path: "/domain-connection-guide", changeFrequency: "monthly", priority: 0.6 },
   { path: "/website-creation-guide", changeFrequency: "monthly", priority: 0.7 },

@@ -26,16 +26,17 @@ export default function Footer() {
           <div>
             <h4 className="text-xs font-bold uppercase tracking-wider text-slate-900 mb-4">Platform</h4>
             <ul className="space-y-2.5 text-xs text-slate-600 font-medium">
+              <li><Link className="hover:text-slate-900 transition-colors" href="/doctors">Find a Doctor</Link></li>
               <li><Link className="hover:text-slate-900 transition-colors" href="/templates">6 Clinical Templates</Link></li>
-              <li><Link className="hover:text-slate-900 transition-colors" href="#how-it-works">How It Works</Link></li>
-              <li><Link className="hover:text-slate-900 transition-colors" href="#dashboard-preview">Doctor Portal</Link></li>
-              <li><Link className="hover:text-slate-900 transition-colors" href="#pricing">Pricing &amp; Plans</Link></li>
+              <li><Link className="hover:text-slate-900 transition-colors" href={`https://${process.env.NEXT_PUBLIC_BASE_DOMAIN}/#how-it-works`}>How It Works</Link></li>
+              <li><Link className="hover:text-slate-900 transition-colors" href={`https://${process.env.NEXT_PUBLIC_BASE_DOMAIN}/#dashboard-preview`}>Doctor Portal</Link></li>
+              <li><Link className="hover:text-slate-900 transition-colors" href={`https://${process.env.NEXT_PUBLIC_BASE_DOMAIN}/#pricing`}>Pricing &amp; Plans</Link></li>
             </ul>
           </div>
           <div>
             <h4 className="text-xs font-bold uppercase tracking-wider text-slate-900 mb-4">Doctor Support</h4>
             <ul className="space-y-2.5 text-xs text-slate-600 font-medium">
-              <li><Link className="hover:text-slate-900 transition-colors" href="#faq">Help &amp; FAQ</Link></li>
+              <li><Link className="hover:text-slate-900 transition-colors" href={`https://${process.env.NEXT_PUBLIC_BASE_DOMAIN}/#faq`}>Help &amp; FAQ</Link></li>
               <li><Link className="hover:text-slate-900 transition-colors" href="/appointment-guide">Appointment Guide</Link></li>
               <li><Link className="hover:text-slate-900 transition-colors" href="/website-creation-guide">Website Creation Guide</Link></li>
               <li><Link className="hover:text-slate-900 transition-colors" href="/domain-connection-guide">Domain Connection Guide</Link></li>

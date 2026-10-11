@@ -1,7 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { Menu } from "lucide-react";
+import { ChevronDown, Menu } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import {
   Sheet,
   SheetClose,
@@ -22,14 +28,27 @@ const homeLinks = [
 function getNavigationLinks(isTemplatesPage) {
   return [
     {
-      label: "Clinical Templates",
+      label: "Find a Doctor",
+      href: "/doctors",
+    },
+    {
+      label: "Templates",
       href: isTemplatesPage ? "#templates" : "/templates",
     },
-    ...homeLinks.map(({ label, section }) => ({
+    {
+      label: "Pricing",
+      href: isTemplatesPage ? "/#pricing" : "#pricing",
+    },
+  ];
+}
+
+function getMoreLinks(isTemplatesPage) {
+  return homeLinks
+    .filter(({ label }) => label !== "Pricing")
+    .map(({ label, section }) => ({
       label,
       href: isTemplatesPage ? `/#${section}` : `#${section}`,
-    })),
-  ];
+    }));
 }
 
 function CreateWebsiteLink({ className = "" }) {
@@ -46,21 +65,41 @@ function CreateWebsiteLink({ className = "" }) {
 
 export default function HeaderNavigation({ isTemplatesPage, isLoggedIn }) {
   const links = getNavigationLinks(isTemplatesPage);
+  const moreLinks = getMoreLinks(isTemplatesPage);
+  const mobileLinks = [...links, ...moreLinks];
   const accountHref = isLoggedIn ? "/dashboard" : "/login";
   const accountLabel = isLoggedIn ? "Dashboard" : "Log In";
 
   return (
     <div className="flex items-center">
-      <nav className="hidden items-center gap-8 xl:flex" aria-label="Main navigation">
+      <nav className="hidden items-center gap-5 xl:flex" aria-label="Main navigation">
         {links.map(({ label, href }) => (
           <Link
             key={label}
-            className="text-sm font-semibold text-slate-600 transition-colors hover:text-slate-900"
+            className="whitespace-nowrap text-sm font-semibold text-slate-600 transition-colors hover:text-slate-900"
             href={href}
           >
             {label}
           </Link>
         ))}
+        <DropdownMenu>
+          <DropdownMenuTrigger className="inline-flex cursor-pointer items-center gap-1 whitespace-nowrap text-sm font-semibold text-slate-600 transition-colors hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+            More
+            <ChevronDown aria-hidden="true" className="size-4" />
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end" className="w-48">
+            {moreLinks.map(({ label, href }) => (
+              <DropdownMenuItem key={label} asChild>
+                <Link
+                  className="cursor-pointer px-2.5 py-2 text-sm font-medium text-slate-700"
+                  href={href}
+                >
+                  {label}
+                </Link>
+              </DropdownMenuItem>
+            ))}
+          </DropdownMenuContent>
+        </DropdownMenu>
       </nav>
       <div className="ml-3 hidden items-center gap-3 xl:flex">
         <Link
@@ -89,7 +128,7 @@ export default function HeaderNavigation({ isTemplatesPage, isLoggedIn }) {
             </SheetDescription>
           </SheetHeader>
           <nav className="flex flex-col gap-1 px-4 py-4" aria-label="Mobile navigation">
-            {links.map(({ label, href }) => (
+            {mobileLinks.map(({ label, href }) => (
               <SheetClose asChild key={label}>
                 <Link
                   className="rounded-lg px-3 py-3 text-sm font-semibold text-slate-700 transition-colors hover:bg-slate-100 hover:text-slate-900"

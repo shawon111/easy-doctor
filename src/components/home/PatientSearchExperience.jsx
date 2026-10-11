@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function PatientSearchExperience() {
   return (
     <section className="py-24 lg:py-32 bg-surface-subtle border-b border-slate-border">
@@ -71,6 +73,25 @@ export default function PatientSearchExperience() {
               <div className="text-[10px] text-slate-500">Contact options depend on your profile settings</div>
             </div>
           </div>
+        </div>
+        <div className="mt-10 flex flex-col gap-5 rounded-2xl border border-blue-100 bg-white p-6 shadow-subtle sm:flex-row sm:items-center sm:justify-between sm:p-8">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.16em] text-secondary">
+              Explore Docxio doctors
+            </p>
+            <h3 className="mt-2 text-xl font-bold tracking-tight text-slate-900">
+              See how doctors are building their online presence.
+            </h3>
+            <p className="mt-2 max-w-2xl text-sm leading-relaxed text-slate-600">
+              Browse published doctor websites and discover the profiles patients can find online.
+            </p>
+          </div>
+          <Link
+            href="/doctors"
+            className="inline-flex min-h-11 shrink-0 cursor-pointer items-center justify-center rounded-xl bg-primary px-5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-blue-200"
+          >
+            Browse All Doctors
+          </Link>
         </div>
       </div>
     </section>
