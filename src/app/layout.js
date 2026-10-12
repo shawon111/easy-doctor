@@ -108,7 +108,7 @@ export default function RootLayout({ children }) {
       <body className="min-h-full flex flex-col">
         {/*Google Tag Manager (noscript) */}
         <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NJ6J82N6"
-          height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+          height="0" width="0" style={{ display: "none", visibility: "hidden" }}></iframe></noscript>
 
           {/* Material Symbols Loader */}
         <Script id="material-symbols-loader" strategy="afterInteractive">
