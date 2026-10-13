@@ -35,13 +35,17 @@ export function resolveTemplateContent(content, defaults, isDemo = false) {
 
     if (sourceValue === undefined || sourceValue === null) {
       if (key === "imageAlt") {
+        // imageAlt should always be an empty string, never the default placeholder
         result[key] = "";
-      } else if (SAFE_DEFAULT_KEYS.has(key)) {
-        result[key] = defaultValue;
       } else if (Array.isArray(defaultValue)) {
-        result[key] = SAFE_DEFAULT_KEYS.has(key) ? defaultValue : [];
+        // Always use the full default array for missing array fields
+        result[key] = defaultValue;
       } else if (isPlainObject(defaultValue)) {
+        // Recursively fill nested objects from defaults
         result[key] = resolveTemplateContent({}, defaultValue);
+      } else if (defaultValue !== undefined) {
+        // Use default for any missing primitive (string, number, boolean, etc.)
+        result[key] = defaultValue;
       }
       continue;
     }

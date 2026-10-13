@@ -16,6 +16,11 @@ import { generateTemplateThreeContent } from "./generate-template-three";
 import { sanitizeGeneratedContent } from "./sanitize-generated-content";
 import { logError } from "../logger";
 import { applyDoctorLocations } from "@/lib/content/apply-doctor-locations";
+import {
+    templateOneDefaults,
+    templateTwoDefaults,
+    templateThreeDefaults,
+} from "@/content/defaults";
 
 const templateModels = {
     "template-one": TemplateOneContent,
@@ -37,6 +42,17 @@ const templateGenerators = {
 
     "template-three": generateTemplateThreeContent,
     "template-three-dark": generateTemplateThreeContent,
+};
+
+const templateDefaults = {
+    "template-one": templateOneDefaults,
+    "template-one-dark": templateOneDefaults,
+
+    "template-two": templateTwoDefaults,
+    "template-two-dark": templateTwoDefaults,
+
+    "template-three": templateThreeDefaults,
+    "template-three-dark": templateThreeDefaults,
 };
 
 export async function generateWebsiteContent(
@@ -137,7 +153,44 @@ export async function generateWebsiteContent(
             websiteId,
         });
 
-        // Mark website generation as failed
+        // Attempt to fall back to default content so the website still loads
+        try {
+            const defaults = templateDefaults[templateType];
+            const Template = templateModels[templateType];
+
+            if (defaults && Template) {
+                const fallbackContent = await Template.findOneAndUpdate(
+                    { userId },
+                    { $set: defaults },
+                    { upsert: true, new: true, runValidators: false }
+                );
+
+                if (fallbackContent) {
+                    await Website.findByIdAndUpdate(
+                        websiteId,
+                        {
+                            $set: {
+                                content: fallbackContent._id,
+                                status: "ready",
+                                generationError:
+                                    error?.message ||
+                                    "Website generation failed (using default content)",
+                            },
+                        }
+                    );
+
+                    return fallbackContent;
+                }
+            }
+        } catch (fallbackError) {
+            logError("Failed to save default fallback content", fallbackError, {
+                userId,
+                templateType,
+                websiteId,
+            });
+        }
+
+        // If fallback also failed, mark the website as failed
         await Website.findByIdAndUpdate(
             websiteId,
             {
