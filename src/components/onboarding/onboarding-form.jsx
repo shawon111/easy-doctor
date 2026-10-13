@@ -197,7 +197,7 @@ export function OnboardingForm() {
 
             <StepIndicator currentStep={currentStep} compact />
 
-            <form onSubmit={handleSubmit(onSubmit)} className="flex min-h-0 flex-1 flex-col">
+            <form className="flex min-h-0 flex-1 flex-col">
               <header className="mb-7">
                 <p className="text-xs font-semibold uppercase tracking-[0.17em] text-blue-600">
                   {currentStep === STEPS.length - 1 ? "Almost there" : `Step ${currentStep + 1} · About 2 minutes`}
@@ -228,7 +228,8 @@ export function OnboardingForm() {
 
                 {isLastStep ? (
                   <Button
-                    type="submit"
+                    type="button"
+                    onClick={handleSubmit(onSubmit)}
                     disabled={isBusy}
                     className="h-12 w-full rounded-xl bg-blue-600 px-6 text-white shadow-lg shadow-blue-600/20 hover:bg-blue-700 sm:w-auto"
                   >

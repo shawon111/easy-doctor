@@ -78,6 +78,7 @@ export function StepSocial({ register, control, errors }) {
                         onValueChange={platformField.onChange}
                       >
                         <SelectTrigger
+                          type="button"
                           className="h-12 w-full rounded-xl border-slate-200 bg-white shadow-sm shadow-slate-950/[0.02]"
                           aria-invalid={getFieldError(errors, `socialLinks.${index}.platform`) ? true : undefined}
                         >
