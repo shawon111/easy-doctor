@@ -4,6 +4,7 @@ import { TooltipProvider } from '@/components/ui/tooltip';
 import { DashboardWebsiteActions } from '@/components/dashboard/DashboardWebsiteActions';
 import { requireUser } from '@/lib/requireUser';
 import { getWebsiteUrlForUser } from '@/services/website.service';
+import { getSystemSettings } from '@/services/admin.service';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
 import { Sparkles } from 'lucide-react';
@@ -21,7 +22,10 @@ const DashboardLayout = async ({ children }) => {
     if (!currentUser || !currentUser._id || !currentUser.email || currentUser === null) {
         redirect('/login');
     }
-    const websiteUrl = await getWebsiteUrlForUser(currentUser._id);
+    const [websiteUrl, systemSettings] = await Promise.all([
+        getWebsiteUrlForUser(currentUser._id),
+        getSystemSettings().catch(() => null),
+    ]);
     const sidebarUser = {
         _id: currentUser._id,
         name: currentUser.name,
@@ -48,6 +52,12 @@ const DashboardLayout = async ({ children }) => {
                             </div>
                             <DashboardWebsiteActions websiteUrl={websiteUrl} />
                         </header>
+                        {systemSettings?.noticeBanner?.enabled && systemSettings?.noticeBanner?.message && (
+                            <div className="border-b border-amber-200 bg-amber-50 px-4 py-2.5 text-xs font-medium text-amber-900 flex items-center justify-center gap-2">
+                                <span className="material-symbols-outlined text-[16px] text-amber-700">info</span>
+                                <span>{systemSettings.noticeBanner.message}</span>
+                            </div>
+                        )}
                         {currentUser.userLevel !== 'pro' && (
                             <div className="border-b border-blue-100 bg-gradient-to-r from-blue-50 via-white to-cyan-50 px-4 py-3 sm:px-6">
                                 <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-3 sm:flex-row sm:items-center">

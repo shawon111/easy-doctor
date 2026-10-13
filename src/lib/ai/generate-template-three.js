@@ -6,7 +6,8 @@ import { templateThreeResponseSchema } from "./schemas/template-three";
 
 export async function generateTemplateThreeContent(
     doctorData,
-    seoData
+    seoData,
+    model = null
 ) {
     if (!doctorData) {
         throw new Error("Doctor data is required");
@@ -16,9 +17,11 @@ export async function generateTemplateThreeContent(
         throw new Error("SEO data is required");
     }
 
+    const aiModel = model || process.env.GEMINI_MODEL || "gemini-3.1-flash-lite";
+
     return generateWithRetry(async () => {
         const response = await ai.models.generateContent({
-            model: process.env.GEMINI_MODEL,
+            model: aiModel,
             contents: buildTemplateThreePrompt(doctorData, seoData),
             config: {
                 temperature: 0.7,

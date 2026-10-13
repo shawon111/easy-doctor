@@ -6,7 +6,8 @@ import { templateTwoResponseSchema } from "./schemas/template-two";
 
 export async function generateTemplateTwoContent(
     doctorData,
-    seoData
+    seoData,
+    model = null
 ) {
     if (!doctorData) {
         throw new Error("Doctor data is required");
@@ -16,9 +17,11 @@ export async function generateTemplateTwoContent(
         throw new Error("SEO data is required");
     }
 
+    const aiModel = model || process.env.GEMINI_MODEL || "gemini-3.1-flash-lite";
+
     return generateWithRetry(async () => {
         const response = await ai.models.generateContent({
-            model: process.env.GEMINI_MODEL,
+            model: aiModel,
             contents: buildTemplateTwoPrompt(doctorData, seoData),
             config: {
                 temperature: 0.7,

@@ -88,6 +88,10 @@ const websiteSchema = new mongoose.Schema(
         status: {
             type: String,
             enum: ["generating", "ready", "failed"]
+        },
+        generationError: {
+            type: String,
+            default: null
         }
     },
     { timestamps: true }

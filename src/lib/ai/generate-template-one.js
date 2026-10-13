@@ -6,7 +6,8 @@ import { templateOneResponseSchema } from "./schemas/template-one";
 
 export async function generateTemplateOneContent(
     doctorData,
-    seoData
+    seoData,
+    model = null
 ) {
     if (!doctorData) {
         throw new Error("Doctor data is required");
@@ -16,9 +17,11 @@ export async function generateTemplateOneContent(
         throw new Error("SEO data is required");
     }
 
+    const aiModel = model || process.env.GEMINI_MODEL || "gemini-3.1-flash-lite";
+
     return generateWithRetry(async () => {
         const response = await ai.models.generateContent({
-            model: process.env.GEMINI_MODEL,
+            model: aiModel,
             contents: buildTemplateOnePrompt(doctorData, seoData),
             config: {
                 temperature: 0.7,

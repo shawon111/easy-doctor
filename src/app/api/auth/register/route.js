@@ -6,11 +6,27 @@ import { logError } from "@/lib/logger";
 import { profileCreatedEmail } from "@/lib/emailTemplates";
 import { sendEmail } from "@/services/email.service";
 import { createUser } from "@/services/user.service";
+import { getSystemSettings } from "@/services/admin.service";
 import { NextResponse } from "next/server";
 
 export const POST = async (request) => {
     try {
         await connectDB();
+
+        // Check if registration is allowed in platform settings
+        const settings = await getSystemSettings();
+        if (settings?.allowNewRegistrations === false) {
+            return NextResponse.json(
+                {
+                    success: false,
+                    message: "New doctor registrations are currently closed by the administrator.",
+                },
+                {
+                    status: 403,
+                }
+            );
+        }
+
         const userData = await request.json();
         // save user
         const user = await createUser(userData);

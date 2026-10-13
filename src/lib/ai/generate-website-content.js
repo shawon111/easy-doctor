@@ -21,6 +21,7 @@ import {
     templateTwoDefaults,
     templateThreeDefaults,
 } from "@/content/defaults";
+import { getSystemSettings } from "@/services/admin.service";
 
 const templateModels = {
     "template-one": TemplateOneContent,
@@ -87,11 +88,16 @@ export async function generateWebsiteContent(
         const doctorData = prepareDoctorData(user);
         const seoData = prepareSeoData(seo);
 
+        // Fetch configured AI model from platform settings
+        const settings = await getSystemSettings().catch(() => null);
+        const aiModel = settings?.aiSettings?.model || process.env.GEMINI_MODEL || "gemini-3.1-flash-lite";
+
         // Generate AI content
         const generatedContent = sanitizeGeneratedContent(
             await generateContent(
                 doctorData,
-                seoData
+                seoData,
+                aiModel
             )
         );
 
@@ -153,7 +159,7 @@ export async function generateWebsiteContent(
             websiteId,
         });
 
-        // Attempt to fall back to default content so the website still loads
+        // Always fall back to default template content so the website is guaranteed to load
         try {
             const defaults = templateDefaults[templateType];
             const Template = templateModels[templateType];

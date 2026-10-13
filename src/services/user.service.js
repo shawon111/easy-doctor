@@ -90,6 +90,7 @@ export const getCurrentUser = async () => {
             websiteCreated: 1,
             profileCompleted: 1,
             userLevel: 1,
+            role: 1,
             subscription: 1,
             profilePicture: 1,
             _id: 1,
@@ -109,13 +110,23 @@ export const getCurrentUser = async () => {
     }
 }
 
-// login user by checking email and password
+// login user by checking email and password (general doctor/user login)
 export const loginUser = async (email, password) => {
     await connectDB();
-    const user = await User.findOne({ email: email.toLowerCase() }).select({ password: 1, _id: 1 }).lean();
+    const user = await User.findOne({ email: email.toLowerCase() })
+        .select({ password: 1, _id: 1, role: 1, email: 1 })
+        .lean();
     if (!user) {
         throw new Error("User not found");
     }
+
+    // Admins are prohibited from logging in via the general user login route
+    const adminEmail = process.env.ADMIN_EMAIL?.toLowerCase();
+    const isAdmin = user.role === "admin" || (adminEmail && user.email?.toLowerCase() === adminEmail);
+    if (isAdmin) {
+        throw new Error("Admin accounts must log in via the BossDocx Admin Portal at /bossdocx/login");
+    }
+
     const comparePassword = await bcrypt.compare(password, user.password);
     if (!comparePassword) {
         throw new Error("Invalid password");

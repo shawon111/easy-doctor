@@ -13,6 +13,7 @@ import mongoose from "mongoose";
 import { waitUntil } from "@vercel/functions";
 import { generateWebsiteContent } from "@/lib/ai/generate-website-content";
 import { revalidatePath, revalidateTag } from "next/cache";
+import { getSystemSettings } from "@/services/admin.service";
 
 const templateTypeToVariantmap = {
     "template-one": "light",
@@ -91,11 +92,14 @@ export const POST = withUser(async (request, context, currentUser) => {
                 status: "generating"
             }, session);
 
+            const settings = await getSystemSettings().catch(() => null);
+            const trialDays = Number.isInteger(settings?.trialDays) ? settings.trialDays : 15;
+
             const expiresAt = currentUser.expiresAt
                 ? new Date(currentUser.expiresAt)
                 : new Date();
             if (!currentUser.expiresAt) {
-                expiresAt.setDate(expiresAt.getDate() + 15);
+                expiresAt.setDate(expiresAt.getDate() + trialDays);
             }
 
             const updatedUser = await User.findByIdAndUpdate(
