@@ -128,20 +128,33 @@ function ImageField({ label, value, onChange }) {
 
   return (
     <div className="space-y-2">
-      <Label>{label}</Label>
+      <Label className="text-xs font-bold uppercase tracking-wider text-slate-200">{label}</Label>
       {value ? (
-        <Image
-          src={value}
-          alt={`${label} preview`}
-          width={640}
-          height={256}
-          unoptimized
-          className="h-32 w-full rounded-lg border object-cover"
-        />
+        <div className="overflow-hidden rounded-xl border border-slate-700 bg-slate-900/60 p-1.5 shadow-sm">
+          <Image
+            src={value}
+            alt={`${label} preview`}
+            width={640}
+            height={256}
+            unoptimized
+            className="h-36 w-full rounded-lg object-cover"
+          />
+        </div>
       ) : null}
       <div className="flex gap-2">
-        <Input value={value || ""} onChange={(event) => onChange(event.target.value)} placeholder="Image URL" />
-        <Button type="button" variant="outline" disabled={uploading} asChild>
+        <Input
+          value={value || ""}
+          onChange={(event) => onChange(event.target.value)}
+          placeholder="Image URL"
+          className="rounded-xl border-slate-700 bg-slate-900/90 text-xs text-white placeholder:text-slate-500 focus-visible:border-indigo-500"
+        />
+        <Button
+          type="button"
+          variant="outline"
+          disabled={uploading}
+          className="rounded-xl border border-slate-700 bg-slate-900 px-4 text-xs font-semibold text-slate-200 hover:bg-slate-800 hover:text-white"
+          asChild
+        >
           <label className="cursor-pointer">
             {uploading ? "Uploading..." : "Upload"}
             <input type="file" accept="image/*" className="hidden" onChange={handleFileChange} />
@@ -157,9 +170,9 @@ function MapLinkEditor({ label, value, onChange }) {
 
   return (
     <div className="space-y-2">
-      <Label>{label}</Label>
+      <Label className="text-xs font-bold uppercase tracking-wider text-slate-200">{label}</Label>
       {embedUrl ? (
-        <div className="h-52 w-full overflow-hidden rounded-lg border">
+        <div className="h-56 w-full overflow-hidden rounded-xl border border-slate-700 bg-slate-900/60 shadow-sm">
           <iframe
             title={`${label} preview`}
             src={embedUrl}
@@ -170,14 +183,15 @@ function MapLinkEditor({ label, value, onChange }) {
           />
         </div>
       ) : (
-        <div className="flex h-24 w-full items-center justify-center rounded-lg border border-dashed p-3 text-center text-sm text-muted-foreground">
-          Add a Google Maps link to show the location map.
+        <div className="flex h-24 w-full items-center justify-center rounded-xl border border-dashed border-slate-700 bg-slate-900/40 p-3 text-center text-xs text-slate-400">
+          Add a Google Maps link to display an interactive location map.
         </div>
       )}
       <Input
         value={value || ""}
         onChange={(event) => onChange(event.target.value)}
         placeholder="https://www.google.com/maps?q=Harley+Street,+London"
+        className="rounded-xl border-slate-700 bg-slate-900/90 text-xs text-white placeholder:text-slate-500 focus-visible:border-indigo-500"
       />
     </div>
   );
@@ -187,48 +201,64 @@ function LinkListEditor({ label, value, onChange }) {
   const links = value || [];
 
   return (
-    <div className="space-y-3 rounded-lg border bg-muted/20 p-3">
-      <div className="flex items-center justify-between gap-3">
+    <div className="space-y-3.5 rounded-xl border border-slate-800 bg-slate-900/50 p-4">
+      <div className="flex items-center justify-between gap-3 border-b border-slate-800/80 pb-3">
         <div>
-          <Label>{label}</Label>
-          <p className="text-xs text-muted-foreground">Add the text visitors see and where the link should go.</p>
+          <Label className="text-xs font-bold uppercase tracking-wider text-slate-200">{label}</Label>
+          <p className="mt-0.5 text-xs text-slate-400">Add the link text visitors see and where it directs.</p>
         </div>
         <Button
           type="button"
           size="sm"
           variant="outline"
+          className="rounded-xl border border-slate-700 bg-slate-800 px-3.5 py-1.5 text-xs font-bold text-slate-200 transition-colors hover:border-indigo-500/50 hover:bg-slate-700 hover:text-white cursor-pointer"
           onClick={() => onChange([...links, { label: "", href: "" }])}
         >
           Add link
         </Button>
       </div>
       {links.length === 0 ? (
-        <p className="rounded-md border border-dashed p-3 text-sm text-muted-foreground">
-          No links yet. Add a link to show it on your website.
+        <p className="rounded-xl border border-dashed border-slate-800 bg-slate-950/40 p-4 text-center text-xs text-slate-400">
+          No links yet. Click "Add link" to create one for your practice website.
         </p>
       ) : null}
       {links.map((link, index) => (
-        <div key={`${label}-${index}`} className="grid gap-3 rounded-lg border bg-background p-3 md:grid-cols-[1fr_1.4fr_auto] md:items-end">
-          <div className="space-y-2">
-            <p className="text-sm font-medium">Link {index + 1}</p>
-            <Label htmlFor={`${label}-${index}-label`}>Link name</Label>
+        <div
+          key={`${label}-${index}`}
+          className="grid gap-3.5 rounded-xl border border-slate-700/80 bg-slate-950/80 p-4 md:grid-cols-[1fr_1.4fr_auto] md:items-end shadow-sm"
+        >
+          <div className="space-y-1.5">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-indigo-400">Link {index + 1}</span>
+            <Label htmlFor={`${label}-${index}-label`} className="text-xs font-semibold text-slate-300">
+              Link Label
+            </Label>
             <Input
               id={`${label}-${index}-label`}
               value={link.label || ""}
-              placeholder="For example, About us"
+              placeholder="e.g. About Us"
               onChange={(event) => onChange(links.map((item, itemIndex) => itemIndex === index ? { ...item, label: event.target.value } : item))}
+              className="rounded-xl border-slate-700 bg-slate-900/90 text-xs text-white placeholder:text-slate-500 focus-visible:border-indigo-500"
             />
           </div>
-          <div className="space-y-2">
-            <Label htmlFor={`${label}-${index}-href`}>Link address</Label>
+          <div className="space-y-1.5">
+            <Label htmlFor={`${label}-${index}-href`} className="text-xs font-semibold text-slate-300">
+              Destination URL
+            </Label>
             <Input
               id={`${label}-${index}-href`}
               value={link.href || ""}
               placeholder="/about or https://example.com"
               onChange={(event) => onChange(links.map((item, itemIndex) => itemIndex === index ? { ...item, href: event.target.value } : item))}
+              className="rounded-xl border-slate-700 bg-slate-900/90 text-xs text-white placeholder:text-slate-500 focus-visible:border-indigo-500"
             />
           </div>
-          <Button type="button" variant="ghost" className="text-destructive" onClick={() => onChange(links.filter((_, itemIndex) => itemIndex !== index))}>
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            className="rounded-xl border border-rose-500/30 bg-rose-500/10 px-3.5 py-2 text-xs font-semibold text-rose-300 transition-colors hover:border-rose-500/60 hover:bg-rose-500/20 hover:text-white cursor-pointer"
+            onClick={() => onChange(links.filter((_, itemIndex) => itemIndex !== index))}
+          >
             Remove
           </Button>
         </div>
@@ -239,9 +269,6 @@ function LinkListEditor({ label, value, onChange }) {
 
 function FieldEditor({ value, template, path, onChange }) {
   const lastKey = path.split(".").at(-1);
-  // Image and map fields are single text/URL values; only apply these custom
-  // editors to scalars so array collections (e.g. an "images" gallery) are
-  // never rendered as a single image upload field.
   const isScalarField = value === null || value === undefined || typeof value === "string";
 
   if (isScalarField && isImageKey(lastKey)) {
@@ -266,8 +293,11 @@ function FieldEditor({ value, template, path, onChange }) {
 
   if (typeof value === "boolean") {
     return (
-      <div className="flex items-center justify-between rounded-lg border p-3">
-        <Label>{labelFor(path.split(".").at(-1))}</Label>
+      <div className="flex items-center justify-between rounded-xl border border-slate-800 bg-slate-900/40 p-4">
+        <div>
+          <Label className="text-xs font-bold uppercase tracking-wider text-slate-200">{labelFor(path.split(".").at(-1))}</Label>
+          <p className="mt-0.5 text-xs text-slate-400">Toggle this section on or off on your website</p>
+        </div>
         <Switch checked={value} onCheckedChange={onChange} />
       </div>
     );
@@ -275,9 +305,14 @@ function FieldEditor({ value, template, path, onChange }) {
 
   if (typeof value === "number") {
     return (
-      <div className="space-y-2">
-        <Label>{labelFor(path.split(".").at(-1))}</Label>
-        <Input type="number" value={value} onChange={(event) => onChange(Number(event.target.value))} />
+      <div className="space-y-1.5">
+        <Label className="text-xs font-bold uppercase tracking-wider text-slate-200">{labelFor(path.split(".").at(-1))}</Label>
+        <Input
+          type="number"
+          value={value}
+          onChange={(event) => onChange(Number(event.target.value))}
+          className="rounded-xl border-slate-700 bg-slate-900/90 text-xs text-white placeholder:text-slate-500 focus-visible:border-indigo-500"
+        />
       </div>
     );
   }
@@ -285,12 +320,21 @@ function FieldEditor({ value, template, path, onChange }) {
   if (typeof value === "string" || value === null || value === undefined) {
     const isLong = value?.length > 100 || /body|description|answer|quote|heading/i.test(path);
     return (
-      <div className="space-y-2">
-        <Label>{labelFor(path.split(".").at(-1))}</Label>
+      <div className="space-y-1.5">
+        <Label className="text-xs font-bold uppercase tracking-wider text-slate-200">{labelFor(path.split(".").at(-1))}</Label>
         {isLong ? (
-          <Textarea value={value || ""} onChange={(event) => onChange(event.target.value)} rows={4} />
+          <Textarea
+            value={value || ""}
+            onChange={(event) => onChange(event.target.value)}
+            rows={4}
+            className="rounded-xl border-slate-700 bg-slate-900/90 text-xs leading-relaxed text-white placeholder:text-slate-500 focus-visible:border-indigo-500"
+          />
         ) : (
-          <Input value={value || ""} onChange={(event) => onChange(event.target.value)} />
+          <Input
+            value={value || ""}
+            onChange={(event) => onChange(event.target.value)}
+            className="rounded-xl border-slate-700 bg-slate-900/90 text-xs text-white placeholder:text-slate-500 focus-visible:border-indigo-500"
+          />
         )}
       </div>
     );
@@ -302,23 +346,38 @@ function FieldEditor({ value, template, path, onChange }) {
     }
     const itemTemplate = value[0] ?? template?.[0] ?? "";
     return (
-      <div className="space-y-3 rounded-lg border bg-muted/20 p-3">
-        <div className="flex items-center justify-between">
-          <Label>{labelFor(path.split(".").at(-1))}</Label>
+      <div className="space-y-3.5 rounded-xl border border-slate-800 bg-slate-900/40 p-4">
+        <div className="flex items-center justify-between border-b border-slate-800/80 pb-3">
+          <div>
+            <Label className="text-xs font-bold uppercase tracking-wider text-slate-200">{labelFor(path.split(".").at(-1))}</Label>
+            <p className="mt-0.5 text-xs text-slate-400">Manage list items for this section</p>
+          </div>
           <Button
             type="button"
             size="sm"
             variant="outline"
+            className="rounded-xl border border-slate-700 bg-slate-800 px-3.5 py-1.5 text-xs font-bold text-slate-200 transition-colors hover:border-indigo-500/50 hover:bg-slate-700 hover:text-white cursor-pointer"
             onClick={() => onChange([...value, clone(itemTemplate)])}
           >
-            Add
+            Add Item
           </Button>
         </div>
+        {value.length === 0 ? (
+          <p className="rounded-xl border border-dashed border-slate-800 bg-slate-950/40 p-4 text-center text-xs text-slate-400">
+            No items in this list yet. Click "Add Item" to create one.
+          </p>
+        ) : null}
         {value.map((item, index) => (
-          <div key={`${path}-${index}`} className="space-y-3 rounded-lg border bg-background p-3">
-            <div className="flex items-center justify-between">
-              <p className="text-sm font-medium">Item {index + 1}</p>
-              <Button type="button" size="sm" variant="ghost" onClick={() => onChange(value.filter((_, itemIndex) => itemIndex !== index))}>
+          <div key={`${path}-${index}`} className="space-y-3.5 rounded-xl border border-slate-700/70 bg-slate-950/80 p-4 shadow-sm">
+            <div className="flex items-center justify-between border-b border-slate-800/80 pb-2.5">
+              <span className="text-xs font-bold uppercase tracking-wider text-indigo-400">Item {index + 1}</span>
+              <Button
+                type="button"
+                size="sm"
+                variant="outline"
+                className="rounded-xl border border-rose-500/30 bg-rose-500/10 px-3 py-1 text-xs font-semibold text-rose-300 transition-colors hover:border-rose-500/60 hover:bg-rose-500/20 hover:text-white cursor-pointer"
+                onClick={() => onChange(value.filter((_, itemIndex) => itemIndex !== index))}
+              >
                 Remove
               </Button>
             </div>
@@ -336,17 +395,21 @@ function FieldEditor({ value, template, path, onChange }) {
 
   if (value && typeof value === "object") {
     return (
-      <div className="space-y-4 rounded-lg border bg-muted/20 p-4">
-        <Label className="text-sm font-semibold">{labelFor(path.split(".").at(-1))}</Label>
-        {Object.entries(value).map(([key, childValue]) => (
-          <FieldEditor
-            key={`${path}.${key}`}
-            value={childValue}
-            template={template?.[key]}
-            path={`${path}.${key}`}
-            onChange={(nextValue) => onChange({ ...value, [key]: nextValue })}
-          />
-        ))}
+      <div className="space-y-4 rounded-xl border border-slate-800/90 bg-slate-900/30 p-4 sm:p-5">
+        <div className="border-b border-slate-800/80 pb-2">
+          <Label className="text-xs font-bold uppercase tracking-wider text-slate-200">{labelFor(path.split(".").at(-1))}</Label>
+        </div>
+        <div className="space-y-4">
+          {Object.entries(value).map(([key, childValue]) => (
+            <FieldEditor
+              key={`${path}.${key}`}
+              value={childValue}
+              template={template?.[key]}
+              path={`${path}.${key}`}
+              onChange={(nextValue) => onChange({ ...value, [key]: nextValue })}
+            />
+          ))}
+        </div>
       </div>
     );
   }
@@ -370,20 +433,20 @@ function MobilePreview({ templateType, page, section, content }) {
   }, [page, section, content]);
 
   return (
-    <aside className="hidden w-[430px] shrink-0 border-l bg-muted/40 p-4 xl:block">
+    <aside className="hidden w-[430px] shrink-0 border-l border-slate-800/80 bg-slate-950 p-4 xl:block">
       <div className="sticky top-4">
         <div className="mb-3 flex items-center justify-between">
           <div>
-            <h2 className="font-semibold">Live preview</h2>
-            <p className="text-xs text-muted-foreground">Previewing the {PAGE_LABELS[page].toLowerCase()} page</p>
+            <h2 className="text-xs font-bold uppercase tracking-wider text-slate-300">Live Preview</h2>
+            <p className="text-xs text-slate-400">Previewing the {PAGE_LABELS[page].toLowerCase()} page</p>
           </div>
-          <span className="rounded-full border bg-card px-2 py-1 text-xs text-muted-foreground">Mobile</span>
+          <span className="rounded-full border border-slate-800 bg-slate-900 px-2.5 py-0.5 font-mono text-[11px] font-bold text-slate-400">Mobile</span>
         </div>
         <iframe
           ref={frameRef}
           title="Mobile website preview"
           src={`/preview/${templateType}`}
-          className="mx-auto h-[calc(100vh-150px)] max-h-[820px] w-[375px] rounded-[2rem] border-[8px] border-slate-900 bg-background shadow-2xl"
+          className="mx-auto h-[calc(100vh-170px)] max-h-[820px] w-[375px] rounded-[2.5rem] border-[8px] border-slate-800 bg-slate-950 shadow-2xl"
         />
       </div>
     </aside>
@@ -444,12 +507,12 @@ export default function ContentEditor() {
   });
 
 
-  if (isLoading) return <div className="p-8 text-muted-foreground">Loading website editor...</div>;
-  if (isError) return <div className="p-8 text-destructive">{error.message}</div>;
+  if (isLoading) return <div className="p-8 text-xs font-semibold text-slate-400">Loading website editor...</div>;
+  if (isError) return <div className="m-6 rounded-xl border border-rose-500/30 bg-rose-500/10 p-5 text-xs font-semibold text-rose-300">{error.message}</div>;
   if (!website) {
-    return <div className="p-8 text-destructive">Website is not created yet.</div>;
+    return <div className="m-6 rounded-xl border border-amber-500/30 bg-amber-500/10 p-5 text-xs font-semibold text-amber-300">Website is not created yet.</div>;
   }
-  if (!resolvedContent || !defaults) return <div className="p-8 text-destructive">Unsupported template type.</div>;
+  if (!resolvedContent || !defaults) return <div className="m-6 rounded-xl border border-rose-500/30 bg-rose-500/10 p-5 text-xs font-semibold text-rose-300">Unsupported template type.</div>;
 
   const isSiteSection = activeSection === "header" || activeSection === "footer";
   const sectionValue = isSiteSection ? resolvedContent[activeSection] : resolvedContent.pages[page][activeSection];
@@ -468,17 +531,17 @@ export default function ContentEditor() {
   }
 
   return (
-    <div className="dashboard-page flex min-h-[calc(100dvh-4rem)] w-full flex-col bg-muted/30 xl:h-[calc(100dvh-6rem)] xl:min-h-0 xl:overflow-hidden">
-      <div className="dashboard-editor-header border-b bg-card px-3 py-4 sm:px-4 md:px-6">
+    <div className="flex min-h-[calc(100dvh-4rem)] w-full flex-col bg-slate-950 xl:h-[calc(100dvh-4rem)] xl:min-h-0 xl:overflow-hidden">
+      <div className="border-b border-slate-800/80 bg-slate-950 px-4 py-4 md:px-6">
         <div className="mb-4 flex flex-wrap items-start justify-between gap-3 sm:items-center">
           <div className="min-w-0">
-            <p className="dashboard-eyebrow">Personalize your website</p>
-            <h1 className="text-xl font-semibold">Website content</h1>
-            <p className="break-words text-sm text-muted-foreground">{website.templateType} · Changes are saved section by section.</p>
+            <p className="text-xs font-bold uppercase tracking-wider text-indigo-400">Personalize Your Practice</p>
+            <h1 className="text-xl sm:text-2xl font-extrabold tracking-tight text-white">Website Content Editor</h1>
+            <p className="break-words text-xs sm:text-sm text-slate-400">{website.templateType} · Changes are saved section by section.</p>
           </div>
           <Button
             type="button"
-            className="max-w-full"
+            className="rounded-xl bg-indigo-600 px-5 text-xs font-bold text-white shadow-md shadow-indigo-600/20 hover:bg-indigo-500 disabled:opacity-50 cursor-pointer"
             disabled={saveMutation.isPending}
             onClick={saveActiveSection}
           >
@@ -487,15 +550,25 @@ export default function ContentEditor() {
         </div>
         <div className="flex gap-2 overflow-x-auto pb-1">
           {Object.entries(PAGE_LABELS).map(([pageKey, pageLabel]) => (
-            <Button key={pageKey} className="shrink-0" type="button" variant={page === pageKey ? "default" : "outline"} onClick={() => setPage(pageKey)}>
+            <button
+              key={pageKey}
+              type="button"
+              onClick={() => setPage(pageKey)}
+              className={cn(
+                "shrink-0 rounded-xl px-4 py-2 text-xs font-bold transition-all cursor-pointer",
+                page === pageKey
+                  ? "bg-indigo-600 text-white shadow-md shadow-indigo-600/20"
+                  : "border border-slate-800 bg-slate-900 text-slate-300 hover:bg-slate-800 hover:text-white"
+              )}
+            >
               {pageLabel}
-            </Button>
+            </button>
           ))}
         </div>
       </div>
       <div className="flex min-h-0 flex-1 flex-col xl:flex-row">
-        <aside className="shrink-0 border-b bg-card p-3 xl:w-56 xl:overflow-y-auto xl:border-b-0 xl:border-r">
-          <p className="mb-2 px-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">Sections</p>
+        <aside className="shrink-0 border-b border-slate-800/80 bg-slate-950 p-4 xl:w-60 xl:overflow-y-auto xl:border-b-0 xl:border-r">
+          <p className="mb-3 px-1 text-xs font-bold uppercase tracking-wider text-slate-400">Sections</p>
           <nav aria-label="Website content sections" className="flex gap-2 overflow-x-auto pb-1 xl:block xl:overflow-visible xl:pb-0">
             {sections.map((sectionKey) => (
               <button
@@ -503,17 +576,24 @@ export default function ContentEditor() {
                 type="button"
                 onClick={() => setSection(sectionKey)}
                 aria-current={activeSection === sectionKey ? "page" : undefined}
-                className={cn("shrink-0 rounded-lg px-3 py-2 text-left text-sm xl:mb-1 xl:block xl:w-full", activeSection === sectionKey ? "bg-[#17345d] font-semibold text-white" : "text-slate-600 hover:bg-slate-100 hover:text-slate-900")}
+                className={cn(
+                  "shrink-0 rounded-xl px-3.5 py-2 text-left text-xs sm:text-sm font-medium transition-all xl:mb-1.5 xl:block xl:w-full cursor-pointer",
+                  activeSection === sectionKey
+                    ? "bg-indigo-600 font-bold text-white shadow-sm shadow-indigo-600/20"
+                    : "text-slate-400 hover:bg-slate-900/80 hover:text-slate-200"
+                )}
               >
                 {labelFor(sectionKey)}
               </button>
             ))}
           </nav>
         </aside>
-        <main className="dashboard-page min-w-0 flex-1 p-3 sm:p-4 md:p-6 xl:overflow-y-auto">
-          <Card className="dashboard-panel mx-auto max-w-3xl rounded-2xl">
-            <CardHeader><CardTitle>{labelFor(activeSection)}</CardTitle></CardHeader>
-            <CardContent className="space-y-5">
+        <main className="min-w-0 flex-1 p-4 sm:p-6 md:p-8 xl:overflow-y-auto bg-slate-900/20">
+          <Card className="mx-auto max-w-3xl rounded-2xl border border-slate-800/80 bg-slate-950/80 shadow-sm p-0">
+            <CardHeader className="p-5 sm:p-6 border-b border-slate-800/80">
+              <CardTitle className="text-base sm:text-lg font-bold text-white">{labelFor(activeSection)}</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-6 p-5 sm:p-6">
               <FieldEditor value={sectionValue} template={sectionTemplate} path={activeSection} onChange={updateSection} />
             </CardContent>
           </Card>

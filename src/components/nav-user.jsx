@@ -83,13 +83,13 @@ export function NavUser({
             </SidebarMenuButton>
           </DropdownMenuTrigger>
           <DropdownMenuContent
-            className="w-fit"
+            className="w-56 rounded-xl border border-slate-800 bg-slate-950 p-1.5 text-slate-200 shadow-xl"
             side={isMobile ? "bottom" : "right"}
             align="end"
-            sideOffset={4}>
+            sideOffset={6}>
             <DropdownMenuLabel className="p-0 font-normal">
-              <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
-                <Avatar className="h-8 w-8 rounded-lg">
+              <div className="flex items-center gap-2.5 px-2 py-2 text-left text-sm">
+                <Avatar className="h-8 w-8 rounded-lg border border-slate-700/60">
                   {
                     user.profilePicture ? <Image
                       width={32}
@@ -97,36 +97,39 @@ export function NavUser({
                       alt="User Image"
                       src={user?.profilePicture}
                       className="rounded-full"
-                    /> : <AvatarFallback className="rounded-lg">{initials}</AvatarFallback>
+                    /> : <AvatarFallback className="rounded-lg bg-slate-800 text-slate-200 text-xs font-bold">{initials}</AvatarFallback>
                   }
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-medium">{user.name}</span>
-                  <span className="truncate text-xs">{user.email}</span>
+                  <span className="truncate font-bold text-white">{user.name}</span>
+                  <span className="truncate text-xs text-slate-400">{user.email}</span>
                 </div>
               </div>
             </DropdownMenuLabel>
-            <DropdownMenuSeparator />
+            <DropdownMenuSeparator className="bg-slate-800 my-1" />
             <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <Link className="flex gap-x-2 items-center" href="/dashboard/billing">
-                  <SparklesIcon />
+              <DropdownMenuItem asChild className="rounded-lg text-xs font-semibold text-slate-300 hover:bg-slate-900 hover:text-white cursor-pointer px-2.5 py-2">
+                <Link className="flex gap-x-2.5 items-center w-full" href="/dashboard/billing">
+                  <SparklesIcon className="size-4 text-indigo-400" />
                   Upgrade to Pro
                 </Link>
               </DropdownMenuItem>
             </DropdownMenuGroup>
-            <DropdownMenuSeparator />
+            <DropdownMenuSeparator className="bg-slate-800 my-1" />
             <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <Link className="flex gap-x-2 items-center" href="/dashboard/billing">
-                  <CreditCardIcon />
-                  Billing
+              <DropdownMenuItem asChild className="rounded-lg text-xs font-semibold text-slate-300 hover:bg-slate-900 hover:text-white cursor-pointer px-2.5 py-2">
+                <Link className="flex gap-x-2.5 items-center w-full" href="/dashboard/billing">
+                  <CreditCardIcon className="size-4 text-slate-400" />
+                  Billing & Invoices
                 </Link>
               </DropdownMenuItem>
             </DropdownMenuGroup>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={()=> handleLogOut()}>
-              <LogOutIcon />
+            <DropdownMenuSeparator className="bg-slate-800 my-1" />
+            <DropdownMenuItem
+              onClick={()=> handleLogOut()}
+              className="rounded-lg text-xs font-semibold text-rose-400 hover:bg-rose-500/10 hover:text-rose-300 cursor-pointer px-2.5 py-2 flex gap-x-2.5 items-center"
+            >
+              <LogOutIcon className="size-4" />
               Log out
             </DropdownMenuItem>
           </DropdownMenuContent>

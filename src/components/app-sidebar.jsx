@@ -98,17 +98,16 @@ export function AppSidebar({
 }) {
   return (
     <Sidebar
-      style={{ backgroundColor: "#0b1530" }}
-      className="border-r border-slate-800 text-slate-100"
+      className="border-r border-slate-800 bg-slate-950 text-slate-100"
       collapsible="offcanvas" 
       {...props}>
-      <SidebarHeader className="px-4 pb-5 pt-6">
+      <SidebarHeader className="px-4 pb-5 pt-6 bg-slate-950">
         <TeamSwitcher />
       </SidebarHeader>
-      <SidebarContent className="px-2">
+      <SidebarContent className="px-2 bg-slate-950">
         <NavMain user={user} items={data.navMain} />
       </SidebarContent>
-      <SidebarFooter className="border-t border-white/10 p-3">
+      <SidebarFooter className="border-t border-slate-800/80 bg-slate-950 p-3">
         <NavUser user={user} />
       </SidebarFooter>
       <SidebarRail />

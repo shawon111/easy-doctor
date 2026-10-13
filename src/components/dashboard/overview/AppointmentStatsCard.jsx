@@ -11,9 +11,8 @@ export function AppointmentStatsCard() {
             icon="event_available"
             label="Upcoming Appointments"
             value={data?.upcomingAppointments ?? "—"}
-            accentColor="destructive"
             badge={
-                <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                <span className="text-[11px] font-bold font-mono px-2 py-0.5 rounded-full bg-slate-800 text-slate-300">
                     {data ? `${data.todayAppointments} today` : "Loading"}
                 </span>
             }

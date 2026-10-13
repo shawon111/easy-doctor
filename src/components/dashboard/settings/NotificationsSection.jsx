@@ -52,17 +52,17 @@ export function NotificationsSection({ preferences }) {
   return (
     <section
       id="notifications"
-      className="rounded-2xl border border-[#E2E8F0] bg-white p-4 shadow-[0px_4px_12px_rgba(0,0,0,0.03)] sm:p-6"
+      className="rounded-2xl border border-slate-800/80 bg-slate-950/80 p-5 sm:p-6 shadow-sm"
     >
-      <h2 className="mb-3 text-lg font-semibold text-[#0F172A] sm:mb-4">Notifications</h2>
-      <div className="divide-y divide-[#E2E8F0]">
+      <h2 className="mb-3.5 text-base sm:text-lg font-bold text-white">Notifications &amp; Alerts</h2>
+      <div className="divide-y divide-slate-800/80">
         {NOTIFICATIONS.map(({ id, title, description }) => (
           <div key={id} className="flex items-start justify-between gap-4 py-4">
             <div>
-              <label htmlFor={id} className="text-sm font-medium text-[#0F172A]">
+              <label htmlFor={id} className="text-xs sm:text-sm font-bold text-white cursor-pointer">
                 {title}
               </label>
-              <p className="mt-1 text-sm text-[#64748B]">{description}</p>
+              <p className="mt-1 text-xs sm:text-sm text-slate-400">{description}</p>
             </div>
             <Switch
               id={id}
@@ -70,7 +70,7 @@ export function NotificationsSection({ preferences }) {
               disabled={preferenceMutation.isPending}
               onCheckedChange={(checked) => handlePreferenceChange(id, checked)}
               aria-label={title}
-              className="mt-0.5 data-checked:bg-[#0066FF] data-unchecked:bg-[#C2C6D8]"
+              className="mt-0.5 data-checked:bg-indigo-600 data-unchecked:bg-slate-800"
             />
           </div>
         ))}

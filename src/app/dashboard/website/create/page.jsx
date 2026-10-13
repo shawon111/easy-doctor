@@ -15,11 +15,23 @@ const CreateWebsite = async () => {
     return (
         <>
             {
-                user?.websiteCreated === true ? <div className="mx-auto w-full max-w-360 p-4 pb-12 sm:p-6 md:p-8">
-                    <div className="rounded-2xl border border-emerald-200 bg-white p-6 text-sm font-medium text-emerald-800 shadow-subtle sm:p-8">
-                        You already have a website.
+                user?.websiteCreated === true ? (
+                    <div className="mx-auto w-full max-w-4xl space-y-6">
+                        <div className="rounded-2xl border border-emerald-500/30 bg-slate-950/80 p-6 sm:p-8 shadow-sm">
+                            <div className="flex items-center gap-3">
+                                <span className="flex size-10 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+                                    ✓
+                                </span>
+                                <div>
+                                    <h2 className="text-base font-bold text-white">You already have a published doctor website</h2>
+                                    <p className="mt-0.5 text-xs text-slate-400">
+                                        Your website is live and connected. You can view its status or edit pages anytime.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div> : <CreateWebsitePage />
+                ) : <CreateWebsitePage />
             }
         </>
     );

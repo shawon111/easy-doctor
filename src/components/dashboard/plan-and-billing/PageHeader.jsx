@@ -16,35 +16,38 @@ export function PageHeader({ isPro, hasExpiryDate }) {
   const isExtendingPlan = isPro && hasExpiryDate;
 
   return (
-    <header className="dashboard-heading flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-      <div className="relative z-10">
-        <p className="dashboard-eyebrow">Subscription</p>
-        <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+    <header className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+      <div>
+        <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-400">
+          <span className="size-2 rounded-full bg-emerald-400 animate-pulse" />
+          Subscription & Licensing
+        </div>
+        <h2 className="mt-1 text-2xl font-extrabold tracking-tight text-white sm:text-3xl">
           Plan &amp; Billing
         </h2>
-        <p className="mt-2 max-w-2xl text-sm text-muted-foreground sm:text-base">
-          Manage your subscription, view billing history, and upgrade your portal capabilities.
+        <p className="mt-1.5 max-w-2xl text-xs sm:text-sm text-slate-400">
+          Manage your practice membership, renew clinical access, and upgrade portal capabilities.
         </p>
       </div>
 
       <Button
         type="button"
         onClick={() => setIsUpgradeDialogOpen(true)}
-        className="relative z-10 flex w-full items-center gap-2 rounded-xl bg-slate-950 text-white shadow-lg shadow-slate-950/10 hover:bg-blue-950 sm:w-fit"
+        className="flex w-full items-center gap-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold shadow-md shadow-indigo-600/20 sm:w-fit"
       >
-        <span className="material-symbols-outlined text-[20px]">
+        <span className="material-symbols-outlined text-[18px]">
           {isExtendingPlan ? "autorenew" : "rocket_launch"}
         </span>
-        {isExtendingPlan ? "Extend My Pro Plan" : "Upgrade Plan"}
+        {isExtendingPlan ? "Extend My Pro Plan" : "Upgrade to Pro"}
       </Button>
 
       <Dialog open={isUpgradeDialogOpen} onOpenChange={setIsUpgradeDialogOpen}>
-        <DialogContent className="w-[calc(100vw-2rem)] max-h-[90vh] max-w-5xl gap-6 overflow-y-auto p-5 sm:w-[calc(100vw-4rem)] sm:max-w-5xl sm:p-8">
+        <DialogContent className="w-[calc(100vw-2rem)] max-h-[90vh] max-w-5xl gap-6 overflow-y-auto rounded-2xl border border-slate-800 bg-slate-950 p-5 text-slate-100 shadow-2xl sm:w-[calc(100vw-4rem)] sm:max-w-5xl sm:p-8">
           <DialogHeader className="pr-8">
-            <DialogTitle className="text-xl font-semibold text-foreground sm:text-2xl">
+            <DialogTitle className="text-xl font-extrabold text-white sm:text-2xl">
               {isExtendingPlan ? "Extend your Pro plan" : "Choose your Pro plan"}
             </DialogTitle>
-            <DialogDescription>
+            <DialogDescription className="text-xs sm:text-sm text-slate-400">
               {isExtendingPlan
                 ? "Keep your Pro benefits going. Choose how long you’d like to extend your subscription."
                 : "Compare the billing durations and select the option that works for you."}

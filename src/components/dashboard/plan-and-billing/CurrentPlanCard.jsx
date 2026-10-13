@@ -13,9 +13,9 @@ function formatDate(date) {
 
 function PlanFeature({ label }) {
   return (
-    <div className="flex items-center gap-3">
-      <span className="material-symbols-outlined text-[18px] text-[#10B981]">check_circle</span>
-      <span className="text-sm text-foreground">{label}</span>
+    <div className="flex items-center gap-2.5">
+      <span className="material-symbols-outlined text-[16px] text-emerald-400">check_circle</span>
+      <span className="text-xs text-slate-300 font-medium">{label}</span>
     </div>
   );
 }
@@ -69,65 +69,65 @@ export async function CurrentPlanCard({ className }) {
           : "Free trial active"
         : "Free plan";
   const statusClass = isExpired
-    ? "border-red-200 bg-red-50 text-red-700"
+    ? "border-rose-500/30 bg-rose-500/10 text-rose-400"
     : statusLabel === "Trial expiry unavailable"
-      ? "border-amber-200 bg-amber-50 text-amber-800"
-      : "border-[#10B981]/20 bg-[#10B981]/10 text-[#065F46]";
+      ? "border-amber-500/30 bg-amber-500/10 text-amber-400"
+      : "border-emerald-500/30 bg-emerald-500/10 text-emerald-400";
 
   return (
     <div
       className={cn(
-        "relative overflow-hidden rounded-2xl border border-border bg-card p-4 sm:p-6",
-        "shadow-[0px_4px_12px_rgba(0,0,0,0.03)]",
+        "relative overflow-hidden rounded-2xl border border-slate-800/80 bg-slate-950/80 p-5 sm:p-6",
+        "shadow-sm",
         "group lg:col-span-4",
         className
       )}
     >
-      <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-sky-200/40 blur-2xl transition-transform duration-500 group-hover:scale-110" />
+      <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-indigo-500/5 blur-2xl transition-transform duration-500 group-hover:scale-125" />
 
-      <div className="relative z-10 flex flex-col">
+      <div className="relative z-10 flex flex-col h-full">
         {/* Card header */}
-        <div className="mb-6 flex items-start justify-between">
+        <div className="mb-5 flex items-start justify-between">
           <div>
-            <h3 className="text-lg font-semibold text-foreground">Your Plan</h3>
+            <h3 className="text-base font-bold text-white">Your Plan</h3>
             <div className="mt-1">
-              <span className={`inline-flex items-center rounded-full border px-2.5 py-0.5 text-[11px] font-semibold ${statusClass}`}>
+              <span className={`inline-flex items-center rounded-full border px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider ${statusClass}`}>
                 {statusLabel}
               </span>
             </div>
           </div>
-          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 text-primary">
-            <span className="material-symbols-outlined text-[28px]" style={{ fontVariationSettings: "'FILL' 1" }}>
+          <div className="flex size-11 items-center justify-center rounded-xl bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 shadow-sm">
+            <span className="material-symbols-outlined text-[24px]" style={{ fontVariationSettings: "'FILL' 1" }}>
               verified
             </span>
           </div>
         </div>
 
         <div className="mb-6">
-          <span className="text-[32px] font-bold tracking-tight text-foreground">
+          <span className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white">
             {isPro ? `Pro: ${plan?.name ?? "Plan unavailable"}` : hasStartedFreeTrial ? "Free trial" : "Free plan"}
           </span>
           {isPro && plan ? (
-            <p className="mt-2 text-sm leading-6 text-muted-foreground">
+            <p className="mt-2 text-xs leading-relaxed text-slate-400">
               ৳{plan.amount.toLocaleString("en-US")} for {plan.durationMonths}{" "}
               {plan.durationMonths === 1 ? "month" : "months"}.
             </p>
           ) : (
-            <p className="mt-2 text-sm leading-6 text-muted-foreground">
+            <p className="mt-2 text-xs leading-relaxed text-slate-400">
               {isPro
                 ? "The subscription term could not be identified. Contact support if you recently made a payment."
                 : hasStartedFreeTrial
-                  ? "Your free 15-day trial lets you explore the website builder and publish your practice website."
+                  ? "Your free trial gives you full access to explore the website builder and publish your practice website."
                   : "Your free plan gives you access to the core doctor profile and website features."}
             </p>
           )}
 
-          <div className="mt-4 space-y-3 rounded-xl bg-muted/40 p-4 text-sm">
+          <div className="mt-4 space-y-2 rounded-xl border border-slate-800/80 bg-slate-900/60 p-3.5 text-xs">
             <div className="flex items-start justify-between gap-4">
-              <span className="text-muted-foreground">
+              <span className="text-slate-400">
                 {isExpired ? "Expired on" : "Expires on"}
               </span>
-              <span className="text-right font-semibold text-foreground">
+              <span className="text-right font-semibold text-white">
                 {hasValidExpiry ? (
                   <time dateTime={expiresAt.toISOString()}>{formatDate(expiresAt)}</time>
                 ) : hasInvalidExpiry ? (
@@ -140,15 +140,15 @@ export async function CurrentPlanCard({ className }) {
               </span>
             </div>
             {!isPro && !hasStartedFreeTrial ? (
-              <p className="border-t border-border pt-3 text-xs text-muted-foreground">
-                Your 15-day trial starts when you create your website.
+              <p className="border-t border-slate-800/80 pt-2 text-[11px] text-slate-400">
+                Your trial starts when you create your website.
               </p>
             ) : null}
           </div>
         </div>
 
         {/* Feature list */}
-        <div className="mt-auto space-y-3 border-t border-border pt-5">
+        <div className="mt-auto space-y-2.5 border-t border-slate-800/80 pt-4">
           {planFeatures.map((f) => (
             <PlanFeature key={f} label={f} />
           ))}

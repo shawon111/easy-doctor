@@ -63,12 +63,12 @@ const WebsitePreviewCard = () => {
     // find the selected template
     const selectedTemplate = templates.find((data)=> data.identifier === template.toLowerCase()) || templates[0];
     return (
-        <Card className="p-0">
-            <CardHeader className="flex-row items-center justify-between gap-3 px-6 pt-6">
-                <CardTitle className="text-lg">Website Preview</CardTitle>
+        <Card className="rounded-2xl border border-slate-800/80 bg-slate-950/80 p-0 shadow-sm">
+            <CardHeader className="flex-row items-center justify-between gap-3 p-5 sm:p-6 pb-2 sm:pb-3">
+                <CardTitle className="text-base sm:text-lg font-bold text-white">Design Preview</CardTitle>
                 <Badge
                     variant="secondary"
-                    className="border border-blue-100 bg-blue-50 text-blue-800 hover:bg-blue-50">
+                    className="rounded-full border border-indigo-500/30 bg-indigo-500/10 px-3 py-1 text-xs font-bold text-indigo-400 hover:bg-indigo-500/10">
                     Selected Template
                 </Badge>
             </CardHeader>

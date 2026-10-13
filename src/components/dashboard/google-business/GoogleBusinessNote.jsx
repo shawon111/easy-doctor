@@ -1,18 +1,15 @@
 export default function GoogleBusinessNote() {
     return (
-        <div className="flex items-start gap-3 rounded-xl bg-slate-100 p-4">
-
-            <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-slate-200 text-xs font-bold text-slate-500">
+        <div className="flex items-start gap-3.5 rounded-2xl border border-slate-800/80 bg-slate-950/80 p-4 sm:p-5 shadow-sm">
+            <div className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 text-xs font-bold font-mono">
                 i
             </div>
 
-            <p className="text-xs leading-5 text-slate-600">
-                Google controls your Business Profile and may review
-                changes before publishing them. Adding your website
-                here does not guarantee that Google will immediately
-                display it publicly.
+            <p className="text-xs leading-relaxed text-slate-400">
+                Google manages your Business Profile independently and may review
+                updates prior to publishing. Connecting your website URL in your profile
+                streamlines patient discovery across Google Search and Maps.
             </p>
-
         </div>
     );
 }

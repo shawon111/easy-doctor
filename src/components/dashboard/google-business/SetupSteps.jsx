@@ -22,14 +22,13 @@ const steps = [
 export default function SetupSteps() {
     return (
         <section>
-
             <div className="mb-5">
-                <h2 className="text-xl font-bold text-slate-900">
-                    How to add your website
+                <h2 className="text-base sm:text-lg font-bold text-white">
+                    How to Connect Google Business Profile
                 </h2>
 
-                <p className="mt-1 text-sm text-slate-500">
-                    It only takes a few steps.
+                <p className="mt-1 text-xs sm:text-sm text-slate-400">
+                    Follow these 3 simple steps to integrate your website URL with Google.
                 </p>
             </div>
 
@@ -37,23 +36,22 @@ export default function SetupSteps() {
                 {steps.map((step) => (
                     <div
                         key={step.number}
-                        className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
+                        className="rounded-2xl border border-slate-800/80 bg-slate-950/80 p-5 sm:p-6 shadow-sm"
                     >
-                        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-sm font-bold text-blue-600">
+                        <div className="flex size-10 items-center justify-center rounded-xl bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 text-xs sm:text-sm font-bold">
                             {step.number}
                         </div>
 
-                        <h3 className="mt-5 font-semibold text-slate-900">
+                        <h3 className="mt-4 text-sm sm:text-base font-bold text-white">
                             {step.title}
                         </h3>
 
-                        <p className="mt-2 text-sm leading-6 text-slate-600">
+                        <p className="mt-2 text-xs sm:text-sm leading-relaxed text-slate-400">
                             {step.description}
                         </p>
                     </div>
                 ))}
             </div>
-
         </section>
     );
 }

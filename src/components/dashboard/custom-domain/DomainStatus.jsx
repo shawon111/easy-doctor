@@ -113,27 +113,27 @@ export default function DomainStatus({ domain }) {
     const isError = domain.status === "error";
 
     return (
-        <section className="rounded-xl border bg-card p-6">
+        <section className="rounded-2xl border border-slate-800/80 bg-slate-950/80 p-5 sm:p-6 shadow-sm">
             <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
-                <div className="flex gap-3">
+                <div className="flex gap-3.5 items-start">
                     <StatusIcon
                         verified={isConnected}
                         error={isError}
                     />
 
                     <div>
-                        <h2 className="font-semibold">
+                        <h2 className="font-mono text-base sm:text-lg font-bold text-white">
                             {domain.name}
                         </h2>
 
-                        <p className="mt-1 text-sm text-muted-foreground">
+                        <p className="mt-1 text-xs sm:text-sm text-slate-400 leading-relaxed">
                             {isConnected
-                                ? "Your custom domain is connected and ready."
+                                ? "Your custom domain is connected and active with automated SSL."
                                 : isError
-                                  ? "There is a problem connecting this domain."
+                                  ? "There is an issue resolving this domain. Verify DNS settings."
                                   : domain.verified
-                                    ? "Ownership is verified. DNS is not configured yet; add the records below to connect your domain."
-                                    : "Waiting for ownership verification and DNS configuration."}
+                                    ? "Ownership is verified. DNS propagation is in progress; verify records below."
+                                    : "Waiting for DNS verification and SSL certificate propagation."}
                         </p>
                     </div>
                 </div>
@@ -143,9 +143,9 @@ export default function DomainStatus({ domain }) {
                         href={`https://${domain.name}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline"
+                        className="inline-flex items-center gap-1.5 rounded-xl border border-slate-700 bg-slate-900 px-3.5 py-1.5 text-xs font-semibold text-slate-200 hover:bg-slate-800 hover:text-white transition-colors"
                     >
-                        Visit website
+                        Visit Website
                         <ExternalLink className="size-3.5" />
                     </a>
                 )}
@@ -157,46 +157,47 @@ export default function DomainStatus({ domain }) {
                         variant="outline"
                         onClick={() => statusMutation.mutate()}
                         disabled={statusMutation.isPending}
+                        className="rounded-xl border-slate-700 bg-slate-900 text-slate-200 hover:bg-slate-800 hover:text-white text-xs font-semibold"
                     >
                         <RefreshCw
-                            className={`mr-2 size-4 ${
+                            className={`mr-2 size-3.5 ${
                                 statusMutation.isPending
-                                    ? "animate-spin"
+                                    ? "animate-spin text-indigo-400"
                                     : ""
                             }`}
                         />
 
                         {statusMutation.isPending
-                            ? "Checking..."
+                            ? "Checking DNS Status..."
                             : "Check Connection"}
                     </Button>
 
                     {statusMutation.isError && (
-                        <p className="mt-2 text-sm text-destructive">
+                        <p className="mt-2 text-xs text-rose-400">
                             {statusMutation.error.message}
                         </p>
                     )}
                 </div>
             )}
 
-            <div className="mt-6 border-t pt-5">
+            <div className="mt-6 border-t border-slate-800/80 pt-5">
                 <Button
-                    variant="ghost"
+                    variant="outline"
                     size="sm"
-                    className="text-destructive hover:text-destructive"
+                    className="rounded-xl border border-rose-500/30 bg-rose-500/10 px-3.5 py-1.5 text-xs font-semibold text-rose-300 transition-colors hover:border-rose-500/60 hover:bg-rose-500/20 hover:text-white"
                     onClick={() => setIsRemoveDialogOpen(true)}
                     disabled={removeMutation.isPending}
                 >
-                    <Trash2 className="mr-2 size-4" />
+                    <Trash2 className="mr-2 size-3.5" />
 
                     {removeMutation.isPending
                         ? "Disconnecting..."
-                        : "Disconnect Domain"}
+                        : "Disconnect Custom Domain"}
                 </Button>
             </div>
 
             {removeMutation.isError && (
-                <p className="mt-2 text-sm text-destructive">
+                <p className="mt-2 text-xs text-rose-400">
                     {removeMutation.error.message}
                 </p>
             )}
@@ -205,20 +206,21 @@ export default function DomainStatus({ domain }) {
                 open={isRemoveDialogOpen}
                 onOpenChange={setIsRemoveDialogOpen}
             >
-                <DialogContent>
+                <DialogContent className="border-slate-800 bg-slate-950 text-white sm:max-w-md">
                     <DialogHeader>
-                        <DialogTitle>Disconnect custom domain?</DialogTitle>
-                        <DialogDescription>
-                            This will remove {domain.name} from your website.
-                            You can reconnect it later.
+                        <DialogTitle className="text-base font-bold text-white">Disconnect custom domain?</DialogTitle>
+                        <DialogDescription className="text-xs sm:text-sm text-slate-400">
+                            This will detach {domain.name} from your medical website.
+                            Your Docxio subdomain will immediately resume handling traffic.
                         </DialogDescription>
                     </DialogHeader>
-                    <DialogFooter>
+                    <DialogFooter className="mt-4 gap-2">
                         <Button
                             type="button"
                             variant="outline"
                             onClick={() => setIsRemoveDialogOpen(false)}
                             disabled={removeMutation.isPending}
+                            className="rounded-xl border-slate-800 bg-slate-900 text-slate-300 hover:bg-slate-800"
                         >
                             Cancel
                         </Button>
@@ -227,10 +229,11 @@ export default function DomainStatus({ domain }) {
                             variant="destructive"
                             onClick={handleRemove}
                             disabled={removeMutation.isPending}
+                            className="rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-semibold"
                         >
                             {removeMutation.isPending
                                 ? "Disconnecting..."
-                                : "Disconnect domain"}
+                                : "Disconnect Domain"}
                         </Button>
                     </DialogFooter>
                 </DialogContent>
@@ -242,23 +245,23 @@ export default function DomainStatus({ domain }) {
 function StatusIcon({ verified, error }) {
     if (verified) {
         return (
-            <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-green-500/10">
-                <CheckCircle2 className="size-5 text-green-600" />
+            <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 shadow-sm">
+                <CheckCircle2 className="size-5 text-emerald-400" />
             </div>
         );
     }
 
     if (error) {
         return (
-            <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-destructive/10">
-                <XCircle className="size-5 text-destructive" />
+            <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-rose-500/10 text-rose-400 border border-rose-500/20 shadow-sm">
+                <XCircle className="size-5 text-rose-400" />
             </div>
         );
     }
 
     return (
-        <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-amber-500/10">
-            <Clock3 className="size-5 text-amber-600" />
+        <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20 shadow-sm">
+            <Clock3 className="size-5 text-amber-400" />
         </div>
     );
 }

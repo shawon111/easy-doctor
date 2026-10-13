@@ -15,17 +15,17 @@ export default function CurrentWebsiteCard({
         customDomainStatus === "connected" && url;
 
     return (
-        <div className="rounded-xl border bg-card p-5">
+        <div className="rounded-2xl border border-slate-800/80 bg-slate-950/80 p-5 sm:p-6 shadow-sm">
             <div className="flex items-start justify-between gap-4">
                 <div>
-                    <p className="text-sm font-medium text-muted-foreground">
-                        Current website
+                    <p className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                        Current Website URL
                     </p>
 
                     <div className="mt-2 flex items-center gap-2">
-                        <Globe className="size-4 text-muted-foreground" />
+                        <Globe className="size-4 text-indigo-400" />
 
-                        <span className="font-medium">
+                        <span className="font-mono text-sm sm:text-base font-bold text-white">
                             {url || "Website URL unavailable"}
                         </span>
                     </div>
@@ -36,18 +36,18 @@ export default function CurrentWebsiteCard({
                         href={url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline"
+                        className="inline-flex items-center gap-1.5 rounded-xl border border-slate-700 bg-slate-900 px-3 py-1.5 text-xs font-semibold text-slate-200 hover:bg-slate-800 hover:text-white transition-colors"
                     >
-                        Visit
-                        <ExternalLink className="size-3.5" />
+                        Visit Website
+                        <ExternalLink className="size-3" />
                     </a>
                 )}
             </div>
 
-            <p className="mt-3 text-sm text-muted-foreground">
+            <p className="mt-3.5 border-t border-slate-800/80 pt-3 text-xs sm:text-sm text-slate-400 leading-relaxed">
                 {isCustomDomainConnected
-                    ? `Your website is live on your custom domain. The Docxio subdomain (${subdomain}.${baseDomain}) remains available as a fallback.`
-                    : "Your website is already available through your Docxio subdomain. You can connect a custom domain below."}
+                    ? `Your website is live on your custom domain. The Docxio subdomain (${subdomain}.${baseDomain}) remains available as an automatic fallback.`
+                    : "Your website is active on your Docxio subdomain. Connect your custom branding domain below."}
             </p>
         </div>
     );

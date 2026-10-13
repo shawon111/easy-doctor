@@ -11,11 +11,11 @@ const PAGES = [
 ];
 export function WebsitePagesList({ activeKey = "site", onSelect }) {
   return (
-    <div className="dashboard-panel lg:col-span-4 overflow-hidden rounded-2xl border border-border bg-card shadow-[0px_4px_12px_rgba(0,0,0,0.03)]">
-      <div className="border-b border-border bg-muted/30 p-4">
-        <h2 className="text-lg font-semibold text-foreground">Website Pages</h2>
+    <div className="overflow-hidden rounded-2xl border border-slate-800/80 bg-slate-950/80 shadow-sm lg:col-span-4">
+      <div className="border-b border-slate-800/80 bg-slate-900/60 px-4 py-3.5">
+        <h2 className="text-xs font-bold uppercase tracking-wider text-slate-300">Website Pages</h2>
       </div>
-      <div className="flex flex-col divide-y divide-border/50">
+      <div className="flex flex-col divide-y divide-slate-800/60">
         {PAGES.map((page) => {
           const { key: pageKey, ...pageProps } = page;
           return (

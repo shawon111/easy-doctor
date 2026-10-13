@@ -39,42 +39,42 @@ export async function ComparePlansTable({ className }) {
   return (
     <div
       className={cn(
-        "flex flex-col overflow-hidden rounded-2xl border border-border bg-card",
-        "shadow-[0px_4px_12px_rgba(0,0,0,0.03)]",
+        "flex flex-col overflow-hidden rounded-2xl border border-slate-800/80 bg-slate-950/80",
+        "shadow-sm",
         "lg:col-span-8",
         className
       )}
     >
       {/* Card header */}
-      <div className="border-b border-border bg-muted/30 p-4 sm:p-6">
-        <h3 className="text-lg font-semibold text-foreground">Compare Plans</h3>
-        <p className="mt-1 text-sm text-muted-foreground">
-          Find the perfect tier for your growing practice.
+      <div className="border-b border-slate-800/80 bg-slate-900/60 p-4 sm:p-5">
+        <h3 className="text-base font-bold text-white">Compare Plans</h3>
+        <p className="mt-0.5 text-xs text-slate-400">
+          Find the ideal tier for your expanding digital practice.
         </p>
       </div>
 
       {/* Scrollable table */}
-      <div className="flex-1 overflow-x-auto p-4 sm:p-6">
-        <table className="min-w-[620px] w-full border-collapse text-left text-sm">
+      <div className="flex-1 overflow-x-auto p-4 sm:p-5">
+        <table className="min-w-[580px] w-full border-collapse text-left text-xs">
           <thead>
             <tr>
               {/* Features column */}
-              <th className="w-[40%] border-b border-border px-4 pb-4 pt-2 font-semibold text-foreground">
+              <th className="w-[44%] border-b border-slate-800/80 px-4 pb-3 pt-2 font-bold uppercase tracking-wider text-slate-400 text-[10px]">
                 Features
               </th>
 
-              <th className="relative w-[20%] border-b border-border px-4 pb-4 pt-2 text-center font-semibold text-muted-foreground">
+              <th className="relative w-[28%] border-b border-slate-800/80 px-4 pb-3 pt-2 text-center font-bold uppercase tracking-wider text-slate-400 text-[10px]">
                 {
-                  userLevel === "free" && <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-primary px-2 py-0.5 text-[10px] font-bold uppercase text-primary-foreground">
+                  userLevel === "free" && <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 rounded-full bg-slate-800 border border-slate-700/60 px-2 py-0.5 text-[9px] font-bold uppercase text-slate-300">
                     Current
                   </span>
                 }
                 Free Trial · 15 days
               </th>
 
-              <th className="relative w-[40%] border-b-2 border-primary px-4 pb-4 pt-2 text-center font-semibold text-primary">
+              <th className="relative w-[28%] border-b-2 border-indigo-500 bg-indigo-950/20 px-4 pb-3 pt-2 text-center font-bold uppercase tracking-wider text-indigo-400 text-[10px]">
                 {
-                  userLevel === "pro" && <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-primary px-2 py-0.5 text-[10px] font-bold uppercase text-primary-foreground">
+                  userLevel === "pro" && <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 rounded-full bg-indigo-600 px-2 py-0.5 text-[9px] font-bold uppercase text-white shadow-sm">
                     Current
                   </span>
                 }
@@ -86,14 +86,14 @@ export async function ComparePlansTable({ className }) {
           <tbody>
             {/* Feature rows */}
             {FEATURES.map((row) => (
-              <tr key={row.label} className="group transition-colors hover:bg-muted/40">
-                <td className="border-b border-border/50 px-4 py-3 font-medium text-foreground">
+              <tr key={row.label} className="group transition-colors hover:bg-slate-900/40">
+                <td className="border-b border-slate-800/60 px-4 py-3 font-medium text-slate-300">
                   {row.label}
                 </td>
-                <td className="border-b border-border/50 px-4 py-3 text-center">
+                <td className="border-b border-slate-800/60 px-4 py-3 text-center">
                   <CheckIcon supported={row.free} />
                 </td>
-                <td className="border-b border-border/50 bg-blue-50/50 px-4 py-3 text-center group-hover:bg-blue-50">
+                <td className="border-b border-slate-800/60 bg-indigo-950/10 px-4 py-3 text-center group-hover:bg-indigo-950/20">
                   <CheckIcon supported={row.pro} highlight />
                 </td>
               </tr>

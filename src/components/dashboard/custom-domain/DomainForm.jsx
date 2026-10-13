@@ -53,16 +53,16 @@ export default function DomainForm({ domain: savedDomain }) {
     };
 
     return (
-        <section className="dashboard-panel rounded-2xl border bg-card p-5 sm:p-6">
+        <section className="rounded-2xl border border-slate-800/80 bg-slate-950/80 p-5 sm:p-6 shadow-sm">
             <div className="mb-6">
-                <h2 className="text-lg font-semibold">
-                    {savedDomain ? "Your custom domain" : "Connect your domain"}
+                <h2 className="text-base sm:text-lg font-bold text-white">
+                    {savedDomain ? "Your Custom Domain" : "Connect Custom Domain"}
                 </h2>
 
-                <p className="mt-1 text-sm text-muted-foreground">
+                <p className="mt-1 text-xs sm:text-sm text-slate-400">
                     {savedDomain
-                        ? "Your domain is saved here while you finish verification and DNS setup."
-                        : "Use your own domain instead of the default Docxio subdomain."}
+                        ? "Your domain is registered while you complete DNS verification and propagation below."
+                        : "Use your own custom branding domain (e.g. drsmith.com) instead of the default subdomain."}
                 </p>
             </div>
 
@@ -73,33 +73,33 @@ export default function DomainForm({ domain: savedDomain }) {
                 <div>
                     <label
                         htmlFor="domain"
-                        className="mb-2 block text-sm font-medium"
+                        className="mb-2 block text-xs font-bold uppercase tracking-wider text-slate-300"
                     >
-                        Domain
+                        Domain Name
                     </label>
 
                     <div className="relative">
-                        <Globe className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+                        <Globe className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-indigo-400" />
 
                         <Input
                             id="domain"
                             value={domain}
                             onChange={(e) => setDomain(e.target.value)}
-                            placeholder="yourdomain.com"
-                            className="pl-9"
+                            placeholder="e.g. drsmith.com"
+                            className="rounded-xl border-slate-700 bg-slate-900/80 pl-9 font-mono text-sm text-white placeholder:text-slate-500 focus-visible:border-indigo-500"
                             disabled={mutation.isPending || Boolean(savedDomain)}
                         />
                     </div>
 
                     {!savedDomain && (
-                        <p className="mt-2 text-xs text-muted-foreground">
-                            Enter your domain without https:// or www.
+                        <p className="mt-2 text-xs text-slate-400">
+                            Enter your root domain or subdomain without https:// or www.
                         </p>
                     )}
                 </div>
 
                 {mutation.isError && (
-                    <div className="rounded-lg border border-destructive/20 bg-destructive/5 px-4 py-3 text-sm text-destructive">
+                    <div className="rounded-xl border border-rose-500/30 bg-rose-500/10 px-4 py-3 text-xs sm:text-sm text-rose-400">
                         {mutation.error.message}
                     </div>
                 )}
@@ -108,6 +108,7 @@ export default function DomainForm({ domain: savedDomain }) {
                     <Button
                         type="submit"
                         disabled={!domain.trim() || mutation.isPending}
+                        className="rounded-xl bg-indigo-600 px-5 text-xs font-bold text-white shadow-md shadow-indigo-600/20 hover:bg-indigo-500 disabled:opacity-50 cursor-pointer"
                     >
                         {mutation.isPending ? "Connecting..." : "Connect Domain"}
                         {!mutation.isPending && (

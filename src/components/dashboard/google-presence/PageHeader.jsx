@@ -1,14 +1,25 @@
+import { Search } from "lucide-react";
+
 export function PageHeader() {
   return (
-    <header className="dashboard-heading">
-      <p className="dashboard-eyebrow">Search visibility</p>
-      <h1 className="text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
-        Google Presence
-      </h1>
-      <p className="max-w-2xl text-sm text-muted-foreground sm:text-base">
-        Manage how your practice appears in Google search results. Edit page titles and
-        descriptions to attract more patients.
-      </p>
+    <header className="mb-6">
+      <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-400">
+        <span className="size-2 rounded-full bg-emerald-400 animate-pulse" />
+        Search Visibility &amp; SEO
+      </div>
+      <div className="mt-1.5 flex items-center gap-3.5">
+        <div className="flex size-11 items-center justify-center rounded-xl bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 shadow-sm">
+          <Search className="size-5" />
+        </div>
+        <div>
+          <h1 className="text-2xl font-extrabold tracking-tight text-white sm:text-3xl">
+            Google Search Presence
+          </h1>
+          <p className="mt-0.5 text-xs sm:text-sm text-slate-400">
+            Customize how your clinical profile appears in Google search results to attract more patients.
+          </p>
+        </div>
+      </div>
     </header>
   );
 }

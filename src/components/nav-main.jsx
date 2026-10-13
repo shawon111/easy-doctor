@@ -53,9 +53,9 @@ export function NavMain({
           <SidebarMenuButton
             tooltip={item.title}
             isActive={active}
-            className={`relative h-11 rounded-xl px-3 text-slate-300 transition-all hover:bg-white/[0.07] hover:text-white data-[active=true]:!bg-[#17294a] data-[active=true]:!text-white data-[active=true]:shadow-none before:absolute before:left-0 before:top-1/2 before:h-5 before:w-[3px] before:-translate-y-1/2 before:rounded-full before:bg-transparent data-[active=true]:before:bg-cyan-300 ${active ? "font-semibold" : ""}`}
+            className={`relative h-10 rounded-xl px-3 text-slate-400 transition-all hover:bg-slate-900 hover:text-slate-100 data-[active=true]:!bg-indigo-600 data-[active=true]:!text-white data-[active=true]:shadow-md data-[active=true]:shadow-indigo-600/30 text-xs font-medium ${active ? "font-semibold" : ""}`}
           >
-            <Icon className={`size-[18px] ${active ? "text-cyan-300" : "text-slate-400"}`} />
+            <Icon className={`size-4 ${active ? "text-white" : "text-slate-400"}`} />
             <span>{item.title}</span>
           </SidebarMenuButton>
         </SidebarMenuItem>

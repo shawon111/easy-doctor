@@ -20,29 +20,34 @@ const ConfigurationSummaryCard = () => {
         toast.success("Copied to clipboard");
     };
     return (
-        <Card className="p-0">
-            <CardHeader className="px-6 pt-6">
-                <CardTitle className="text-lg">Configuration</CardTitle>
+        <Card className="rounded-2xl border border-slate-800/80 bg-slate-950/80 p-0 shadow-sm">
+            <CardHeader className="p-5 sm:p-6 pb-2 sm:pb-3">
+                <CardTitle className="text-sm sm:text-base font-bold text-white">Configuration Overview</CardTitle>
             </CardHeader>
-            <CardContent className="flex flex-col gap-4 p-6">
+            <CardContent className="flex flex-col gap-4 p-5 sm:p-6 pt-0 sm:pt-0">
                 <div>
-                    <p className="mb-1 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                    <p className="mb-1.5 text-xs font-bold uppercase tracking-wider text-slate-400">
                         Assigned Domain
                     </p>
-                    <div onClick={copyUrlToClipboard} className="flex items-center gap-2 rounded-lg border border-outline-variant/50 bg-surface-container-low p-3 cursor-pointer">
-                        <span className="material-symbols-outlined text-lg text-muted-foreground">link</span>
-                        <span className="w-full truncate font-mono text-sm text-foreground">{domain}</span>
+                    <div
+                        onClick={copyUrlToClipboard}
+                        className="group flex items-center gap-2.5 rounded-xl border border-slate-800 bg-slate-900/80 p-3 cursor-pointer transition-colors hover:border-indigo-500/50 hover:bg-slate-900"
+                        title="Click to copy domain"
+                    >
+                        <span className="material-symbols-outlined text-base text-indigo-400 group-hover:scale-110 transition-transform">link</span>
+                        <span className="w-full truncate font-mono text-xs sm:text-sm text-white">{domain}</span>
+                        <span className="material-symbols-outlined text-sm text-slate-500 group-hover:text-slate-300">content_copy</span>
                     </div>
                 </div>
                 <div>
-                    <p className="mb-1 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                    <p className="mb-2 text-xs font-bold uppercase tracking-wider text-slate-400">
                         Configuration Status
                     </p>
-                    <div className="space-y-1">
+                    <div className="space-y-2">
                         {CONTENT_ITEMS.map((item) => (
-                            <div key={item.label} className="flex items-center gap-2">
-                                <span className="material-symbols-outlined text-lg text-emerald-600">{item.icon}</span>
-                                <span className="text-sm text-foreground">{item.label}</span>
+                            <div key={item.label} className="flex items-center gap-2 rounded-lg border border-slate-800/60 bg-slate-900/40 px-3 py-2">
+                                <span className="material-symbols-outlined text-base text-emerald-400">{item.icon}</span>
+                                <span className="text-xs sm:text-sm font-medium text-slate-200">{item.label}</span>
                             </div>
                         ))}
                     </div>

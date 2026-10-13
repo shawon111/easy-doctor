@@ -24,14 +24,19 @@ const ProfilePhotoInput = ({ src, name }) => {
         </div>
         <div className="flex flex-col gap-2">
           <div className="flex gap-2">
-            <Button variant="outline" size="sm" type="button">
+            <Button
+              variant="outline"
+              size="sm"
+              type="button"
+              className="rounded-xl border border-slate-700 bg-slate-900 px-3 py-1.5 text-xs font-semibold text-slate-200 transition-colors hover:border-indigo-500/50 hover:bg-slate-800 hover:text-white"
+            >
               Change
             </Button>
             <Button
-              variant="ghost"
+              variant="outline"
               size="sm"
               type="button"
-              className="text-destructive hover:bg-destructive/20 hover:text-destructive"
+              className="rounded-xl border border-rose-500/30 bg-rose-500/10 px-3 py-1.5 text-xs font-semibold text-rose-300 transition-colors hover:border-rose-500/60 hover:bg-rose-500/20 hover:text-white"
             >
               Remove
             </Button>

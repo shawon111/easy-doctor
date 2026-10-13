@@ -94,92 +94,92 @@ const SubdomainInputCard = ({ value, onChange, className }) => {
     const template = searchParams.get("template");
 
     return (
-        <Card className={`relative flex flex-col overflow-hidden p-0 ${className ?? ""}`}>
-            <div className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-gradient-to-bl from-sky-200/50 to-transparent" />
+        <Card className={`relative flex flex-col overflow-hidden rounded-2xl border border-slate-800/80 bg-slate-950/80 shadow-sm p-0 ${className ?? ""}`}>
+            <div className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-gradient-to-bl from-indigo-500/10 to-transparent" />
             <div className="relative flex flex-1 flex-col">
                 <CardContent className="flex-1 p-6 md:p-8">
                     <Label
                         htmlFor="subdomain"
-                        className="mb-3 text-sm font-semibold text-foreground"
+                        className="mb-2.5 block text-xs font-bold uppercase tracking-wider text-slate-300"
                     >
                         Subdomain Name
                     </Label>
 
-                    <div className="flex items-stretch overflow-hidden rounded-lg border border-border shadow-sm transition-all focus-within:border-ring focus-within:ring-2 focus-within:ring-ring/20">
+                    <div className="flex items-stretch overflow-hidden rounded-xl border border-slate-700 bg-slate-900/80 shadow-inner transition-all focus-within:border-indigo-500 focus-within:ring-2 focus-within:ring-indigo-500/20">
                         <Input
                             id="subdomain"
                             type="text"
                             value={value}
                             onChange={handleChange}
-                            placeholder="Enter your name or practice"
-                            className="h-11 flex-1 rounded-none border-0 bg-transparent text-base font-semibold shadow-none focus-visible:border-transparent focus-visible:ring-0 focus-visible:outline-none placeholder:font-normal placeholder:text-muted-foreground md:text-lg"
+                            placeholder="e.g. dr-john-smith"
+                            className="h-11 flex-1 rounded-none border-0 bg-transparent text-sm md:text-base font-semibold text-white shadow-none focus-visible:ring-0 focus-visible:outline-none placeholder:font-normal placeholder:text-slate-500"
                         />
-                        <div className="flex h-11 items-center justify-center border-l border-l-border bg-muted px-4">
-                            <span className="pointer-events-none whitespace-nowrap text-sm font-medium text-muted-foreground md:text-base">
+                        <div className="flex h-11 items-center justify-center border-l border-slate-700 bg-slate-800/60 px-4">
+                            <span className="pointer-events-none whitespace-nowrap font-mono text-xs md:text-sm font-medium text-slate-400">
                                 .{process.env.NEXT_PUBLIC_BASE_DOMAIN}
                             </span>
                         </div>
                     </div>
 
                     {status === "checking" && (
-                        <div className="mt-4 flex items-center gap-2 px-4 py-3 text-sm text-muted-foreground">
-                            <span className="material-symbols-outlined animate-spin text-[20px]">
+                        <div className="mt-4 flex items-center gap-2 rounded-xl border border-slate-800 bg-slate-900/60 px-4 py-3 text-xs md:text-sm text-slate-400">
+                            <span className="material-symbols-outlined animate-spin text-[18px] text-indigo-400">
                                 progress_activity
                             </span>
-                            <span>Checking availability...</span>
+                            <span>Checking domain availability...</span>
                         </div>
                     )}
 
                     {status === "available" && (
-                        <div className="mt-4 flex items-center gap-2 rounded-lg border border-emerald-500/20 bg-emerald-500/10 px-4 py-3">
+                        <div className="mt-4 flex items-center gap-2.5 rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-3 text-xs md:text-sm text-emerald-400">
                             <span
-                                className="material-symbols-outlined text-[20px] text-emerald-600"
+                                className="material-symbols-outlined text-[18px] text-emerald-400"
                                 style={{ fontVariationSettings: "'FILL' 1" }}
                             >
                                 check_circle
                             </span>
-                            <p className="text-sm font-medium text-emerald-700">
-                                <strong>{fullUrl}</strong> is available!
+                            <p className="font-medium">
+                                <strong className="font-mono text-white">{fullUrl}</strong> is available!
                             </p>
                         </div>
                     )}
 
                     {status === "unavailable" && (
-                        <div className="mt-4 flex items-center gap-2 rounded-lg border border-red-500/20 bg-red-500/10 px-4 py-3">
+                        <div className="mt-4 flex items-center gap-2.5 rounded-xl border border-rose-500/30 bg-rose-500/10 px-4 py-3 text-xs md:text-sm text-rose-400">
                             <span
-                                className="material-symbols-outlined text-[20px] text-red-600"
+                                className="material-symbols-outlined text-[18px] text-rose-400"
                                 style={{ fontVariationSettings: "'FILL' 1" }}
                             >
                                 error
                             </span>
-                            <p className="text-sm font-medium text-red-700">
-                                This address is already taken or reserved. Try another.
+                            <p className="font-medium">
+                                This address is already taken or reserved. Please try another name.
                             </p>
                         </div>
                     )}
 
                     {status === "error" && (
-                        <div className="mt-4 flex items-center gap-2 rounded-lg border border-red-500/20 bg-red-500/10 px-4 py-3">
+                        <div className="mt-4 flex items-center gap-2.5 rounded-xl border border-rose-500/30 bg-rose-500/10 px-4 py-3 text-xs md:text-sm text-rose-400">
                             <span
-                                className="material-symbols-outlined text-[20px] text-red-600"
+                                className="material-symbols-outlined text-[18px] text-rose-400"
                                 style={{ fontVariationSettings: "'FILL' 1" }}
                             >
                                 error
                             </span>
-                            <p className="text-sm font-medium text-red-700">
-                                We could not verify this address. Please try again.
+                            <p className="font-medium">
+                                We could not verify this address right now. Please try again.
                             </p>
                         </div>
                     )}
                 </CardContent>
 
-                <div className="flex items-center justify-between gap-3 border-t border-border p-6 md:px-8">
+                <div className="flex items-center justify-between gap-3 border-t border-slate-800/80 p-5 md:px-8">
                     <Link href="/dashboard/website/create">
                         <Button
-                            variant="ghost"
-                            className="gap-2 text-muted-foreground hover:text-foreground cursor-pointer"
+                            variant="outline"
+                            className="gap-2 rounded-xl border-slate-700 bg-slate-900 text-slate-300 hover:bg-slate-800 hover:text-white text-xs font-semibold"
                         >
-                            <span className="material-symbols-outlined text-[18px]">arrow_back</span>
+                            <span className="material-symbols-outlined text-[16px]">arrow_back</span>
                             Back to Templates
                         </Button>
                     </Link>
@@ -187,9 +187,12 @@ const SubdomainInputCard = ({ value, onChange, className }) => {
                         aria-disabled={!canContinue}
                         className={canContinue ? "" : "pointer-events-none"}
                     >
-                        <Button className="gap-2 cursor-pointer" disabled={!canContinue}>
+                        <Button
+                            className="gap-2 rounded-xl bg-indigo-600 px-5 text-xs font-bold text-white shadow-md shadow-indigo-600/20 hover:bg-indigo-500 disabled:opacity-50"
+                            disabled={!canContinue}
+                        >
                             Continue
-                            <span className="material-symbols-outlined text-[18px]">
+                            <span className="material-symbols-outlined text-[16px]">
                                 arrow_forward
                             </span>
                         </Button>

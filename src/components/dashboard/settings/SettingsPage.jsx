@@ -24,15 +24,15 @@ export function SettingsPage() {
   });
 
   return (
-    <main className="dashboard-page mx-auto min-h-full w-full max-w-360 p-4 pb-12 text-[#0F172A] sm:p-6 sm:pb-16 md:p-8 md:pb-20">
+    <main className="dashboard-page mx-auto min-h-full w-full max-w-360 p-4 pb-12 text-slate-200 sm:p-6 sm:pb-16 md:p-8 md:pb-20">
       <SettingsHeader />
       {isLoading ? (
-        <p className="mt-6 text-sm text-[#64748B]" role="status">
+        <p className="mt-6 text-sm text-slate-400" role="status">
           Loading account settings...
         </p>
       ) : null}
       {isError ? (
-        <div role="alert" className="mt-6 rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-800">
+        <div role="alert" className="mt-6 rounded-xl border border-rose-500/30 bg-rose-500/10 p-4 text-sm text-rose-400">
           {error.message}
         </div>
       ) : null}

@@ -30,21 +30,27 @@ export function DangerZoneSection({ email }) {
   return (
     <section
       id="danger"
-      className="rounded-2xl border border-[#FFDAD6] bg-white p-4 shadow-[0px_4px_12px_rgba(0,0,0,0.03)] sm:p-6"
+      className="rounded-2xl border border-rose-500/30 bg-slate-950/80 p-5 shadow-sm sm:p-6"
     >
-      <h2 className="mb-4 text-lg font-semibold text-[#BA1A1A]">Danger Zone</h2>
-      <div className="flex flex-col items-stretch gap-4 rounded-lg border border-[#FED7D7] bg-[#FFF5F5] p-4 sm:flex-row sm:items-center sm:justify-between">
+      <div className="mb-5 flex items-center justify-between border-b border-rose-500/20 pb-4">
         <div>
-          <p className="text-sm font-medium text-[#0F172A]">Delete Account</p>
-          <p className="mt-1 text-sm text-[#64748B]">
-            Permanently remove your account, website, appointments, and associated database data. This action cannot be undone.
+          <h2 className="text-base font-bold text-rose-400">Danger Zone</h2>
+          <p className="mt-0.5 text-xs text-slate-400">Irreversible account cancellation and practice data purging</p>
+        </div>
+      </div>
+
+      <div className="flex flex-col items-stretch gap-4 rounded-xl border border-rose-500/20 bg-rose-500/5 p-4 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <p className="text-xs font-bold text-rose-300">Delete Account & Clinical Presence</p>
+          <p className="mt-1 text-xs text-slate-400">
+            Permanently remove your doctor account, published website, patient records, and appointments.
           </p>
         </div>
         {!isConfirming ? (
           <Button
             type="button"
             onClick={() => setIsConfirming(true)}
-            className="w-full bg-[#DC2626] text-white hover:bg-[#B91C1C] sm:w-auto"
+            className="w-full rounded-xl bg-rose-600 hover:bg-rose-500 text-white text-xs font-bold shadow-md shadow-rose-600/20 sm:w-auto"
           >
             Delete Account
           </Button>
@@ -54,14 +60,14 @@ export function DangerZoneSection({ email }) {
       {isConfirming ? (
         <form
           onSubmit={handleDeleteAccount}
-          className="mt-4 space-y-4 rounded-lg border border-[#FED7D7] bg-white p-4"
+          className="mt-4 space-y-4 rounded-xl border border-rose-500/30 bg-slate-900/60 p-4"
         >
-          <p className="text-sm text-[#64748B]">
-            To confirm deletion of <strong className="text-[#0F172A]">{email}</strong>, type DELETE and enter your current password.
+          <p className="text-xs text-slate-400">
+            To confirm deletion of <strong className="text-white font-mono">{email}</strong>, type <span className="font-mono text-rose-400 font-bold">DELETE</span> and enter your current password.
           </p>
           <div className="grid gap-4 sm:grid-cols-2">
-            <div className="flex flex-col gap-2">
-              <label htmlFor="delete-confirmation" className="text-sm font-semibold text-[#0F172A]">
+            <div className="flex flex-col gap-1.5">
+              <label htmlFor="delete-confirmation" className="text-xs font-semibold text-slate-300">
                 Type DELETE to confirm
               </label>
               <Input
@@ -70,10 +76,11 @@ export function DangerZoneSection({ email }) {
                 autoComplete="off"
                 value={confirmation}
                 onChange={(event) => setConfirmation(event.target.value)}
+                className="rounded-xl border-slate-800 bg-slate-900 text-white font-mono text-xs"
               />
             </div>
-            <div className="flex flex-col gap-2">
-              <label htmlFor="delete-current-password" className="text-sm font-semibold text-[#0F172A]">
+            <div className="flex flex-col gap-1.5">
+              <label htmlFor="delete-current-password" className="text-xs font-semibold text-slate-300">
                 Current Password
               </label>
               <Input
@@ -83,6 +90,7 @@ export function DangerZoneSection({ email }) {
                 required
                 value={currentPassword}
                 onChange={(event) => setCurrentPassword(event.target.value)}
+                className="rounded-xl border-slate-800 bg-slate-900 text-white text-xs"
               />
             </div>
           </div>
@@ -96,13 +104,14 @@ export function DangerZoneSection({ email }) {
                 setConfirmation("");
                 setCurrentPassword("");
               }}
+              className="rounded-xl border-slate-700 bg-slate-900 text-slate-200 hover:bg-slate-800 text-xs font-semibold"
             >
               Cancel
             </Button>
             <Button
               type="submit"
               disabled={deleteMutation.isPending || confirmation !== "DELETE"}
-              className="bg-[#DC2626] text-white hover:bg-[#B91C1C]"
+              className="rounded-xl bg-rose-600 hover:bg-rose-500 text-white text-xs font-bold shadow-md shadow-rose-600/20"
             >
               {deleteMutation.isPending ? "Deleting..." : "Permanently Delete Account"}
             </Button>

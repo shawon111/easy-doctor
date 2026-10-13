@@ -42,65 +42,64 @@ export default function DomainVerification({
     }
 
     return (
-        <div className="space-y-4">
+        <section className="rounded-2xl border border-slate-800/80 bg-slate-950/80 p-5 sm:p-6 shadow-sm space-y-4">
             <div>
-                <h3 className="font-semibold">
-                    Verify your domain
+                <h3 className="text-base sm:text-lg font-bold text-white">
+                    Verify Domain Ownership
                 </h3>
 
-                <p className="text-sm text-muted-foreground">
-                    Add the following DNS record to your
-                    domain provider to verify ownership.
+                <p className="mt-1 text-xs sm:text-sm text-slate-400">
+                    Add the following DNS record to your domain registrar to verify ownership.
                 </p>
             </div>
 
-            {verification.map((record, index) => (
-                <div
-                    key={index}
-                    className="rounded-lg border p-4"
-                >
-                    <div>
-                        <span className="text-sm font-medium">
-                            Type
-                        </span>
+            <div className="space-y-3">
+                {verification.map((record, index) => (
+                    <div
+                        key={index}
+                        className="rounded-xl border border-slate-800 bg-slate-900/60 p-4 grid gap-3 sm:grid-cols-3"
+                    >
+                        <div>
+                            <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
+                                Type
+                            </span>
+                            <p className="mt-0.5 font-mono text-xs sm:text-sm font-bold text-indigo-400">{record.type}</p>
+                        </div>
 
-                        <p>{record.type}</p>
+                        <div>
+                            <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
+                                Name
+                            </span>
+                            <p className="mt-0.5 font-mono text-xs sm:text-sm text-slate-200">{record.name}</p>
+                        </div>
+
+                        <div>
+                            <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
+                                Value
+                            </span>
+                            <p className="mt-0.5 break-all font-mono text-xs sm:text-sm text-slate-200">
+                                {record.value}
+                            </p>
+                        </div>
                     </div>
-
-                    <div>
-                        <span className="text-sm font-medium">
-                            Name
-                        </span>
-
-                        <p>{record.name}</p>
-                    </div>
-
-                    <div>
-                        <span className="text-sm font-medium">
-                            Value
-                        </span>
-
-                        <p className="break-all">
-                            {record.value}
-                        </p>
-                    </div>
-                </div>
-            ))}
+                ))}
+            </div>
 
             <Button
                 onClick={() => verifyMutation.mutate()}
                 disabled={verifyMutation.isPending}
+                className="rounded-xl bg-indigo-600 px-5 text-xs font-bold text-white shadow-md shadow-indigo-600/20 hover:bg-indigo-500 disabled:opacity-50 cursor-pointer"
             >
                 {verifyMutation.isPending
-                    ? "Checking..."
-                    : "Check verification"}
+                    ? "Checking Verification..."
+                    : "Check Verification"}
             </Button>
 
             {verifyMutation.isError && (
-                <p className="text-sm text-destructive">
+                <div className="rounded-xl border border-rose-500/30 bg-rose-500/10 px-4 py-3 text-xs sm:text-sm text-rose-400">
                     {verifyMutation.error.message}
-                </p>
+                </div>
             )}
-        </div>
+        </section>
     );
 }

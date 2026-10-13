@@ -29,8 +29,8 @@ function updateItem(items, index, key, value) {
 
 function Field({ label, id, children }) {
   return (
-    <div className="flex min-w-0 flex-col gap-2">
-      <label htmlFor={id} className="text-sm font-semibold text-[#0F172A]">
+    <div className="flex min-w-0 flex-col gap-1.5">
+      <label htmlFor={id} className="text-xs font-bold uppercase tracking-wider text-slate-300">
         {label}
       </label>
       {children}
@@ -42,12 +42,18 @@ function SectionHeading({ title, description, onAdd, addLabel }) {
   return (
     <div className="flex flex-wrap items-start justify-between gap-3">
       <div>
-        <h3 className="font-semibold text-[#0F172A]">{title}</h3>
-        {description ? <p className="mt-1 text-sm text-[#64748B]">{description}</p> : null}
+        <h3 className="text-sm sm:text-base font-bold text-white">{title}</h3>
+        {description ? <p className="mt-0.5 text-xs sm:text-sm text-slate-400">{description}</p> : null}
       </div>
       {onAdd ? (
-        <Button type="button" size="sm" variant="outline" onClick={onAdd}>
-          <Plus aria-hidden="true" />
+        <Button
+          type="button"
+          size="sm"
+          variant="outline"
+          onClick={onAdd}
+          className="rounded-xl border-slate-700 bg-slate-900 text-slate-200 hover:bg-slate-800 hover:text-white text-xs font-semibold gap-1.5 cursor-pointer"
+        >
+          <Plus aria-hidden="true" className="size-3.5 text-indigo-400" />
           {addLabel}
         </Button>
       ) : null}
@@ -110,11 +116,11 @@ export function ProfileDetailsSection({ user }) {
   return (
     <section
       id="profile-details"
-      className="rounded-2xl border border-[#E2E8F0] bg-white p-4 shadow-[0px_4px_12px_rgba(0,0,0,0.03)] sm:p-6"
+      className="rounded-2xl border border-slate-800/80 bg-slate-950/80 p-5 sm:p-6 shadow-sm"
     >
       <div className="mb-6">
-        <h2 className="text-lg font-semibold text-[#0F172A]">Professional & Practice Details</h2>
-        <p className="mt-1 text-sm text-[#64748B]">
+        <h2 className="text-base sm:text-lg font-bold text-white">Professional &amp; Practice Details</h2>
+        <p className="mt-1 text-xs sm:text-sm text-slate-400">
           Manage your qualifications, clinic locations, booking method, treatments, and social profiles.
         </p>
       </div>
@@ -123,7 +129,7 @@ export function ProfileDetailsSection({ user }) {
         <div className="space-y-4">
           <SectionHeading
             title="Qualifications"
-            description="Add at least one degree or certification."
+            description="Add at least one degree or clinical certification."
             addLabel="Add qualification"
             onAdd={() =>
               updateProfileField("qualifications", [
@@ -135,14 +141,14 @@ export function ProfileDetailsSection({ user }) {
           {profile.qualifications.map((qualification, index) => (
             <div
               key={`qualification-${index}`}
-              className="grid gap-4 rounded-xl border border-[#E2E8F0] bg-[#F8FAFC] p-4 sm:grid-cols-2"
+              className="grid gap-4 rounded-xl border border-slate-800 bg-slate-900/60 p-4 sm:grid-cols-2"
             >
               <div className="flex items-center justify-between gap-3 sm:col-span-2">
-                <p className="text-sm font-semibold text-[#0F172A]">Qualification {index + 1}</p>
+                <p className="text-xs font-bold uppercase tracking-wider text-slate-300">Qualification {index + 1}</p>
                 <Button
                   type="button"
                   size="sm"
-                  variant="ghost"
+                  variant="outline"
                   aria-label={`Remove qualification ${index + 1}`}
                   onClick={() =>
                     updateProfileField(
@@ -150,8 +156,9 @@ export function ProfileDetailsSection({ user }) {
                       profile.qualifications.filter((_, itemIndex) => itemIndex !== index)
                     )
                   }
+                  className="rounded-xl border border-rose-500/30 bg-rose-500/10 px-2.5 py-1 text-xs font-semibold text-rose-300 transition-colors hover:border-rose-500/60 hover:bg-rose-500/20 hover:text-white"
                 >
-                  <Trash2 aria-hidden="true" className="text-destructive" />
+                  <Trash2 aria-hidden="true" className="size-3.5 mr-1" />
                   Remove
                 </Button>
               </div>
@@ -160,7 +167,7 @@ export function ProfileDetailsSection({ user }) {
                   id={`settings-degree-${index}`}
                   required
                   maxLength={120}
-                  placeholder="MBBS, MD, PhD"
+                  placeholder="MBBS, MD, FCPS"
                   value={qualification.degree}
                   onChange={(event) =>
                     updateProfileField(
@@ -168,6 +175,7 @@ export function ProfileDetailsSection({ user }) {
                       updateItem(profile.qualifications, index, "degree", event.target.value)
                     )
                   }
+                  className="rounded-xl border-slate-700 bg-slate-900/80 text-white placeholder:text-slate-500 focus-visible:border-indigo-500"
                 />
               </Field>
               <Field label="Institution" id={`settings-institution-${index}`}>
@@ -183,6 +191,7 @@ export function ProfileDetailsSection({ user }) {
                       updateItem(profile.qualifications, index, "institution", event.target.value)
                     )
                   }
+                  className="rounded-xl border-slate-700 bg-slate-900/80 text-white placeholder:text-slate-500 focus-visible:border-indigo-500"
                 />
               </Field>
               <Field label="Year" id={`settings-qualification-year-${index}`}>
@@ -199,16 +208,17 @@ export function ProfileDetailsSection({ user }) {
                       updateItem(profile.qualifications, index, "year", event.target.value)
                     )
                   }
+                  className="rounded-xl border-slate-700 bg-slate-900/80 text-white placeholder:text-slate-500 focus-visible:border-indigo-500"
                 />
               </Field>
             </div>
           ))}
         </div>
 
-        <div className="space-y-4 border-t border-[#E2E8F0] pt-6">
+        <div className="space-y-4 border-t border-slate-800/80 pt-6">
           <SectionHeading
             title="Clinic / Chamber Locations"
-            description="Add at least one location where patients can visit."
+            description="Add locations where patients can visit for consultations."
             addLabel="Add location"
             onAdd={() =>
               updateProfileField("clinicAddress", [
@@ -233,14 +243,14 @@ export function ProfileDetailsSection({ user }) {
             return (
               <div
                 key={`clinic-${index}`}
-                className="space-y-4 rounded-xl border border-[#E2E8F0] bg-[#F8FAFC] p-4"
+                className="space-y-4 rounded-xl border border-slate-800 bg-slate-900/60 p-4"
               >
                 <div className="flex items-center justify-between gap-3">
-                  <p className="text-sm font-semibold text-[#0F172A]">Location {index + 1}</p>
+                  <p className="text-xs font-bold uppercase tracking-wider text-slate-300">Location {index + 1}</p>
                   <Button
                     type="button"
                     size="sm"
-                    variant="ghost"
+                    variant="outline"
                     aria-label={`Remove location ${index + 1}`}
                     onClick={() =>
                       updateProfileField(
@@ -248,8 +258,9 @@ export function ProfileDetailsSection({ user }) {
                         profile.clinicAddress.filter((_, itemIndex) => itemIndex !== index)
                       )
                     }
+                    className="rounded-xl border border-rose-500/30 bg-rose-500/10 px-2.5 py-1 text-xs font-semibold text-rose-300 transition-colors hover:border-rose-500/60 hover:bg-rose-500/20 hover:text-white"
                   >
-                    <Trash2 aria-hidden="true" className="text-destructive" />
+                    <Trash2 aria-hidden="true" className="size-3.5 mr-1" />
                     Remove
                   </Button>
                 </div>
@@ -269,6 +280,7 @@ export function ProfileDetailsSection({ user }) {
                         placeholder={placeholder}
                         value={clinic[key] || ""}
                         onChange={(event) => updateClinic(key, event.target.value)}
+                        className="rounded-xl border-slate-700 bg-slate-900/80 text-white placeholder:text-slate-500 focus-visible:border-indigo-500"
                       />
                     </Field>
                   ))}
@@ -282,6 +294,7 @@ export function ProfileDetailsSection({ user }) {
                       placeholder="+1 555 000 0000"
                       value={clinic.whatsapp || ""}
                       onChange={(event) => updateClinic("whatsapp", event.target.value)}
+                      className="rounded-xl border-slate-700 bg-slate-900/80 text-white placeholder:text-slate-500 focus-visible:border-indigo-500"
                     />
                   </Field>
 
@@ -292,6 +305,7 @@ export function ProfileDetailsSection({ user }) {
                       placeholder="https://maps.app.goo.gl/..."
                       value={clinic.mapUrl || ""}
                       onChange={(event) => updateClinic("mapUrl", event.target.value)}
+                      className="rounded-xl border-slate-700 bg-slate-900/80 text-white placeholder:text-slate-500 focus-visible:border-indigo-500"
                     />
                   </Field>
 
@@ -304,6 +318,7 @@ export function ProfileDetailsSection({ user }) {
                       onChange={(event) =>
                         updateClinic("visitingHours", `${event.target.value} - ${closingTime}`)
                       }
+                      className="rounded-xl border-slate-700 bg-slate-900/80 text-white placeholder:text-slate-500 focus-visible:border-indigo-500"
                     />
                   </Field>
                   <Field label="Closing time" id={`settings-clinic-${index}-closes`}>
@@ -315,19 +330,24 @@ export function ProfileDetailsSection({ user }) {
                       onChange={(event) =>
                         updateClinic("visitingHours", `${openingTime} - ${event.target.value}`)
                       }
+                      className="rounded-xl border-slate-700 bg-slate-900/80 text-white placeholder:text-slate-500 focus-visible:border-indigo-500"
                     />
                   </Field>
                 </div>
 
                 <fieldset>
-                  <legend className="mb-2 text-sm font-semibold text-[#0F172A]">Visiting days</legend>
+                  <legend className="mb-2 text-xs font-bold uppercase tracking-wider text-slate-300">Visiting days</legend>
                   <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
                     {VISITING_DAYS.map((day) => {
                       const checked = selectedDays.includes(day);
                       return (
                         <label
                           key={day}
-                          className="flex items-center gap-2 rounded-md border border-[#E2E8F0] bg-white px-3 py-2 text-sm"
+                          className={`flex items-center gap-2 rounded-xl border px-3 py-2 text-xs font-medium cursor-pointer transition-colors ${
+                            checked
+                              ? "border-indigo-500/50 bg-indigo-500/10 text-white"
+                              : "border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700 hover:text-slate-200"
+                          }`}
                         >
                           <input
                             type="checkbox"
@@ -340,6 +360,7 @@ export function ProfileDetailsSection({ user }) {
                                   : [...selectedDays, day].join(", ")
                               )
                             }
+                            className="accent-indigo-600 rounded"
                           />
                           {day}
                         </label>
@@ -352,16 +373,16 @@ export function ProfileDetailsSection({ user }) {
           })}
         </div>
 
-        <div className="space-y-4 border-t border-[#E2E8F0] pt-6">
+        <div className="space-y-4 border-t border-slate-800/80 pt-6">
           <SectionHeading title="Booking Preference" />
           <div className="grid gap-3 sm:grid-cols-3">
             {BOOKING_OPTIONS.map((option) => (
               <label
                 key={option.value}
-                className={`flex cursor-pointer gap-3 rounded-xl border p-4 ${
+                className={`flex cursor-pointer gap-3 rounded-xl border p-4 transition-all ${
                   profile.bookingPreferences === option.value
-                    ? "border-[#0066FF] bg-[#E5F0FF]"
-                    : "border-[#E2E8F0]"
+                    ? "border-indigo-500 bg-indigo-500/10 text-white shadow-sm shadow-indigo-500/10"
+                    : "border-slate-800 bg-slate-900/40 text-slate-400 hover:bg-slate-900/80 hover:border-slate-700"
                 }`}
               >
                 <input
@@ -370,20 +391,21 @@ export function ProfileDetailsSection({ user }) {
                   value={option.value}
                   checked={profile.bookingPreferences === option.value}
                   onChange={(event) => updateProfileField("bookingPreferences", event.target.value)}
+                  className="accent-indigo-600 mt-1"
                 />
                 <span>
-                  <span className="block text-sm font-semibold text-[#0F172A]">{option.label}</span>
-                  <span className="mt-1 block text-xs text-[#64748B]">{option.description}</span>
+                  <span className="block text-sm font-bold text-white">{option.label}</span>
+                  <span className="mt-1 block text-xs text-slate-400">{option.description}</span>
                 </span>
               </label>
             ))}
           </div>
         </div>
 
-        <div className="space-y-4 border-t border-[#E2E8F0] pt-6">
+        <div className="space-y-4 border-t border-slate-800/80 pt-6">
           <SectionHeading
-            title="Treatments & Services"
-            description="Add at least one treatment or service."
+            title="Treatments &amp; Services"
+            description="Add at least one clinical service or treatment."
             addLabel="Add treatment"
             onAdd={() => updateProfileField("treatments", [...profile.treatments, ""])}
           />
@@ -394,7 +416,7 @@ export function ProfileDetailsSection({ user }) {
                   aria-label={`Treatment or service ${index + 1}`}
                   required
                   maxLength={120}
-                  placeholder="e.g. General check-up"
+                  placeholder="e.g. General Clinical Consultation"
                   value={treatment}
                   onChange={(event) =>
                     updateProfileField(
@@ -404,11 +426,12 @@ export function ProfileDetailsSection({ user }) {
                       )
                     )
                   }
+                  className="rounded-xl border-slate-700 bg-slate-900/80 text-white placeholder:text-slate-500 focus-visible:border-indigo-500"
                 />
                 <Button
                   type="button"
                   size="icon"
-                  variant="ghost"
+                  variant="outline"
                   aria-label={`Remove treatment ${index + 1}`}
                   onClick={() =>
                     updateProfileField(
@@ -416,18 +439,19 @@ export function ProfileDetailsSection({ user }) {
                       profile.treatments.filter((_, itemIndex) => itemIndex !== index)
                     )
                   }
+                  className="rounded-xl border border-rose-500/30 bg-rose-500/10 text-rose-300 transition-colors hover:border-rose-500/60 hover:bg-rose-500/20 hover:text-white"
                 >
-                  <Trash2 aria-hidden="true" className="text-destructive" />
+                  <Trash2 aria-hidden="true" className="size-4" />
                 </Button>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="space-y-4 border-t border-[#E2E8F0] pt-6">
+        <div className="space-y-4 border-t border-slate-800/80 pt-6">
           <SectionHeading
             title="Social Links"
-            description="Add public profiles for your practice. These links are optional."
+            description="Add public profiles for your clinical practice (optional)."
             addLabel="Add social link"
             onAdd={() =>
               updateProfileField("socialLinks", [
@@ -437,7 +461,7 @@ export function ProfileDetailsSection({ user }) {
             }
           />
           {profile.socialLinks.length === 0 ? (
-            <p className="rounded-lg border border-dashed border-[#CBD5E1] px-4 py-6 text-center text-sm text-[#64748B]">
+            <p className="rounded-xl border border-dashed border-slate-800 bg-slate-900/30 px-4 py-6 text-center text-xs sm:text-sm text-slate-400">
               No social links added yet.
             </p>
           ) : (
@@ -445,14 +469,14 @@ export function ProfileDetailsSection({ user }) {
               {profile.socialLinks.map((link, index) => (
                 <div
                   key={`social-link-${index}`}
-                  className="grid items-end gap-3 rounded-xl border border-[#E2E8F0] bg-[#F8FAFC] p-4 sm:grid-cols-2"
+                  className="grid items-end gap-3 rounded-xl border border-slate-800 bg-slate-900/60 p-4 sm:grid-cols-2"
                 >
                   <Field label="Platform" id={`settings-social-platform-${index}`}>
                     <Input
                       id={`settings-social-platform-${index}`}
                       required
                       maxLength={50}
-                      placeholder="Facebook, Instagram, LinkedIn..."
+                      placeholder="e.g. LinkedIn, Facebook, ResearchGate"
                       value={link.platform}
                       onChange={(event) =>
                         updateProfileField(
@@ -460,6 +484,7 @@ export function ProfileDetailsSection({ user }) {
                           updateItem(profile.socialLinks, index, "platform", event.target.value)
                         )
                       }
+                      className="rounded-xl border-slate-700 bg-slate-900/80 text-white placeholder:text-slate-500 focus-visible:border-indigo-500"
                     />
                   </Field>
                   <Field label="Profile URL" id={`settings-social-url-${index}`}>
@@ -476,11 +501,12 @@ export function ProfileDetailsSection({ user }) {
                             updateItem(profile.socialLinks, index, "url", event.target.value)
                           )
                         }
+                        className="rounded-xl border-slate-700 bg-slate-900/80 text-white placeholder:text-slate-500 focus-visible:border-indigo-500"
                       />
                       <Button
                         type="button"
                         size="icon"
-                        variant="ghost"
+                        variant="outline"
                         aria-label={`Remove social link ${index + 1}`}
                         onClick={() =>
                           updateProfileField(
@@ -488,8 +514,9 @@ export function ProfileDetailsSection({ user }) {
                             profile.socialLinks.filter((_, itemIndex) => itemIndex !== index)
                           )
                         }
+                        className="rounded-xl border border-rose-500/30 bg-rose-500/10 text-rose-300 transition-colors hover:border-rose-500/60 hover:bg-rose-500/20 hover:text-white"
                       >
-                        <Trash2 aria-hidden="true" className="text-destructive" />
+                        <Trash2 aria-hidden="true" className="size-4" />
                       </Button>
                     </div>
                   </Field>
@@ -499,11 +526,11 @@ export function ProfileDetailsSection({ user }) {
           )}
         </div>
 
-        <div className="flex justify-end border-t border-[#E2E8F0] pt-6">
+        <div className="flex justify-end border-t border-slate-800/80 pt-6">
           <Button
             type="submit"
             disabled={saveMutation.isPending}
-            className="w-full bg-[#0066FF] text-white hover:bg-[#0050CB] sm:w-auto"
+            className="w-full rounded-xl bg-indigo-600 px-6 py-2.5 text-xs sm:text-sm font-bold text-white shadow-md shadow-indigo-600/20 hover:bg-indigo-500 disabled:opacity-50 sm:w-auto cursor-pointer"
           >
             {saveMutation.isPending ? "Saving..." : "Save Professional Details"}
           </Button>

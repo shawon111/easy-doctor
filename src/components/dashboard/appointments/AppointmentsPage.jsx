@@ -65,33 +65,36 @@ export function AppointmentsPage({ chambers = [] }) {
   }
 
   return (
-    <div className="dashboard-page mx-auto w-full max-w-360 flex-1 p-4 pb-12 sm:p-6 sm:pb-16 md:p-8 md:pb-20">
-      <header className="dashboard-heading mb-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-        <div className="relative z-10">
-          <p className="dashboard-eyebrow">Practice management</p>
-          <h1 className="mt-1 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
-            Appointments
+    <div className="dashboard-page mx-auto w-full max-w-7xl flex-1 space-y-6">
+      <header className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-400">
+            <span className="size-2 rounded-full bg-emerald-400 animate-pulse" />
+            Clinical Management
+          </div>
+          <h1 className="mt-1 text-2xl font-extrabold tracking-tight text-white sm:text-3xl">
+            Patient Appointments
           </h1>
-          <p className="mt-2 text-sm text-muted-foreground">
-            Review patient bookings and add appointments received by phone or in person.
+          <p className="mt-1.5 text-xs sm:text-sm text-slate-400">
+            Monitor incoming patient bookings, schedule staff entries, and manage clinical consultations.
           </p>
         </div>
-        <Button className="relative z-10 rounded-xl border-slate-200 bg-white hover:bg-slate-50" variant="outline" asChild>
-          <Link href="/dashboard/appointments/manage">Manage appointment status</Link>
+        <Button className="rounded-xl border-slate-700 bg-slate-900 text-slate-200 hover:bg-slate-800 text-xs font-semibold" variant="outline" asChild>
+          <Link href="/dashboard/appointments/manage">Manage appointment status →</Link>
         </Button>
       </header>
       <AppointmentStatsGrid
         upcomingAppointments={data.upcomingAppointments}
         todayAppointments={data.todayAppointments}
       />
-      <div className="mb-6">
+      <div>
         <ManualAppointmentForm chambers={chambers} />
       </div>
-      <section className="dashboard-panel overflow-hidden rounded-2xl border border-border bg-card shadow-[0px_4px_12px_rgba(0,0,0,0.03)]">
-        <div className="flex flex-col gap-4 border-b border-border p-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+      <section className="overflow-hidden rounded-2xl border border-slate-800/80 bg-slate-950/80 shadow-sm">
+        <div className="flex flex-col gap-4 border-b border-slate-800/80 p-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
           <div>
-            <h2 className="text-lg font-semibold text-foreground">Appointments for {formatDay(selectedDate)}</h2>
-            <p className="mt-1 text-sm text-muted-foreground">
+            <h2 className="text-base font-bold text-white">Appointments for {formatDay(selectedDate)}</h2>
+            <p className="mt-1 text-xs text-slate-400">
               {dailyData ? `${dailyData.total} booking${dailyData.total === 1 ? "" : "s"} on this day` : "Bookings are ordered by serial number."}
             </p>
           </div>
@@ -101,18 +104,19 @@ export function AppointmentsPage({ chambers = [] }) {
               variant="outline"
               size="sm"
               aria-label="Previous day"
+              className="rounded-xl border-slate-700 bg-slate-900 text-slate-200 hover:bg-slate-800 text-xs font-semibold"
               onClick={() => {
                 setSelectedDate((date) => shiftDate(date, -1));
                 setPage(1);
               }}
             >
-              <span className="material-symbols-outlined text-[18px]">chevron_left</span>
+              <span className="material-symbols-outlined text-[16px]">chevron_left</span>
               Previous
             </Button>
             <Input
               type="date"
               aria-label="Choose appointment date"
-              className="w-auto"
+              className="w-auto rounded-xl border-slate-700 bg-slate-900 text-white text-xs font-medium"
               value={selectedDate}
               onChange={(event) => {
                 if (!event.target.value) return;
@@ -125,19 +129,20 @@ export function AppointmentsPage({ chambers = [] }) {
               variant="outline"
               size="sm"
               aria-label="Next day"
+              className="rounded-xl border-slate-700 bg-slate-900 text-slate-200 hover:bg-slate-800 text-xs font-semibold"
               onClick={() => {
                 setSelectedDate((date) => shiftDate(date, 1));
                 setPage(1);
               }}
             >
               Next
-              <span className="material-symbols-outlined text-[18px]">chevron_right</span>
+              <span className="material-symbols-outlined text-[16px]">chevron_right</span>
             </Button>
             {selectedDate !== getDhakaToday() ? (
               <Button
                 type="button"
-                variant="ghost"
                 size="sm"
+                className="rounded-xl border border-indigo-500/30 bg-indigo-500/10 text-indigo-300 hover:bg-indigo-600 hover:text-white text-xs font-bold transition-colors cursor-pointer"
                 onClick={() => {
                   setSelectedDate(getDhakaToday());
                   setPage(1);
@@ -196,9 +201,14 @@ export function AppointmentsPage({ chambers = [] }) {
             </p>
           </div>
         )}
-        <div className="border-t border-border px-4 py-3 text-right sm:px-6">
-          <Button variant="link" className="h-auto p-0 text-sm" asChild>
-            <Link href="/dashboard/appointments/manage">Manage appointment status</Link>
+        <div className="border-t border-slate-800/80 px-4 py-3 sm:px-6 flex justify-end">
+          <Button
+            variant="outline"
+            size="sm"
+            className="rounded-xl border border-slate-700 bg-slate-900 px-3.5 py-1.5 text-xs font-semibold text-slate-200 transition-colors hover:border-indigo-500/50 hover:bg-slate-800 hover:text-white"
+            asChild
+          >
+            <Link href="/dashboard/appointments/manage">Manage appointment status →</Link>
           </Button>
         </div>
       </section>

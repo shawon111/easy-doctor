@@ -66,9 +66,14 @@ export function AccountSection({ user }) {
   return (
     <section
       id="account"
-      className="rounded-2xl border border-[#E2E8F0] bg-white p-4 shadow-[0px_4px_12px_rgba(0,0,0,0.03)] sm:p-6"
+      className="rounded-2xl border border-slate-800/80 bg-slate-950/80 p-5 shadow-sm sm:p-6"
     >
-      <h2 className="mb-6 text-lg font-semibold text-[#0F172A]">Account Information</h2>
+      <div className="mb-6 flex items-center justify-between border-b border-slate-800/80 pb-4">
+        <div>
+          <h2 className="text-base font-bold text-white">Account Information</h2>
+          <p className="mt-0.5 text-xs text-slate-400">Personal doctor credentials and contact point</p>
+        </div>
+      </div>
 
       <form onSubmit={handleSubmit}>
         <div className="mb-6 flex flex-col items-start gap-4 sm:mb-8 sm:flex-row sm:items-center sm:gap-6">
@@ -79,12 +84,12 @@ export function AccountSection({ user }) {
               width={80}
               height={80}
               unoptimized
-              className="h-20 w-20 rounded-full border border-[#E2E8F0] object-cover"
+              className="h-20 w-20 rounded-2xl border border-slate-700/80 object-cover shadow-sm"
             />
           ) : (
             <div
               aria-label="No profile photo"
-              className="flex h-20 w-20 items-center justify-center rounded-full border border-[#E2E8F0] bg-[#F1F4F7] text-2xl font-semibold text-[#64748B]"
+              className="flex h-20 w-20 items-center justify-center rounded-2xl border border-slate-700/80 bg-slate-900 text-2xl font-bold text-indigo-400 shadow-sm"
             >
               {name.trim().charAt(0).toUpperCase()}
             </div>
@@ -99,21 +104,21 @@ export function AccountSection({ user }) {
             />
             <Button
               type="button"
-              variant="secondary"
+              variant="outline"
               size="sm"
               disabled={uploadMutation.isPending}
               onClick={() => fileInputRef.current?.click()}
-              className="mb-2 bg-[#E5F0FF] text-[#0066FF] hover:bg-[#DAE1FF]"
+              className="mb-2 rounded-xl border-slate-700 bg-slate-900 text-slate-200 hover:bg-slate-800 text-xs font-semibold"
             >
               {uploadMutation.isPending ? "Uploading..." : "Change Photo"}
             </Button>
-            <p className="text-xs text-[#64748B]">JPG, GIF or PNG. Maximum size 5MB.</p>
+            <p className="text-xs text-slate-400">JPG, GIF or PNG. Maximum size 5MB.</p>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          <div className="flex flex-col gap-2">
-            <label htmlFor="settings-name" className="text-sm font-semibold text-[#0F172A]">
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+          <div className="flex flex-col gap-1.5">
+            <label htmlFor="settings-name" className="text-xs font-semibold text-slate-300">
               Full Name
             </label>
             <Input
@@ -122,11 +127,11 @@ export function AccountSection({ user }) {
               maxLength={120}
               value={name}
               onChange={(event) => setName(event.target.value)}
-              className="border-[#D1D5DB] bg-white text-[#0F172A] focus-visible:border-[#0066FF] focus-visible:ring-[#E5F0FF]"
+              className="rounded-xl border-slate-800 bg-slate-900 text-white text-xs"
             />
           </div>
-          <div className="flex flex-col gap-2">
-            <label htmlFor="settings-email" className="text-sm font-semibold text-[#0F172A]">
+          <div className="flex flex-col gap-1.5">
+            <label htmlFor="settings-email" className="text-xs font-semibold text-slate-300">
               Email Address
             </label>
             <Input
@@ -137,11 +142,11 @@ export function AccountSection({ user }) {
               autoComplete="email"
               value={email}
               onChange={(event) => setEmail(event.target.value)}
-              className="border-[#D1D5DB] bg-white text-[#0F172A] focus-visible:border-[#0066FF] focus-visible:ring-[#E5F0FF]"
+              className="rounded-xl border-slate-800 bg-slate-900 text-white text-xs"
             />
           </div>
-          <div className="flex flex-col gap-2">
-            <label htmlFor="settings-phone" className="text-sm font-semibold text-[#0F172A]">
+          <div className="flex flex-col gap-1.5">
+            <label htmlFor="settings-phone" className="text-xs font-semibold text-slate-300">
               Phone Number
             </label>
             <Input
@@ -151,7 +156,7 @@ export function AccountSection({ user }) {
               autoComplete="tel"
               value={phone}
               onChange={(event) => setPhone(event.target.value)}
-              className="border-[#D1D5DB] bg-white text-[#0F172A] focus-visible:border-[#0066FF] focus-visible:ring-[#E5F0FF]"
+              className="rounded-xl border-slate-800 bg-slate-900 text-white text-xs"
             />
           </div>
         </div>
@@ -160,7 +165,7 @@ export function AccountSection({ user }) {
           <Button
             type="submit"
             disabled={saveMutation.isPending || uploadMutation.isPending}
-            className="w-full bg-[#0066FF] text-white hover:bg-[#0050CB] sm:w-auto"
+            className="w-full rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold shadow-md shadow-indigo-600/20 sm:w-auto"
           >
             {saveMutation.isPending ? "Saving..." : "Save Changes"}
           </Button>
