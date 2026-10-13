@@ -1,7 +1,7 @@
 export const PLANS = {
   monthly: {
     name: "One Month",
-    amount: 500,
+    amount: 50,
     durationMonths: 1,
     planId: "monthly"
   },
