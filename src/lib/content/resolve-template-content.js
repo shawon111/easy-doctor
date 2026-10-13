@@ -33,9 +33,15 @@ export function resolveTemplateContent(content, defaults, isDemo = false) {
     const sourceValue = source[key];
     const defaultValue = defaults?.[key];
 
-    if (sourceValue === undefined || sourceValue === null) {
+    // Treat null, undefined, and blank strings as "missing" — fall back to default.
+    // imageAlt is the only exception: an empty string is intentional there (no alt text).
+    const isMissing =
+      sourceValue === undefined ||
+      sourceValue === null ||
+      (typeof sourceValue === "string" && sourceValue.trim() === "" && key !== "imageAlt");
+
+    if (isMissing) {
       if (key === "imageAlt") {
-        // imageAlt should always be an empty string, never the default placeholder
         result[key] = "";
       } else if (Array.isArray(defaultValue)) {
         // Always use the full default array for missing array fields
@@ -51,7 +57,10 @@ export function resolveTemplateContent(content, defaults, isDemo = false) {
     }
 
     if (Array.isArray(sourceValue) && Array.isArray(defaultValue)) {
-      if (sourceValue.length === 0 && SAFE_DEFAULT_KEYS.has(key)) {
+      // An empty array in the source (from AI or DB) is treated the same as a
+      // missing field — fall back to the full default array so no section is
+      // left blank.  This covers all keys, not just SAFE_DEFAULT_KEYS.
+      if (sourceValue.length === 0) {
         result[key] = defaultValue;
         continue;
       }

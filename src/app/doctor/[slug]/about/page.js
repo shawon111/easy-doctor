@@ -4,6 +4,7 @@ import TemplateThreeDarkPageRenderer from "@/components/templates/template-three
 import TemplateThreePageRenderer from "@/components/templates/template-three/TemplateThreePageRenderer";
 import TemplateTwoDarkPageRenderer from "@/components/templates/template-two-dark/TemplateTwoDarkPageRenderer";
 import TemplateTwoPageRenderer from "@/components/templates/template-two/TemplateTwoPageRenderer";
+import WebsiteGeneratingScreen from "@/components/doctor/WebsiteGeneratingScreen";
 import { createDoctorMetadata } from "@/lib/seo/doctor-metadata";
 import { getWebsiteBySubdomain } from "@/services/website.service";
 import { notFound } from "next/navigation";
@@ -28,6 +29,13 @@ const AboutPage = async ({ params }) => {
     const { slug } = await params;
     const website = await getWebsiteBySubdomain(slug, pageName);
     if (!website) notFound();
+
+    // Website is still being generated — show a placeholder screen.
+    // This branch is never cached so every request re-checks the status.
+    if (website.status === "generating") {
+        return <WebsiteGeneratingScreen />;
+    }
+
     const TemplatePageRenderer = templateMapping[website.templateType];
     if (!TemplatePageRenderer) notFound();
     let siteContent = website?.content ?? {}

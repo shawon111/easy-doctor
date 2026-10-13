@@ -353,7 +353,7 @@ export const getWebsiteBySubdomain = async (subdomainOrDomain, pageName) => {
             },
         ],
     })
-        .select({ subdomain: 1 })
+        .select({ subdomain: 1, status: 1 })
         .lean();
 
     if (!websiteLookup && !identifier.includes(".")) {
@@ -362,13 +362,20 @@ export const getWebsiteBySubdomain = async (subdomainOrDomain, pageName) => {
             .lean();
         if (user) {
             websiteLookup = await Website.findOne({ userId: user._id })
-                .select({ subdomain: 1 })
+                .select({ subdomain: 1, status: 1 })
                 .lean();
         }
     }
 
     if (!websiteLookup) {
         return null;
+    }
+
+    // While AI generation is in progress, return a lightweight sentinel so the
+    // page can render a "generating" screen.  Critically, we do NOT call the
+    // cached fetcher here, so nothing gets stored in the cache yet.
+    if (websiteLookup.status === "generating") {
+        return { status: "generating" };
     }
 
     const canonicalSubdomain = websiteLookup.subdomain;
@@ -432,7 +439,7 @@ export const getWebsiteBySubdomain = async (subdomainOrDomain, pageName) => {
             return website;
         },
         ["website-by-subdomain", canonicalSubdomain, pageName],
-        { tags: [`website-content:${canonicalSubdomain}`] }
+        { tags: [`website-content:${canonicalSubdomain}`, "doctor-websites"] }
     );
 
     return getCachedWebsite();
