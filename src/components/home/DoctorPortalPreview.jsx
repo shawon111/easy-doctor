@@ -34,7 +34,7 @@ export default function DoctorPortalPreview() {
               <span className="material-symbols-outlined text-[24px]">trending_up</span>
             </div>
             <div>
-              <div className="text-xs font-bold text-slate-900">95% Google Presence</div>
+              <div className="text-xs font-bold text-slate-900">100% Google Presence</div>
               <div className="text-[11px] text-slate-500">Rich Schema metadata generated</div>
             </div>
           </div>
