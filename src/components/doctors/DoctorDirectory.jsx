@@ -36,20 +36,100 @@ const getDirectoryHref = (search, overrides = {}) => {
   return queryString ? `/doctors?${queryString}` : "/doctors";
 };
 
+// show the website link by checking the subdomain field and domain field, use domain if available, or use subdomain instead
+const getWebsiteLink = (doctor) => {
+  if (doctor?.domain && String(doctor.domain).trim()) {
+    const domain = String(doctor.domain).trim();
+    return domain.startsWith("http://") || domain.startsWith("https://")
+      ? domain
+      : `https://${domain}`;
+  }
+  if (doctor?.subdomain && String(doctor.subdomain).trim()) {
+    const subdomain = String(doctor.subdomain).trim();
+    const baseDomain = process.env.NEXT_PUBLIC_BASE_DOMAIN;
+    if (baseDomain && !baseDomain.includes("localhost")) {
+      return `https://${subdomain}.${baseDomain.replace(/^www\./, "")}`;
+    }
+    return `/doctor/${encodeURIComponent(subdomain)}`;
+  }
+  return null;
+};
+
+// check for different qualifications and make an array of the degree to show them in the card
+const getDegrees = (qualifications) => {
+  if (Array.isArray(qualifications)) {
+    return qualifications
+      .map((q) => (typeof q === "string" ? q.trim() : q?.degree?.trim()))
+      .filter(Boolean);
+  }
+  if (typeof qualifications === "string" && qualifications.trim()) {
+    return qualifications
+      .split(",")
+      .map((d) => d.trim())
+      .filter(Boolean);
+  }
+  return [];
+};
+
+const getLocation = (clinicAddress) => {
+  if (Array.isArray(clinicAddress) && clinicAddress.length > 0) {
+    const primary = clinicAddress[0];
+    const parts = [primary?.city, primary?.country].filter(Boolean);
+    if (parts.length > 0) return parts.join(", ");
+    if (primary?.address) return primary.address;
+  }
+  if (typeof clinicAddress === "string") return clinicAddress;
+  return "";
+};
+
+const getSafeImageUrl = (value) => {
+  if (!value || typeof value !== "string") return null;
+  return value.startsWith("http://") ||
+    value.startsWith("https://") ||
+    value.startsWith("/")
+    ? value
+    : null;
+};
+
+// structure raw doctor data in the component
+const structureDoctor = (user) => {
+  const degrees = getDegrees(user?.qualifications);
+  const location = getLocation(user?.clinicAddress || user?.location);
+  const websiteUrl = getWebsiteLink(user);
+  const image = getSafeImageUrl(user?.profilePicture || user?.image);
+
+  return {
+    id: user?._id?.toString() || user?.slug || user?.name || Math.random().toString(),
+    slug: user?.subdomain || user?.slug || user?._id?.toString(),
+    name: user?.name || "Doctor",
+    specialty: user?.specialization || user?.specialty || "",
+    degrees,
+    location,
+    experience: Number.isFinite(user?.experience) ? user.experience : null,
+    bio: user?.bio || "",
+    image,
+    websiteUrl,
+    subdomain: user?.subdomain,
+    domain: user?.domain,
+  };
+};
+
 function DoctorAvatar({ doctor, index }) {
-  const initials = doctor.name
+  const name = doctor.name || "Doctor";
+  const initials = name
     .replace(/^Dr\.\s*/i, "")
     .split(/\s+/)
     .map((part) => part[0])
     .join("")
-    .slice(0, 2);
+    .slice(0, 2)
+    .toUpperCase();
 
   return (
     <div className="relative size-[76px] shrink-0 overflow-hidden rounded-[22px] bg-[#edf2f8] ring-1 ring-slate-200/80">
       {doctor.image ? (
         <Image
           src={doctor.image}
-          alt={`Portrait of ${doctor.name}`}
+          alt={`Portrait of ${name}`}
           fill
           sizes="76px"
           unoptimized
@@ -58,7 +138,7 @@ function DoctorAvatar({ doctor, index }) {
       ) : (
         <div
           className={`flex size-full items-center justify-center text-xl font-semibold ${AVATAR_STYLES[index % AVATAR_STYLES.length]}`}
-          aria-label={`${doctor.name} profile placeholder`}
+          aria-label={`${name} profile placeholder`}
         >
           {initials}
         </div>
@@ -68,32 +148,62 @@ function DoctorAvatar({ doctor, index }) {
 }
 
 function DoctorCard({ doctor, index }) {
+  const degrees = doctor.degrees || getDegrees(doctor.qualifications);
+  const websiteUrl =
+    doctor.websiteUrl !== undefined ? doctor.websiteUrl : getWebsiteLink(doctor);
+  const location = doctor.location || getLocation(doctor.clinicAddress);
+  const specialty = doctor.specialty || doctor.specialization;
+  const profileSlug = doctor.slug || doctor.subdomain;
+
   return (
     <article className="group flex min-h-full flex-col rounded-[22px] border border-slate-200/90 bg-white p-5 shadow-[0_12px_34px_-28px_rgba(15,23,42,0.28)] transition duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-[0_22px_48px_-30px_rgba(15,23,42,0.32)] sm:p-6">
       <div className="flex items-start gap-4">
-        <DoctorAvatar doctor={doctor} index={index} />
+        {profileSlug ? (
+          <Link href={`/doctors/${profileSlug}`} className="shrink-0">
+            <DoctorAvatar doctor={doctor} index={index} />
+          </Link>
+        ) : (
+          <DoctorAvatar doctor={doctor} index={index} />
+        )}
         <div className="min-w-0 flex-1 pt-0.5">
-          <h2 className="text-[17px] font-bold tracking-tight text-[#0F172A]">
-            {doctor.name}
-          </h2>
-          <p className="mt-1 text-sm font-semibold text-[#2563EB]">
-            {doctor.specialty}
-          </p>
-          {doctor.location ? (
+          {profileSlug ? (
+            <Link href={`/doctors/${profileSlug}`}>
+              <h2 className="text-[17px] font-bold tracking-tight text-[#0F172A] transition hover:text-blue-600">
+                {doctor.name}
+              </h2>
+            </Link>
+          ) : (
+            <h2 className="text-[17px] font-bold tracking-tight text-[#0F172A]">
+              {doctor.name}
+            </h2>
+          )}
+          {specialty ? (
+            <p className="mt-1 text-sm font-semibold text-[#2563EB]">
+              {specialty}
+            </p>
+          ) : null}
+          {location ? (
             <p className="mt-2 inline-flex items-center gap-1.5 text-xs font-medium text-slate-500">
               <MapPin className="size-3.5 text-slate-400" aria-hidden="true" />
-              {doctor.location}
+              {location}
             </p>
           ) : null}
         </div>
       </div>
 
-      {doctor.qualifications ? (
+      {degrees.length > 0 ? (
         <div className="mt-5 flex min-h-[40px] items-start gap-2 border-t border-slate-100 pt-4">
           <BookOpenText className="mt-0.5 size-4 shrink-0 text-[#a17b20]" aria-hidden="true" />
-          <p className="text-xs font-medium leading-5 text-slate-600">
-            {doctor.qualifications}
-          </p>
+          <div className="flex flex-wrap items-center gap-1.5">
+            {degrees.map((degree, idx) => (
+              <span
+                key={idx}
+                className="inline-flex items-center rounded-md bg-amber-50 px-2.5 py-0.5 text-xs font-medium text-[#846719] ring-1 ring-inset ring-amber-600/20"
+              >
+                {degree}
+              </span>
+            ))}
+          </div>
         </div>
       ) : null}
 
@@ -101,41 +211,113 @@ function DoctorCard({ doctor, index }) {
         {doctor.bio}
       </p>
 
-      <div className="mt-5 flex items-center justify-between gap-3 border-t border-slate-100 pt-4">
-        {doctor.experience !== null ? (
+      <div className="mt-5 flex items-center justify-between gap-2 border-t border-slate-100 pt-4">
+        {doctor.experience !== null && doctor.experience !== undefined ? (
           <span className="text-xs text-slate-500">
             <span className="font-semibold text-slate-700">{doctor.experience} years</span>{" "}
-            experience
+            exp.
           </span>
         ) : (
           <span />
         )}
-        {doctor.websiteUrl ? (
-          <a
-            href={doctor.websiteUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex min-h-10 cursor-pointer items-center gap-2 rounded-xl bg-[#0F172A] px-4 text-xs font-semibold text-white transition hover:bg-[#1e3a5f] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-blue-200"
-            aria-label={`Visit ${doctor.name}'s website`}
-          >
-            Visit Website
-            <ArrowUpRight className="size-4" aria-hidden="true" />
-          </a>
-        ) : (
-          <span className="text-xs text-slate-400">Website unavailable</span>
-        )}
+        <div className="flex items-center gap-2">
+          {profileSlug ? (
+            <Link
+              href={`/doctors/${profileSlug}`}
+              className="inline-flex min-h-10 cursor-pointer items-center gap-1 rounded-xl border border-slate-200 bg-white px-3 text-xs font-semibold text-slate-700 shadow-sm transition hover:border-blue-200 hover:bg-blue-50 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-blue-100"
+            >
+              Profile
+            </Link>
+          ) : null}
+          {websiteUrl ? (
+            <a
+              href={websiteUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-10 cursor-pointer items-center gap-1.5 rounded-xl bg-[#0F172A] px-3 text-xs font-semibold text-white transition hover:bg-[#1e3a5f] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-blue-200"
+              aria-label={`Visit ${doctor.name}'s website`}
+            >
+              Website
+              <ArrowUpRight className="size-3.5" aria-hidden="true" />
+            </a>
+          ) : null}
+        </div>
       </div>
     </article>
   );
 }
 
-export default function DoctorDirectory({ directory }) {
-  const { doctors, filters, pagination, search } = directory;
+export default function DoctorDirectory({
+  directory,
+  doctors: propDoctors,
+  search: propSearch,
+  searchParams,
+}) {
+  const rawList = Array.isArray(directory)
+    ? directory
+    : Array.isArray(propDoctors)
+    ? propDoctors
+    : Array.isArray(directory?.doctors)
+    ? directory.doctors
+    : [];
+
+  // Structure the doctors list inside the component
+  const structuredDoctors = rawList.map(structureDoctor);
+
+  const search = {
+    query:
+      searchParams?.q ||
+      searchParams?.query ||
+      propSearch?.query ||
+      directory?.search?.query ||
+      "",
+    specialty:
+      searchParams?.specialty ||
+      propSearch?.specialty ||
+      directory?.search?.specialty ||
+      "",
+    location:
+      searchParams?.location ||
+      propSearch?.location ||
+      directory?.search?.location ||
+      "",
+  };
+
   const activeFilters = [
     search.query ? { key: "q", label: `"${search.query}"` } : null,
     search.specialty ? { key: "specialty", label: search.specialty } : null,
     search.location ? { key: "location", label: search.location } : null,
   ].filter(Boolean);
+
+  const filterSpecialties = directory?.filters?.specialties || [
+    ...new Set(structuredDoctors.map((doc) => doc.specialty).filter(Boolean)),
+  ].sort((a, b) => a.localeCompare(b));
+
+  const filterLocations = directory?.filters?.locations || [
+    ...new Set(structuredDoctors.map((doc) => doc.location).filter(Boolean)),
+  ].sort((a, b) => a.localeCompare(b));
+
+  const PAGE_SIZE = 6;
+  const pageParam = Number.parseInt(
+    searchParams?.page || propSearch?.page || directory?.pagination?.page || 1,
+    10
+  );
+  const currentPage = Number.isFinite(pageParam) && pageParam > 0 ? pageParam : 1;
+  const total = directory?.pagination?.total ?? structuredDoctors.length;
+  const totalPages =
+    directory?.pagination?.totalPages ?? Math.max(1, Math.ceil(total / PAGE_SIZE));
+  const validPage = Math.min(currentPage, totalPages);
+
+  const displayedDoctors = directory?.pagination
+    ? structuredDoctors
+    : structuredDoctors.slice((validPage - 1) * PAGE_SIZE, validPage * PAGE_SIZE);
+
+  const pagination = {
+    page: validPage,
+    pageSize: PAGE_SIZE,
+    total,
+    totalPages,
+  };
 
   return (
     <>
@@ -163,8 +345,8 @@ export default function DoctorDirectory({ directory }) {
           </div>
           <DoctorDirectorySearch
             search={search}
-            specialties={filters.specialties}
-            locations={filters.locations}
+            specialties={filterSpecialties}
+            locations={filterLocations}
           />
         </div>
       </section>
@@ -218,14 +400,14 @@ export default function DoctorDirectory({ directory }) {
             </div>
           ) : null}
 
-          {doctors.length ? (
+          {displayedDoctors.length ? (
             <>
               <div className="grid grid-cols-1 gap-4 pt-6 md:grid-cols-2 md:gap-5 xl:grid-cols-3 xl:gap-6">
-                {doctors.map((doctor, index) => (
+                {displayedDoctors.map((doctor, index) => (
                   <DoctorCard
                     doctor={doctor}
                     index={(pagination.page - 1) * pagination.pageSize + index}
-                    key={doctor.slug}
+                    key={doctor.id || doctor.slug || index}
                   />
                 ))}
               </div>

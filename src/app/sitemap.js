@@ -1,4 +1,5 @@
 import { getMarketingBaseUrl } from "@/lib/seo/urls";
+import { getDoctorsDirectory } from "@/services/doctors-directory.service";
 
 const publicPages = [
   { path: "/", changeFrequency: "weekly", priority: 1 },
@@ -13,12 +14,28 @@ const publicPages = [
   { path: "/privacy-policy", changeFrequency: "yearly", priority: 0.2 },
 ];
 
-export default function sitemap() {
+export default async function sitemap() {
   const baseUrl = getMarketingBaseUrl();
 
-  return publicPages.map((page) => ({
+  const staticEntries = publicPages.map((page) => ({
     url: new URL(page.path, baseUrl).toString(),
     changeFrequency: page.changeFrequency,
     priority: page.priority,
   }));
+
+  try {
+    const doctors = await getDoctorsDirectory();
+    const doctorEntries = doctors
+      .filter((doctor) => Boolean(doctor.slug || doctor.subdomain))
+      .map((doctor) => ({
+        url: new URL(`/doctors/${doctor.slug || doctor.subdomain}`, baseUrl).toString(),
+        lastModified: doctor.updatedAt ? new Date(doctor.updatedAt) : new Date(),
+        changeFrequency: "weekly",
+        priority: 0.8,
+      }));
+
+    return [...staticEntries, ...doctorEntries];
+  } catch {
+    return staticEntries;
+  }
 }

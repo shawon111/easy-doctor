@@ -16,18 +16,26 @@ const getSearchValue = (value) =>
 
 export default async function DoctorsPage({ searchParams }) {
   const params = await searchParams;
-  const directory = await getDoctorsDirectory({
-    query: getSearchValue(params?.q),
-    specialty: getSearchValue(params?.specialty),
-    location: getSearchValue(params?.location),
-    page: getSearchValue(params?.page),
+  const query = getSearchValue(params?.q || params?.query);
+  const specialty = getSearchValue(params?.specialty);
+  const location = getSearchValue(params?.location);
+  const page = getSearchValue(params?.page);
+
+  const doctors = await getDoctorsDirectory({
+    query,
+    specialty,
+    location,
   });
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] font-sans text-[#0F172A] antialiased">
       <Header />
       <main>
-        <DoctorDirectory directory={directory} />
+        <DoctorDirectory
+          doctors={doctors}
+          search={{ query, specialty, location, page }}
+          searchParams={params}
+        />
       </main>
       <Footer />
     </div>
