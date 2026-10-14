@@ -1,5 +1,4 @@
 import { cache } from "react";
-import { isWebsiteActive } from "@/lib/subscription";
 import { resolvePublicImageUrl } from "@/lib/seo/urls";
 import { getPublicWebsiteSeoByIdentifier } from "@/services/website.service";
 
@@ -51,27 +50,27 @@ const pageFallbacks = (page, doctor) => {
     if (page === "about") {
         return {
             title: `About ${doctor.name}${identity ? ` | ${identity.trim()}` : ""}`,
-            description: `Learn about ${doctor.name}${identity ? `, a ${identity.trim()}` : ""} and the professional background provided on this website.`,
+            description: `Learn about ${doctor.name}${identity ? `, a ${identity.trim()}` : ""} and the professional background, qualifications, and patient care philosophy provided on this website.`,
         };
     }
 
     if (page === "services") {
         return {
-            title: `${doctor.specialty || "Medical"} Services${location} | ${doctor.name}`,
-            description: `Explore ${doctor.specialty ? `${doctor.specialty.toLowerCase()} ` : ""}services provided by ${doctor.name}${location}.`,
+            title: `${doctor.specialty || "Medical"} Services & Treatments${location} | ${doctor.name}`,
+            description: `Explore ${doctor.specialty ? `${doctor.specialty.toLowerCase()} ` : ""}specialized medical treatments, procedures, and clinical care provided by ${doctor.name}${location}.`,
         };
     }
 
     if (page === "appointment") {
         return {
             title: `Book an Appointment | ${doctor.name}${location}`,
-            description: `Contact ${doctor.name}${identity ? `, ${identity.trim()}` : ""}, to ask about appointments and consultation options.`,
+            description: `Schedule a consultation with ${doctor.name}${identity ? `, ${identity.trim()}` : ""}. View visiting hours, chamber locations, and appointment booking options.`,
         };
     }
 
     return {
         title: [doctor.name, identity].filter(Boolean).join(" | "),
-        description: `Meet ${doctor.name}${identity ? `, ${identity.trim()}` : ""}. Explore the doctor's professional information, services, and appointment options.`,
+        description: `Meet ${doctor.name}${identity ? `, ${identity.trim()}` : ""}. Explore the doctor's professional practice, clinical services, visiting schedule, and online appointment options.`,
     };
 };
 
@@ -106,11 +105,11 @@ export const createDoctorMetadata = async (identifier, page = "home") => {
         pageSeo.ogImage || seo.social?.ogImage || context.user?.profilePicture,
         context.canonicalUrl
     );
-    const isIndexable =
-        context.isPublished &&
-        isWebsiteActive(context.user?.expiresAt) &&
-        seo.robots?.index !== false;
+
+    // Keep indexing active even if subscription expires so search engine rankings are preserved
+    const isIndexable = context.isPublished && seo.robots?.index !== false;
     const follow = seo.robots?.follow !== false;
+
     const socialTitle =
         page === "home" ? clean(seo.social?.ogTitle) || title : title;
     const socialDescription =
@@ -118,12 +117,38 @@ export const createDoctorMetadata = async (identifier, page = "home") => {
             ? clean(seo.social?.ogDescription) || description
             : description;
 
+    const keywords = [
+        `Dr. ${doctor.name}`,
+        doctor.name,
+        doctor.specialty,
+        doctor.city ? `${doctor.specialty} in ${doctor.city}` : undefined,
+        doctor.city ? `doctor in ${doctor.city}` : undefined,
+        ...doctor.treatments.slice(0, 5),
+        ...doctor.qualifications,
+    ].filter(Boolean);
+
     return {
         title: { absolute: title || "Doctor Website" },
         ...(description && { description }),
+        keywords,
         metadataBase: new URL(context.canonicalUrl),
         alternates: { canonical: canonicalUrl },
-        robots: { index: isIndexable, follow },
+        icons: {
+            icon: "/favicon.svg",
+            shortcut: "/favicon.svg",
+            apple: "/favicon.svg",
+        },
+        robots: {
+            index: isIndexable,
+            follow,
+            googleBot: {
+                index: isIndexable,
+                follow,
+                "max-video-preview": -1,
+                "max-image-preview": "large",
+                "max-snippet": -1,
+            },
+        },
         openGraph: {
             type: "website",
             siteName: doctor.name || clean(seo.siteName),

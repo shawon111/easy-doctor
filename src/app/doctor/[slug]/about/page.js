@@ -6,6 +6,7 @@ import TemplateTwoDarkPageRenderer from "@/components/templates/template-two-dar
 import TemplateTwoPageRenderer from "@/components/templates/template-two/TemplateTwoPageRenderer";
 import WebsiteGeneratingScreen from "@/components/doctor/WebsiteGeneratingScreen";
 import { createDoctorMetadata } from "@/lib/seo/doctor-metadata";
+import { getDoctorCanonicalBaseUrl, serializeJsonLd } from "@/lib/seo/urls";
 import { getWebsiteBySubdomain } from "@/services/website.service";
 import { notFound } from "next/navigation";
 
@@ -38,18 +39,69 @@ const AboutPage = async ({ params }) => {
 
     const TemplatePageRenderer = templateMapping[website.templateType];
     if (!TemplatePageRenderer) notFound();
-    let siteContent = website?.content ?? {}
+    let siteContent = website?.content ?? {};
     siteContent.userId = website?.userId?._id;
     siteContent.phone = website?.userId?.phone;
 
     // generate and use brand name
-    const brandName = website?.userId?.name.split(" ")[0] + " " + website?.userId?.name.split(" ")[1]
-    siteContent.header = siteContent?.header ?? {}
-    siteContent.footer = siteContent?.footer ?? {}
+    const brandName =
+        (website?.userId?.name?.split(" ")[0] || "") +
+        " " +
+        (website?.userId?.name?.split(" ")[1] || "");
+    siteContent.header = siteContent?.header ?? {};
+    siteContent.footer = siteContent?.footer ?? {};
     siteContent.header.brandName = brandName;
     siteContent.footer.brandName = brandName;
-    
-    return <TemplatePageRenderer page={pageName} content={siteContent} slug={slug} />;
+
+    const canonicalBaseUrl =
+        getDoctorCanonicalBaseUrl(website)?.toString().replace(/\/$/, "") || "";
+
+    const aboutStructuredData = canonicalBaseUrl
+        ? {
+              "@context": "https://schema.org",
+              "@graph": [
+                  {
+                      "@type": "AboutPage",
+                      name: `About Dr. ${website?.userId?.name}`,
+                      description:
+                          website?.userId?.bio ||
+                          `About Dr. ${website?.userId?.name}, ${website?.userId?.specialization}.`,
+                      url: `${canonicalBaseUrl}/about`,
+                  },
+                  {
+                      "@type": "BreadcrumbList",
+                      itemListElement: [
+                          {
+                              "@type": "ListItem",
+                              position: 1,
+                              name: "Home",
+                              item: canonicalBaseUrl,
+                          },
+                          {
+                              "@type": "ListItem",
+                              position: 2,
+                              name: "About",
+                              item: `${canonicalBaseUrl}/about`,
+                          },
+                      ],
+                  },
+              ],
+          }
+        : null;
+
+    return (
+        <>
+            {aboutStructuredData ? (
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                        __html: serializeJsonLd(aboutStructuredData),
+                    }}
+                />
+            ) : null}
+            <TemplatePageRenderer page={pageName} content={siteContent} slug={slug} />
+        </>
+    );
 };
 
 export default AboutPage;

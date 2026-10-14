@@ -17,31 +17,7 @@ const DoctorLayout = async ({ children, params }) => {
   const context = await getDoctorSiteContext(slug);
   if (!context) notFound();
 
-  // check if subscription expired
-  const isActive = isWebsiteActive(context.user?.expiresAt);
-  if (!isActive) {
-    return <>
-      <section className="mb-6 rounded-lg border border-red-200 bg-red-50 p-4">
-        <div className="flex items-center justify-between gap-4">
-          <div>
-            <h3 className="font-semibold text-red-900">
-              Your trial has expired
-            </h3>
-            <p className="mt-1 text-sm text-red-700">
-              Your Docxio trial has ended. Upgrade your plan to continue
-              using your website and dashboard features.
-            </p>
-          </div>
-
-          <Button>
-            Upgrade Plan
-          </Button>
-        </div>
-      </section>
-    </>
-  }
-
-  return <>
+  const structuredData = (
     <script
       type="application/ld+json"
       dangerouslySetInnerHTML={{
@@ -53,8 +29,41 @@ const DoctorLayout = async ({ children, params }) => {
         ),
       }}
     />
-    {children}
-  </>;
+  );
+
+  // check if subscription expired
+  const isActive = isWebsiteActive(context.user?.expiresAt);
+  if (!isActive) {
+    return (
+      <>
+        {structuredData}
+        <section className="mb-6 rounded-lg border border-red-200 bg-red-50 p-4">
+          <div className="flex items-center justify-between gap-4">
+            <div>
+              <h3 className="font-semibold text-red-900">
+                Your trial has expired
+              </h3>
+              <p className="mt-1 text-sm text-red-700">
+                Your Docxio trial has ended. Upgrade your plan to continue
+                using your website and dashboard features.
+              </p>
+            </div>
+
+            <Button>
+              Upgrade Plan
+            </Button>
+          </div>
+        </section>
+      </>
+    );
+  }
+
+  return (
+    <>
+      {structuredData}
+      {children}
+    </>
+  );
 };
 
 export default DoctorLayout;

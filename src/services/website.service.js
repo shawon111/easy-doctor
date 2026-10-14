@@ -330,8 +330,8 @@ export const getPublicWebsiteSeoByIdentifier = async (identifier) => {
         canonicalUrl: canonicalBaseUrl.toString().replace(/\/$/, ""),
         isPublished:
             website.status === "ready" &&
-            Boolean(website.content) &&
-            isWebsiteActive(website.userId.expiresAt),
+            Boolean(website.content),
+        isActive: isWebsiteActive(website.userId?.expiresAt),
     };
 };
 

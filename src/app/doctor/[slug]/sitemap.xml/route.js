@@ -9,12 +9,12 @@ const escapeXml = (value) =>
         "'": "&apos;",
     })[character]);
 
-const publicPagePaths = [
-    "/",
-    "/about",
-    "/services",
-    "/appointment",
-    "/privacy-policy",
+const publicPages = [
+    { path: "/", priority: "1.0", changefreq: "weekly" },
+    { path: "/services", priority: "0.9", changefreq: "monthly" },
+    { path: "/appointment", priority: "0.9", changefreq: "weekly" },
+    { path: "/about", priority: "0.8", changefreq: "monthly" },
+    { path: "/privacy-policy", priority: "0.3", changefreq: "yearly" },
 ];
 
 export async function GET(request, { params }) {
@@ -27,18 +27,25 @@ export async function GET(request, { params }) {
         });
     }
 
+    // Keep sitemap active for published websites even when subscription expires
     const shouldIndex =
-        context.isPublished && context.seo.robots?.index !== false;
+        context.isPublished && context.seo?.robots?.index !== false;
+
+    const lastMod = context.website?.updatedAt
+        ? new Date(context.website.updatedAt).toISOString()
+        : new Date().toISOString();
+
     const urls = shouldIndex
-        ? publicPagePaths
-              .map((path) => {
+        ? publicPages
+              .map(({ path, priority, changefreq }) => {
                   const location = escapeXml(
                       new URL(path, context.canonicalUrl).toString()
                   );
-                  return `<url><loc>${location}</loc></url>`;
+                  return `<url><loc>${location}</loc><lastmod>${lastMod}</lastmod><changefreq>${changefreq}</changefreq><priority>${priority}</priority></url>`;
               })
               .join("")
         : "";
+
     const body =
         `<?xml version="1.0" encoding="UTF-8"?>` +
         `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls}</urlset>`;

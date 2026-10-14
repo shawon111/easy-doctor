@@ -17,11 +17,11 @@ export default function HeroSection() {
       />
       <div className="mx-auto grid min-h-[660px] max-w-7xl items-center gap-14 px-6 py-16 sm:py-20 lg:grid-cols-[1.02fr_0.98fr] lg:px-8 lg:py-24">
         <div className="max-w-2xl">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary-soft border border-secondary/20 text-secondary text-xs font-bold tracking-wide uppercase mb-6" bis_skin_checked="1"><span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>15-Day Free Trial · No Card Required</div>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary-soft border border-secondary/20 text-secondary text-xs font-bold tracking-wide uppercase mb-6"><span className="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>15-Day Free Trial · No Card Required</div>
           <h1 className="mt-7 text-4xl font-extrabold leading-[1.08] tracking-tight text-slate-heading sm:text-5xl lg:text-[3.7rem]">
             Doctor Website Builder in Bangladesh
             <br/>
-            <span class="font-serif font-normal italic text-secondary">Ready in 2 Minutes</span>
+            <span className="font-serif font-normal italic text-secondary">Ready in 2 Minutes</span>
           </h1>
           <p className="mt-6 max-w-xl text-base leading-8 text-slate-muted sm:text-lg">
             Create a professional doctor website without hiring a developer.

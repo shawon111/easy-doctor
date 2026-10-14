@@ -25,6 +25,24 @@ export const getMarketingBaseUrl = () => {
 };
 
 export const getDoctorCanonicalBaseUrl = (website) => {
+    // If website has a connected/verified custom domain, use it as canonical
+    if (
+        website?.domain &&
+        ["connected", "verified"].includes(website?.domainStatus)
+    ) {
+        try {
+            const domain = String(website.domain).trim();
+            const domainUrl = new URL(
+                domain.includes("://") ? domain : `https://${domain}`
+            );
+            if (domainUrl.protocol === "https:" || domainUrl.protocol === "http:") {
+                return new URL(`https://${domainUrl.host}`);
+            }
+        } catch {
+            // fallback to platform subdomain if domain parsing fails
+        }
+    }
+
     const baseDomain = normalizeHost(
         process.env.NEXT_PUBLIC_BASE_DOMAIN || "docxio.com"
     ).replace(/^www\./, "");

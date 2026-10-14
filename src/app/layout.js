@@ -62,6 +62,28 @@ export const metadata = {
   },
   description:
     "Create your professional doctor website with Docxio. Showcase your qualifications, medical services and clinic information, improve your online presence, and receive appointment requests online.",
+  keywords: [
+    "doctor website builder",
+    "doctor website bangladesh",
+    "physician website builder",
+    "medical practice website",
+    "doctor portfolio website",
+    "clinic serial management",
+    "doctor appointment booking bangladesh",
+    "docxio",
+  ],
+  authors: [{ name: "Docxio" }],
+  creator: "Docxio",
+  publisher: "Docxio",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/favicon.ico",
+  },
   openGraph: {
     type: "website",
     siteName: "Docxio",
@@ -79,7 +101,17 @@ export const metadata = {
     card: "summary_large_image",
     images: [MARKETING_OG_IMAGE],
   },
-  robots: { index: true, follow: true },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function RootLayout({ children }) {

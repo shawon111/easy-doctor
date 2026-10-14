@@ -1,5 +1,6 @@
 import Header from "@/components/home/Header";
 import Footer from "@/components/home/Footer";
+import Link from "next/link";
 
 export default function InfoPageLayout({
   badge,
@@ -16,6 +17,17 @@ export default function InfoPageLayout({
       <main className="bg-slate-50">
         <section className="border-b border-slate-200 bg-gradient-to-b from-white via-slate-50 to-slate-100">
           <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8 lg:py-20">
+            <nav aria-label="Breadcrumb" className="mb-6 flex items-center gap-2 text-xs font-medium text-slate-500">
+              <Link href="/" className="transition hover:text-slate-900">
+                Home
+              </Link>
+              <span aria-hidden="true" className="text-slate-400">/</span>
+              <span className="text-slate-600">{badge || "Guides"}</span>
+              <span aria-hidden="true" className="text-slate-400">/</span>
+              <span aria-current="page" className="truncate font-semibold text-slate-900">
+                {title}
+              </span>
+            </nav>
             <div className="grid items-end gap-10 lg:grid-cols-[1.55fr_0.9fr]">
               <div>
                 <span className="inline-flex items-center rounded-full border border-secondary/20 bg-secondary-soft px-3 py-1 text-[11px] font-bold uppercase tracking-[0.2em] text-secondary">
