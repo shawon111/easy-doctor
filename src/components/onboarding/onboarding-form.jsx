@@ -100,12 +100,20 @@ export function OnboardingForm() {
 
   // handle form submission
   const createNewUser = async (data) => {
+    const cleanedClinicAddress = data.clinicAddress?.map(
+      ({ division, ...clinic }) => clinic
+    );
+    const payload = {
+      ...data,
+      clinicAddress: cleanedClinicAddress,
+    };
+
     const response = await fetch("/api/auth/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(payload),
     });
 
     if (!response.ok) {
@@ -113,7 +121,7 @@ export function OnboardingForm() {
     }
 
     return response.json();
-  }
+  };
 
   const { mutate, isPending } = useMutation({
     mutationFn: createNewUser,

@@ -12,7 +12,8 @@ const qualificationSchema = z.object({
 const clinicAddressSchema = z.object({
   chamberName: z.string().trim().min(1, "Chamber name is required"),
   address: z.string().trim().min(1, "Address is required"),
-  city: z.string().trim().min(1, "City is required"),
+  division: z.string().optional(),
+  city: z.string().trim().min(1, "Select a city or town"),
   country: z.string().trim().min(1, "Country is required"),
   visitingHours: z
     .string()
@@ -105,8 +106,9 @@ export const defaultValues = {
     {
       chamberName: "",
       address: "",
+      division: "",
       city: "",
-      country: "",
+      country: "Bangladesh",
       visitingHours: "",
       visitingDays: "",
       whatsapp: "",

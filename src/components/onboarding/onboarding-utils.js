@@ -92,3 +92,12 @@ export const VISITING_DAYS = [
   "Friday",
   "Saturday",
 ];
+
+export {
+  BANGLADESH_DATA,
+  BANGLADESH_DIVISIONS,
+  BANGLADESH_CITIES_BY_DIVISION,
+  getDivisionByCity,
+} from "./bangladesh-data";
+
+

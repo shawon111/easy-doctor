@@ -5,15 +5,30 @@ import { CalendarDays, MapPin, Plus, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { cn } from "@/lib/utils";
-import { BOOKING_OPTIONS, VISITING_DAYS } from "./onboarding-utils";
+import {
+  BANGLADESH_CITIES_BY_DIVISION,
+  BANGLADESH_DIVISIONS,
+  BOOKING_OPTIONS,
+  VISITING_DAYS,
+  getDivisionByCity,
+} from "./onboarding-utils";
 import { Field, TextField, getFieldError } from "./form-field";
+import { SearchableSelect } from "./searchable-select";
 
 const EMPTY_CLINIC = {
   chamberName: "",
   address: "",
+  division: "",
   city: "",
-  country: "",
+  country: "Bangladesh",
   visitingHours: "",
   visitingDays: "",
   whatsapp: "",
@@ -25,7 +40,7 @@ export function StepClinic({ register, control, errors }) {
     control,
     name: "clinicAddress",
   });
-  const { watch } = useFormContext();
+  const { watch, setValue } = useFormContext();
   const profilePhone = watch("phone");
 
   return (
@@ -38,11 +53,11 @@ export function StepClinic({ register, control, errors }) {
               <h3 className="text-sm font-semibold text-slate-900">Where patients can visit</h3>
             </div>
             <p className="mt-1 text-sm text-slate-500">
-              Add a location and its hours. Add another only if you see patients elsewhere.
+              Add a chamber and its visiting hours. Add another only if you see patients elsewhere.
             </p>
           </div>
           <span className="rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700">
-            {fields.length} {fields.length === 1 ? "location" : "locations"}
+            {fields.length} {fields.length === 1 ? "chamber" : "chambers"}
           </span>
         </div>
 
@@ -56,12 +71,18 @@ export function StepClinic({ register, control, errors }) {
           {fields.map((field, index) => {
             const path = (name) => `clinicAddress.${index}.${name}`;
             const selectedDays = watch(path("visitingDays"))?.split(", ").filter(Boolean) || [];
+            const currentCity = watch(path("city"));
+            const rawDivision = watch(path("division"));
+            const selectedDivision = rawDivision || getDivisionByCity(currentCity);
+            const availableCities = selectedDivision
+              ? BANGLADESH_CITIES_BY_DIVISION[selectedDivision] || []
+              : [];
 
             return (
               <section
                 key={field.id}
                 className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm shadow-slate-950/[0.025]"
-                aria-labelledby={`location-heading-${index}`}
+                aria-labelledby={`chamber-heading-${index}`}
               >
                 <header className="flex items-center justify-between gap-3 border-b border-slate-100 bg-slate-50/70 px-4 py-3.5 sm:px-5">
                   <div className="flex items-center gap-3">
@@ -69,8 +90,8 @@ export function StepClinic({ register, control, errors }) {
                       <MapPin className="size-4" />
                     </span>
                     <div>
-                      <h4 id={`location-heading-${index}`} className="text-sm font-semibold text-slate-900">
-                        {index === 0 ? "Primary location" : `Location ${index + 1}`}
+                      <h4 id={`chamber-heading-${index}`} className="text-sm font-semibold text-slate-900">
+                        {index === 0 ? "Primary chamber" : `Chamber ${index + 1}`}
                       </h4>
                       <p className="text-xs text-slate-500">Address and visiting hours</p>
                     </div>
@@ -81,7 +102,7 @@ export function StepClinic({ register, control, errors }) {
                       variant="ghost"
                       size="sm"
                       onClick={() => remove(index)}
-                      aria-label={`Remove location ${index + 1}`}
+                      aria-label={`Remove chamber ${index + 1}`}
                       className="text-slate-500 hover:bg-rose-50 hover:text-rose-600"
                     >
                       <Trash2 className="size-4" />
@@ -92,7 +113,7 @@ export function StepClinic({ register, control, errors }) {
 
                 <div className="grid gap-4 p-4 sm:grid-cols-2 sm:p-5">
                   <Field
-                    label="Location name"
+                    label="Chamber name"
                     htmlFor={path("chamberName")}
                     required
                     className="sm:col-span-2"
@@ -100,7 +121,7 @@ export function StepClinic({ register, control, errors }) {
                   >
                     <TextField
                       id={path("chamberName")}
-                      placeholder="e.g. Downtown Medical Rooms"
+                      placeholder="e.g. Popular Diagnostic Centre, Dhanmondi"
                       error={getFieldError(errors, path("chamberName"))}
                       {...register(path("chamberName"))}
                     />
@@ -121,30 +142,93 @@ export function StepClinic({ register, control, errors }) {
                     />
                   </Field>
 
-                  <Field
-                    label="City"
-                    htmlFor={path("city")}
-                    required
-                    error={getFieldError(errors, path("city"))}
-                  >
-                    <TextField
-                      id={path("city")}
-                      placeholder="City"
-                      error={getFieldError(errors, path("city"))}
-                      {...register(path("city"))}
-                    />
-                  </Field>
+                  <Controller
+                    control={control}
+                    name={path("division")}
+                    render={({ field: divField }) => (
+                      <Field
+                        label="Division"
+                        htmlFor={path("division")}
+                        required
+                        hint="Select division to view towns"
+                      >
+                        <Select
+                          value={divField.value || selectedDivision || ""}
+                          onValueChange={(val) => {
+                            divField.onChange(val);
+                            if (currentCity && !BANGLADESH_CITIES_BY_DIVISION[val]?.includes(currentCity)) {
+                              setValue(path("city"), "", { shouldValidate: true });
+                            }
+                          }}
+                        >
+                          <SelectTrigger
+                            id={path("division")}
+                            type="button"
+                            className="h-12 w-full rounded-xl border-slate-200 bg-white px-3.5 shadow-sm shadow-slate-950/[0.02]"
+                          >
+                            <SelectValue placeholder="Select division" />
+                          </SelectTrigger>
+                          <SelectContent className="max-h-72">
+                            {BANGLADESH_DIVISIONS.map((division) => (
+                              <SelectItem key={division} value={division}>
+                                {division}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </Field>
+                    )}
+                  />
+
+                  <Controller
+                    control={control}
+                    name={path("city")}
+                    render={({ field: cityField }) => (
+                      <Field
+                        label="City or Town"
+                        htmlFor={path("city")}
+                        required
+                        error={getFieldError(errors, path("city"))}
+                      >
+                        <SearchableSelect
+                          id={path("city")}
+                          value={cityField.value || ""}
+                          onChange={(val) => {
+                            cityField.onChange(val);
+                            if (!rawDivision) {
+                              const div = getDivisionByCity(val);
+                              if (div) {
+                                setValue(path("division"), div);
+                              }
+                            }
+                          }}
+                          options={availableCities}
+                          disabled={!selectedDivision}
+                          error={!!getFieldError(errors, path("city"))}
+                          placeholder={
+                            selectedDivision
+                              ? "Select city or town"
+                              : "Select division first"
+                          }
+                          searchPlaceholder="Search city or town..."
+                        />
+                      </Field>
+                    )}
+                  />
 
                   <Field
                     label="Country"
                     htmlFor={path("country")}
                     required
+                    className="sm:col-span-2"
                     error={getFieldError(errors, path("country"))}
                   >
                     <TextField
                       id={path("country")}
-                      placeholder="Country"
-                      error={getFieldError(errors, path("country"))}
+                      value="Bangladesh"
+                      readOnly
+                      tabIndex={-1}
+                      className="cursor-default bg-slate-50 font-medium text-slate-700"
                       {...register(path("country"))}
                     />
                   </Field>
@@ -201,7 +285,7 @@ export function StepClinic({ register, control, errors }) {
                           required
                           className="sm:col-span-2"
                           error={getFieldError(errors, path("visitingDays"))}
-                          hint="Choose every day you see patients at this location."
+                          hint="Choose every day you see patients at this chamber."
                         >
                           <div className="flex flex-wrap gap-2">
                             {VISITING_DAYS.map((day) => {
@@ -237,7 +321,7 @@ export function StepClinic({ register, control, errors }) {
                   />
 
                   <Field
-                    label="WhatsApp for this location"
+                    label="WhatsApp for this chamber"
                     htmlFor={path("whatsapp")}
                     optional
                     className="sm:col-span-2"
@@ -258,7 +342,7 @@ export function StepClinic({ register, control, errors }) {
                     htmlFor={path("mapUrl")}
                     optional
                     className="sm:col-span-2"
-                    hint="Paste a link to directions for this location, if you have one."
+                    hint="Paste a link to directions for this chamber, if you have one."
                     error={getFieldError(errors, path("mapUrl"))}
                   >
                     <TextField
@@ -282,7 +366,7 @@ export function StepClinic({ register, control, errors }) {
           className="h-11 w-full rounded-xl border-dashed border-blue-300 bg-blue-50/50 text-blue-700 hover:border-blue-400 hover:bg-blue-50"
         >
           <Plus className="size-4" />
-          Add another location
+          Add another chamber
         </Button>
       </section>
 
