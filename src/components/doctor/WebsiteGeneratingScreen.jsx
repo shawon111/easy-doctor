@@ -1,14 +1,5 @@
 import React from "react";
 
-/**
- * Shown on all doctor website pages while AI content generation is still
- * in progress (website.status === "generating").
- *
- * This component is rendered server-side and the page is intentionally NOT
- * cached, so the next visitor always gets a fresh status check from the DB.
- * Once generation completes and the cache is revalidated, the real content
- * is served instead.
- */
 const WebsiteGeneratingScreen = () => {
     return (
         <div className="flex min-h-screen flex-col items-center justify-center gap-6 bg-background px-4 text-center">

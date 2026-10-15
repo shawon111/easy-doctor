@@ -1,5 +1,9 @@
 import { getMarketingBaseUrl } from "@/lib/seo/urls";
-import { getDoctorsDirectory } from "@/services/doctors-directory.service";
+import {
+  getDoctorsDirectory,
+  getAvailableLocationsWithDoctors,
+  getAvailableLocationSpecialtyPairs,
+} from "@/services/doctors-directory.service";
 
 const publicPages = [
   { path: "/", changeFrequency: "weekly", priority: 1 },
@@ -24,7 +28,12 @@ export default async function sitemap() {
   }));
 
   try {
-    const doctors = await getDoctorsDirectory();
+    const [doctors, locations, pairs] = await Promise.all([
+      getDoctorsDirectory().catch(() => []),
+      getAvailableLocationsWithDoctors().catch(() => []),
+      getAvailableLocationSpecialtyPairs().catch(() => []),
+    ]);
+
     const doctorEntries = doctors
       .filter((doctor) => Boolean(doctor.slug || doctor.subdomain))
       .map((doctor) => ({
@@ -34,8 +43,31 @@ export default async function sitemap() {
         priority: 0.8,
       }));
 
-    return [...staticEntries, ...doctorEntries];
+    const locationEntries = locations.map((loc) => ({
+      url: new URL(`/doctors/in/${loc.slug}`, baseUrl).toString(),
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.85,
+    }));
+
+    const specialtyLocationEntries = pairs.map((pair) => ({
+      url: new URL(
+        `/doctors/in/${pair.citySlug}/${pair.specialtySlug}`,
+        baseUrl
+      ).toString(),
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.85,
+    }));
+
+    return [
+      ...staticEntries,
+      ...locationEntries,
+      ...specialtyLocationEntries,
+      ...doctorEntries,
+    ];
   } catch {
     return staticEntries;
   }
 }
+

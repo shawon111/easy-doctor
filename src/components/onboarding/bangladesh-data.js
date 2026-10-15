@@ -592,7 +592,7 @@ export const BANGLADESH_DATA = {
     "Satkhira": [
       "Assasuni",
       "Debhata",
-      "Kalaroa",
+      "Kolaroa",
       "Kaliganj",
       "Satkhira Sadar",
       "Shyamnagar",
@@ -968,7 +968,7 @@ export const BANGLADESH_CITIES_BY_DIVISION = {
     "Jhikargachha",
     "Jibannagar",
     "Kachua",
-    "Kalaroa",
+    "Kolaroa",
     "Kalia",
     "Kaliganj",
     "Keshabpur",

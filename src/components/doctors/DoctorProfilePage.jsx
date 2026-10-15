@@ -22,6 +22,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import DoctorShareButton from "@/components/doctors/DoctorShareButton";
+import { toSlug } from "@/services/doctors-directory.service";
 
 const AVATAR_STYLES = [
   "bg-[#e8effb] text-[#234b7e]",
@@ -125,7 +126,28 @@ export default function DoctorProfilePage({ doctor }) {
           >
             Find a Doctor
           </Link>
-          {specialty ? (
+          {primaryCity ? (
+            <>
+              <ChevronRight className="size-3.5 text-slate-400" aria-hidden="true" />
+              <Link
+                href={`/doctors/in/${toSlug(primaryCity)}`}
+                className="transition hover:text-slate-900"
+              >
+                {primaryCity}
+              </Link>
+            </>
+          ) : null}
+          {specialty && primaryCity ? (
+            <>
+              <ChevronRight className="size-3.5 text-slate-400" aria-hidden="true" />
+              <Link
+                href={`/doctors/in/${toSlug(primaryCity)}/${toSlug(specialty)}`}
+                className="transition hover:text-slate-900"
+              >
+                {specialty}
+              </Link>
+            </>
+          ) : specialty ? (
             <>
               <ChevronRight className="size-3.5 text-slate-400" aria-hidden="true" />
               <Link

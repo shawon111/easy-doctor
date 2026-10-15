@@ -1,7 +1,11 @@
 import Header from "@/components/home/Header";
 import Footer from "@/components/home/Footer";
 import DoctorProfilePage from "@/components/doctors/DoctorProfilePage";
-import { getDoctorsDirectory, getDoctorBySlug } from "@/services/doctors-directory.service";
+import {
+  getDoctorsDirectory,
+  getDoctorBySlug,
+  toSlug,
+} from "@/services/doctors-directory.service";
 import { getMarketingBaseUrl, serializeJsonLd } from "@/lib/seo/urls";
 import { notFound } from "next/navigation";
 
@@ -187,29 +191,49 @@ export default async function PublicDoctorProfilePage({ params }) {
   };
 
   // BreadcrumbList Schema
+  const breadcrumbItems = [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: baseUrl,
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Find a Doctor",
+      item: `${baseUrl}/doctors`,
+    },
+  ];
+
+  if (city) {
+    breadcrumbItems.push({
+      "@type": "ListItem",
+      position: breadcrumbItems.length + 1,
+      name: `Doctors in ${city}`,
+      item: `${baseUrl}/doctors/in/${toSlug(city)}`,
+    });
+    if (specialty) {
+      breadcrumbItems.push({
+        "@type": "ListItem",
+        position: breadcrumbItems.length + 1,
+        name: `${specialty} in ${city}`,
+        item: `${baseUrl}/doctors/in/${toSlug(city)}/${toSlug(specialty)}`,
+      });
+    }
+  }
+
+  breadcrumbItems.push({
+    "@type": "ListItem",
+    position: breadcrumbItems.length + 1,
+    name: `Dr. ${name}`,
+    item: canonicalUrl,
+  });
+
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Home",
-        item: baseUrl,
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "Find a Doctor",
-        item: `${baseUrl}/doctors`,
-      },
-      {
-        "@type": "ListItem",
-        position: 3,
-        name: `Dr. ${name}`,
-        item: canonicalUrl,
-      },
-    ],
+    itemListElement: breadcrumbItems,
   };
 
   // FAQPage Schema for High Search Intent Keywords

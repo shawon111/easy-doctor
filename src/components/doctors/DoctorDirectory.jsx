@@ -252,6 +252,7 @@ export default function DoctorDirectory({
   doctors: propDoctors,
   search: propSearch,
   searchParams,
+  availableLocations = [],
 }) {
   const rawList = Array.isArray(directory)
     ? directory
@@ -491,6 +492,40 @@ export default function DoctorDirectory({
           )}
         </div>
       </section>
+
+      {availableLocations && availableLocations.length > 0 ? (
+        <section className="px-5 pb-10 sm:px-8 sm:pb-14 lg:px-10">
+          <div className="mx-auto max-w-7xl rounded-3xl border border-slate-200/90 bg-white p-6 shadow-sm sm:p-10">
+            <div className="flex items-center gap-2 text-[#2563EB]">
+              <MapPin className="size-5" />
+              <h2 className="text-xs font-bold uppercase tracking-wider text-[#2563EB]">
+                Find Doctors by Town & City
+              </h2>
+            </div>
+            <p className="mt-1 text-xl font-bold tracking-tight text-slate-900 sm:text-2xl">
+              Verified Chambers Across Bangladesh
+            </p>
+            <p className="mt-2 max-w-2xl text-sm leading-relaxed text-slate-600">
+              Select a town or city to view local doctors, chamber locations, visiting days, and consultation hours.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-2.5">
+              {availableLocations.map((loc) => (
+                <Link
+                  key={loc.slug}
+                  href={`/doctors/in/${loc.slug}`}
+                  className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-slate-50/70 px-4 py-2.5 text-xs font-semibold text-slate-700 transition hover:border-blue-400 hover:bg-blue-50 hover:text-blue-700"
+                >
+                  <MapPin className="size-3.5 text-slate-400" />
+                  <span>{loc.city}</span>
+                  <span className="rounded-full bg-white px-2 py-0.5 text-[10px] text-slate-500 shadow-xs">
+                    {loc.count}
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
 
       <section className="px-5 pb-14 sm:px-8 sm:pb-20 lg:px-10">
         <div className="relative mx-auto max-w-7xl overflow-hidden rounded-[28px] bg-[#0F172A] px-6 py-9 text-white shadow-[0_28px_70px_-40px_rgba(15,23,42,0.6)] sm:px-10 sm:py-11 lg:px-14">

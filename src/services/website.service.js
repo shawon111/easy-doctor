@@ -349,7 +349,6 @@ export const getWebsiteBySubdomain = async (subdomainOrDomain, pageName) => {
             { subdomain: identifier },
             {
                 domain: identifier,
-                domainStatus: { $in: ["connected", "verified"] },
             },
         ],
     })
@@ -371,9 +370,6 @@ export const getWebsiteBySubdomain = async (subdomainOrDomain, pageName) => {
         return null;
     }
 
-    // While AI generation is in progress, return a lightweight sentinel so the
-    // page can render a "generating" screen.  Critically, we do NOT call the
-    // cached fetcher here, so nothing gets stored in the cache yet.
     if (websiteLookup.status === "generating") {
         return { status: "generating" };
     }

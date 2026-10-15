@@ -31,8 +31,7 @@ const AboutPage = async ({ params }) => {
     const website = await getWebsiteBySubdomain(slug, pageName);
     if (!website) notFound();
 
-    // Website is still being generated — show a placeholder screen.
-    // This branch is never cached so every request re-checks the status.
+     // if ai generating website content, show generating screen
     if (website.status === "generating") {
         return <WebsiteGeneratingScreen />;
     }

@@ -106,9 +106,11 @@ export function AppointmentManagementPage() {
               <SelectValue placeholder="All statuses" />
             </SelectTrigger>
             <SelectContent className="rounded-xl border-slate-800 bg-slate-950 text-slate-200 shadow-xl">
-              <SelectItem value="all" className="hover:bg-slate-900 focus:bg-slate-900 cursor-pointer text-xs">All statuses</SelectItem>
+              <SelectItem value="all" className="hover:bg-slate-900 cursor-pointer text-xs hover:text-white">All statuses</SelectItem>
               {STATUSES.map((status) => (
-                <SelectItem key={status.value} value={status.value} className="hover:bg-slate-900 focus:bg-slate-900 cursor-pointer text-xs">{status.label}</SelectItem>
+                <SelectItem key={status.value} value={status.value} className="hover:bg-slate-900 cursor-pointer text-xs hover:text-white">
+                  {status.label}
+                </SelectItem>
               ))}
             </SelectContent>
           </Select>

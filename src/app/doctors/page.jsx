@@ -2,7 +2,10 @@ import Header from "@/components/home/Header";
 import Footer from "@/components/home/Footer";
 import DoctorDirectory from "@/components/doctors/DoctorDirectory";
 import { createMarketingMetadata } from "@/lib/seo/marketing-metadata";
-import { getDoctorsDirectory } from "@/services/doctors-directory.service";
+import {
+  getDoctorsDirectory,
+  getAvailableLocationsWithDoctors,
+} from "@/services/doctors-directory.service";
 import { getMarketingBaseUrl, serializeJsonLd } from "@/lib/seo/urls";
 
 export const metadata = createMarketingMetadata({
@@ -22,11 +25,14 @@ export default async function DoctorsPage({ searchParams }) {
   const location = getSearchValue(params?.location);
   const page = getSearchValue(params?.page);
 
-  const doctors = await getDoctorsDirectory({
-    query,
-    specialty,
-    location,
-  });
+  const [doctors, availableLocations] = await Promise.all([
+    getDoctorsDirectory({
+      query,
+      specialty,
+      location,
+    }),
+    getAvailableLocationsWithDoctors().catch(() => []),
+  ]);
 
   const baseUrl = getMarketingBaseUrl().toString().replace(/\/$/, "");
   const pageUrl = `${baseUrl}/doctors`;
@@ -88,6 +94,7 @@ export default async function DoctorsPage({ searchParams }) {
             doctors={doctors}
             search={{ query, specialty, location, page }}
             searchParams={params}
+            availableLocations={availableLocations}
           />
         </main>
         <Footer />
