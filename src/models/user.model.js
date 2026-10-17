@@ -115,6 +115,36 @@ const UserSchema = new mongoose.Schema(
             default: "whatsapp",
         },
 
+        fees: {
+            currency: {
+                type: String,
+                default: "BDT",
+                trim: true,
+            },
+            consultationFee: {
+                type: Number,
+                default: 0,
+            },
+            followUpFee: {
+                type: Number,
+                default: 0,
+            },
+            followUpPeriod: {
+                type: String,
+                default: "Within 30 Days",
+                trim: true,
+            },
+            reportFee: {
+                type: Number,
+                default: 0,
+            },
+            note: {
+                type: String,
+                default: "",
+                trim: true,
+            },
+        },
+
         bio: {
             type: String,
             required: true,

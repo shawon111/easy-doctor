@@ -21,7 +21,7 @@ const marketingUrl = getMarketingBaseUrl().toString().replace(/\/$/, "");
 export const metadata = createMarketingMetadata({
   title: "Docxio — Doctor Website Builder in Bangladesh",
   description:
-    "Create your professional doctor website with Docxio. Showcase your qualifications, medical services and clinic information, improve your online presence, and receive appointment requests online.",
+    "Create your professional doctor website in 2 minutes with Docxio. Showcase your qualifications, medical services and clinic information, improve your online presence, and receive appointment requests online.",
   path: "/",
 });
 
@@ -80,7 +80,6 @@ const structuredData = {
       ],
       sameAs: [
         "https://www.facebook.com/docxio",
-        "https://www.linkedin.com/company/docxio",
       ],
     },
     {

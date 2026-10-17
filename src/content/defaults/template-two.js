@@ -34,9 +34,25 @@ export const templateTwoDefaults = {
       { label: "Services", href: "/services" },
     ],
   },
+  fees: {
+    currency: "BDT",
+    consultationFee: 1200,
+    followUpFee: 600,
+    followUpPeriod: "Within 30 Days",
+    reportFee: 0,
+    note: "",
+  },
+  contact: {
+    phone: "+880 1712-345678",
+  },
 
   pages: {
     home: {
+      feesContact: {
+        badge: "FEES & DIRECT INQUIRIES",
+        heading: "Consultation Structure & Practice Access",
+        subheading: "Transparent consultation schedule and direct line for prompt medical guidance.",
+      },
       hero: {
         badge: "Exclusive Precision Care",
         heading: "Dr. John",

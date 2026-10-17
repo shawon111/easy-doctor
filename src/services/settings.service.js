@@ -10,6 +10,7 @@ import User from "@/models/user.model";
 import Website from "@/models/website.model";
 import bcrypt from "bcryptjs";
 import mongoose from "mongoose";
+import { revalidateTag } from "next/cache";
 
 const DEFAULT_NOTIFICATION_PREFERENCES = {
     emailNotifications: true,
@@ -55,13 +56,21 @@ function toSettingsUser(user) {
             ...DEFAULT_NOTIFICATION_PREFERENCES,
             ...(user.notificationPreferences?.toObject?.() ?? user.notificationPreferences),
         },
+        fees: {
+            currency: user.fees?.currency || "BDT",
+            consultationFee: user.fees?.consultationFee ?? 0,
+            followUpFee: user.fees?.followUpFee ?? 0,
+            followUpPeriod: user.fees?.followUpPeriod || "Within 30 Days",
+            reportFee: user.fees?.reportFee ?? 0,
+            note: user.fees?.note || "",
+        },
     };
 }
 
 export async function getSettings(userId) {
     await connectDB();
     const user = await User.findById(userId)
-        .select("name email phone profilePicture qualifications clinicAddress bookingPreferences treatments socialLinks notificationPreferences")
+        .select("name email phone profilePicture qualifications clinicAddress bookingPreferences treatments socialLinks notificationPreferences fees")
         .lean();
 
     if (!user) {
@@ -127,7 +136,7 @@ export async function updateProfileSettings(userId, profileData) {
         throw new SettingsError("Provide valid profile details.");
     }
 
-    const { qualifications, clinicAddress, bookingPreferences, treatments, socialLinks } = profileData;
+    const { qualifications, clinicAddress, bookingPreferences, treatments, socialLinks, fees } = profileData;
     const currentYear = new Date().getFullYear();
     const visitingDays = new Set([
         "Sunday",
@@ -277,12 +286,32 @@ export async function updateProfileSettings(userId, profileData) {
         throw new SettingsError("Account not found.", 404);
     }
 
+    if (fees && typeof fees === "object" && !Array.isArray(fees)) {
+        user.fees = {
+            currency: cleanText(fees.currency) || "BDT",
+            consultationFee: Math.max(0, Number(fees.consultationFee) || 0),
+            followUpFee: Math.max(0, Number(fees.followUpFee) || 0),
+            followUpPeriod: cleanText(fees.followUpPeriod) || "Within 30 Days",
+            reportFee: Math.max(0, Number(fees.reportFee) || 0),
+            note: cleanText(fees.note) || "",
+        };
+    }
+
     user.qualifications = cleanQualifications;
     user.clinicAddress = cleanClinics;
     user.bookingPreferences = bookingPreferences;
     user.treatments = cleanTreatments;
     user.socialLinks = cleanSocialLinks;
     await user.save();
+
+    try {
+        const userWebsite = await Website.findOne({ userId }).select("subdomain").lean();
+        if (userWebsite?.subdomain) {
+            revalidateTag(`website-content:${userWebsite.subdomain}`);
+        }
+    } catch {
+        // Continue even if cache revalidation throws
+    }
 
     return toSettingsUser(user);
 }

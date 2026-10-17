@@ -1,7 +1,7 @@
 "use client";
 
 import { Controller, useFieldArray, useFormContext } from "react-hook-form";
-import { CalendarDays, MapPin, Plus, Trash2 } from "lucide-react";
+import { CalendarDays, MapPin, Plus, Receipt, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
@@ -418,6 +418,119 @@ export function StepClinic({ register, control, errors }) {
             </Field>
           )}
         />
+      </section>
+
+      <section className="space-y-5 border-t border-slate-100 pt-6">
+        <div>
+          <div className="flex items-center gap-2">
+            <Receipt className="size-4 text-blue-600" />
+            <h3 className="text-sm font-semibold text-slate-900">Patient Consultation Fees</h3>
+          </div>
+          <p className="mt-1 text-sm text-slate-500">
+            Specify your patient visit charges. These fees will be displayed prominently on your website homepage so patients can quickly find them.
+          </p>
+        </div>
+
+        <div className="grid gap-4 sm:grid-cols-2">
+          <Field
+            label="First visit / New patient fee (BDT)"
+            htmlFor="fees.consultationFee"
+            required
+            error={getFieldError(errors, "fees.consultationFee")}
+            hint="Standard fee for first-time patient consultation"
+          >
+            <TextField
+              id="fees.consultationFee"
+              type="number"
+              inputMode="numeric"
+              min={0}
+              placeholder="e.g. 1000"
+              error={getFieldError(errors, "fees.consultationFee")}
+              {...register("fees.consultationFee")}
+            />
+          </Field>
+
+          <Field
+            label="Follow-up visit fee (BDT)"
+            htmlFor="fees.followUpFee"
+            required
+            error={getFieldError(errors, "fees.followUpFee")}
+            hint="Discounted fee for returning patients"
+          >
+            <TextField
+              id="fees.followUpFee"
+              type="number"
+              inputMode="numeric"
+              min={0}
+              placeholder="e.g. 500"
+              error={getFieldError(errors, "fees.followUpFee")}
+              {...register("fees.followUpFee")}
+            />
+          </Field>
+        </div>
+
+        <div className="grid gap-4 sm:grid-cols-2">
+          <Field
+            label="Follow-up validity period"
+            htmlFor="fees.followUpPeriod"
+            required
+            error={getFieldError(errors, "fees.followUpPeriod")}
+            hint="Timeframe in which follow-up fee applies"
+          >
+            <Controller
+              control={control}
+              name="fees.followUpPeriod"
+              render={({ field }) => (
+                <Select value={field.value || "Within 30 Days"} onValueChange={field.onChange}>
+                  <SelectTrigger id="fees.followUpPeriod" className="h-12 rounded-xl border-slate-200 bg-white">
+                    <SelectValue placeholder="Select period" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="Within 15 Days">Within 15 Days</SelectItem>
+                    <SelectItem value="Within 30 Days">Within 30 Days (1 Month)</SelectItem>
+                    <SelectItem value="Within 2 Months">Within 2 Months</SelectItem>
+                    <SelectItem value="Within 3 Months">Within 3 Months</SelectItem>
+                    <SelectItem value="Within 6 Months">Within 6 Months</SelectItem>
+                  </SelectContent>
+                </Select>
+              )}
+            />
+          </Field>
+
+          <Field
+            label="Report review fee (BDT)"
+            htmlFor="fees.reportFee"
+            optional
+            error={getFieldError(errors, "fees.reportFee")}
+            hint="Set 0 if report evaluation is free"
+          >
+            <TextField
+              id="fees.reportFee"
+              type="number"
+              inputMode="numeric"
+              min={0}
+              placeholder="0 (Free)"
+              error={getFieldError(errors, "fees.reportFee")}
+              {...register("fees.reportFee")}
+            />
+          </Field>
+        </div>
+
+        <Field
+          label="Patient fee notes / instructions"
+          htmlFor="fees.note"
+          optional
+          error={getFieldError(errors, "fees.note")}
+          hint="e.g., Report check is free within 7 days. Please bring all past reports."
+        >
+          <TextField
+            id="fees.note"
+            type="text"
+            placeholder="e.g., Report check is free within 7 days. Please bring previous prescriptions."
+            error={getFieldError(errors, "fees.note")}
+            {...register("fees.note")}
+          />
+        </Field>
       </section>
     </div>
   );

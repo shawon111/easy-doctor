@@ -41,6 +41,8 @@ const AppointmentPage = async ({ params }) => {
     let siteContent = website?.content ?? {};
     siteContent.userId = website?.userId?._id;
     siteContent.phone = website?.userId?.phone;
+    siteContent.fees = website?.userId?.fees;
+    siteContent.doctorName = website?.userId?.name;
     const clinics = website?.userId?.clinicAddress || [];
     const doctorPhone = String(siteContent.phone || "").replace(/\D/g, "");
     siteContent.clinics = clinics.length

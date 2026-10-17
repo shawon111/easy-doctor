@@ -30,8 +30,24 @@ export const templateOneDefaults = {
       { label: "Services", href: "/services" },
     ],
   },
+  fees: {
+    currency: "BDT",
+    consultationFee: 1000,
+    followUpFee: 500,
+    followUpPeriod: "Within 30 Days",
+    reportFee: 0,
+    note: "",
+  },
+  contact: {
+    phone: "+880 1888-876512",
+  },
   pages: {
     home: {
+      feesContact: {
+        badge: "TRANSPARENT FEES & DIRECT CONTACT",
+        heading: "Consultation Fees & Direct Access",
+        subheading: "Clear, upfront consultation pricing for new and returning patients. Get in touch directly with the physician.",
+      },
       hero: {
         badge: "YOUR OWN PHYSICIAN, EVERY VISIT",
         heading: "Expert Care with a",

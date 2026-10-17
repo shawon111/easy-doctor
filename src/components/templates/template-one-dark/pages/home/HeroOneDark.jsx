@@ -5,21 +5,31 @@ import RevealOneDark from "../../ui/RevealOneDark";
 const HERO_IMAGE_FALLBACK =
   "https://lh3.googleusercontent.com/aida-public/AB6AXuDTyxeutP7i3bLEgOgReazJq3fL8gL_0nt-ZGg7tXDH26cuyHhAjEY_V0Ht4_Q_h-_sIcfCK5Kj2zn0tLJfkGSkLidk_x-eIwZsKtHSYGri4uoLUvsz1-T8u9X9JwdfPUma0Qi01jqaPZAT5EBM3U-Z-DmmCQKReacdwWCpkwAeBv00vHIfaxo4ylI1UmYSfO0kddOLLOBy8N0vd4ouvwUeTowUmhLHTDT3n5HEsHysG_2WybeexPH1cw";
 
-export default function HeroOneDark({ content = {}, slug, isDemo = false }) {
+export default function HeroOneDark({ content = {}, slug, isDemo = false, fees = {}, phone = "" }) {
   const base = isDemo ? `/preview/${slug}` : "";
   const imageSrc = content.imageUrl || HERO_IMAGE_FALLBACK;
   const statCard = content.statCard;
+  const displayPhone = phone || (isDemo ? "+880 1888-876512" : "");
+  const cleanPhone = String(displayPhone).replace(/\D/g, "");
+  const feeCurrency = fees?.currency || "BDT";
+  const firstVisitFee = fees?.consultationFee ?? 1000;
 
   return (
     <section className="relative min-h-[90vh] flex items-center overflow-hidden">
       <div className="relative z-10 max-w-[1440px] mx-auto px-10 w-full grid grid-cols-1 md:grid-cols-2 gap-8 items-center py-20">
         <RevealOneDark isDemo={isDemo}>
-          {content.badge ? (
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-card text-secondary-fixed font-label-md text-xs mb-8 border border-secondary-fixed/20 uppercase tracking-widest">
-              <span className="w-2 h-2 rounded-full bg-secondary-fixed animate-pulse" />
-              {content.badge}
+          <div className="flex flex-wrap items-center gap-3 mb-8">
+            {content.badge ? (
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-card text-secondary-fixed font-label-md text-xs border border-secondary-fixed/20 uppercase tracking-widest">
+                <span className="w-2 h-2 rounded-full bg-secondary-fixed animate-pulse" />
+                {content.badge}
+              </div>
+            ) : null}
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/20 text-primary border border-primary/30 text-xs font-mono">
+              <span className="material-symbols-outlined text-sm">payments</span>
+              <span>Fee: {feeCurrency === "BDT" ? "৳" : feeCurrency} {Number(firstVisitFee).toLocaleString()}</span>
             </div>
-          ) : null}
+          </div>
           <h1 className="font-display-lg text-6xl md:text-8xl text-secondary mb-8 leading-[0.9] tracking-tighter">
             {content.heading}{" "}
             {content.headingHighlight ? (
@@ -38,12 +48,22 @@ export default function HeroOneDark({ content = {}, slug, isDemo = false }) {
             >
               {content.primaryCta}
             </Link>
-            <Link
-              className="glass-card text-secondary px-10 py-5 rounded-full font-bold text-label-md tracking-widest uppercase hover:bg-white/5 transition-all text-sm border border-white/10"
-              href={`${base}/about`}
-            >
-              {content.secondaryCta}
-            </Link>
+            {displayPhone ? (
+              <a
+                className="glass-card text-secondary px-8 py-5 rounded-full font-bold text-label-md tracking-widest uppercase hover:bg-white/5 transition-all text-sm border border-white/10 flex items-center justify-center gap-2"
+                href={`tel:${cleanPhone}`}
+              >
+                <span className="material-symbols-outlined text-base">call</span>
+                <span>Call: {displayPhone}</span>
+              </a>
+            ) : (
+              <Link
+                className="glass-card text-secondary px-10 py-5 rounded-full font-bold text-label-md tracking-widest uppercase hover:bg-white/5 transition-all text-sm border border-white/10"
+                href={`${base}/about`}
+              >
+                {content.secondaryCta}
+              </Link>
+            )}
           </div>
         </RevealOneDark>
 

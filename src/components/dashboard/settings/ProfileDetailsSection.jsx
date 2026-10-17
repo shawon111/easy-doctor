@@ -71,6 +71,14 @@ export function ProfileDetailsSection({ user }) {
       ? user.clinicAddress.map((clinic) => ({ ...clinic }))
       : [{ ...EMPTY_CLINIC }],
     bookingPreferences: user.bookingPreferences || "whatsapp",
+    fees: {
+      currency: user.fees?.currency || "BDT",
+      consultationFee: user.fees?.consultationFee ?? 1000,
+      followUpFee: user.fees?.followUpFee ?? 500,
+      followUpPeriod: user.fees?.followUpPeriod || "Within 30 Days",
+      reportFee: user.fees?.reportFee ?? 0,
+      note: user.fees?.note || "",
+    },
     treatments: user.treatments?.length ? [...user.treatments] : [""],
     socialLinks: user.socialLinks?.map((link) => ({ ...link })) || [],
   }));
@@ -78,16 +86,18 @@ export function ProfileDetailsSection({ user }) {
     mutationFn: saveProfileSettings,
     onSuccess: (updatedSettings) => {
       queryClient.setQueryData(["account-settings"], updatedSettings);
-      setProfile({
+      setProfile((current) => ({
+        ...current,
         qualifications: updatedSettings.qualifications.map((item) => ({
           ...item,
           year: String(item.year),
         })),
         clinicAddress: updatedSettings.clinicAddress,
         bookingPreferences: updatedSettings.bookingPreferences,
+        fees: updatedSettings.fees || current.fees,
         treatments: updatedSettings.treatments,
         socialLinks: updatedSettings.socialLinks,
-      });
+      }));
       toast.success("Professional profile saved.");
     },
     onError: (error) => toast.error(error.message || "Unable to save professional profile."),
@@ -97,10 +107,28 @@ export function ProfileDetailsSection({ user }) {
     setProfile((current) => ({ ...current, [field]: value }));
   }
 
+  function updateFeeField(field, value) {
+    setProfile((current) => ({
+      ...current,
+      fees: {
+        ...current.fees,
+        [field]: value,
+      },
+    }));
+  }
+
   function handleSubmit(event) {
     event.preventDefault();
     const payload = {
       ...profile,
+      fees: {
+        currency: profile.fees?.currency || "BDT",
+        consultationFee: Math.max(0, Number(profile.fees?.consultationFee) || 0),
+        followUpFee: Math.max(0, Number(profile.fees?.followUpFee) || 0),
+        followUpPeriod: profile.fees?.followUpPeriod || "Within 30 Days",
+        reportFee: Math.max(0, Number(profile.fees?.reportFee) || 0),
+        note: profile.fees?.note || "",
+      },
       qualifications: profile.qualifications.map((item) => ({
         ...item,
         year: Number(item.year),
@@ -399,6 +427,93 @@ export function ProfileDetailsSection({ user }) {
                 </span>
               </label>
             ))}
+          </div>
+        </div>
+
+        <div className="space-y-4 border-t border-slate-800/80 pt-6">
+          <SectionHeading
+            title="Patient Consultation Fees"
+            description="Manage your consultation rates for first visits, follow-ups, and extended visits. These appear directly on your website homepage."
+          />
+          <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-4 space-y-4">
+            <div className="grid gap-4 sm:grid-cols-2">
+              <Field label="First Visit / New Patient Fee" id="consultationFee">
+                <div className="relative">
+                  <Input
+                    id="consultationFee"
+                    type="number"
+                    min="0"
+                    value={profile.fees?.consultationFee ?? 0}
+                    onChange={(e) => updateFeeField("consultationFee", e.target.value)}
+                    className="rounded-xl border-slate-700 bg-slate-900/80 text-white placeholder:text-slate-500 focus-visible:border-indigo-500"
+                  />
+                  <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-semibold text-slate-400">
+                    {profile.fees?.currency || "BDT"}
+                  </span>
+                </div>
+              </Field>
+
+              <Field label="Follow-Up Visit Fee" id="followUpFee">
+                <div className="relative">
+                  <Input
+                    id="followUpFee"
+                    type="number"
+                    min="0"
+                    value={profile.fees?.followUpFee ?? 0}
+                    onChange={(e) => updateFeeField("followUpFee", e.target.value)}
+                    className="rounded-xl border-slate-700 bg-slate-900/80 text-white placeholder:text-slate-500 focus-visible:border-indigo-500"
+                  />
+                  <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-semibold text-slate-400">
+                    {profile.fees?.currency || "BDT"}
+                  </span>
+                </div>
+              </Field>
+            </div>
+
+            <div className="grid gap-4 sm:grid-cols-2">
+              <Field label="Follow-Up Validity Window" id="followUpPeriod">
+                <select
+                  id="followUpPeriod"
+                  value={profile.fees?.followUpPeriod || "Within 30 Days"}
+                  onChange={(e) => updateFeeField("followUpPeriod", e.target.value)}
+                  className="w-full h-9 rounded-xl border border-slate-700 bg-slate-900/80 px-3 text-xs text-white placeholder:text-slate-500 focus-visible:border-indigo-500 focus:outline-none"
+                >
+                  <option value="Within 15 Days">Within 15 Days</option>
+                  <option value="Within 30 Days">Within 30 Days (1 Month)</option>
+                  <option value="Within 2 Months">Within 2 Months</option>
+                  <option value="Within 3 Months">Within 3 Months</option>
+                  <option value="Within 6 Months">Within 6 Months</option>
+                </select>
+              </Field>
+
+              <Field label="Report Review Fee (0 = Free)" id="reportFee">
+                <div className="relative">
+                  <Input
+                    id="reportFee"
+                    type="number"
+                    min="0"
+                    value={profile.fees?.reportFee ?? 0}
+                    onChange={(e) => updateFeeField("reportFee", e.target.value)}
+                    className="rounded-xl border-slate-700 bg-slate-900/80 text-white placeholder:text-slate-500 focus-visible:border-indigo-500"
+                  />
+                  <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-semibold text-slate-400">
+                    {profile.fees?.currency || "BDT"}
+                  </span>
+                </div>
+              </Field>
+            </div>
+
+            <Field label="Fee Instructions &amp; Patient Notes" id="feeNote">
+              <Input
+                id="feeNote"
+                type="text"
+                maxLength={500}
+                placeholder="e.g., Report check is free within 7 days. Please bring previous prescriptions."
+                value={profile.fees?.note || ""}
+                onChange={(e) => updateFeeField("note", e.target.value)}
+                className="rounded-xl border-slate-700 bg-slate-900/80 text-white placeholder:text-slate-500 focus-visible:border-indigo-500"
+              />
+            </Field>
           </div>
         </div>
 

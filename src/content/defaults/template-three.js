@@ -31,8 +31,24 @@ export const templateThreeDefaults = {
       body: "Message Dr. John's office and we will find a time that suits you.",
     },
   },
+  fees: {
+    currency: "BDT",
+    consultationFee: 1000,
+    followUpFee: 500,
+    followUpPeriod: "Within 30 Days",
+    reportFee: 0,
+    note: "",
+  },
+  contact: {
+    phone: "+880 1912-345678",
+  },
   pages: {
     home: {
+      feesContact: {
+        badge: "TRANSPARENT FEES & CONTACT",
+        heading: "Consultation Fees & Quick Contact",
+        subheading: "Clear pricing for first-time and follow-up patient visits with direct physician access.",
+      },
       hero: {
         badge: "ADVANCED MEDICINE, PERSONALLY DELIVERED",
         heading: "Precision Care for a",

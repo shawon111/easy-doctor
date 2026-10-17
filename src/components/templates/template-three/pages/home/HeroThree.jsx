@@ -4,17 +4,27 @@ import Link from "next/link";
 const DEFAULT_HERO_IMAGE =
   "https://lh3.googleusercontent.com/aida-public/AB6AXuC0UvJcRRGzeMnVHVjjXtnLb4votL8IteDuxDZoMBMVpVJGOKk-h0BcL08sXfFokA-cOo1p0SsfrOwac1Nso4BV3x2gC0QrMZoHxNOy-E6Z9IfkMBdSWPmugRqreXSFb0bGdnpfIjYIqX8q9tzPLq3OAXzVJuxeYXwM679Bugo2A_j8k-awrsDAbjGSxwoiM3DzXth4E2OLtitL8Sr4rEapTONQDNSO02L51czSuadSIGI3LL-ZaASnpQ";
 
-export default function HeroThree({ slug, content = {} , isDemo = false}) {
+export default function HeroThree({ slug, content = {} , isDemo = false, fees = {}, phone = ""}) {
   const base = isDemo ? `/preview/${slug}` : "";
   const heroImage = content.imageUrl || DEFAULT_HERO_IMAGE;
+  const displayPhone = phone || (isDemo ? "+880 1912-345678" : "");
+  const cleanPhone = String(displayPhone).replace(/\D/g, "");
+  const feeCurrency = fees?.currency || "BDT";
+  const firstVisitFee = fees?.consultationFee ?? 1000;
 
   return (
     <section className="relative min-h-[870px] flex items-center overflow-hidden hero-gradient">
       <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-2 gap-16 items-center relative z-10">
         <div className="space-y-8">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary font-label-sm text-label-sm">
-            <span className="material-symbols-outlined text-[14px]">verified_user</span>
-            {content.badge}
+          <div className="flex flex-wrap items-center gap-2">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary font-label-sm text-label-sm">
+              <span className="material-symbols-outlined text-[14px]">verified_user</span>
+              {content.badge}
+            </div>
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary font-label-sm text-xs font-semibold">
+              <span className="material-symbols-outlined text-[14px]">payments</span>
+              <span>Fee: {feeCurrency === "BDT" ? "৳" : feeCurrency} {Number(firstVisitFee).toLocaleString()}</span>
+            </div>
           </div>
 
           <h1 className="font-display-lg text-display-lg text-on-background max-w-xl">
@@ -31,7 +41,15 @@ export default function HeroThree({ slug, content = {} , isDemo = false}) {
               {content.primaryCta}
               <span className="material-symbols-outlined text-2xl">arrow_forward</span>
             </Link>
-            {content.whatsappUrl && (
+            {displayPhone ? (
+              <a
+                className="bg-surface-container text-on-surface px-6 py-4 rounded-xl font-headline-md text-[18px] flex items-center gap-2 border border-outline-variant hover:border-primary transition-all"
+                href={`tel:${cleanPhone}`}
+              >
+                <span className="material-symbols-outlined text-2xl text-primary">call</span>
+                <span>Call: {displayPhone}</span>
+              </a>
+            ) : content.whatsappUrl ? (
               <Link
                 className="bg-surface-container text-on-surface px-8 py-4 rounded-xl font-headline-md text-[18px] flex items-center gap-3 border border-outline-variant hover:border-primary transition-all"
                 href={content.whatsappUrl}
@@ -39,7 +57,7 @@ export default function HeroThree({ slug, content = {} , isDemo = false}) {
                 <span className="material-symbols-outlined text-2xl text-[#128C7E]">chat_bubble</span>
                 {content.secondaryCta}
               </Link>
-            )}
+            ) : null}
           </div>
         </div>
 

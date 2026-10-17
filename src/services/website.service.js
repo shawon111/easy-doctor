@@ -384,7 +384,7 @@ export const getWebsiteBySubdomain = async (subdomainOrDomain, pageName) => {
                     path: "content",
                     select: `pages.${pageName} header footer`
                 })
-                .populate("userId", "name phone clinicAddress bookingPreferences")
+                .populate("userId", "name phone clinicAddress bookingPreferences fees")
                 .lean();
 
             if (website?.content) {

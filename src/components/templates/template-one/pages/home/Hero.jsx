@@ -5,20 +5,30 @@ import Reveal from "@/components/templates/ui/Reveal";
 const HERO_IMAGE_FALLBACK =
   "https://lh3.googleusercontent.com/aida-public/AB6AXuDTyxeutP7i3bLEgOgReazJq3fL8gL_0nt-ZGg7tXDH26cuyHhAjEY_V0Ht4_Q_h-_sIcfCK5Kj2zn0tLJfkGSkLidk_x-eIwZsKtHSYGri4uoLUvsz1-T8u9X9JwdfPUma0Qi01jqaPZAT5EBM3U-Z-DmmCQKReacdwWCpkwAeBv00vHIfaxo4ylI1UmYSfO0kddOLLOBy8N0vd4ouvwUeTowUmhLHTDT3n5HEsHysG_2WybeexPH1cw";
 
-export default function HeroOne({ content = {}, slug , isDemo = false}) {
+export default function HeroOne({ content = {}, slug , isDemo = false, fees = {}, phone = ""}) {
   const base = isDemo ? `/preview/${slug}` : "";
   const imageSrc = content.imageUrl || HERO_IMAGE_FALLBACK;
   const statCard = content.statCard;
+  const displayPhone = phone || (isDemo ? "+880 1888-876512" : "");
+  const cleanPhone = String(displayPhone).replace(/\D/g, "");
+  const feeCurrency = fees?.currency || "BDT";
+  const firstVisitFee = fees?.consultationFee ?? 1000;
 
   return (
     <section className="relative min-h-[921px] flex items-center overflow-hidden bg-surface-container-lowest">
       <div className="relative z-10 max-w-container-max mx-auto px-margin-desktop w-full grid grid-cols-1 md:grid-cols-2 gap-gutter items-center py-stack-lg">
         <Reveal>
-          {content.badge ? (
-            <div className="inline-block px-4 py-1.5 rounded-full bg-[#F0FDFA] text-[#0F766E] font-label-caps text-label-caps mb-stack-sm">
-              {content.badge}
+          <div className="flex flex-wrap items-center gap-2 mb-stack-sm">
+            {content.badge ? (
+              <div className="inline-block px-4 py-1.5 rounded-full bg-[#F0FDFA] text-[#0F766E] font-label-caps text-label-caps">
+                {content.badge}
+              </div>
+            ) : null}
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200/60 text-xs font-semibold">
+              <span className="material-symbols-outlined text-sm">payments</span>
+              <span>Fee: {feeCurrency === "BDT" ? "৳" : feeCurrency} {Number(firstVisitFee).toLocaleString()}</span>
             </div>
-          ) : null}
+          </div>
           <h1 className="font-display-lg text-display-lg text-on-background mb-stack-md leading-tight">
             {content.heading}{" "}
             {content.headingHighlight ? (
@@ -37,12 +47,22 @@ export default function HeroOne({ content = {}, slug , isDemo = false}) {
             >
               {content.primaryCta}
             </Link>
-            <Link
-              href={`${base}/about`}
-              className="border border-outline-variant text-on-surface px-8 py-4 rounded-xl font-button text-button hover:bg-surface transition-all text-center"
-            >
-              {content.secondaryCta}
-            </Link>
+            {displayPhone ? (
+              <a
+                href={`tel:${cleanPhone}`}
+                className="inline-flex items-center justify-center gap-2 border border-primary/20 bg-primary/5 text-primary px-6 py-4 rounded-xl font-button text-button hover:bg-primary/10 transition-all text-center"
+              >
+                <span className="material-symbols-outlined text-base">call</span>
+                <span>Call: {displayPhone}</span>
+              </a>
+            ) : (
+              <Link
+                href={`${base}/about`}
+                className="border border-outline-variant text-on-surface px-8 py-4 rounded-xl font-button text-button hover:bg-surface transition-all text-center"
+              >
+                {content.secondaryCta}
+              </Link>
+            )}
           </div>
         </Reveal>
 

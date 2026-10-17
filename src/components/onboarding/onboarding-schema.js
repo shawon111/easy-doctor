@@ -28,6 +28,24 @@ const socialLinkSchema = z.object({
   url: z.string().trim().url("Enter a valid URL"),
 });
 
+const feesSchema = z.object({
+  currency: z.string().trim().default("BDT"),
+  consultationFee: z.preprocess(
+    (val) => (val === "" || val === null || val === undefined ? 0 : Number(val)),
+    z.number({ invalid_type_error: "First visit fee must be a number" }).min(0, "Fee cannot be negative")
+  ),
+  followUpFee: z.preprocess(
+    (val) => (val === "" || val === null || val === undefined ? 0 : Number(val)),
+    z.number({ invalid_type_error: "Follow-up fee must be a number" }).min(0, "Fee cannot be negative")
+  ),
+  followUpPeriod: z.string().trim().min(1, "Follow-up validity is required").default("Within 30 Days"),
+  reportFee: z.preprocess(
+    (val) => (val === "" || val === null || val === undefined ? 0 : Number(val)),
+    z.number().min(0).optional().default(0)
+  ),
+  note: z.string().trim().max(500, "Note cannot exceed 500 characters").optional().default(""),
+});
+
 export const onboardingSchema = z.object({
   name: z.string().trim().min(1, "Name is required"),
   email: z.string().trim().email("Enter a valid email address"),
@@ -54,6 +72,7 @@ export const onboardingSchema = z.object({
   bookingPreferences: z.enum(["whatsapp", "bookingForm", "both"], {
     required_error: "Select a booking preference",
   }),
+  fees: feesSchema,
   bio: z
     .string()
     .trim()
@@ -84,6 +103,7 @@ export const stepSchemas = [
   onboardingSchema.pick({
     clinicAddress: true,
     bookingPreferences: true,
+    fees: true,
   }),
   onboardingSchema.pick({
     bio: true,
@@ -116,6 +136,14 @@ export const defaultValues = {
     },
   ],
   bookingPreferences: "whatsapp",
+  fees: {
+    currency: "BDT",
+    consultationFee: 1000,
+    followUpFee: 500,
+    followUpPeriod: "Within 30 Days",
+    reportFee: 0,
+    note: "",
+  },
   bio: "",
   treatments: [],
   languages: [],
@@ -130,7 +158,7 @@ export const STEPS = [
     description: "Specialty and experience",
   },
   { id: "education", title: "Education", description: "Degrees and credentials" },
-  { id: "practice", title: "Practice locations", description: "Where patients can find you" },
+  { id: "practice", title: "Practice & Fees", description: "Chambers, reachability, and consultation fees" },
   { id: "website", title: "Your website", description: "A little about your care" },
   { id: "social", title: "Online profiles", description: "Optional social links" },
 ];

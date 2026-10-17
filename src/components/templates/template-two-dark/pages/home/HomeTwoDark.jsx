@@ -3,6 +3,7 @@ import { resolveTemplateContent } from "@/lib/content/resolve-template-content";
 import ChamberTwoDark from "./ChamberTwoDark";
 import CredentialsTwoDark from "./CredentialsTwoDark";
 import CtaTwoDark from "./CtaTwoDark";
+import FeesContactTwoDark from "./FeesContactTwoDark";
 import GoldDividerTwoDark from "./GoldDividerTwoDark";
 import HeroTwoDark from "./HeroTwoDark";
 import OnboardingTwoDark from "./OnboardingTwoDark";
@@ -11,17 +12,20 @@ import TreatmentsTwoDark from "./TreatmentsTwoDark";
 
 export default function HomeTwoDark({ slug, content, isDemo = false }) {
   const home = resolveTemplateContent(content?.pages?.home, templateTwoDefaults.pages.home, isDemo);
+  const fees = isDemo ? templateTwoDefaults.fees : (content?.fees || templateTwoDefaults.fees);
+  const phone = isDemo ? (templateTwoDefaults.contact?.phone || "+880 1712-345678") : (content?.phone || "");
 
   return (
     <>
-      <HeroTwoDark slug={slug} content={home.hero}  isDemo={isDemo}/>
-      <GoldDividerTwoDark  isDemo={isDemo}/>
-      <CredentialsTwoDark content={home.credentials}  isDemo={isDemo}/>
-      <TreatmentsTwoDark slug={slug} content={home.treatments}  isDemo={isDemo}/>
-      <TimelineTwoDark content={home.timeline} isDemo={isDemo}/>
-      <OnboardingTwoDark content={home.onboarding}  isDemo={isDemo}/>
-      <ChamberTwoDark content={home.chamber}  isDemo={isDemo}/>
-      <CtaTwoDark slug={slug} content={home.finalCta}  isDemo={isDemo}/>
+      <HeroTwoDark slug={slug} content={home.hero} isDemo={isDemo} fees={fees} phone={phone} />
+      <GoldDividerTwoDark isDemo={isDemo} />
+      <CredentialsTwoDark content={home.credentials} isDemo={isDemo} />
+      <FeesContactTwoDark content={home.feesContact} fees={fees} phone={phone} clinics={content?.clinics} isDemo={isDemo} />
+      <TreatmentsTwoDark slug={slug} content={home.treatments} isDemo={isDemo} />
+      <TimelineTwoDark content={home.timeline} isDemo={isDemo} />
+      <OnboardingTwoDark content={home.onboarding} isDemo={isDemo} />
+      <ChamberTwoDark content={home.chamber} isDemo={isDemo} />
+      <CtaTwoDark slug={slug} content={home.finalCta} isDemo={isDemo} />
     </>
   );
 }

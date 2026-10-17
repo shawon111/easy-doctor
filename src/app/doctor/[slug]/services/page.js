@@ -42,6 +42,8 @@ const ServicesPage = async ({ params }) => {
     let siteContent = website?.content ?? {};
     siteContent.userId = website?.userId?._id;
     siteContent.phone = website?.userId?.phone;
+    siteContent.fees = website?.userId?.fees;
+    siteContent.clinics = website?.userId?.clinicAddress;
 
     // generate and use brand name
     const brandName =

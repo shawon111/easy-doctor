@@ -10,7 +10,7 @@ import mongoose from "mongoose";
 // create a new user
 export const createUser = async (userData) => {
     await connectDB();
-    const { name, email, password, phone, specialization, qualifications, experience, clinicAddress, bio, bookingPreferences, treatments, languages, socialLinks, profilePicture, } = userData;
+    const { name, email, password, phone, specialization, qualifications, experience, clinicAddress, bio, bookingPreferences, treatments, languages, socialLinks, profilePicture, fees } = userData;
     const session = await mongoose.startSession();
     try {
         const result = await session.withTransaction(async () => {
@@ -39,6 +39,7 @@ export const createUser = async (userData) => {
                 languages,
                 socialLinks,
                 profilePicture,
+                fees: fees || undefined,
             });
 
             const savedUser = await newUser.save({ session });
